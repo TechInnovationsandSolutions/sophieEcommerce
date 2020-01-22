@@ -8,13 +8,21 @@ import { appRoutes } from './routes';
 import { SiteFooterComponent } from './siteFooter/site-footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeProductsComponent } from './products/home-products.component';
+import { CategoryThumbnailComponent } from './products/category-thumbnail/category-thumbnail.component';
+import { PopularProductsComponent } from './products/popular-products/popular-products.component';
+import { TestimonialComponent } from './products/testimonial/testimonial.component';
+import { NewsletterSubscriptionComponent } from './products/newsletter-subscription/newsletter-subscription.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SiteFooterComponent,
     NavBarComponent,
-    HomeProductsComponent
+    HomeProductsComponent,
+    CategoryThumbnailComponent,
+    PopularProductsComponent,
+    TestimonialComponent,
+    NewsletterSubscriptionComponent
   ],
   imports: [
     BrowserModule,
