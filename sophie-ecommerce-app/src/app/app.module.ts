@@ -9,7 +9,6 @@ import { SiteFooterComponent } from './siteFooter/site-footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeProductsComponent } from './products/home-products.component';
 import { CategoryThumbnailComponent } from './products/category-thumbnail/category-thumbnail.component';
-import { PopularProductsComponent } from './products/popular-products/popular-products.component';
 import { TestimonialComponent } from './products/testimonial/testimonial.component';
 import { NewsletterSubscriptionComponent } from './products/newsletter-subscription/newsletter-subscription.component';
 import { PrivacyPageComponent } from './privacy-page/privacy-page.component';
@@ -20,6 +19,7 @@ import { ShopPageComponent } from './shop-page/shop-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { ReturnPolicyPageComponent } from './return-policy-page/return-policy-page.component';
 import { TermAndConditionsPageComponent } from './term-and-conditions-page/term-and-conditions-page.component';
+import { SharedProductListsComponent } from './common/shared-product-lists/shared-product-lists.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { TermAndConditionsPageComponent } from './term-and-conditions-page/term-
     NavBarComponent,
     HomeProductsComponent,
     CategoryThumbnailComponent,
-    PopularProductsComponent,
+    SharedProductListsComponent,
     TestimonialComponent,
     NewsletterSubscriptionComponent,
     PrivacyPageComponent,
