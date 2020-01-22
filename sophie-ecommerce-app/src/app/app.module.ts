@@ -19,7 +19,7 @@ import { ShopPageComponent } from './shop-page/shop-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { ReturnPolicyPageComponent } from './return-policy-page/return-policy-page.component';
 import { TermAndConditionsPageComponent } from './term-and-conditions-page/term-and-conditions-page.component';
-import { SharedProductListsComponent } from './common/shared-product-lists/shared-product-lists.component';
+import { SharedProductListsWidgetComponent } from './common/shared-product-lists-widget/shared-product-lists-widget.component';
 import { ProductItemComponent } from './products/product-list/product-item/product-item.component';
 import { ProductDescriptionComponent } from './products/product-details/product-description/product-description.component';
 import { ProductReviewComponent } from './products/product-details/product-review/product-review.component';
@@ -31,7 +31,7 @@ import { ProductReviewComponent } from './products/product-details/product-revie
     NavBarComponent,
     HomeProductsComponent,
     CategoryThumbnailComponent,
-    SharedProductListsComponent,
+    SharedProductListsWidgetComponent,
     TestimonialComponent,
     NewsletterSubscriptionComponent,
     PrivacyPageComponent,
