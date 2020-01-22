@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'products',
+  selector: 'category-thumbnail',
   templateUrl: './category-thumbnail.component.html',
   styleUrls: ['./category-thumbnail.component.scss']
 })
