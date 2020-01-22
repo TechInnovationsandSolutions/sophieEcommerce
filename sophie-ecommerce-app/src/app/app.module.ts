@@ -12,6 +12,7 @@ import { CategoryThumbnailComponent } from './products/category-thumbnail/catego
 import { PopularProductsComponent } from './products/popular-products/popular-products.component';
 import { TestimonialComponent } from './products/testimonial/testimonial.component';
 import { NewsletterSubscriptionComponent } from './products/newsletter-subscription/newsletter-subscription.component';
+import { PrivacyPageComponent } from './privacy-page/privacy-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NewsletterSubscriptionComponent } from './products/newsletter-subscript
     CategoryThumbnailComponent,
     PopularProductsComponent,
     TestimonialComponent,
-    NewsletterSubscriptionComponent
+    NewsletterSubscriptionComponent,
+    PrivacyPageComponent
   ],
   imports: [
     BrowserModule,
