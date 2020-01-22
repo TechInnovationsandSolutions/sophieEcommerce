@@ -13,6 +13,13 @@ import { PopularProductsComponent } from './products/popular-products/popular-pr
 import { TestimonialComponent } from './products/testimonial/testimonial.component';
 import { NewsletterSubscriptionComponent } from './products/newsletter-subscription/newsletter-subscription.component';
 import { PrivacyPageComponent } from './privacy-page/privacy-page.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
+import { ShopPageComponent } from './shop-page/shop-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
+import { ReturnPolicyPageComponent } from './return-policy-page/return-policy-page.component';
+import { TermAndConditionsPageComponent } from './term-and-conditions-page/term-and-conditions-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,14 @@ import { PrivacyPageComponent } from './privacy-page/privacy-page.component';
     PopularProductsComponent,
     TestimonialComponent,
     NewsletterSubscriptionComponent,
-    PrivacyPageComponent
+    PrivacyPageComponent,
+    ProductListComponent,
+    ProductDetailsComponent,
+    ContactPageComponent,
+    ShopPageComponent,
+    AboutPageComponent,
+    ReturnPolicyPageComponent,
+    TermAndConditionsPageComponent
   ],
   imports: [
     BrowserModule,
