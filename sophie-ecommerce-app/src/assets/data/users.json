@@ -11,8 +11,7 @@
             "city": "lorum",
             "state": "lagos",
             "country": "nigeria"
-        },
-        "password": "zxcvbnm"
+        }
     },
     {
         "id": 2,
@@ -26,8 +25,7 @@
             "city": "lorum",
             "state": "Bauchi",
             "country": "nigeria"
-        },
-        "password": "zxcvbnm"
+        }
     },
     {
         "id": 3,
@@ -41,7 +39,6 @@
             "city": "lorum",
             "state": "port harcourt",
             "country": "nigeria"
-        },
-        "password": "zxcvbnm"
+        }
     }
 ]
