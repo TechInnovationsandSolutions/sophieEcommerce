@@ -1,0 +1,1 @@
+export * from './shared-product-lists-widget/shared-product-lists-widget.component';
