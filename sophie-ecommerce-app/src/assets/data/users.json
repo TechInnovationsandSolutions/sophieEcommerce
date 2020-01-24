@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "firstName": "cross",
+        "lastname": "chidera",
+        "email": "crosschidera@gmailcom",
+        "creationDate": "1579737786364",
+        "phoneNumber": "1579737786364",
+        "address": {
+            "location": "1001 ipsum chang ridiculus",
+            "city": "lorum",
+            "state": "lagos",
+            "country": "nigeria"
+        }
+    },
+    {
+        "id": 2,
+        "firstName": "mako",
+        "lastname": "yelmis",
+        "email": "makoyelmis@gmailcom",
+        "creationDate": "1579737786364",
+        "phoneNumber": "1579737786364",
+        "address": {
+            "location": "1001 ipsum chang ridiculus",
+            "city": "lorum",
+            "state": "Bauchi",
+            "country": "nigeria"
+        }
+    },
+    {
+        "id": 3,
+        "firstName": "syndey",
+        "lastname": "devops",
+        "email": "sydneydevops@gmailcom",
+        "creationDate": "1579737786364",
+        "phoneNumber": "1579737786364",
+        "address": {
+            "location": "1001 ipsum chang ridiculus",
+            "city": "lorum",
+            "state": "port harcourt",
+            "country": "nigeria"
+        }
+    }
+]

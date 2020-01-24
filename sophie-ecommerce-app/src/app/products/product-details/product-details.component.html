@@ -1,0 +1,43 @@
+<div class="product-details">
+    <div class="product-details__main">
+        <img src="" alt="">
+        <div class="product-detail__info">
+            <p class="product-detail__name"></p>
+            <p class="product-detail__price"></p>
+            <p class="product-detail__availibility">Availability: <span></span></p>
+            <p class="product-detail__excerpt"></p> <!--Make this on click to nav to description?-->
+            <div class="product-deatial__add-to-cart">
+                <form id="frm-product-add-to-cart">
+                    <p>Quantity</p>
+                    <div class="frm-product-add-to-cart__input-container">
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">-</button>
+                        <input type="number" class="frm-product-add-to-cart__amt">
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">+</button>
+                    </div>
+                    <button type="submit" class="frm-product-add-to-cart__btn-submit">Add To Cart</button>
+                    <button type="button" class="frm-product-add-to-cart__btn-wishlist"></button>
+                </form>
+            </div>
+            <ul class="product-detail__tags">
+                <span>Tags:</span>
+                <li class="product-detail__tag">
+                    <a></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <ul>
+            <li>
+                <a href="">Description</a>
+            </li>
+            <li>
+                <a href="">Review (<span></span>)</a>
+            </li>
+        </ul>
+        <hr>
+        <product-description></product-description>
+        <product-review></product-review>
+        <shared-product-lists-widget></shared-product-lists-widget>
+    </div>
+</div>

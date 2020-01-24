@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "descriptiion": "address",
+      "value": "1001, Lorem, Lagos",
+      "link": "",
+      "icon": ""
+    },
+    {
+        "id": 2,
+        "descriptiion": "email",
+        "value": "info@gooo.com",
+        "link": "mailto:info@gooo.com",
+        "icon": ""
+    },
+    {
+        "id": 3,
+        "descriptiion": "tel",
+        "value": "08020202020",
+        "link": "tel:08020202020",
+        "icon": ""
+    }
+]
