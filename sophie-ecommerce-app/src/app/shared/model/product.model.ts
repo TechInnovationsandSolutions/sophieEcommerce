@@ -26,5 +26,6 @@ export interface IProduct{
     availibility:string,
     rating?:IRating[],
     review?:IReview[],
-    tag?:string[]
+    tag?:string[],
+    isPopular?:boolean
 }

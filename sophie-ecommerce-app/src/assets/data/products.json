@@ -32,7 +32,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"]
+        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
+        "isPopular": true
     },
     {
         "id": 2,
@@ -77,7 +78,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "cream", "dark"]
+        "tag": ["Lotion", "cream", "dark"],
+        "isPopular": true
     },
     {
         "id": 3,
@@ -106,7 +108,8 @@
             }
         ],
         "review": [],
-        "tag": ["Lotion", "Oil"]
+        "tag": ["Lotion", "Oil"],
+        "isPopular": true
     },
     {
         "id": 4,
@@ -141,7 +144,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["cream", "dark"]
+        "tag": ["cream", "dark"],
+        "isPopular": true
     },
     {
         "id": 5,
@@ -176,7 +180,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"]
+        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
+        "isPopular": true
     },
     {
         "id": 6,
@@ -211,7 +216,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion"]
+        "tag": ["Lotion"],
+        "isPopular": true
     },
     {
         "id": 7,
@@ -246,7 +252,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Oil", "toning"]
+        "tag": ["Oil", "toning"],
+        "isPopular": true
     },
     {
         "id": 8,
@@ -281,7 +288,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion"]
+        "tag": ["Lotion"],
+        "isPopular": true
     },
     {
         "id": 9,
