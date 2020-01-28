@@ -24,6 +24,7 @@ import { SharedProductListsWidgetComponent } from './common/shared-product-lists
 import { ProductItemComponent } from './products/product-list/product-item/product-item.component';
 import { ProductDescriptionComponent } from './products/product-details/product-description/product-description.component';
 import { ProductReviewComponent } from './products/product-details/product-review/product-review.component';
+import { ProductService } from './shared';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { ProductReviewComponent } from './products/product-details/product-revie
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
