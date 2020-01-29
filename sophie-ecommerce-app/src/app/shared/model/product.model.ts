@@ -27,5 +27,6 @@ export interface IProduct{
     rating?:IRating[],
     review?:IReview[],
     tag?:string[],
-    isPopular?:boolean
+    isPopular?:boolean,
+    ratingAverage?:number
 }
