@@ -14,7 +14,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -33,7 +33,8 @@
             }
         ],
         "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
-        "isPopular": true
+        "isPopular": true,
+        "ratingAverage": 3.24
     },
     {
         "id": 2,
@@ -50,7 +51,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -79,7 +80,8 @@
             }
         ],
         "tag": ["Lotion", "cream", "dark"],
-        "isPopular": true
+        "isPopular": true,
+        "ratingAverage": 3.24
     },
     {
         "id": 3,
@@ -96,7 +98,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -109,7 +111,8 @@
         ],
         "review": [],
         "tag": ["Lotion", "Oil"],
-        "isPopular": true
+        "isPopular": true,
+        "ratingAverage": 3.24
     },
     {
         "id": 4,
@@ -126,7 +129,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -145,7 +148,8 @@
             }
         ],
         "tag": ["cream", "dark"],
-        "isPopular": true
+        "isPopular": true,
+        "ratingAverage": 3.27
     },
     {
         "id": 5,
@@ -162,7 +166,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -181,7 +185,8 @@
             }
         ],
         "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
-        "isPopular": true
+        "isPopular": true,
+        "ratingAverage": 4.24
     },
     {
         "id": 6,
@@ -198,7 +203,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -217,7 +222,8 @@
             }
         ],
         "tag": ["Lotion"],
-        "isPopular": true
+        "isPopular": true,
+        "ratingAverage": 3.24
     },
     {
         "id": 7,
@@ -234,7 +240,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -253,7 +259,8 @@
             }
         ],
         "tag": ["Oil", "toning"],
-        "isPopular": true
+        "isPopular": true,
+        "ratingAverage": 3.24
     },
     {
         "id": 8,
@@ -270,7 +277,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -289,7 +296,8 @@
             }
         ],
         "tag": ["Lotion"],
-        "isPopular": true
+        "isPopular": true,
+        "ratingAverage": 3.24
     },
     {
         "id": 9,
@@ -306,7 +314,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -324,7 +332,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["cream", "dark"]
+        "tag": ["cream", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 10,
@@ -341,7 +350,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -359,7 +368,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["dark"]
+        "tag": ["dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 11,
@@ -376,7 +386,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -394,7 +404,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Acne", "cream", "dark"]
+        "tag": ["Acne", "cream", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 12,
@@ -411,7 +422,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -429,7 +440,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "Oil", "dark"]
+        "tag": ["Lotion", "Oil", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 13,
@@ -446,7 +458,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -464,7 +476,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["toning", "Acne"]
+        "tag": ["toning", "Acne"],
+        "ratingAverage": 3.24
     },
     {
         "id": 14,
@@ -481,7 +494,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -499,7 +512,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["toning"]
+        "tag": ["toning"],
+        "ratingAverage": 3.24
     },
     {
         "id": 15,
@@ -516,7 +530,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -528,7 +542,8 @@
             }
         ],
         "review": [],
-        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"]
+        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 16,
@@ -545,7 +560,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -563,7 +578,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "Oil"]
+        "tag": ["Lotion", "Oil"],
+        "ratingAverage": 3.24
     },
     {
         "id": 17,
@@ -580,7 +596,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -598,7 +614,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "toning", "Acne", "cream", "dark"]
+        "tag": ["Lotion", "toning", "Acne", "cream", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 18,
@@ -615,7 +632,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -633,7 +650,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Oil", "dark"]
+        "tag": ["Oil", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 19,
@@ -650,7 +668,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -668,7 +686,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Acne"]
+        "tag": ["Acne"],
+        "ratingAverage": 3.24
     },
     {
         "id": 20,
@@ -685,7 +704,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -703,7 +722,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Oil", "Acne", "dark"]
+        "tag": ["Oil", "Acne", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 21,
@@ -720,7 +740,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -738,7 +758,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "cream", "dark"]
+        "tag": ["Lotion", "cream", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 22,
@@ -755,7 +776,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -773,7 +794,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["cream"]
+        "tag": ["cream"],
+        "ratingAverage": 3.24
     },
     {
         "id": 23,
@@ -790,7 +812,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -808,7 +830,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["toning"]
+        "tag": ["toning"],
+        "ratingAverage": 3.24
     },
     {
         "id": 24,
@@ -825,7 +848,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -843,7 +866,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"]
+        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 25,
@@ -860,7 +884,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -878,7 +902,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Acne", "cream", "dark"]
+        "tag": ["Acne", "cream", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 26,
@@ -895,7 +920,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-2.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -913,7 +938,8 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["cream", "dark"]
+        "tag": ["cream", "dark"],
+        "ratingAverage": 3.24
     },
     {
         "id": 27,
@@ -930,7 +956,7 @@
         "excerpts": "Toning Oil dolor does amet, consectetur adipiscing elit. Convallis at egestas magna purus sit urna, eu.Convallis  mi mattis mattis vel tellus ",
         "price":"5000",
         "promoPrice":"4500",
-        "imageURL": "",
+        "imageURL": "/assets/images/product-1.png",
         "createdOn":"1579737786364",
         "lastUpdate":"1579737786364",
         "availibility": "true",
@@ -948,6 +974,7 @@
                 "imgURL": ""
             }
         ],
-        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"]
+        "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
+        "ratingAverage": 3.24
     }
 ]
