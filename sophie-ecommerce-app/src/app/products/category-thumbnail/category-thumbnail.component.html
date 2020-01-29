@@ -1,1 +1,12 @@
-<p>category-thumbnail works!</p>
+<div>
+    <h2 class="widget-title">
+        <span>Shop By Categories</span>
+    </h2>
+    <div>
+        <div *ngFor="let category of categories">
+            <img src="{{category.imageUrl}}" alt="{{category.name}} category">
+            <button>Shop by {{ category.name }}</button>
+        </div> 
+    </div>
+   
+</div>
