@@ -7,14 +7,14 @@ import { IProduct, ProductService } from '../shared';
   styleUrls: ['./home-products.component.scss']
 })
 export class HomeProductsComponent implements OnInit {
-  products:IProduct[] = [];
+  popularProducts:IProduct[] = [];
   
   constructor(private productService:ProductService) { }
 
   ngOnInit() {
     this.productService.getPopularProducts().then(res=>{
       console.log(res);
-      this.products = <IProduct[]>res;
+      this.popularProducts = <IProduct[]>res;
       // console.log('products', this.products);
     })
   }
