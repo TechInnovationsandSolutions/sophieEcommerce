@@ -29,4 +29,8 @@ export class ProductService{
             });
         });
     }
+
+    getCategories(): Observable<ICategory[]>{
+        return this._http.get(this._category).pipe(map(resp=><ICategory[]>resp));
+    }
 }
