@@ -1,11 +1,10 @@
-<div>
-    <h2 class="widget-title">
+<div class="pg-section section-categories">
+    <h2 class="widget-title pg-section__title">
         <span>Shop By Categories</span>
     </h2>
     <div>
-        <div *ngFor="let category of categories">
-            <img src="{{category.imageUrl}}" alt="{{category.name}} category">
-            <button>Shop by {{ category.name }}</button>
+        <div class="section-categories__category" *ngFor="let category of categories" [style.background-image] = "'url(' + category.imageUrl + ')'" >
+            <button class="section-categories__btn-shop">Shop by {{ category.name }}</button>
         </div> 
     </div>
    
