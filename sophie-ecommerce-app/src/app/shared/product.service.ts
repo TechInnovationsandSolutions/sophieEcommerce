@@ -37,4 +37,12 @@ export class ProductService{
     getTestimonials(): Observable<ITestimonial[]>{
         return this._http.get(this._testimonial).pipe(map(resp=><ITestimonial[]>resp));
     }
+
+    getSocialMedia(): Observable<any[]>{
+        return this._http.get(this._social_media).pipe(map(resp=><any[]>resp));
+    }
+
+    getContactDetails(): Observable<any[]>{
+        return this._http.get(this._contact_details).pipe(map(resp=><any[]>resp));
+    }
 }
