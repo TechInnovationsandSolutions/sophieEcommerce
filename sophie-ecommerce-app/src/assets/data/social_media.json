@@ -1,22 +1,22 @@
 [
     {
         "name": "Facebook",
-        "link": "",
-        "icon": ""
+        "link": "#",
+        "icon": "fab fa-facebook-square"
     },
     {
         "name": "Twitter",
-        "link": "",
-        "icon": ""
+        "link": "#",
+        "icon": "fab fa-twitter-square"
     },
     {
         "name": "Instagram",
-        "link": "",
-        "icon": ""
+        "link": "#",
+        "icon": "fab fa-instagram"
     },
     {
         "name": "Whatsapp",
         "link": "",
-        "icon": ""
+        "icon": "fab fa-whatsapp-square"
     }
 ]
