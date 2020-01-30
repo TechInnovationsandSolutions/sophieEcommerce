@@ -13,7 +13,7 @@
                   <p class="testimonial-area__content-author">{{ testimonial.name }}</p>
               </div>
             </div>
-            <ol class="carousel-indicators" class="testimonial-area__content-slider-controller">
+            <ol class="carousel-indicators testimonial-area__content-slider-controller">
               <li data-target="#carouselExampleCaptions" [attr.data-slide-to] ="testimonial.id - 1" *ngFor="let testimonial of testimonials" [class.active] ="testimonial.id === 1"></li>
             </ol>
           </div>
