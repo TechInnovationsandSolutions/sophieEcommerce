@@ -15,27 +15,18 @@
         <div class="footer-section">
             <p class="footer-section__title">About Sophie’s</p>
             <ul class="footer-section__list-items footer__social-media-links">
-                <li class="footer__social-media-link"></li>
-                <li class="footer__social-media-link"></li>
-                <li class="footer__social-media-link"></li>
-                <li class="footer__social-media-link"></li>
+                <li class="footer__social-media-link" *ngFor="let social of socialMedia">
+                    <a href="{{social?.link}}" title="{{social?.name}}">
+                        <i class="{{social?.icon}}"></i>
+                    </a>
+                </li>
             </ul>
             <ul class="footer-section__list-items footer__contact-details">
-                <li class="footer__contact-detail">
-                    <i></i>
-                    <a href=""></a>
-                </li>
-                <li class="footer__contact-detail">
-                    <i></i>
-                    <a href=""></a>
-                </li>
-                <li class="footer__contact-detail">
-                    <i></i>
-                    <a href=""></a>
-                </li>
-                <li class="footer__contact-detail">
-                    <i></i>
-                    <a href=""></a>
+                <li class="footer__contact-detail" *ngFor="let contact of contactDetails">
+                    <a href="{{contact?.link}}" title="{{contact?.descriptiion}}">
+                        <img src="{{contact?.icon}}" alt="icon for {{contact?.descriptiion}}"/>
+                        <span>{{contact?.value}}</span>
+                    </a>
                 </li>
             </ul>
         </div>
