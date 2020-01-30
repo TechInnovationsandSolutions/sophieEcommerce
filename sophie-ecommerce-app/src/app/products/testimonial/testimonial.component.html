@@ -1,1 +1,22 @@
-<p>testimonial works!</p>
+<div class="testimonial-section">
+    <div>
+        <h2 class="section-title">Our Happy Customers</h2>
+        <p>What they say about us</p>
+        <div class="testimonial-area p-4">
+          <div class="testimonial-area__icon-container">
+              <span class="testimonial-area__icon"></span>
+          </div>
+          <div class="testimonial-area__contents-container carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="testimonial-area__content-container carousel-item" *ngFor="let testimonial of testimonials" [class.active] ="testimonial.id === 1" >
+                  <p class="testimonial-area__content-testimony">{{ testimonial.message }}</p>
+                  <p class="testimonial-area__content-author">{{ testimonial.name }}</p>
+              </div>
+            </div>
+            <ol class="carousel-indicators" class="testimonial-area__content-slider-controller">
+              <li data-target="#carouselExampleCaptions" [attr.data-slide-to] ="testimonial.id - 1" *ngFor="let testimonial of testimonials" [class.active] ="testimonial.id === 1"></li>
+            </ol>
+          </div>
+        </div>
+    </div>
+</div>

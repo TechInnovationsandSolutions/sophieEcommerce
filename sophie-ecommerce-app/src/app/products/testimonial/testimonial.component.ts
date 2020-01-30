@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService, ITestimonial } from '../../shared';
 
 @Component({
   selector: 'testimonial',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestimonialComponent implements OnInit {
 
-  constructor() { }
+  testimonials:ITestimonial[];
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.productService.getTestimonials().subscribe(resp=>{
+      this.testimonials = resp;
+    })
+
   }
 
 }
