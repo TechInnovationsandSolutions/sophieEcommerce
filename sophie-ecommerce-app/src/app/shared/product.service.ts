@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
-import { IProduct, IUSer, ICategory } from './model';
+import { IProduct, IUSer, ICategory, ITestimonial, IRating, IReview } from './model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -32,5 +32,9 @@ export class ProductService{
 
     getCategories(): Observable<ICategory[]>{
         return this._http.get(this._category).pipe(map(resp=><ICategory[]>resp));
+    }
+
+    getTestimonials(): Observable<ITestimonial[]>{
+        return this._http.get(this._testimonial).pipe(map(resp=><ITestimonial[]>resp));
     }
 }
