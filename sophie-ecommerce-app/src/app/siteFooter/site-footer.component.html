@@ -1,19 +1,27 @@
 <footer>
     <div class="footer-sections">
         <div class="footer-section">
-            <img src="" alt="" class="footer-icon">
+            <img src="/../assets/images/logo.png" alt="Sophoie's logo" class="footer-icon">
         </div>
         <div class="footer-section">
             <p class="footer-section__title">About Sophie’s</p>
             <ul class="footer-section__list-items">
-                <li class="footer-section__list-item"><a>About us</a></li>
-                <li class="footer-section__list-item"><a>Terms & Conditions</a></li>
-                <li class="footer-section__list-item"><a>Privacy Policy</a></li>
-                <li class="footer-section__list-item"><a>Return Policy</a></li>
+                <li class="footer-section__list-item">
+                    <a>About us</a>
+                </li>
+                <li class="footer-section__list-item">
+                    <a>Terms & Conditions</a>
+                </li>
+                <li class="footer-section__list-item">
+                    <a>Privacy Policy</a>
+                </li>
+                <li class="footer-section__list-item">
+                    <a>Return Policy</a>
+                </li>
             </ul>
         </div>
         <div class="footer-section">
-            <p class="footer-section__title">About Sophie’s</p>
+            <p class="footer-section__title">Connect with us</p>
             <ul class="footer-section__list-items footer__social-media-links">
                 <li class="footer__social-media-link" *ngFor="let social of socialMedia">
                     <a href="{{social?.link}}" title="{{social?.name}}">

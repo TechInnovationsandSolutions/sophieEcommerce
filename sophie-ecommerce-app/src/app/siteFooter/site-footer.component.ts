@@ -3,7 +3,8 @@ import { ProductService } from '../shared';
 
 @Component({
     selector: 'site-footer',
-    templateUrl: './site-footer.component.html'
+    templateUrl: './site-footer.component.html',
+    styleUrls: ['./site-footer.component.scss']
 })
 
 export class SiteFooterComponent implements OnInit{

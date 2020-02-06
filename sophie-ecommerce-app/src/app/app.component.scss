@@ -1,0 +1,16 @@
+$smokeyWhite: #F5F4F4;
+
+@mixin flexWrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@mixin maxWidth {
+    width: 100%;
+    max-width: 100%;
+}
+
+@mixin maxWidthFlexWrap {
+    @include flexWrap();
+    @include maxWidth();
+}
