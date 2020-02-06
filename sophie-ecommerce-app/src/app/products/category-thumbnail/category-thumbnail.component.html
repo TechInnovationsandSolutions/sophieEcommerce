@@ -3,9 +3,9 @@
         <span>Shop By Categories</span>
     </h2>
     <div>
-        <div class="section-categories__category" *ngFor="let category of categories" [style.background-image] = "'url(' + category.imageUrl + ')'" >
-            <button class="section-categories__btn-shop">Shop by {{ category.name }}</button>
-        </div> 
+        <a type="button" tabindex="-1" class="section-categories__category" *ngFor="let category of categories" [style.background-image] = "'url(' + category.imageUrl + ')'" >
+            <div class="section-categories__btn-shop">Shop by {{ category.name }}</div>
+        </a> 
     </div>
    
 </div>
