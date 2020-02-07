@@ -30,9 +30,14 @@
         input{
             border: 2px solid #FFFFFF;
             background-color: #000;
+            text-align: center;
 
             &::placeholder{
                 color: #AFA7A7;
+            }
+
+            @media screen and (min-width: 576px) {
+                text-align: left;  
             }
         }
 
