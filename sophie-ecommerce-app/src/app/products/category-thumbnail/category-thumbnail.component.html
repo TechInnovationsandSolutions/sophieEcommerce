@@ -1,6 +1,8 @@
-<div class="pg-section section-categories">
+<div class="pg-section section-categories col-md-10 p-3 mx-auto">
     <h2 class="widget-title pg-section__title">
-        <span>Shop By Categories</span>
+        <span class="widget-title-span-container">
+          <span>Shop By Categories</span>
+        </span>
     </h2>
     <div>
         <a type="button" tabindex="-1" class="section-categories__category" *ngFor="let category of categories" [style.background-image] = "'url(' + category.imageUrl + ')'" >
