@@ -1,0 +1,102 @@
+@import './../../../app.component.scss';
+
+div.product-item{
+    width: 230px;
+    margin: auto;
+    padding: 15px;
+
+    @include flexWrap();
+
+    button{
+        border: 0;
+    }
+
+    div.product-item__link, div.product-item__details, div.product-item__functions{
+        @include maxWidthFlexWrap();
+    }
+
+    div.product-item__functions{
+        height: 35px;
+        transition: 0.5s ease-in-out all;
+
+        button, p{
+            width: 50%;
+            margin: auto;
+            padding: 5px;
+        }
+
+        p.product-item__rating{
+            text-align: right;
+            font-weight: bold;
+        }
+
+        button.btn-add-to-cart.product-item__btn{
+            background-color: $sophiePink;
+            color: black;
+            transition: 0.5s ease-out;
+
+            &:hover{
+                background-color: $smokeyWhite;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    div.product-item__details{
+        text-align: center;
+        height: 70px;
+
+        p{
+            @include maxWidth();
+            margin: 5px auto;
+
+            &.product-item__details-price{
+                font-weight: bold;
+            }
+        }
+    }
+
+    div.product-item__link{
+        img.product-item__img{
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+
+        .btn-add-to-favorite.product-item__btn{
+            width: 45px;
+            height: 45px;
+            margin-left: auto;
+            margin-top: -45px;
+            border-radius: 100%;
+            background-color: transparent;
+            transition: 0.5s ease-out;
+
+            &:hover{
+                background-color: $smokeyWhite;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1024px){
+        div.product-item__functions{
+            display: none;
+        }    
+
+        &:hover{
+            cursor: pointer;
+
+            div.product-item__functions{
+                display: flex;
+            }
+
+            div.product-item__details{
+                height: 35px;
+
+                .product-item__details-price{
+                    display: none;
+                }
+            }
+        }
+    }
+}
