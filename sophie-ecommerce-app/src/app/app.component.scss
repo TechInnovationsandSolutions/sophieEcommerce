@@ -14,3 +14,12 @@ $smokeyWhite: #F5F4F4;
     @include flexWrap();
     @include maxWidth();
 }
+
+body{
+    @include maxWidthFlexWrap();
+    font-size: 16px;
+}
+
+h2.pg-section__title{
+    font-size: 1.875em;
+}
