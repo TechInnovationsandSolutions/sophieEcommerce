@@ -22,6 +22,10 @@ export const appRoutes:Routes =[
         path: 'return-policy',
         component: ReturnPolicyPageComponent
     },
+    {
+        path: 'user',
+        loadChildren: './user/user.module#UserModule'
+    }
     // {
     //     path:'', 
     //     redirectTo: '/home', 
