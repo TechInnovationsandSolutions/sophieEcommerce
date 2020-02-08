@@ -53,3 +53,50 @@ h2{
         }
     }
 }
+
+//Style both return and privacy policy
+.policy-page{
+    width: 100%;
+    max-width: 840px;
+    padding: 20px;
+    margin: auto;
+    @include flexWrap();
+
+    .policy-page__title, .policy-page__section, .policy-page__section-title, .policy-page__section-content-title{
+        @include maxWidth();
+    }
+
+    .policy-page__title{
+        font-size: 1.875em;
+    }
+
+    .policy-page__title, .policy-page__section-title, .policy-page__section-content-title{
+        margin-bottom: 1.25em;
+        font-weight: bold;
+    }
+
+    .policy-page__section{
+        @include flexWrap();
+
+        .policy-page__section-title{
+            font-size: 1.5em;
+        }
+
+        .policy-page__section-content-title{
+            font-size: 1.125em;
+        }
+    }
+
+    @media screen and (min-width: 900px){
+        padding-top: 75px;
+        padding-bottom: 50px;
+
+        .policy-page__title{
+            margin-bottom: 2em;
+        }
+    }
+}
+
+textarea{
+    resize: none;
+}
