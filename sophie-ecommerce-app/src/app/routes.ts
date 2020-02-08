@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { HomeProductsComponent, AboutPageComponent, ContactPageComponent,PrivacyPageComponent } from "./index";
+import { HomeProductsComponent, AboutPageComponent, ContactPageComponent,PrivacyPageComponent, ReturnPolicyPageComponent } from "./index";
 
 export const appRoutes:Routes =[
     {
@@ -17,5 +17,14 @@ export const appRoutes:Routes =[
     {
         path: 'privacy-policy',
         component: PrivacyPageComponent
-    }
+    },
+    {
+        path: 'return-policy',
+        component: ReturnPolicyPageComponent
+    },
+    // {
+    //     path:'', 
+    //     redirectTo: '/home', 
+    //     pathMatch: 'full'
+    // },
 ]
