@@ -24,14 +24,14 @@
             <p class="footer-section__title">Connect with us</p>
             <ul class="footer-section__list-items footer__social-media-links">
                 <li class="footer__social-media-link" *ngFor="let social of socialMedia">
-                    <a href="{{social?.link}}" title="{{social?.name}}">
+                    <a href="{{social?.link}}" title="{{social?.name}}" target="_blank">
                         <i class="{{social?.icon}}"></i>
                     </a>
                 </li>
             </ul>
             <ul class="footer-section__list-items footer__contact-details">
                 <li class="footer__contact-detail" *ngFor="let contact of contactDetails">
-                    <a href="{{contact?.link}}" title="{{contact?.descriptiion}}">
+                    <a href="{{contact?.link}}" title="{{contact?.descriptiion}}" target="_blank">
                         <img src="{{contact?.icon}}" alt="icon for {{contact?.descriptiion}}"/>
                         <span>{{contact?.value}}</span>
                     </a>
