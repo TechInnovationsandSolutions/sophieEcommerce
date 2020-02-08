@@ -38,6 +38,12 @@ nav.navbar{
             li{
                 display: inline-block;
             }
+
+            &.navBar-btn__user-auth-options{
+                li{
+                    width: 100%;
+                }
+            }
         }
 
         .dropdown-menu{
