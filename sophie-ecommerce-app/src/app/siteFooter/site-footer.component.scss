@@ -1,8 +1,5 @@
 @import './src/app/app.component.scss';
 
-$iconColor: #544F4F;
-$iconHoverColor: #007bff;
-
 footer {
     background-color: $smokeyWhite;
     @include maxWidthFlexWrap();
@@ -23,9 +20,16 @@ footer {
         .footer-section{
             @include maxWidthFlexWrap();
             text-align: center;
+            margin-bottom: 1em;
 
             .footer-section__title, .footer-section__list-items{
                 @include maxWidth();
+            }
+
+            a.footer-logo{
+                margin-bottom: auto;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             img{
@@ -44,6 +48,14 @@ footer {
 
                 li{
                     margin: 1.2em auto;
+
+                    a{
+                        color: $iconColor;
+
+                        &:hover{
+                            color: $iconHoverColor;
+                        }
+                    }
                 }
 
                 &.footer__social-media-links{
@@ -52,10 +64,8 @@ footer {
                         margin: 5px 1em;
 
                         a{
-                            color: $iconColor;
-
                             i{
-                                font-size: 20px;
+                                font-size: 1.25em;
                             }
                         }
                     }
@@ -65,10 +75,6 @@ footer {
                     a{
                         img, span{
                             margin: 5px;
-                        }
-
-                        span{
-                            color: $iconColor;
                         }
                     }
                 }
