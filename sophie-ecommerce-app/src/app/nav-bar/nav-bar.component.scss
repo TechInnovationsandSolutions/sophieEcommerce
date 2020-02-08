@@ -1,0 +1,48 @@
+@import './../app.component.scss';
+
+$logoDim: 100px;
+
+nav.navbar{
+    padding: 0.5em 2em;
+
+    a.navbar-brand{
+        img.navBar__brand-icon{
+            width: $logoDim;
+            height: $logoDim;
+        }
+    }
+
+    div.other_nav{
+        @include flexWrap();
+        margin: auto;
+
+        form{
+            input[type = 'search']{
+                width: auto;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            button[type="submit"]{
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        ul{
+            padding: 0;
+            list-style: none;
+            @include flexWrap();
+            margin: auto;
+
+            li{
+                display: inline-block;
+            }
+        }
+
+        .dropdown-menu{
+            right: 0;
+            left: unset;
+        }
+    }
+}
