@@ -1,4 +1,16 @@
-<div>
-    <login *ngIf="isLogin"></login>
-    <register *ngIf="!isLogin"></register>
+<div class="log-reg-con m-auto">
+    <div class="col-sm-12">
+        <ul class="nav-reg-login-item">
+            <li class="nav-reg-login">
+                <a [routerLink] = "['/user/register']" routerLinkActive="active">Register</a>
+            </li>
+            <li class="nav-reg-login">
+                <a [routerLink] = "['/user/login']" routerLinkActive="active">Sign In</a>
+            </li>
+        </ul>
+        <div class="col-sm-12 bordered">
+            <login *ngIf="isLogin"></login>
+            <register *ngIf="!isLogin"></register>
+        </div>
+    </div>
 </div>

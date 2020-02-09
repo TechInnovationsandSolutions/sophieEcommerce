@@ -16,7 +16,6 @@ export class LoginRegisterComponent implements OnInit {
     var route = routes[2].toString().toLowerCase();
 
     (route === 'login') ? (this.isLogin = true) : (this.isLogin = false);
-    console.log(this.router.url, routes, route)
   }
 
 }
