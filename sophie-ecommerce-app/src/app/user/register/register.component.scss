@@ -1,0 +1,42 @@
+@import './../../app.component.scss';
+
+
+form{
+    color: #000;
+
+    .form-group{
+        input{
+            &::placeholder{
+                color: $placeHolderForm;
+            }
+        }
+
+        input[type='password']{
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: 0;
+        }
+
+        button[type='button']{
+            max-width: 45px;
+            border: 1px solid #ced4da;
+            border-left: 0;
+            border-radius: 0em;
+            border-top-right-radius: .25rem;
+            border-bottom-right-radius: .25rem;
+            background-color: #fff;
+            transition: 0.2s ease-in;
+
+            &:hover{
+                background-color: $iconColor;
+                color: #fff;
+                border-color: $iconColor;
+            }
+        }
+    }
+
+    button[type='submit']{
+        @include invertOnHover();
+        font-size: 1.25em;
+    }
+}
