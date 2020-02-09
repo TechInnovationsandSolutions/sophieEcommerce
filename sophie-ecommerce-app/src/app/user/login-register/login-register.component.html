@@ -1,1 +1,4 @@
-<p>login-register works!</p>
+<div>
+    <login *ngIf="isLogin"></login>
+    <register *ngIf="!isLogin"></register>
+</div>
