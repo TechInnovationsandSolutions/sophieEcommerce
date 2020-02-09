@@ -7,7 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { userRoutes } from './user.routes';
-import { LoginRegisterComponent } from './login-register/login-register.component';
+import { LoginRegisterComponent } from "./login-register/login-register.component";
 
 
 
