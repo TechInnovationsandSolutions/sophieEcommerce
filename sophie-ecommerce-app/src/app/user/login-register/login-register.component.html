@@ -8,7 +8,7 @@
                 <a [routerLink] = "['/user/login']" routerLinkActive="active">Sign In</a>
             </li>
         </ul>
-        <div class="col-sm-12 bordered">
+        <div class="col-sm-12 bordered py-3">
             <login *ngIf="isLogin"></login>
             <register *ngIf="!isLogin"></register>
         </div>
