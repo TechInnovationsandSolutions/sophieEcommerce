@@ -12,7 +12,7 @@ div.product-item{
         border: 0;
     }
 
-    div.product-item__link, div.product-item__details, div.product-item__functions{
+    div.product-item__details, div.product-item__functions{
         @include maxWidthFlexWrap();
     }
 
@@ -46,12 +46,18 @@ div.product-item{
     }
 
     div.product-item__details{
-        text-align: center;
         height: 70px;
 
         p{
             @include maxWidthFlexWrap();
             margin: 5px auto;
+
+            &.product-item__details-name{
+                text-align: center;
+                span{
+                    @include maxWidth();
+                }
+            }
 
             &.product-item__details-price{
 
@@ -74,10 +80,20 @@ div.product-item{
     }
 
     div.product-item__link{
+        display: grid;
+        width: 200px;
+        max-width: 200px;
+        margin: 0;
+        height: 200px;
+
         img.product-item__img{
             width: 200px;
             height: 200px;
             margin: auto;
+        }
+
+        .btn-add-to-favorite.product-item__btn, p.product-item__discount{
+            z-index: 1;
         }
 
         .btn-add-to-favorite.product-item__btn{

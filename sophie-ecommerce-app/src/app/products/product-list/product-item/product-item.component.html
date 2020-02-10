@@ -9,7 +9,9 @@
         </p>
     </div>
     <div class="product-item__details">
-        <p class="product-item__details-name">{{ aProduct.name }}</p>
+        <p class="product-item__details-name">
+            <span>{{ aProduct.name }}</span>
+        </p>
         <p class="product-item__details-price">
             <span class="promo_price">{{ aProduct.promoPrice | currency:"NGN":"₦"}}</span>
             <span *ngIf="(aProduct.promoPrice !== aProduct.price)" class="price">{{ aProduct.price | currency:"NGN":"₦"}}</span>
