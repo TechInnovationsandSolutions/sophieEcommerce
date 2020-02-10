@@ -4,10 +4,16 @@
         <button class="btn-add-to-favorite product-item__btn" title="Add to Favorite">
             <i class="far fa-heart"></i>
         </button>
+        <p class="product-item__discount" *ngIf="(aProduct.promoPrice !== aProduct.price)">
+            {{ ((aProduct.price - aProduct.promoPrice)/aProduct.price) | percent:'2.2' }}
+        </p>
     </div>
     <div class="product-item__details">
         <p class="product-item__details-name">{{ aProduct.name }}</p>
-        <p class="product-item__details-price">{{ aProduct.price | currency:"NGN":"₦"}}</p>
+        <p class="product-item__details-price">
+            <span class="promo_price">{{ aProduct.promoPrice | currency:"NGN":"₦"}}</span>
+            <span *ngIf="(aProduct.promoPrice !== aProduct.price)" class="price">{{ aProduct.price | currency:"NGN":"₦"}}</span>
+        </p>
     </div>
     <div class="product-item__functions">
         <button class="btn-add-to-cart product-item__btn" title="Add to Cart">

@@ -4,6 +4,7 @@ div.product-item{
     width: 230px;
     margin: auto;
     padding: 15px;
+    color: black;
 
     @include flexWrap();
 
@@ -32,7 +33,6 @@ div.product-item{
 
         button.btn-add-to-cart.product-item__btn{
             background-color: $sophiePink;
-            color: black;
             transition: 0.5s ease-out;
 
             &:hover{
@@ -47,11 +47,25 @@ div.product-item{
         height: 70px;
 
         p{
-            @include maxWidth();
+            @include maxWidthFlexWrap();
             margin: 5px auto;
 
             &.product-item__details-price{
-                font-weight: bold;
+
+                span{
+                    width: 50%;
+
+                    &.promo_price{
+                        font-weight: bold;
+                        text-align: left;
+                    }
+
+                    &.price{
+                        text-align: right;
+                        text-decoration: line-through;
+                        color: $iconColor;
+                    }
+                }
             }
         }
     }
@@ -75,6 +89,16 @@ div.product-item{
             &:hover{
                 background-color: $smokeyWhite;
             }
+        }
+
+        p.product-item__discount {
+            margin-top: -100%;
+            margin-left: auto;
+            font-size: 0.75em;
+            padding: 0.375em;
+            background: $sophiePink;
+            height: 2.5em;
+            font-weight: bold;
         }
     }
 
