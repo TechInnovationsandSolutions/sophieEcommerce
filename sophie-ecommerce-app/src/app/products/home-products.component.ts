@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService, IProduct } from '../shared';
+import { IProduct, ProductService } from '../shared';
 
 @Component({
   selector: 'home-products',
@@ -7,14 +7,16 @@ import { ProductService, IProduct } from '../shared';
   styleUrls: ['./home-products.component.scss']
 })
 export class HomeProductsComponent implements OnInit {
-  products:IProduct[];
-
+  popularProducts:IProduct[] = [];
+  
   constructor(private productService:ProductService) { }
 
   ngOnInit() {
-    console.log('inn');
-    this.productService.getProducts().subscribe(response => this.products = response);
-    console.log('products', this.products);
+    this.productService.getPopularProducts().then(res=>{
+      console.log(res);
+      this.popularProducts = <IProduct[]>res;
+      // console.log('products', this.products);
+    })
   }
 
 }

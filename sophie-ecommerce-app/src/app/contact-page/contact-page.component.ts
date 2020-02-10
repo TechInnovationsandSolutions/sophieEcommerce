@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../shared';
 
 @Component({
   selector: 'contact-page',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-page.component.scss']
 })
 export class ContactPageComponent implements OnInit {
+  contactDetails: any[];
 
-  constructor() { }
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.productService.getContactDetails().subscribe(resp=>{
+        this.contactDetails = resp;
+    });
   }
 
 }

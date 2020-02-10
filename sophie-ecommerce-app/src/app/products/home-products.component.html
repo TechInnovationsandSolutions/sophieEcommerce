@@ -1,7 +1,21 @@
 <div>
-    <div class="home-banner"></div>
+    <div class="home-banner">
+        <div class="home-banner__desc">
+            <div class="desc">
+                <p class="home-banner__title">Lorem Lorem Lorem</p>
+                <p class="home-banner__content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                    Eu, sagittis sit posuere cursus. Proin ac cursus mauris, dictum.<br>
+                    Id faucibus netus sed dolor sapien ullamcorper.<br>
+                </p>
+                <div>
+                  <button class="home-banner__shop-now">Shop Now</button>  
+                </div>
+            </div>
+        </div>
+    </div>
     <category-thumbnail></category-thumbnail>
-    <shared-product-lists-widget></shared-product-lists-widget>
+    <shared-product-lists-widget [theProducts] = 'popularProducts' [widgetTitle]='"Popular Products"'></shared-product-lists-widget>
     <testimonial></testimonial>
     <newsletter-subscription></newsletter-subscription>
 </div>

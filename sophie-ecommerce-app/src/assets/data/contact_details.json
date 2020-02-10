@@ -3,21 +3,21 @@
       "id": 1,
       "descriptiion": "address",
       "value": "1001, Lorem, Lagos",
-      "link": "",
-      "icon": ""
+      "link": "https://goo.gl/maps/dNh6eEJAMC6VQZ2c9",
+      "icon": "/assets/images/home.png"
     },
     {
         "id": 2,
         "descriptiion": "email",
         "value": "info@gooo.com",
         "link": "mailto:info@gooo.com",
-        "icon": ""
+        "icon": "/assets/images/email.png"
     },
     {
         "id": 3,
         "descriptiion": "tel",
         "value": "08020202020",
         "link": "tel:08020202020",
-        "icon": ""
+        "icon": "/assets/images/telephone.png"
     }
 ]

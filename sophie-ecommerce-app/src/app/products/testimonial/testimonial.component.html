@@ -1,1 +1,26 @@
-<p>testimonial works!</p>
+<div class="pg-section section-testimonial">
+    <div>
+        <h2 class="pg-section__title">Our Happy Customers</h2>
+        <p>What they say about us</p>
+        <div class="testimonial-area">
+          <div class="testimonial-area__icon-container">
+              <span class="testimonial-area__icon">
+                <svg xmlns="http://www.w3.org/2000/svg">
+                  <path d="M43.2062 0.778809C25.4859 2.02398 0.014 4.85314 0 39.5574V83.2216H39.542V36.5041H26.4122C25.5804 24.0296 35.8525 20.8086 47.0228 18.336L43.2062 0.778809ZM96.1832 0.778809C78.4629 2.02398 52.991 4.85323 52.9771 39.5574V83.2216H92.5192V36.5041H79.3893C78.5574 24.0296 88.8297 20.8086 100 18.336L96.1832 0.778809Z"/>
+                </svg>
+              </span>
+          </div>
+          <div class="testimonial-area__contents-container carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="testimonial-area__content-container carousel-item" *ngFor="let testimonial of testimonials" [class.active] ="testimonial.id === 1" >
+                  <p class="testimonial-area__content-testimony">{{ testimonial.message }}</p>
+                  <p class="testimonial-area__content-author">{{ testimonial.name }}</p>
+              </div>
+            </div>
+            <ol class="carousel-indicators testimonial-area__content-slider-controller">
+              <li data-target="#carouselExampleCaptions" [attr.data-slide-to] ="testimonial.id - 1" *ngFor="let testimonial of testimonials" [class.active] ="testimonial.id === 1"></li>
+            </ol>
+          </div>
+        </div>
+    </div>
+</div>

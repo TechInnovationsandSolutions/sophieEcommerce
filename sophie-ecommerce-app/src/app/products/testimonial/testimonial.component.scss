@@ -1,0 +1,109 @@
+@import './../../app.component.scss';
+
+.section-testimonial{
+    background-color: #FFF3F8;
+    padding: 20px 10px;
+
+    h2{
+        text-align: center;
+        margin: 15px auto;
+
+        ~ p{
+            text-align: center;
+            font-size: 1.25em;
+        }
+    }
+
+    .testimonial-area{
+        margin: 20px auto;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+        max-width: 872px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 24px;
+
+        .testimonial-area__icon-container{
+            span.testimonial-area__icon {
+                @include maxWidth();
+
+                svg{
+                    fill: #E5E5E5;
+                }
+            }
+        }
+
+        .testimonial-area__contents-container{
+            @include maxWidthFlexWrap();
+
+            .carousel-inner{
+                @include maxWidth();
+                margin-bottom: 20px;
+
+                .testimonial-area__content-author{
+                    @include flexWrap();
+
+                    &::before{
+                        position: relative;
+                        content: '';
+                        width: 20px;
+                        border-top: 1px solid #C4C4C4;
+                        margin-right: 0.5em;
+                        margin-left: 0.5em;
+                        margin-top: 10px;
+                    }
+                }
+            }
+
+            .testimonial-area__content-slider-controller{
+                margin: 10px auto;
+                @include maxWidth();
+
+                li{
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 100%;
+                    background: #FFFFFF;
+                    border: 1px solid #000000;
+
+                    &.active{
+                        background: #000000;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 600px){
+        padding: 50px 30px;
+
+        .testimonial-area{
+            @include flexWrap();
+            padding: 50px 24px;
+            margin: 30px auto;
+
+
+            .testimonial-area__icon-container{
+                // width: 24%;
+                @include flexWrap();
+                border-right: 4px solid #E6E6E6;
+                margin-bottom: 12px;
+                padding: 1.5em;
+
+                span.testimonial-area__icon{
+                    // height: auto;
+                    @include flexWrap();
+                    margin: auto;
+                    width: 100px;
+                    height: 100px;
+                    padding: 0;
+                }
+            }
+
+            .testimonial-area__contents-container{
+                width: calc(100% - 152px);
+                padding-left: 1.5em;
+            }
+        }
+    }
+}

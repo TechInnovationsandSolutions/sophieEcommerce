@@ -1,0 +1,57 @@
+@import './../../app.component.scss';
+
+.log-reg-con{
+    @include flexWrap();
+    width: 100%;
+    max-width: 543px;
+    padding: 15px;
+
+    ul.nav-reg-login-item{
+        list-style: none;
+        @include maxWidthFlexWrap();
+        padding: 0;
+        margin-bottom: 0;
+
+        li.nav-reg-login{
+            padding: 0;
+            @include flexWrap();
+
+            width: 50%;
+            max-width: 194px;
+            border-bottom: 0;
+
+            &:first-child{
+                margin-right: auto;
+            }
+
+            &:last-child{
+                margin-left: auto;
+            }
+
+            a{
+                @include maxWidth();
+                padding: 0.375em 0.5em;
+                text-align: center;
+                font-size: 1.5em;
+                font-weight: normal;
+                color: #000;
+                transition: 0.2s ease-in;
+
+                &.active{
+                    background-color: #000;
+                    color: #ffffff;
+                }
+
+                &:hover{
+                    text-decoration: none;
+                    background-color: $smokeyWhite;
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    li.nav-reg-login, div.bordered{
+        border: 1px solid rgba($color: #000000, $alpha: 0.75);
+    }
+}

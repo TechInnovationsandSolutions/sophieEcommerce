@@ -1,0 +1,48 @@
+<form id="frm-registration" autocomplete="on">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="sr-only" for="userFirstName">First Name</label>
+        <input type="text" class="form-control" id="userFirstName" placeholder="First Name" autocomplete="given-name" autofocus>
+      </div>
+      <div class="form-group col-md-6">
+        <label class="sr-only" for="userLastName">Last Name</label>
+        <input type="text" class="form-control" id="userLastName" placeholder="Last Name" autocomplete="family-name">
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="userEmail">Email Address</label>
+        <input type="email" class="form-control" id="userEmail" placeholder="Email Address" autocomplete="email">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="userPhoneNumber">Phone Number</label>
+        <input type="tel" class="form-control" id="userPhoneNumber" placeholder="Phone Number" autocomplete="tel">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="userAddress">Address</label>
+      <input type="text" class="form-control" id="userAddress" placeholder="Address" autocomplete="street-address">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="sr-only" for="userCity">City</label>
+        <input type="text" class="form-control" id="userCity" placeholder="City">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="sr-only" for="userState">State</label>
+        <input type="text" class="form-control" id="userState" placeholder="State">
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="userCountry">Country</label>
+        <input type="text" class="form-control" id="userCountry" placeholder="Nigeria" autocomplete="country">
+    </div>
+    <div class="form-group d-flex">
+        <label class="sr-only" for="userPassword">Password</label>
+        <input type="password" class="form-control col-sm-11" id="userPassword" placeholder="Password" autocomplete="new-password">
+        <button type="button" class="col-sm-1 p-0">
+            <span>
+                <i class="far fa-eye"></i>
+            </span>
+        </button>
+    </div>
+    <button type="submit" class="text-center col-sm-12 p-2">Register</button>
+  </form>

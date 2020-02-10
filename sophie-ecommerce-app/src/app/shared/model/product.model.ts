@@ -18,13 +18,15 @@ export interface IProduct{
     category:ICategory,
     description:string[],
     excerpts:string,
-    price:string,
-    promoPrice?:string,
+    price:number,
+    promoPrice?:number,
     imageURL?:string,
     createdOn:string,
     lastUpdate?:string,
     availibility:string,
     rating?:IRating[],
     review?:IReview[],
-    tag?:string[]
+    tag?:string[],
+    isPopular?:boolean,
+    ratingAverage?:number
 }

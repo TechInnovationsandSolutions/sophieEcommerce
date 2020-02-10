@@ -1,0 +1,122 @@
+@import './../app.component.scss';
+
+div.contact-page{
+    min-height: 70vh;
+    padding: 30px 20px;
+    background: linear-gradient(to bottom, $sophiePink 75%, #FFFFFF 75%);
+
+    h2.contact-page__title{
+        font-size: 1.875em;
+    }
+
+    h3.frm-title{
+        font-size: 1.5625em;
+    }
+
+    h2.contact-page__title, h3.frm-title{
+        @include maxWidth();
+        text-align: center;
+    } 
+
+    .contact-page__content-container{
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+
+        @include maxWidthFlexWrap();
+
+        .contact-page__form-content,.contact-page__contact-detail-content{
+            @include maxWidthFlexWrap();
+            margin: 1em auto;
+        }
+
+        .contact-page__form-content{    
+            form{
+                @include maxWidthFlexWrap();
+
+                .frm-group{
+                    @include maxWidthFlexWrap();
+
+                    .frm-control{
+                        @include maxWidth();
+                        padding: 0.5em 1em;
+                        border: 1px solid $placeHolderAsh;
+                        box-sizing: border-box;
+                        margin: 1em auto;
+                        color: #000;
+
+                        &::placeholder{
+                            color: $placeHolderAsh;
+                        }
+                    }
+
+                    textarea{
+                        min-height: 200px;
+                    }
+                }
+
+                button[type='submit']{
+                    @include invertOnHover();
+                    @include maxWidth();
+                    padding: .375rem .75rem;
+                }
+            }
+        }
+
+        .contact-page__contact-detail-content{
+            ul.contact__contact-details{
+                list-style: none;
+                padding: 0;
+
+                li.contact__contact-detail{
+                    margin: 1.2em auto;
+
+                    a{ 
+                        color: $iconColor;
+
+                        img, span{
+                            margin: 5px;
+                        }
+        
+                        &:hover{
+                           color: $iconHoverColor;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    @media screen and (min-width: 850px) {
+        padding: 50px 20px;
+
+        .contact-page__content-container,h2.contact-page__title{
+            max-width: 944px;
+            margin: auto;
+        }
+
+        h2.contact-page__title, h3.frm-title{
+            text-align: left;
+            margin-bottom: 1.25em;
+        }
+
+        .contact-page__content-container{
+            padding: 30px 50px;
+
+            .contact-page__form-content,.contact-page__contact-detail-content{
+                width: 50%;
+                max-width: 50%;
+                margin: auto;
+            }
+
+            .contact-page__contact-detail-content{
+                ul.contact__contact-details{
+                    margin: auto;
+                }
+            }
+        }
+    }
+}

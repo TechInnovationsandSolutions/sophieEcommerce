@@ -1,61 +1,71 @@
-<nav class="navbar">
-    <button class="navbar-btn__toggle">
-        <span></span>
-    </button>
-    <a class="navBar__brand" href="">
-        <img src="" alt="" class="navBar__brand-icon">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" [routerLink]="['']">
+        <img src="/../assets/images/logo.png" alt="" class="navBar__brand-icon">
     </a>
-    <div class="navbar-items__container collapse">
-        <ul class="navBar__items">
-            <li class="navBar__item">
-                <a class="navBar__link">
-                    <i class="navBar__icon"></i>
-                    <span class="navBar__title">Home</span>
-                </a>
-            </li>
-            <li class="navBar__item">
-                <a class="navBar__link">
-                    <i class="navBar__icon"></i>
-                    <span class="navBar__title">Shop</span>
-                </a>
-            </li>
-            <li class="navBar__item">
-                <a class="navBar__link">
-                    <i class="navBar__icon"></i>
-                    <span class="navBar__title">About</span>
-                </a>
-            </li>
-            <li class="navBar__item">
-                <a class="navBar__link">
-                    <i class="navBar__icon"></i>
-                    <span class="navBar__title">Contact</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <button class="navBar-btn__search">
-            <span></span>
-        </button>
-        <button class="navBar-btn__wishlist">
-            <span></span>
-        </button>
-        <button class="navBar-btn__cart">
-            <span></span>
-        </button>
-        <button class="navBar-btn__user">
-            <span></span>
-        </button>
-        <div class="navBar-btn__user-dropdown">
-            <ul class="navBar-btn__user-auth-options">
-                <li class="navBar-btn__user-auth-option">
-                    <a href="">Login</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['']" routerLinkActive = "active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/shop']" routerLinkActive = "active">Shop</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/about']" routerLinkActive = "active">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  [routerLink]="['/contact']" routerLinkActive = "active">Contact</a>
+        </li>
+      </ul>
+      <div class="other_nav">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+                <span>
+                    <i class="fas fa-search"></i>                         
+                </span>
+            </button>
+        </form>
+        <div>
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <span>
+                            <i class="far fa-heart"></i>
+                        </span>
+                    </a>
                 </li>
-                <li class="navBar-btn__user-auth-option">
-                    <a href="">Register</a>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <span>
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>
+                            <i class="far fa-user"></i>                 
+                        </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="navBar-btn__user-auth-options">
+                            <li>
+                                <a class="dropdown-item">Login</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item">Register</a> 
+                            </li>
+                        </ul>
+                        <a class="dropdown-item">My Account</a>
+                    </div>
                 </li>
             </ul>
-            <a class="navBar-btn__user-account" href="">My Account</a>
-        </div>
+          </div>
+      </div>
     </div>
 </nav>

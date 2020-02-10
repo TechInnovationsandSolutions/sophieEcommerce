@@ -1,0 +1,52 @@
+@import './src/app/app.component.scss';
+
+.pg-section{
+    @include maxWidthFlexWrap();
+}
+
+.section-newsletter{
+    height: 321px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+
+    & > div{
+       max-width: 500px;;
+    }
+
+    // h2, p, form{
+    //     max-width: 423px;
+    // }
+
+    p {
+        font-size: 1.125em;
+    }
+
+    form#frm-newsletter-sub{
+        input, button{
+            border-radius: 0;
+        }
+
+        input{
+            border: 2px solid #FFFFFF;
+            background-color: #000;
+            text-align: center;
+            color: #fff;
+
+            &::placeholder{
+                color: #AFA7A7;
+            }
+
+            @media screen and (min-width: 576px) {
+                text-align: left;  
+            }
+        }
+
+        button{
+            background-color: #fff;
+            border: 2px solid #FFFFFF;
+            color: #000000;
+            font-weight: bold;
+        }
+    }
+}

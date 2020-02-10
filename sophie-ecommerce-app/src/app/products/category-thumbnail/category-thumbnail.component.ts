@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ICategory, ProductService } from '../../shared';
 
 @Component({
   selector: 'category-thumbnail',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-thumbnail.component.scss']
 })
 export class CategoryThumbnailComponent implements OnInit {
+  categories:ICategory[];
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.productService.getCategories().subscribe(resp=>{
+      this.categories = resp;
+      console.log('categ', this.categories);
+    })
   }
 
 }

@@ -1,0 +1,9 @@
+@import './../../app.component.scss';
+
+button.btn-viewMore{
+    margin: 1em auto;
+    padding: 1em 2em;
+    text-transform: uppercase;
+
+    @include invertOnHover();
+}

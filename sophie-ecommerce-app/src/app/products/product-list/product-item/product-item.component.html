@@ -1,1 +1,41 @@
-<p>product-item works!</p>
+<div class="product-item">
+    <div href="" class="product-item__link">
+        <img class="product-item__img" src="{{ aProduct.imageURL }}" alt="{{ aProduct.description }}">
+        <button class="btn-add-to-favorite product-item__btn" title="Add to Favorite">
+            <i class="far fa-heart"></i>
+        </button>
+        <p class="product-item__discount" *ngIf="(aProduct.promoPrice !== aProduct.price)">
+            {{ ((aProduct.price - aProduct.promoPrice)/aProduct.price) | percent:'2.2' }}
+        </p>
+    </div>
+    <div class="product-item__details">
+        <p class="product-item__details-name">
+            <span>{{ aProduct.name }}</span>
+        </p>
+        <p class="product-item__details-price">
+            <span class="promo_price">{{ aProduct.promoPrice | currency:"NGN":"₦"}}</span>
+            <span *ngIf="(aProduct.promoPrice !== aProduct.price)" class="price">{{ aProduct.price | currency:"NGN":"₦"}}</span>
+        </p>
+    </div>
+    <div class="product-item__functions">
+        <button class="btn-add-to-cart product-item__btn" title="Add to Cart">
+            Add to Cart
+        </button>
+        <p class="product-item__rating" title="Product Rating of {{ aProduct?.ratingAverage }}">
+            <!-- 1 star  -->
+            <i [class]="(aProduct.ratingAverage == 0) ? 'far fa-star' : (aProduct.ratingAverage > 0 && aProduct.ratingAverage < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
+
+            <!-- 2 star  -->
+            <i [class]="(aProduct.ratingAverage >= 2) ? 'fas fa-star' : (aProduct.ratingAverage > 1 && aProduct.ratingAverage < 2) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+
+            <!-- 3 star  -->
+            <i [class]="(aProduct.ratingAverage >= 3) ? 'fas fa-star' : (aProduct.ratingAverage > 2 && aProduct.ratingAverage < 3) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+
+            <!-- 4 star  -->
+            <i [class]="(aProduct.ratingAverage >= 4) ? 'fas fa-star' : (aProduct.ratingAverage > 3 && aProduct.ratingAverage < 4) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+
+            <!-- 5 star  -->
+            <i [class]="(aProduct.ratingAverage >= 5) ? 'fas fa-star' : (aProduct.ratingAverage > 4 && aProduct.ratingAverage < 5) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+        </p>
+    </div>
+</div>
