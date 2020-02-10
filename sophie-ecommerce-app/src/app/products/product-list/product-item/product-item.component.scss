@@ -28,15 +28,18 @@ div.product-item{
 
         p.product-item__rating{
             text-align: right;
-            font-weight: bold;
+            font-size: 0.75em;
+            color: $iconColor;
         }
 
         button.btn-add-to-cart.product-item__btn{
-            background-color: $sophiePink;
+            background-color: $iconColor;
+            color: #ffffff;
             transition: 0.5s ease-out;
 
             &:hover{
                 background-color: $smokeyWhite;
+                color: #000000;
                 text-decoration: underline;
             }
         }
