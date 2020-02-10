@@ -34,7 +34,7 @@
         ],
         "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
         "isPopular": true,
-        "ratingAverage": 3.24
+        "ratingAverage": 1.24
     },
     {
         "id": 2,
@@ -112,7 +112,7 @@
         "review": [],
         "tag": ["Lotion", "Oil"],
         "isPopular": true,
-        "ratingAverage": 3.24
+        "ratingAverage": 0.4
     },
     {
         "id": 4,
