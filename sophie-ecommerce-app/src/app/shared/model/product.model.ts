@@ -18,7 +18,7 @@ export interface IProduct{
     category:ICategory,
     description:string[],
     excerpts:string,
-    price:string,
+    price:number,
     promoPrice?:string,
     imageURL?:string,
     createdOn:string,
