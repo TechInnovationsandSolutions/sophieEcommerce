@@ -19,7 +19,7 @@ export interface IProduct{
     description:string[],
     excerpts:string,
     price:number,
-    promoPrice?:string,
+    promoPrice?:number,
     imageURL?:string,
     createdOn:string,
     lastUpdate?:string,
