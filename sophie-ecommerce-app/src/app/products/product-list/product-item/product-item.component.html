@@ -5,7 +5,7 @@
             <i class="far fa-heart"></i>
         </button>
         <p class="product-item__discount" *ngIf="(aProduct.promoPrice !== aProduct.price)">
-            {{ ((aProduct.price - aProduct.promoPrice)/aProduct.price) | percent:'2.2' }}
+            {{ ((aProduct.promoPrice - aProduct.price)/aProduct.price) | percent:'2.2' }}
         </p>
     </div>
     <div class="product-item__details">
