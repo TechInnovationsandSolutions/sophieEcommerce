@@ -54,4 +54,9 @@
     li.nav-reg-login, div.bordered{
         border: 1px solid rgba($color: #000000, $alpha: 0.75);
     }
+
+    @media screen and (min-width: 768px){
+        padding-top: 50px;
+        padding-bottom: 25px;
+    }
 }
