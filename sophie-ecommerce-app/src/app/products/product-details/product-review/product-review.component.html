@@ -1,1 +1,79 @@
-<p>product-review works!</p>
+<div class="py-2">
+    <div class="d-flex"  *ngIf="!addMode">
+        <button class="ml-auto btn btn-outline-dark" (click)="addReview()">
+            Add A Review
+        </button>
+    </div>
+    <div class="reviews"  *ngIf="!addMode">
+        <div class="review" *ngFor="let review of reviews">
+            <p class="review-rating" *ngIf="review.rating">
+                <!-- 1 star  -->
+                <i [class]="(review.rating == 0) ? 'far fa-star' : (review.rating > 0 && review.rating < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
+
+                <!-- 2 star  -->
+                <i [class]="(review.rating >= 2) ? 'fas fa-star' : (review.rating > 1 && review.rating < 2) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+
+                <!-- 3 star  -->
+                <i [class]="(review.rating >= 3) ? 'fas fa-star' : (review.rating > 2 && review.rating < 3) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+
+                <!-- 4 star  -->
+                <i [class]="(review.rating >= 4) ? 'fas fa-star' : (review.rating > 3 && review.rating < 4) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+
+                <!-- 5 star  -->
+                <i [class]="(review.rating >= 5) ? 'fas fa-star' : (review.rating > 4 && review.rating < 5) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+            </p>
+            <p class="review-summary">{{ review?.reviewSummary }}</p>
+            <p class="review-feedback">{{ review?.reviewMessage }}</p>
+            <p class="reviewBy">
+                <span class="review-date">{{ (review?.reviewDate ?  review?.reviewDate : 1581470956443) | date}}</span>
+                by
+            <span class="review-author">{{ review?.name }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="add-review col-md-10 m-auto" *ngIf="addMode">
+        <p class="frm-title">Write a review</p>
+        <form id="frm-review">
+            <div class="form-group">
+                <label for="frm-review-title">Title</label>
+                <input type="text" class="form-control" id="frm-review-title" placeholder="eg. Very Good.">
+            </div>
+            <div class="form-group">
+                <label for="frm-review-title">Your Review</label>
+                <textarea type="text" class="form-control" id="frm-review-title" placeholder="eg. Very Good."></textarea>
+            </div>
+            <div class="form-group">
+                <p>How will you rate this product?</p>
+                <div class="rating-section d-flex">
+                    <label for="review-rating-1">
+                        <input type="radio" name="frm-review-rating" id="review-rating-1" value="1">
+                        1
+                    </label>
+                    <label for="review-rating-2">
+                        <input type="radio" name="frm-review-rating" id="review-rating-2" value="2">
+                        2
+                    </label>
+                    <label for="review-rating-3">
+                        <input type="radio" name="frm-review-rating" id="review-rating-3" value="3">
+                        3
+                    </label>
+                    <label for="review-rating-4">
+                        <input type="radio" name="frm-review-rating" id="review-rating-4" value="4">
+                        4
+                    </label>
+                    <label for="review-rating-5">
+                        <input type="radio" name="frm-review-rating" id="review-rating-5" value="5">
+                        5
+                    </label>
+                </div>
+                
+            </div>
+            <button type="submit" class="btn btn-outline-success m-2 ml-0">
+                Submit
+            </button>
+            <button type="button" class="btn btn-outline-dark m-2" (click)="showReviews()">
+                Cancel
+            </button>
+        </form>
+    </div>
+</div>
