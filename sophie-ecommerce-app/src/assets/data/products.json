@@ -374,7 +374,7 @@
         "review": [
             {
                 "name":"Xin Yang",
-                "reviewMessage": "Sin Gofu lorum ipsum ti lo aso",
+                "reviewSummary": "Sin Gofu lorum ipsum ti lo aso",
                 "rating": 2.5,
                 "reviewMessage": "This is just for testing purpose only. You dig?"
             }
