@@ -1,6 +1,6 @@
 <div class="product-item">
-    <div href="" class="product-item__link">
-        <img class="product-item__img" src="{{ aProduct.imageURL }}" alt="{{ aProduct.description }}">
+    <div class="product-item__link">
+        <img class="product-item__img" src="{{ aProduct.imageURL }}" alt="{{ aProduct.description }}" [routerLink] = '["/product", aProduct.id]'>
         <button class="btn-add-to-favorite product-item__btn" title="Add to Favorite">
             <i class="far fa-heart"></i>
         </button>
@@ -9,7 +9,7 @@
         </p>
     </div>
     <div class="product-item__details">
-        <p class="product-item__details-name">
+        <p class="product-item__details-name" [routerLink] = '["/product", aProduct.id]'>
             <span>{{ aProduct.name }}</span>
         </p>
         <p class="product-item__details-price">
