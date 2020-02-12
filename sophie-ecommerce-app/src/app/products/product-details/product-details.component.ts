@@ -10,6 +10,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class ProductDetailsComponent implements OnInit {
   product:IProduct;
   isReview: boolean;
+  relatedProducts:IProduct[] = [];
 
   constructor(private productService: ProductService, private route:ActivatedRoute) { }
 
@@ -19,6 +20,11 @@ export class ProductDetailsComponent implements OnInit {
         console.log('the product',res)
         this.product = <IProduct>res[0];
       });
+    });
+
+    this.productService.getPopularProducts().then(res=>{
+      console.log(res);
+      this.relatedProducts = (<IProduct[]>res).slice(0, 4);
     })
   }
 

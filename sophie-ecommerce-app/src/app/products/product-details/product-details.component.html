@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="product-details__desc-section col-md-12 m-auto">
-        <div class=" col-md-12 m-auto">
+        <div class="col-md-12 m-auto">
             <div class="product-details__desc-nav">
                 <ul>
                     <li [class.active] = "!isReview">
@@ -85,6 +85,6 @@
             </div>
         </div>
         
-        <shared-product-lists-widget class="mx-auto"></shared-product-lists-widget>
+        <shared-product-lists-widget class="mx-auto" [widgetTitle]='"Related Products"' [theProducts]='relatedProducts'></shared-product-lists-widget>
     </div>
 </div>
