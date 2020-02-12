@@ -1,43 +1,90 @@
-<div class="product-details">
-    <div class="product-details__main">
-        <img src="" alt="">
+<div class="product-details py-3">
+    <div class="product-details__main m-auto">
+        <div class="product-image-container">
+            <img src="{{ product?.imageURL }}" alt="Image of {{ product?.name }}">
+        </div>
         <div class="product-detail__info">
-            <p class="product-detail__name"></p>
-            <p class="product-detail__price"></p>
-            <p class="product-detail__availibility">Availability: <span></span></p>
-            <p class="product-detail__excerpt"></p> <!--Make this on click to nav to description?-->
-            <div class="product-deatial__add-to-cart">
+            <p class="product-detail__name">{{ product?.name }}</p>
+            <p class="product-detail__price">
+                <span class="promo_price">{{ product?.promoPrice | currency:"NGN":"₦"}}</span>
+                <span *ngIf="(product?.promoPrice !== product?.price)" class="price">{{ product?.price | currency:"NGN":"₦"}}</span>
+                <span class="product-item__discount" *ngIf="(product?.promoPrice !== product?.price)">
+                    {{ ((product?.promoPrice - product?.price)/product?.price) | percent:'2.2' }}
+                </span>
+            </p>
+            <p class="product-detail__availibility">Availability: 
+                <span>
+                    {{ product?.availibility ? "In Stock" : "Out of Stock" }}
+                </span>
+            </p>
+            <p class="product-detail__rating" *ngIf="product?.ratingAverage"  title="Product Rating of {{ product?.ratingAverage }}">
+                <span class="stars">
+                    <!-- 1 star  -->
+                    <i [class]="(product.ratingAverage == 0) ? 'far fa-star' : (product.ratingAverage > 0 && product.ratingAverage < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
+        
+                    <!-- 2 star  -->
+                    <i [class]="(product.ratingAverage >= 2) ? 'fas fa-star' : (product.ratingAverage > 1 && product.ratingAverage < 2) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+        
+                    <!-- 3 star  -->
+                    <i [class]="(product.ratingAverage >= 3) ? 'fas fa-star' : (product.ratingAverage > 2 && product.ratingAverage < 3) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+        
+                    <!-- 4 star  -->
+                    <i [class]="(product.ratingAverage >= 4) ? 'fas fa-star' : (product.ratingAverage > 3 && product.ratingAverage < 4) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+        
+                    <!-- 5 star  -->
+                    <i [class]="(product.ratingAverage >= 5) ? 'fas fa-star' : (product.ratingAverage > 4 && product.ratingAverage < 5) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+                </span>
+                <span *ngIf="product?.review.length > 0">
+                ({{ product?.review.length }} {{ product?.review.length > 1 ? "ratings" : "rating" }})
+                </span>
+            </p>
+            <p class="product-detail__excerpt">{{ product?.excerpts }}</p> <!--Make this on click to nav to description?-->
+            <div class="product-detial__add-to-cart">
                 <form id="frm-product-add-to-cart">
-                    <p>Quantity</p>
+                    <label for="frm-product-add-to-cart__amt">Quantity</label>
                     <div class="frm-product-add-to-cart__input-container">
                         <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">-</button>
-                        <input type="number" class="frm-product-add-to-cart__amt">
+                        <input type="number" id="frm-product-add-to-cart__amt" min="1" value="1">
                         <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">+</button>
                     </div>
                     <button type="submit" class="frm-product-add-to-cart__btn-submit">Add To Cart</button>
-                    <button type="button" class="frm-product-add-to-cart__btn-wishlist"></button>
+                    <button type="button" class="frm-product-add-to-cart__btn-wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
                 </form>
             </div>
             <ul class="product-detail__tags">
                 <span>Tags:</span>
-                <li class="product-detail__tag">
-                    <a></a>
+                <li class="product-detail__tag" *ngFor="let tag of product?.tag">
+                    <a>{{ tag }}</a>
                 </li>
             </ul>
         </div>
     </div>
-    <div>
-        <ul>
-            <li>
-                <a href="">Description</a>
-            </li>
-            <li>
-                <a href="">Review (<span></span>)</a>
-            </li>
-        </ul>
-        <hr>
-        <product-description></product-description>
-        <product-review></product-review>
-        <shared-product-lists-widget></shared-product-lists-widget>
+    <div class="product-details__desc-section col-md-12 m-auto">
+        <div class="col-md-12 m-auto">
+            <div class="product-details__desc-nav">
+                <ul>
+                    <li [class.active] = "!isReview">
+                        <a type="button" (click)='showDescription()'>
+                            Description
+                        </a>
+                    </li>
+                    <li [class.active] = "isReview">
+                        <a type="button" (click)='showReview()'>
+                            Review (<span>{{ product?.review?.length }}</span>)
+                        </a>
+                    </li>
+                </ul> 
+            </div>
+            
+            <div class=" col-md-8 m-auto py-2">
+                <product-description *ngIf="!isReview" [title]="product?.name" [description]="product?.description"></product-description>
+
+                <product-review *ngIf="isReview" [reviews]="product?.review"></product-review >
+            </div>
+        </div>
+        
+        <shared-product-lists-widget class="mx-auto" [widgetTitle]='"Related Products"' [theProducts]='relatedProducts'></shared-product-lists-widget>
     </div>
 </div>

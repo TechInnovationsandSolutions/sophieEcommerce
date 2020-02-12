@@ -1,15 +1,11 @@
 import { ICategory } from './category.model';
 
-export interface IRating{
-    name: string,
-    ratingScore?: string,
-    feedback?: string
-}
-
 export interface IReview{
     name: string,
+    reviewSummary?: string,
     reviewMessage?: string,
-    imgURL?: string
+    rating?:number,
+    reviewDate?: Date
 }
 
 export interface IProduct{
@@ -24,7 +20,6 @@ export interface IProduct{
     createdOn:string,
     lastUpdate?:string,
     availibility:string,
-    rating?:IRating[],
     review?:IReview[],
     tag?:string[],
     isPopular?:boolean,

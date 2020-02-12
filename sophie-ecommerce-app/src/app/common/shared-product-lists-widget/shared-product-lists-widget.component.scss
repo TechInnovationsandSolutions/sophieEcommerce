@@ -7,3 +7,11 @@ button.btn-viewMore{
 
     @include invertOnHover();
 }
+
+.shared-wrapper{
+    padding: 1em 0.5em;
+
+    @media screen and (min-width: 575px){
+        padding: 1em;
+    }
+}

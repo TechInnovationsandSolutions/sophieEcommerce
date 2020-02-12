@@ -28,8 +28,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
@@ -65,18 +66,21 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             },
             {
                 "name":"Mako",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             },
             {
                 "name":"Sydney",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "cream", "dark"],
@@ -143,8 +147,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["cream", "dark"],
@@ -180,8 +185,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
@@ -217,8 +223,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion"],
@@ -254,8 +261,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Oil", "toning"],
@@ -291,8 +299,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion"],
@@ -328,8 +337,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["cream", "dark"],
@@ -364,8 +374,9 @@
         "review": [
             {
                 "name":"Xin Yang",
-                "reviewMessage": "Sin Gofu lorum ipsum ti lo aso",
-                "imgURL": ""
+                "reviewSummary": "Sin Gofu lorum ipsum ti lo aso",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["dark"],
@@ -400,8 +411,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Acne", "cream", "dark"],
@@ -436,8 +448,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "Oil", "dark"],
@@ -472,8 +485,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["toning", "Acne"],
@@ -508,8 +522,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["toning"],
@@ -574,8 +589,9 @@
         "review": [
             {
                 "name":"Mako",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "Oil"],
@@ -610,8 +626,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "toning", "Acne", "cream", "dark"],
@@ -646,8 +663,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Oil", "dark"],
@@ -682,8 +700,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Acne"],
@@ -718,8 +737,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Oil", "Acne", "dark"],
@@ -754,8 +774,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "cream", "dark"],
@@ -790,8 +811,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["cream"],
@@ -826,8 +848,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["toning"],
@@ -862,8 +885,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],
@@ -898,8 +922,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Acne", "cream", "dark"],
@@ -934,8 +959,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["cream", "dark"],
@@ -970,8 +996,9 @@
         "review": [
             {
                 "name":"Cross",
-                "reviewMessage": "Mad Ohh!",
-                "imgURL": ""
+                "reviewSummary": "Mad Ohh!",
+                "rating": 2.5,
+                "reviewMessage": "This is just for testing purpose only. You dig?"
             }
         ],
         "tag": ["Lotion", "Oil", "toning", "Acne", "cream", "dark"],

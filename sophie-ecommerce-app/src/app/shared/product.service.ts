@@ -45,4 +45,15 @@ export class ProductService{
     getContactDetails(): Observable<any[]>{
         return this._http.get(this._contact_details).pipe(map(resp=><any[]>resp));
     }
+
+    getProduct(id:number){
+        return new Promise(resolve=>{
+            var product:IProduct[];
+            this.getProducts().subscribe(response =>{
+                product = response.filter(p=>p.id === id);
+                // console.log('the product', product);
+                resolve(product)
+            });
+        });
+    }
 }

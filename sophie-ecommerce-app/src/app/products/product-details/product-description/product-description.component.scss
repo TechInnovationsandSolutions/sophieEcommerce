@@ -1,0 +1,18 @@
+@import './../../../app.component.scss';
+
+.desc-title{
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.desc-text{
+    // line-height: 19px;
+    text-align: justify;
+    color: $iconColor;
+}
+
+@media screen and (min-width: 1000px){
+    .desc-title{
+        font-size: 1.875em;
+    }
+}
