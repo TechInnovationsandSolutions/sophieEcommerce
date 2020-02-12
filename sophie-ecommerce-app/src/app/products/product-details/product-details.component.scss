@@ -91,6 +91,18 @@ $limeGreen: #2C9412;
                 }
             }
 
+            &.product-detail__rating{
+                font-size: 0.75em;
+
+                span{
+                    margin-left: 0;
+
+                    &.stars{
+                        color: $limeGreen;
+                    }
+                }
+            }
+
             &.product-detail__excerpt{
                 text-align: justify;
             }

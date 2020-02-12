@@ -17,6 +17,27 @@
                     {{ product?.availibility ? "In Stock" : "Out of Stock" }}
                 </span>
             </p>
+            <p class="product-detail__rating" *ngIf="product?.ratingAverage"  title="Product Rating of {{ product?.ratingAverage }}">
+                <span class="stars">
+                    <!-- 1 star  -->
+                    <i [class]="(product.ratingAverage == 0) ? 'far fa-star' : (product.ratingAverage > 0 && product.ratingAverage < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
+        
+                    <!-- 2 star  -->
+                    <i [class]="(product.ratingAverage >= 2) ? 'fas fa-star' : (product.ratingAverage > 1 && product.ratingAverage < 2) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+        
+                    <!-- 3 star  -->
+                    <i [class]="(product.ratingAverage >= 3) ? 'fas fa-star' : (product.ratingAverage > 2 && product.ratingAverage < 3) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+        
+                    <!-- 4 star  -->
+                    <i [class]="(product.ratingAverage >= 4) ? 'fas fa-star' : (product.ratingAverage > 3 && product.ratingAverage < 4) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+        
+                    <!-- 5 star  -->
+                    <i [class]="(product.ratingAverage >= 5) ? 'fas fa-star' : (product.ratingAverage > 4 && product.ratingAverage < 5) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+                </span>
+                <span *ngIf="product?.review.length > 0">
+                ({{ product?.review.length }} {{ product?.review.length > 1 ? "ratings" : "rating" }})
+                </span>
+            </p>
             <p class="product-detail__excerpt">{{ product?.excerpts }}</p> <!--Make this on click to nav to description?-->
             <div class="product-detial__add-to-cart">
                 <form id="frm-product-add-to-cart">
@@ -59,7 +80,8 @@
             
             <div class=" col-md-8 m-auto py-2">
                 <product-description *ngIf="!isReview" [title]="product?.name" [description]="product?.description"></product-description>
-                <product-review *ngIf="isReview"></product-review>
+
+                <product-review *ngIf="isReview" [reviews]="product?.review"></product-review >
             </div>
         </div>
         
