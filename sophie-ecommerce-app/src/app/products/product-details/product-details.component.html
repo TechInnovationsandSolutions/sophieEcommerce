@@ -58,7 +58,7 @@
             </div>
             
             <div class=" col-md-8 m-auto py-2">
-                <product-description *ngIf="!isReview"></product-description>
+                <product-description *ngIf="!isReview" [title]="product?.name" [description]="product?.description"></product-description>
                 <product-review *ngIf="isReview"></product-review>
             </div>
         </div>
