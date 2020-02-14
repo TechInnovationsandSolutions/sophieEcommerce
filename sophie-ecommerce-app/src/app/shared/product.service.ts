@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
-import { IProduct, IUSer, ICategory, ITestimonial, IRating, IReview } from './model';
+import { IProduct, IUSer, ICategory, ITestimonial, IReview } from './model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
