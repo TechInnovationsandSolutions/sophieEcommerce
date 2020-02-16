@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { ProductService, ICart } from '../shared';
 
 @Component({
   selector: 'nav-bar',
@@ -6,12 +7,17 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit{
+  
+  cartItems : ICart[] = [];
+
+  constructor(private productService:ProductService) { }
 
   ngOnInit(){
     this.clickLink();
+    this.productService.getCartItems().subscribe(cItems=>{
+      this.cartItems = cItems;
+    })
   }
-
-  constructor() { }
 
   collapseIfMobile(){
     var toggleBtn = <HTMLElement>document.querySelector('button.navbar-toggler');

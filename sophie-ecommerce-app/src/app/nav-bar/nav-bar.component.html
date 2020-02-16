@@ -43,6 +43,7 @@
                     <a class="nav-link">
                         <span>
                             <i class="fas fa-shopping-cart"></i>
+                            <span *ngIf="cartItems.length !==0">{{ cartItems.length }}</span>
                         </span>
                     </a>
                 </li>
