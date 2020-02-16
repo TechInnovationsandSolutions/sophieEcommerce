@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
-import { IProduct, IUSer, ICategory, ITestimonial, IReview } from './model';
+import { Observable, Subject } from 'rxjs';
+import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart } from './model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -56,4 +56,43 @@ export class ProductService{
             });
         });
     }
+
+    addToCart(item:ICart){
+        var isInCart = cartItems.find(c=> c.product_id === item.product_id);
+
+        //We expect undefine if it's not found
+        if (!isInCart) {
+            cartItems.push(item);
+        }
+    }
+
+    removeFromCart(id:number){
+        var isInCart = cartItems.find(c=> c.product_id === id);
+
+        //Yes in cart
+        if (isInCart) {
+            var ind = cartItems.indexOf(isInCart);
+            cartItems.splice(ind, 1);
+        }
+    }
+
+    updateCart(item:ICart){
+        var isInCart = cartItems.find(c=> c.product_id === item.product_id);
+
+        //Yes in cart
+        if (isInCart) {
+            isInCart = item;
+        }
+    }
+
+    getCartItems() : Observable <ICart[]>{
+        let subject = new Subject<ICart[]>();
+        setTimeout(()=>{
+            subject.next(cartItems);
+            subject.complete();
+        }, 100);
+        return subject
+    }
 }
+
+let cartItems: ICart[] = [];
