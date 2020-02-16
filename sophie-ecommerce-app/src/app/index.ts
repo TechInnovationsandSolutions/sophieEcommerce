@@ -9,3 +9,4 @@ export * from './shared/index';
 export * from './shop-page/shop-page.component';
 export * from './siteFooter/site-footer.component';
 export * from './term-and-conditions-page/term-and-conditions-page.component';
+export * from './cart/cart.component';
