@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IProduct } from 'src/app/shared';
+import { IProduct, ProductService, ICart } from 'src/app/shared';
 
 @Component({
   selector: 'product-item',
@@ -8,5 +8,17 @@ import { IProduct } from 'src/app/shared';
 })
 export class ProductItemComponent {
   @Input() aProduct:IProduct;
-  constructor() { }
+  constructor(private productService: ProductService) { }
+
+  addToCart(){
+    console.log('lol', this.aProduct)
+    var cartItem:ICart = {
+      product_id: this.aProduct.id,
+      amount: this.aProduct.promoPrice,
+      imgUrl: this.aProduct.imageURL,
+      quantity: 1
+    }
+
+    this.productService.addToCart(cartItem);
+  }
 }
