@@ -1,30 +1,54 @@
 <div class="container sect-cart">
     <h2>My Shopping List</h2>
-    <div *ngIf='cartItems.length != 0' class="cart-items">
-        <form class="cart-item d-flex flex-wrap" *ngFor="let item of cartItems">
-            <div class="cart-item-detail">
-                <div class="cart-item-img-name-container">
-                    <img src="{{ item.imgUrl }}" alt="image of {{ item.product_name }}">
-                <p class="cart-item-name">{{ item.product_name }}</p>
+    <div *ngIf='cartItems.length != 0' class="cart-items d-flex flex-wrap">
+        <div class="cart-title">
+            <p class="title-detail">Product</p>
+            <p class="title-price">Price</p>
+            <p class="title-quantity">Quantity</p>
+            <p class="title-total">Total</p>
+        </div>
+        <div class="d-flex flex-wrap">
+            <form class="cart-item" *ngFor="let item of cartItems">
+                <div class="cart-item-detail">
+                    <div class="cart-item-img-name-container">
+                        <img src="{{ item.imgUrl }}" alt="image of {{ item.product_name }}">
+                    <p class="cart-item-name">{{ item.product_name }}</p>
+                    </div>
+                    <div class="cart-item-price-container">
+                        <span class="cart-item-current">{{ item.amount | currency:"NGN":"₦" }}</span>
+                        <span *ngIf="item.amount != item.amount_main" class="cart-item-main">{{ item.amount_main | currency:"NGN":"₦" }}</span>
+                        <span *ngIf="item.amount != item.amount_main" class="cart-item-save">Saving {{ item.amount_main - item.amount | currency:"NGN":"₦" }}</span>
+                    </div>
+                    <div class="cart-item-quantity-container">
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">-</button>
+                        <input type="number" id="frm-product-add-to-cart__amt" min="1" value="{{ item.quantity | number }}">
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">+</button>
+                    </div>
+                    <div class="cart-item-total-container">
+                        <span class="cart-item-total">{{ (item.amount * item.quantity) | currency:"NGN":"₦" }}</span>
+                    </div>
                 </div>
-                <div class="cart-item-price-container">
-                    <span class="cart-item-current">{{ item.amount | currency:"NGN":"₦" }}</span>
-                    <span *ngIf="item.amount != item.amount_main" class="cart-item-main">{{ item.amount_main | currency:"NGN":"₦" }}</span>
-                    <span *ngIf="item.amount != item.amount_main" class="cart-item-save">{{ item.amount_main - item.amount | currency:"NGN":"₦" }}</span>
-                </div>
-                <div class="cart-item-quantity-container">
-                    <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">-</button>
-                    <input type="number" id="frm-product-add-to-cart__amt" min="1" value="{{ item.quantity | number }}">
-                    <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">+</button>
-                </div>
-                <div class="cart-item-total-container">
-                    <span class="cart-item-total"></span>
-                </div>
+                <button type="button" class="m-auto cart-item-remove">
+                    <span>x</span>
+                </button>
+            </form>
+        </div>
+        <div class="other-info d-flex flex-wrap">
+            <div class="d-flex flex-wrap w-100">
+                <p class="total-amt">
+                    <span>Order Total:</span>
+                    <span class="total-amt-val"></span>
+                </p>
             </div>
-            <button type="button" class="m-auto cart-item-remove">
-                <span>x</span>
-            </button>
-        </form>
+            <div class="d-flex flex-wrap w-100">
+                 <button class="btn-back-to-shopping">
+                    Back to Shopping
+                 </button>
+                 <button class="btn-checkout">
+                    Checkout
+                 </button>
+            </div>
+        </div>
     </div>
     <div *ngIf='cartItems.length === 0' class="d-flex flex container no-item-container">
         <p class="no-item mx-auto">
