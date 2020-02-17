@@ -63,6 +63,7 @@ export class ProductService{
         //We expect undefine if it's not found
         if (!isInCart) {
             cartItems.push(item);
+            this.updateToLocal();
         }
     }
 
@@ -73,6 +74,7 @@ export class ProductService{
         if (isInCart) {
             var ind = cartItems.indexOf(isInCart);
             cartItems.splice(ind, 1);
+            this.updateToLocal();
         }
     }
 
@@ -82,16 +84,36 @@ export class ProductService{
         //Yes in cart
         if (isInCart) {
             isInCart = item;
+            this.updateToLocal();
         }
     }
 
     getCartItems() : Observable <ICart[]>{
         let subject = new Subject<ICart[]>();
         setTimeout(()=>{
+            cartItems = (!!cartItems.length) ? cartItems : this.getFromLocal();
             subject.next(cartItems);
             subject.complete();
         }, 100);
         return subject
+    }
+
+    updateToLocal(){
+        //since !0 = true -> 0 => false
+        if(!!cartItems.length){
+            var obj = JSON.stringify(cartItems);
+            localStorage.setItem('cart', obj);
+        }
+    }
+
+    getFromLocal(){
+        var data = localStorage.getItem('cart');
+        var obj = <ICart[]>JSON.parse(data);
+        if(obj && !!obj.length){
+            return obj;
+        }
+
+        return [];
     }
 }
 
