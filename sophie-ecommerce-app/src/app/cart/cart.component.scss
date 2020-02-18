@@ -90,6 +90,7 @@ $red: #D60A0A;
                        @include maxWidth();
                        text-align: center;
                        margin: auto;
+                       color: #000000;
                    }
                }
 
@@ -196,19 +197,19 @@ $red: #D60A0A;
         .cart-items{
             .cart-title{
                 font-size: 1.125em;
-                text-align: center;
+                text-align: left;
                 grid-template-columns: 35% 20% 20% 25%;
                 max-width: 90%;
     
-                p{
-                    &:first-of-type{
-                        text-align: left; 
-                    }
+                // p{
+                //     &:first-of-type{
+                //         text-align: left; 
+                //     }
     
-                    // &:last-of-type{
-                    //     text-align: right; 
-                    // }
-                }
+                //     // &:last-of-type{
+                //     //     text-align: right; 
+                //     // }
+                // }
             }
 
             .cart-item{

@@ -12,7 +12,7 @@
                 <div class="cart-item-detail">
                     <div class="cart-item-img-name-container">
                         <img src="{{ item.imgUrl }}" alt="image of {{ item.product_name }}">
-                    <p class="cart-item-name">{{ item.product_name }}</p>
+                        <a [routerLink]='["/product", item.product_id]' class="cart-item-name">{{ item.product_name }}</a>
                     </div>
                     <div class="cart-item-price-container">
                         <span class="cart-item-current">{{ item.amount | currency:"NGN":"₦" }}</span>
