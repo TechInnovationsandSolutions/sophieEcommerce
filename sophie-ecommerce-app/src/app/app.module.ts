@@ -59,10 +59,10 @@ import { AuthService } from './user/auth.service';
     CommonModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    AuthService
   ],
   providers: [
-    ProductService
+    ProductService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
