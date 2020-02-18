@@ -27,6 +27,7 @@ import { ProductReviewComponent } from './products/product-details/product-revie
 import { ProductService } from './shared';
 import { CartComponent } from './cart/cart.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthService } from './user/auth.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     FormsModule,
     CommonModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    AuthService
   ],
   providers: [
     ProductService
