@@ -30,7 +30,7 @@ export class ProductDetailsComponent implements OnInit {
       this.relatedProducts = (<IProduct[]>res).slice(0, 4);
     })
 
-    console.log('inpur', this.cartQty)
+    // console.log('inpur', this.cartQty);
     this.quantity = this.cartQty ? this.cartQty : 1;
   }
 
