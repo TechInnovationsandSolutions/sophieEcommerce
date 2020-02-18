@@ -12,7 +12,7 @@
                 <div class="cart-item-detail">
                     <div class="cart-item-img-name-container">
                         <img src="{{ item.imgUrl }}" alt="image of {{ item.product_name }}">
-                        <a [routerLink]='["/product", item.product_id]' class="cart-item-name">{{ item.product_name }}</a>
+                        <a (click)="onLinkClick(this.item.quantity.toString())" [routerLink]='["/product", item.product_id]' class="cart-item-name">{{ item.product_name }}</a>
                     </div>
                     <div class="cart-item-price-container">
                         <span class="cart-item-current">{{ item.amount | currency:"NGN":"₦" }}</span>
@@ -20,15 +20,15 @@
                         <span *ngIf="item.amount != item.amount_main" class="cart-item-save">Saving {{ item.amount_main - item.amount | currency:"NGN":"₦" }}</span>
                     </div>
                     <div class="cart-item-quantity-container">
-                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">-</button>
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="reduceByOne(this.item)">-</button>
                         <input type="number" id="frm-product-add-to-cart__amt" min="1" value="{{ item.quantity | number }}">
-                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">+</button>
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="addOneMore(this.item)">+</button>
                     </div>
                     <div class="cart-item-total-container">
                         <span class="cart-item-total">{{ (item.amount * item.quantity) | currency:"NGN":"₦" }}</span>
                     </div>
                 </div>
-                <button type="button" class="m-auto cart-item-remove">
+                <button type="button" class="m-auto cart-item-remove" (click)="removeFromCart(item)">
                     <span>x</span>
                 </button>
             </form>
@@ -37,7 +37,7 @@
             <div class="d-flex flex-wrap w-100">
                 <p class="total-amt">
                     <span>Order Total:</span>
-                    <span class="total-amt-val"></span>
+                    <span class="total-amt-val">{{ totamt | currency:"NGN":"₦" }}</span>
                 </p>
             </div>
             <div class="d-flex flex-wrap w-100">

@@ -244,8 +244,8 @@ $red: #D60A0A;
 
                         button{
                             display: block;
-                            width: 45px;
-                            padding: 0.5em;
+                            width: 30px;
+                            padding: 0.25em;
                             border: 0;
                             text-align: center;
                             transition: 0.2s ease-in all;
@@ -269,7 +269,7 @@ $red: #D60A0A;
                         }
 
                         input[type="number"]{
-                            width: 5em;
+                            width: 3em;
                             border: 0;
                             // border-right: 0;
                             // border-left: 0;
@@ -332,6 +332,20 @@ $red: #D60A0A;
     .cart-items{
         .cart-title{
             font-size: 1.5em;
+        }
+        .cart-item{
+            .cart-item-detail{
+                .cart-item-quantity-container{
+                    button{
+                        width: 45px;
+                        padding: 0.5em;
+                    }
+
+                    input[type="number"]{
+                        width: 4.5em;
+                    }
+                }
+            }
         }
     }
    }
