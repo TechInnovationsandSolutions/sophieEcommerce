@@ -26,6 +26,7 @@ import { ProductDescriptionComponent } from './products/product-details/product-
 import { ProductReviewComponent } from './products/product-details/product-review/product-review.component';
 import { ProductService } from './shared';
 import { CartComponent } from './cart/cart.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,8 @@ import { CartComponent } from './cart/cart.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     CommonModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule
