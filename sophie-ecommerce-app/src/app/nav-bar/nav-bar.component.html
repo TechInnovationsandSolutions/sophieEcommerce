@@ -33,14 +33,14 @@
         <div>
             <ul>
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link text-dark">
                         <span>
                             <i class="far fa-heart"></i>
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link text-dark" [routerLink]="['/cart']">
                         <span>
                             <i class="fas fa-shopping-cart"></i>
                             <span *ngIf="cartItems.length !==0">{{ cartItems.length }}</span>
@@ -56,13 +56,13 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <ul class="navBar-btn__user-auth-options">
                             <li>
-                                <a class="dropdown-item">Login</a>
+                                <a class="dropdown-item text-dark" [routerLink]="['/user', 'login']">Login</a>
                             </li>
                             <li>
-                                <a class="dropdown-item">Register</a> 
+                                <a class="dropdown-item text-dark" [routerLink]="['/user', 'register']">Register</a> 
                             </li>
                         </ul>
-                        <a class="dropdown-item">My Account</a>
+                        <a class="dropdown-item text-dark">My Account</a>
                     </div>
                 </li>
             </ul>
