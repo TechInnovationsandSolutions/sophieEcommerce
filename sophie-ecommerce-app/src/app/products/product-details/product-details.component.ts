@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IProduct, ProductService } from 'src/app/shared';
+import { Component, OnInit, Input } from '@angular/core';
+import { IProduct, ProductService, ICart } from 'src/app/shared';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -11,6 +11,9 @@ export class ProductDetailsComponent implements OnInit {
   product:IProduct;
   isReview: boolean;
   relatedProducts:IProduct[] = [];
+  quantity: number;
+
+  @Input() cartQty:number;
 
   constructor(private productService: ProductService, private route:ActivatedRoute) { }
 
@@ -26,6 +29,9 @@ export class ProductDetailsComponent implements OnInit {
       console.log(res);
       this.relatedProducts = (<IProduct[]>res).slice(0, 4);
     })
+
+    console.log('inpur', this.cartQty)
+    this.quantity = this.cartQty ? this.cartQty : 1;
   }
 
   showReview(){
@@ -35,4 +41,36 @@ export class ProductDetailsComponent implements OnInit {
   showDescription(){
     this.isReview = false;
   }
+
+  addOne(){
+    this.quantity++ ;    
+    // console.log('df', this.quantity);
+  }
+
+  removeOne(){
+    (this.quantity > 1) ? this.quantity--  : this.quantity;
+  }
+
+  addToCart(e:Event, prod:IProduct, quantity:number){
+    e.preventDefault();
+
+    if(!!quantity){
+      var cartItem:ICart = {
+        product_id: prod.id,
+        product_name: prod.name,
+        amount: prod.promoPrice,
+        amount_main: prod.price,
+        imgUrl: prod.imageURL,
+        quantity: quantity
+      }
+      console.log('cartItem',cartItem);
+      this.productService.addToCart(cartItem);
+    } else{
+      alert('Quantity of ' + this.product.name + ' must not be 0');
+    }
+  }
+
+  // co($event){
+  //   console.log('otot', $event);
+  // }
 }
