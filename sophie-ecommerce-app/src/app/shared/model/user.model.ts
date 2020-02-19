@@ -11,3 +11,8 @@ export interface IUSer{
         country?:string,
     }
 }
+
+export interface IUserReg{
+    userDetail:IUSer,
+    password: string
+}
