@@ -10,7 +10,7 @@ export class AuthService{
     }
 
     loginUser(userEmail:string, password: string){
-        if (userEmail == 'crosschidera@gmailcom' && password === 'password') {
+        if (userEmail == 'cross@gmailcom' && password === 'password') {
             this.currentUser = {
                 "id": 1,
                 "firstName": "cross",
@@ -24,11 +24,18 @@ export class AuthService{
                     "country": "nigeria"
                 }
             }
+            return true;
         }
+        return false;
     }
 
     isAuthenticated(){
         return !!this.currentUser;
+    }
+
+    logOut(){
+        this.currentUser = null;
+        location.reload();
     }
 }
 
