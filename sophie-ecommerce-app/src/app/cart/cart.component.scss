@@ -27,8 +27,11 @@ $red: #D60A0A;
    } 
 
    .cart-items{
-        .cart-title{
+        .cart-title, .cart-item-con{
             @include maxWidth();
+        }
+    
+        .cart-title{
             display: grid;
             grid-template-columns: 30% 23% 20% 27%;
             font-size: 0.875em;
@@ -195,11 +198,14 @@ $red: #D60A0A;
         }
 
         .cart-items{
+            .cart-title, .cart-item-con{
+                max-width: 90%;
+            }
+
             .cart-title{
                 font-size: 1.125em;
                 text-align: left;
                 grid-template-columns: 35% 20% 20% 25%;
-                max-width: 90%;
     
                 // p{
                 //     &:first-of-type{
