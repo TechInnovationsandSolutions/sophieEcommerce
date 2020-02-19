@@ -28,6 +28,7 @@ import { ProductService } from './shared';
 import { CartComponent } from './cart/cart.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from './user/auth.service';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AuthService } from './user/auth.service';
     ProductItemComponent,
     ProductDescriptionComponent,
     ProductReviewComponent,
-    CartComponent
+    CartComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
