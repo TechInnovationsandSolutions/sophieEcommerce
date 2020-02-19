@@ -55,14 +55,15 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <ul class="navBar-btn__user-auth-options">
-                            <li>
+                            <li *ngIf="!auth.isAuthenticated()">
                                 <a class="dropdown-item text-dark" [routerLink]="['/user', 'login']">Login</a>
                             </li>
-                            <li>
+                            <li *ngIf="!auth.isAuthenticated()">
                                 <a class="dropdown-item text-dark" [routerLink]="['/user', 'register']">Register</a> 
                             </li>
                         </ul>
-                        <a class="dropdown-item text-dark">My Account</a>
+                        <a *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark">My Account</a>
+                        <a type="button" *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark" (click)="logOut()">Logout</a>
                     </div>
                 </li>
             </ul>

@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ProductService, ICart } from '../shared';
+import { AuthService } from '../user/auth.service';
 
 @Component({
   selector: 'nav-bar',
@@ -10,7 +11,7 @@ export class NavBarComponent implements OnInit{
   
   cartItems : ICart[] = [];
 
-  constructor(private productService:ProductService) { }
+  constructor(private productService:ProductService, public auth:AuthService) { }
 
   ngOnInit(){
     this.clickLink();
@@ -34,5 +35,9 @@ export class NavBarComponent implements OnInit{
         link.addEventListener('click', this.collapseIfMobile);
       });
     }
+  }
+
+  logOut(){
+    this.auth.logOut();
   }
 }
