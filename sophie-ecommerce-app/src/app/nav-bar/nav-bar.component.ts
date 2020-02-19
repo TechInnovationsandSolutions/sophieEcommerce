@@ -22,9 +22,11 @@ export class NavBarComponent implements OnInit{
 
   collapseIfMobile(){
     var toggleBtn = <HTMLElement>document.querySelector('button.navbar-toggler');
+    var div = <HTMLElement>document.getElementById('navbarSupportedContent');
     var isToggleBtnVisible = (window.getComputedStyle(toggleBtn)['display'] != 'none') ? true : false;
+    var divCollapse = (window.getComputedStyle(div)['display'] != 'none') ? true : false;
 
-    if (isToggleBtnVisible) {
+    if (isToggleBtnVisible && divCollapse) {
       toggleBtn.click();
     }
   }
