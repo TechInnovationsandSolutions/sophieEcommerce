@@ -77,7 +77,7 @@ export class ProductService{
         if (!isInCart) {
             cartItems.push(item);
             this.updateToLocal();
-        } else if(isInCart.quantity < item.quantity){
+        } else if(isInCart.quantity != item.quantity){
             console.log('ups', item)
             this.updateCart(item);
         }
