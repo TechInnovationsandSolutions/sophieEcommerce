@@ -28,6 +28,9 @@ import { ProductService } from './shared';
 import { CartComponent } from './cart/cart.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from './user/auth.service';
+import { ShopItemsComponent } from './shop-page/shop-items/shop-items.component';
+import { CategoryPageComponent } from './products/category-page/category-page.component';
+import { Ng5SliderModule } from "ng5-slider";
 
 @NgModule({
   declarations: [
@@ -51,6 +54,8 @@ import { AuthService } from './user/auth.service';
     ProductDescriptionComponent,
     ProductReviewComponent,
     CartComponent,
+    ShopItemsComponent,
+    CategoryPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,7 @@ import { AuthService } from './user/auth.service';
     CommonModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    Ng5SliderModule
   ],
   providers: [
     ProductService,
