@@ -22,13 +22,12 @@ export class ProductDetailsComponent implements OnInit {
       this.productService.getProduct(+params['id']).then(res=>{
         console.log('the product',res)
         this.product = <IProduct>res[0];
+      }).then(()=>{
+        this.productService.getProductsByTag(this.product.tag).then(res=>{
+          this.relatedProducts = (<IProduct[]>res).length > 8 ? (<IProduct[]>res).slice(0, 8) : (<IProduct[]>res);
+        })
       });
     });
-
-    this.productService.getPopularProducts().then(res=>{
-      console.log(res);
-      this.relatedProducts = (<IProduct[]>res).slice(0, 4);
-    })
 
     // console.log('inpur', this.cartQty);
     this.quantity = this.cartQty ? this.cartQty : 1;
