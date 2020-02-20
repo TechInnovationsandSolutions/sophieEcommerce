@@ -57,6 +57,18 @@ export class ProductService{
         });
     }
 
+    getProductsByTag(tag:string[]){
+        return new Promise(resolve=>{
+            var relatedProducts:IProduct[];
+            this.getProducts().subscribe(response =>{
+                // console.log('tags', tag);
+                relatedProducts = response.filter(p=>p.tag.some(t=> tag.indexOf(t) >= 0)); //indexOf is full supported but includes is not
+                console.log('related', relatedProducts);
+                resolve(relatedProducts)
+            });
+        });
+    }
+
     addToCart(item:ICart){
         var isInCart = cartItems.find(c=> c.product_id === item.product_id);
         console.log('de', isInCart)
