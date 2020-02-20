@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct, ProductService, ICart } from 'src/app/shared';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -13,7 +13,7 @@ export class ProductDetailsComponent implements OnInit {
   relatedProducts:IProduct[] = [];
   quantity: number;
 
-  @Input() cartQty:number;
+  cartQty:number;
 
   constructor(private productService: ProductService, private route:ActivatedRoute) { }
 
@@ -29,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
       });
     });
 
-    // console.log('inpur', this.cartQty);
+    this.cartQty=this.route.snapshot.queryParams.cart;
     this.quantity = this.cartQty ? this.cartQty : 1;
   }
 
