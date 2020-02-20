@@ -2,11 +2,13 @@
     {
         "id": 1,
         "name": "skin type",
+        "slug": "skin-type",
         "imageUrl": "/assets/images/category-1.png"
     },
     {
         "id": 2,
         "name": "skin concern",
+        "slug": "skin-concern",
         "imageUrl": "/assets/images/category-2.png"
     }
 ]
