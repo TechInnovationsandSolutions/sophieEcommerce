@@ -1,0 +1,12 @@
+<!-- <button (click)="change()">
+    click here
+</button> -->
+
+<div class="shop-items py-3">
+    <div class="shop-items-main">
+        <product-list [products] = "currentPageProducts" class="mx-auto"></product-list>
+    </div>
+    <div *ngIf="isPaginated" class="shop-items-footer">
+
+    </div>
+</div>
