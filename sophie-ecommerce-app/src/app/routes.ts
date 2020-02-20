@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { HomeProductsComponent, AboutPageComponent, ContactPageComponent,PrivacyPageComponent, ReturnPolicyPageComponent,CartComponent } from "./index";
 import { ProductDetailsComponent } from './products';
+import { ShopPageComponent } from './shop-page/shop-page.component';
 
 export const appRoutes:Routes =[
     {
@@ -18,6 +19,10 @@ export const appRoutes:Routes =[
     {
         path: 'contact',
         component: ContactPageComponent
+    },
+    {
+        path: 'shop',
+        component: ShopPageComponent
     },
     {
         path: 'privacy-policy',
