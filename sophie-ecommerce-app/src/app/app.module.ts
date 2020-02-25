@@ -31,6 +31,8 @@ import { AuthService } from './user/auth.service';
 import { ShopItemsComponent } from './shop-page/shop-items/shop-items.component';
 import { CategoryPageComponent } from './products/category-page/category-page.component';
 import { Ng5SliderModule } from "ng5-slider";
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { Angular4PaystackModule } from 'angular4-paystack';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { Ng5SliderModule } from "ng5-slider";
     CartComponent,
     ShopItemsComponent,
     CategoryPageComponent,
+    CheckoutPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { Ng5SliderModule } from "ng5-slider";
     CommonModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    Angular4PaystackModule.forRoot('pk_test_4f69d7376af4f85cf8e0c1113c04a82ad6d97abe')
   ],
   providers: [
     ProductService,

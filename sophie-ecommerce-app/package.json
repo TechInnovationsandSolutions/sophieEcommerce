@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "angular4-paystack": "^3.0.0",
     "dotenv": "^8.2.0",
     "ng5-slider": "^1.2.4",
     "rxjs": "~6.4.0",
