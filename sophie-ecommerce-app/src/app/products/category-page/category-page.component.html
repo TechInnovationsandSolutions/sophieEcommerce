@@ -1,1 +1,31 @@
-<p>category-page works!</p>
+<div class="col-sm-12 p-4">
+    <!-- <div class="product-price-sect col-xs-12">
+        <form class="col-md-10 mx-auto d-flex flex-wrap">
+            <div class="field col-md-2">
+                <label for="product-categories">Select Category</label>
+                <select class = "text-capitalize" name="product-categories" id="product-categories">
+                    <option value="all">All</option>
+                    <option *ngFor="let cat of categories" value="{{cat.slug}}">{{ cat.name }}</option>
+                </select>
+            </div>
+            <div class="field col-md-10">
+                <ng5-slider class="price-slider" [(value)]="value" [(highValue)]="highValue" [options]="options"></ng5-slider>
+            </div>
+        </form>
+    </div> -->
+
+    <div class="products-section-main">
+        <shop-items [shopProducts] = 'products'></shop-items>
+        <div *ngIf="showNoProducts" class="col-sm-12 d-flex flex-wrap">
+            <div class="col-sm-12 p-4 d-flex">
+                 <span class="empty m-auto">
+                    <i class="fas fa-box-open"></i>
+                </span>
+            </div>
+           
+            <a type="button" class="btn btn-outline-success col-md-10 mx-auto text-center text-capitalize" [routerLink]='["/shop"]'>
+                Continue Shopping
+            </a>
+        </div>
+    </div>
+</div>

@@ -18,6 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private productService: ProductService, private route:ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.route.snapshot.params)
     this.route.params.forEach((params:Params)=>{
       this.productService.getProduct(+params['id']).then(res=>{
         console.log('the product',res)

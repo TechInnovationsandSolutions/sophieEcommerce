@@ -57,6 +57,31 @@ export class ProductService{
         });
     }
 
+    getProductByCategory(slug:string){
+        if (slug.toLowerCase() == 'all') {
+            return new Promise(resolve=>{
+                var product:IProduct[];
+                this.getProducts().subscribe(response =>{
+                    product = response.filter(p=>p);
+                    resolve(product)
+                });
+            });
+        }
+        var id:number = (slug.toLowerCase() == 'skin-type') ? 1 : 2;
+        return new Promise(resolve=>{
+            var product:IProduct[];
+            this.getProducts().subscribe(response =>{
+                product = response.filter(p=>p.category.id === id);
+                // console.log('the product', product);
+                resolve(product)
+            });
+        });
+    }
+
+    getProductsBySort(que){
+
+    }
+
     getProductsByTag(tag:string[]){
         return new Promise(resolve=>{
             var relatedProducts:IProduct[];

@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { HomeProductsComponent, AboutPageComponent, ContactPageComponent,PrivacyPageComponent, ReturnPolicyPageComponent,CartComponent } from "./index";
 import { ProductDetailsComponent } from './products';
 import { ShopPageComponent } from './shop-page/shop-page.component';
+import { CategoryPageComponent } from './products/category-page/category-page.component';
 
 export const appRoutes:Routes =[
     {
@@ -21,8 +22,13 @@ export const appRoutes:Routes =[
         component: ContactPageComponent
     },
     {
-        path: 'shop',
+        path:'shop/:slug',
         component: ShopPageComponent
+    },
+    {
+        path: 'shop',
+        redirectTo: 'shop/all', 
+        pathMatch: 'full'
     },
     {
         path: 'privacy-policy',
@@ -45,6 +51,19 @@ export const appRoutes:Routes =[
     {
         path: 'cart',
         component: CartComponent
+    },
+    {
+        path:'search',
+        component: CategoryPageComponent
+    },
+    {
+        path:'category/:slug',
+        component: CategoryPageComponent
+    },
+    {
+        path:'category',
+        redirectTo: 'category/all', 
+        pathMatch: 'full'
     },
     {
         path: 'user',

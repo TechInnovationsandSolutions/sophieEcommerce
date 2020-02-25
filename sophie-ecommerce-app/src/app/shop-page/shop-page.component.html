@@ -5,17 +5,17 @@
     <aside class="product-aside-sect">
         <div class="product-category-sect">
             <div class="category-list-mobile" *ngIf="isMobile">
-                <select class = "text-capitalize" name="product-categories" id="product-categories">
-                    <option value="0">All</option>
-                    <option *ngFor="let cat of categories" value="cat.id">{{ cat.name }}</option>
+                <select class = "text-capitalize" name="product-categories" id="product-categories" (change)="onChangeSelect($event.target.value)">
+                    <option value="all">All</option>
+                    <option *ngFor="let cat of categories" value="{{cat.slug}}">{{ cat.name }}</option>
                 </select>
             </div>
             <ul class="category-list" *ngIf="!isMobile">
-                <li class="category-list-item text-capitalize">
-                    <a class="category-list-item-link active">all</a>
+                <li class="category-list-item text-capitalize" routerLinkActive="active">
+                    <a href="shop/all" class="category-list-item-link active">all</a>
                 </li>
                 <li class="category-list-item text-capitalize" *ngFor="let category of categories">
-                    <a class="category-list-item-link">{{ category.name }}</a>
+                    <a href ="shop/{{category.slug}}" class="category-list-item-link">{{ category.name }}</a>
                 </li>
             </ul>
         </div>

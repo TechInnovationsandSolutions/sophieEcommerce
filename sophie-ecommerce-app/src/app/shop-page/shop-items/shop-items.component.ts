@@ -27,7 +27,8 @@ export class ShopItemsComponent implements OnInit {
         "name": "Toning Oil 1",
         "category": {
             "id": 1,
-            "name": "skin type"
+            "name": "skin type",
+            "slug": "skin-type"
         },
         "description": [
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non in morbi luctus sed amet amet risus ligula. Neque diam tincidunt est praesent sed tortor. In facilisi urna amet nec habitant eget. Faucibus hendrerit quam viverra sit malesuada nulla in. Donec lacus molestie duis et habitant sed.",
@@ -58,7 +59,8 @@ export class ShopItemsComponent implements OnInit {
         "name": "Toning Oil 2",
         "category": {
             "id": 2,
-            "name": "skin concern"
+            "name": "skin concern",
+            "slug": "skin-concern"
         },
         "description": [
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non in morbi luctus sed amet amet risus ligula. Neque diam tincidunt est praesent sed tortor. In facilisi urna amet nec habitant eget. Faucibus hendrerit quam viverra sit malesuada nulla in. Donec lacus molestie duis et habitant sed.",

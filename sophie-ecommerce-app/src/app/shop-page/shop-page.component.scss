@@ -42,9 +42,9 @@ $bgC: #C4C4C4;
                    margin-bottom: 1em;
 
                   .category-list-item-link{ 
-                        &.active{
+                        // &.active{
                         color: $active
-                        }
+                        // }
                     }
                } 
             }

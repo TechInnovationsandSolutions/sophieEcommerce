@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService, ICategory, IProduct } from '../shared';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'shop-page',
@@ -13,13 +14,14 @@ export class ShopPageComponent implements OnInit {
 
   products:IProduct[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private route: ActivatedRoute,private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(res=>{
-      console.log(res);
-      this.products = <IProduct[]>res;
-      console.log('products', this.products);
+    this.route.params.forEach((params:Params)=>{
+      this.productService.getProductByCategory(params['slug']).then(res=>{
+        console.log('the product',res)
+        this.products = <IProduct[]>res;
+      })
     })
 
     this.isMobile = this.getIsMobile();
@@ -41,5 +43,9 @@ export class ShopPageComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  onChangeSelect(val){
+    this.router.navigate(['/shop', val])
   }
 }

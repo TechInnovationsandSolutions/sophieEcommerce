@@ -1,0 +1,39 @@
+@import './../../app.component.scss';
+
+$active: #E1005B;
+$bgC: #C4C4C4;
+
+.product-price-sect{
+    .price-slider{
+
+            span.ng5-slider-span.ng5-slider-bubble.ng5-slider-limit{
+                display: none !important;
+            }
+
+            span.ng5-slider-span.ng5-slider-pointer{
+                background-color: $bgC;
+
+                &::after{
+                    background: $bgC;
+                }
+            }
+
+            span.ng5-slider-span.ng5-slider-bar.ng5-slider-selection{
+                background-color: $active;
+            }
+
+            span.ng5-slider-span.ng5-slider-bubble{
+                font-size: 1em;
+
+                &::before{
+                    content: '₦';
+                }
+            }
+    }
+}
+
+.empty{
+    font-size: 4em;
+    color: $limeGreen;
+}
+ 
