@@ -5,7 +5,7 @@
         </span>
     </h2>
     <div class="section-categories__container">
-        <a type="button" tabindex="-1" class="section-categories__category" *ngFor="let category of categories" [style.background-image] = "'url(' + category.imageUrl + ')'" >
+        <a type="button" tabindex="-1" [routerLink]= "['/shop', category.slug]" class="section-categories__category" *ngFor="let category of categories" [style.background-image] = "'url(' + category.imageUrl + ')'" >
             <div class="section-categories__btn-shop">
                 <span>Shop by {{ category.name }}</span>
             </div>
