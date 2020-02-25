@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { HomeProductsComponent, AboutPageComponent, ContactPageComponent,PrivacyPageComponent, ReturnPolicyPageComponent } from "./index";
+import { HomeProductsComponent, AboutPageComponent, ContactPageComponent,PrivacyPageComponent, ReturnPolicyPageComponent,CartComponent } from "./index";
 import { ProductDetailsComponent } from './products';
 
 export const appRoutes:Routes =[
@@ -36,6 +36,10 @@ export const appRoutes:Routes =[
         path:'products', 
         redirectTo: '', 
         pathMatch: 'full'
+    },
+    {
+        path: 'cart',
+        component: CartComponent
     },
     {
         path: 'user',

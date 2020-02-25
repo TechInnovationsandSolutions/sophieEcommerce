@@ -40,12 +40,12 @@
             </p>
             <p class="product-detail__excerpt">{{ product?.excerpts }}</p> <!--Make this on click to nav to description?-->
             <div class="product-detial__add-to-cart">
-                <form id="frm-product-add-to-cart">
+                <form id="frm-product-add-to-cart" (submit)='addToCart($event, product, quantity)'>
                     <label for="frm-product-add-to-cart__amt">Quantity</label>
                     <div class="frm-product-add-to-cart__input-container">
-                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">-</button>
-                        <input type="number" id="frm-product-add-to-cart__amt" min="1" value="1">
-                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt">+</button>
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="removeOne()">-</button>
+                        <input type="number" id="frm-product-add-to-cart__amt" min="1" [(ngModel)]="quantity" #qty="ngModel" name="quantity" required>
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="addOne()">+</button>
                     </div>
                     <button type="submit" class="frm-product-add-to-cart__btn-submit">Add To Cart</button>
                     <button type="button" class="frm-product-add-to-cart__btn-wishlist">

@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { userRoutes } from './user.routes';
 import { LoginRegisterComponent } from "./login-register/login-register.component";
+import { AuthService } from './auth.service';
 
 
 
@@ -23,6 +24,8 @@ import { LoginRegisterComponent } from "./login-register/login-register.componen
     RegisterComponent, 
     ProfileComponent, 
     ForgotPasswordComponent, LoginRegisterComponent
+  ],
+  providers:[
   ]
 })
 export class UserModule { }

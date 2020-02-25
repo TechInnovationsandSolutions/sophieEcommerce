@@ -25,6 +25,9 @@ import { ProductItemComponent } from './products/product-list/product-item/produ
 import { ProductDescriptionComponent } from './products/product-details/product-description/product-description.component';
 import { ProductReviewComponent } from './products/product-details/product-review/product-review.component';
 import { ProductService } from './shared';
+import { CartComponent } from './cart/cart.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthService } from './user/auth.service';
 
 @NgModule({
   declarations: [
@@ -46,16 +49,20 @@ import { ProductService } from './shared';
     TermAndConditionsPageComponent,
     ProductItemComponent,
     ProductDescriptionComponent,
-    ProductReviewComponent
+    ProductReviewComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     CommonModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
-    ProductService
+    ProductService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

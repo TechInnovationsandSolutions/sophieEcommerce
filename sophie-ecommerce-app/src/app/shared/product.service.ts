@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
-import { IProduct, IUSer, ICategory, ITestimonial, IRating, IReview } from './model';
+import { Observable, Subject } from 'rxjs';
+import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart } from './model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -56,4 +56,72 @@ export class ProductService{
             });
         });
     }
+
+    addToCart(item:ICart){
+        var isInCart = cartItems.find(c=> c.product_id === item.product_id);
+        console.log('de', isInCart)
+
+        //We expect undefine if it's not found
+        if (!isInCart) {
+            cartItems.push(item);
+            this.updateToLocal();
+        } else if(isInCart.quantity < item.quantity){
+            console.log('ups', item)
+            this.updateCart(item);
+        }
+    }
+
+    removeFromCart(item:ICart){
+        var isInCart = cartItems.find(c=> c.product_id === item.product_id);
+
+        //Yes in cart
+        if (isInCart) {
+            var ind = cartItems.indexOf(isInCart);
+            cartItems.splice(ind, 1);
+            this.updateToLocal();
+        }
+    }
+
+    updateCart(item:ICart){
+        var isInCart = cartItems.find(c=> c.product_id === item.product_id);
+
+        //Yes in cart
+        if (isInCart) {
+            console.log('up to date');
+            var i = cartItems.indexOf(isInCart);
+            cartItems.splice(i,1,item)
+            this.updateToLocal();
+        }
+    }
+
+    getCartItems() : Observable <ICart[]>{
+        let subject = new Subject<ICart[]>();
+        setTimeout(()=>{
+            cartItems = (!!cartItems.length) ? cartItems : this.getFromLocal();
+            subject.next(cartItems);
+            subject.complete();
+        }, 100);
+        return subject
+    }
+
+    updateToLocal(){
+        //since !0 = true -> 0 => false
+        if(!!cartItems.length){
+            console.log(cartItems)
+            var obj = JSON.stringify(cartItems);
+            localStorage.setItem('cart', obj);
+        }
+    }
+
+    getFromLocal(){
+        var data = localStorage.getItem('cart');
+        var obj = <ICart[]>JSON.parse(data);
+        if(obj && !!obj.length){
+            return obj;
+        }
+
+        return [];
+    }
 }
+
+let cartItems: ICart[] = [];
