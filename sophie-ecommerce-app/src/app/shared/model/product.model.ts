@@ -1,5 +1,10 @@
 import { ICategory } from './category.model';
 
+export interface ITag{
+    id:number,
+    name:string
+}
+
 export interface IReview{
     name: string,
     comment?: string,
@@ -24,7 +29,7 @@ export interface IProduct{
     lastUpdate?:string,
     availibility?:string,
     ratings?:IReview[],
-    tag?:string[],
+    tags?:ITag[],
     avg_rating?:number,
     images: IProdImage[],
     quantity: number
