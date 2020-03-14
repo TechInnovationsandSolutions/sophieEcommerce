@@ -13,16 +13,17 @@ export interface IReview{
 }
 
 export interface IProdImage{
-    url:string
+    url?:string
+    thumbnail?:string,
 }
 
 export interface IProduct{
     id: number,
     name: string,
     category:ICategory,
-    description:string,
-    excerpt:string,
-    cost:number,
+    description?:string,
+    excerpt?:string,
+    cost?:number,
     reduced_cost?:number,
     discount?:string,
     createdOn?:string,
@@ -31,6 +32,6 @@ export interface IProduct{
     ratings?:IReview[],
     tags?:ITag[],
     avg_rating?:number,
-    images: IProdImage[],
-    quantity: number
+    images?: IProdImage[],
+    quantity?: number
 }

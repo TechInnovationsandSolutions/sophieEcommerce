@@ -15,9 +15,9 @@ export class ProductItemComponent {
     var cartItem:ICart = {
       product_id: this.aProduct.id,
       product_name: this.aProduct.name,
-      amount: this.aProduct.promoPrice,
-      amount_main: this.aProduct.price,
-      imgUrl: this.aProduct.imageURL,
+      amount: this.aProduct.reduced_cost,
+      amount_main: this.aProduct.cost,
+      imgUrl: this.aProduct.images[0].url,
       quantity: 1
     }
 

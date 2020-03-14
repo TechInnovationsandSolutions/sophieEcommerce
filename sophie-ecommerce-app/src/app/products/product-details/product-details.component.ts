@@ -22,11 +22,16 @@ export class ProductDetailsComponent implements OnInit {
     this.route.params.forEach((params:Params)=>{
       this.productService.getProduct(+params['id']).then(res=>{
         console.log('the product',res)
-        this.product = <IProduct>res[0];
+        this.product = <IProduct>res;
       }).then(()=>{
-        this.productService.getProductsByTag(this.product.tag).then(res=>{
-          this.relatedProducts = (<IProduct[]>res).length > 8 ? (<IProduct[]>res).slice(0, 8) : (<IProduct[]>res);
-        })
+        // console.log('pror', this.product);
+        if(this.product.tags && this.product.tags.length){
+          var productTag = this.product.tags.map(t=>t.name);
+          console.log('tag-chain', productTag.join(','), productTag, this.product.tags)
+          this.productService.getProductsByTag(productTag.join(',')).then(res=>{
+            this.relatedProducts = (<IProduct[]>res).length > 8 ? (<IProduct[]>res).slice(0, 8) : (<IProduct[]>res);
+          })
+        }
       });
     });
 
@@ -58,9 +63,9 @@ export class ProductDetailsComponent implements OnInit {
       var cartItem:ICart = {
         product_id: prod.id,
         product_name: prod.name,
-        amount: prod.promoPrice,
-        amount_main: prod.price,
-        imgUrl: prod.imageURL,
+        amount: prod.reduced_cost,
+        amount_main: prod.cost,
+        imgUrl: prod.images[0].url,
         quantity: quantity
       }
       console.log('cartItem',cartItem);
