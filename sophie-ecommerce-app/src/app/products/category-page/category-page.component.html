@@ -16,14 +16,17 @@
 
     <div class="products-section-main">
         <shop-items [shopProducts] = 'products'></shop-items>
-        <div *ngIf="showNoProducts" class="col-sm-12 d-flex flex-wrap">
-            <div class="col-sm-12 p-4 d-flex">
-                 <span class="empty m-auto">
-                    <i class="fas fa-box-open"></i>
+        <div *ngIf="!products.length" class="col-sm-12 d-flex flex-wrap">
+            <div class="col-sm-12 p-4 d-flex flex-wrap">
+                <span class="empty m-auto">
+                    <i class="fas fa-box-open m-auto"></i>
+                </span>
+                <span class="col-sm-12 mx-auto text-capitalize text-center">
+                    No Product in this Category
                 </span>
             </div>
            
-            <a type="button" class="btn btn-outline-success col-md-10 mx-auto text-center text-capitalize" [routerLink]='["/shop"]'>
+            <a type="button" class="btn btn-outline-success col-md-10 mx-auto text-center text-capitalize" [routerLink]='["/shop/all"]'>
                 Continue Shopping
             </a>
         </div>
