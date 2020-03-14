@@ -1,27 +1,37 @@
 import { ICategory } from './category.model';
 
+export interface ITag{
+    id:number,
+    name:string
+}
+
 export interface IReview{
     name: string,
-    reviewSummary?: string,
-    reviewMessage?: string,
+    comment?: string,
     rating?:number,
     reviewDate?: Date
+}
+
+export interface IProdImage{
+    url?:string
+    thumbnail?:string,
 }
 
 export interface IProduct{
     id: number,
     name: string,
     category:ICategory,
-    description:string[],
-    excerpts:string,
-    price:number,
-    promoPrice?:number,
-    imageURL?:string,
-    createdOn:string,
+    description?:string,
+    excerpt?:string,
+    cost?:number,
+    reduced_cost?:number,
+    discount?:string,
+    createdOn?:string,
     lastUpdate?:string,
-    availibility:string,
-    review?:IReview[],
-    tag?:string[],
-    isPopular?:boolean,
-    ratingAverage?:number
+    availibility?:string,
+    ratings?:IReview[],
+    tags?:ITag[],
+    avg_rating?:number,
+    images?: IProdImage[],
+    quantity?: number
 }

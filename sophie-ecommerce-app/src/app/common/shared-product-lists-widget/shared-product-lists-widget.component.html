@@ -5,5 +5,7 @@
       </span>
   </h2>
   <product-list [products] = "theProducts" class="mx-auto"></product-list>
-  <button class="btn-viewMore">View More</button>
+  <div class="d-flex flex-wrap col-sm-12">
+    <button class="btn-viewMore" [routerLink]= "['/shop']">View More</button>
+  </div>
 </div>

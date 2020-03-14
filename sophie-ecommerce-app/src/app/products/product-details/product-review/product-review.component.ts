@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IReview } from 'src/app/shared';
+import { AuthService } from 'src/app/user/auth.service';
 
 @Component({
   selector: 'product-review',
@@ -9,9 +10,11 @@ import { IReview } from 'src/app/shared';
 export class ProductReviewComponent implements OnInit {
   @Input() reviews: IReview[];
   addMode:boolean;
-  constructor() { }
+  isAuthenticated:boolean;
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+    this.isAuthenticated = this.auth.isAuthenticated();
   }
 
   addReview(){

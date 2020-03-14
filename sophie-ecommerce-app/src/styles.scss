@@ -5,6 +5,34 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('/assets/fonts/proxima_nova_bold-webfont.woff2') format('woff2'),
+         url('/assets/fonts/proxima_nova_bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('/assets/fonts/proxima_nova_extrabold-webfont.woff2') format('woff2'),
+         url('/assets/fonts/proxima_nova_extrabold-webfont.woff') format('woff');
+    font-weight: bolder;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('/assets/fonts/proximanova-regular-webfont.woff2') format('woff2'),
+         url('/assets/fonts/proximanova-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 @mixin flexWrap {
     display: flex;
     flex-wrap: wrap;
@@ -18,6 +46,10 @@
 @mixin maxWidthFlexWrap {
     @include flexWrap();
     @include maxWidth();
+}
+
+body{
+    font-family: 'Proxima Nova', Arial, Helvetica, sans-serif;
 }
 
 h2{

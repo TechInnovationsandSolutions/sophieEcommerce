@@ -1,0 +1,28 @@
+@import './../../app.component.scss';
+
+.shop-items{
+   .shop-items-main{
+       .shop-product{
+           margin: auto;
+       }
+   } 
+
+    .no-item{
+       font-size: 1.5em;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .shop-items{
+        .shop-items-main{
+            .shop-product{
+                margin-right: 0;
+                margin-left: 0;
+            }
+        } 
+
+        .no-item{
+            font-size: 3.5em;
+        }
+     }
+}

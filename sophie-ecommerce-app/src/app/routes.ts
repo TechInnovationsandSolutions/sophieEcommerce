@@ -1,6 +1,10 @@
 import { Routes } from "@angular/router";
 import { HomeProductsComponent, AboutPageComponent, ContactPageComponent,PrivacyPageComponent, ReturnPolicyPageComponent,CartComponent } from "./index";
 import { ProductDetailsComponent } from './products';
+import { ShopPageComponent } from './shop-page/shop-page.component';
+import { CategoryPageComponent } from './products/category-page/category-page.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { AuthRouteGuardGuard } from './shared/auth-route-guard.guard';
 
 export const appRoutes:Routes =[
     {
@@ -20,6 +24,15 @@ export const appRoutes:Routes =[
         component: ContactPageComponent
     },
     {
+        path:'shop/:slug',
+        component: ShopPageComponent
+    },
+    {
+        path: 'shop',
+        redirectTo: 'shop/all', 
+        pathMatch: 'full'
+    },
+    {
         path: 'privacy-policy',
         component: PrivacyPageComponent
     },
@@ -29,17 +42,41 @@ export const appRoutes:Routes =[
     },
     {
         path:'product', 
-        redirectTo: '', 
+        redirectTo: 'shop', 
         pathMatch: 'full'
     },
     {
         path:'products', 
-        redirectTo: '', 
+        redirectTo: 'shop', 
         pathMatch: 'full'
     },
     {
         path: 'cart',
         component: CartComponent
+    },
+    {
+        path: 'checkout',
+        component: CheckoutPageComponent,
+        canActivate: [AuthRouteGuardGuard]
+    },
+    {
+        path: 'myaccount',
+        component: CheckoutPageComponent,
+        canActivate: [AuthRouteGuardGuard]
+    },
+    {
+        path:'search',
+        component: CategoryPageComponent
+    },
+    {
+        path:'category/:slug',
+        redirectTo: 'shop/:slug',
+        pathMatch: 'full'
+    },
+    {
+        path:'category',
+        redirectTo: 'shop/all', 
+        pathMatch: 'full'
     },
     {
         path: 'user',

@@ -1,5 +1,7 @@
 export interface ICategory{
     id:number,
     name:string,
-    imageUrl?:string
+    slug:string,
+    image?:string
+    thumbnail?:string
 }

@@ -15,12 +15,23 @@ export class ProductItemComponent {
     var cartItem:ICart = {
       product_id: this.aProduct.id,
       product_name: this.aProduct.name,
-      amount: this.aProduct.promoPrice,
-      amount_main: this.aProduct.price,
-      imgUrl: this.aProduct.imageURL,
+      amount: this.aProduct.reduced_cost,
+      amount_main: this.aProduct.cost,
+      imgUrl: this.aProduct.images[0].url,
       quantity: 1
     }
 
     this.productService.addToCart(cartItem);
+  }
+
+  onActivate() {
+    let scrollToTop = window.setInterval(() => {
+        let pos = window.pageYOffset;
+        if (pos > 0) {
+            window.scrollTo(0, pos - 20); // how far to scroll on each step
+        } else {
+            window.clearInterval(scrollToTop);
+        }
+    }, 16);
   }
 }

@@ -7,12 +7,12 @@
             <p class="title-quantity">Quantity</p>
             <p class="title-total">Total</p>
         </div>
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap cart-item-con">
             <form class="cart-item" *ngFor="let item of cartItems">
                 <div class="cart-item-detail">
                     <div class="cart-item-img-name-container">
                         <img src="{{ item.imgUrl }}" alt="image of {{ item.product_name }}">
-                        <a (click)="onLinkClick(this.item.quantity.toString())" [routerLink]='["/product", item.product_id]' class="cart-item-name">{{ item.product_name }}</a>
+                        <a [routerLink]='["/product", item.product_id]' [queryParams]="{cart:this.item.quantity}" class="cart-item-name">{{ item.product_name }}</a>
                     </div>
                     <div class="cart-item-price-container">
                         <span class="cart-item-current">{{ item.amount | currency:"NGN":"₦" }}</span>
@@ -44,7 +44,7 @@
                  <button class="btn-back-to-shopping">
                     Back to Shopping
                  </button>
-                 <button class="btn-checkout">
+                 <button class="btn-checkout" [routerLink]="['/checkout']">
                     Checkout
                  </button>
             </div>
@@ -179,6 +179,9 @@
                 </svg>
             </span>
             <span>Cart is Empty</span>
+            <button class="btn btn-outline-success m-auto" [routerLink] = "['/shop']">
+                Click to Continue Shopping
+            </button>
         </p>
     </div>
 </div>

@@ -28,6 +28,11 @@ import { ProductService } from './shared';
 import { CartComponent } from './cart/cart.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from './user/auth.service';
+import { ShopItemsComponent } from './shop-page/shop-items/shop-items.component';
+import { CategoryPageComponent } from './products/category-page/category-page.component';
+import { Ng5SliderModule } from "ng5-slider";
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { Angular4PaystackModule } from 'angular4-paystack';
 
 @NgModule({
   declarations: [
@@ -50,7 +55,10 @@ import { AuthService } from './user/auth.service';
     ProductItemComponent,
     ProductDescriptionComponent,
     ProductReviewComponent,
-    CartComponent
+    CartComponent,
+    ShopItemsComponent,
+    CategoryPageComponent,
+    CheckoutPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +67,8 @@ import { AuthService } from './user/auth.service';
     CommonModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    Ng5SliderModule,
+    Angular4PaystackModule.forRoot('pk_test_4f69d7376af4f85cf8e0c1113c04a82ad6d97abe')
   ],
   providers: [
     ProductService,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct, ProductService, ICart } from 'src/app/shared';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -13,24 +13,29 @@ export class ProductDetailsComponent implements OnInit {
   relatedProducts:IProduct[] = [];
   quantity: number;
 
-  @Input() cartQty:number;
+  cartQty:number;
 
   constructor(private productService: ProductService, private route:ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.route.snapshot.params)
     this.route.params.forEach((params:Params)=>{
       this.productService.getProduct(+params['id']).then(res=>{
         console.log('the product',res)
-        this.product = <IProduct>res[0];
+        this.product = <IProduct>res;
+      }).then(()=>{
+        // console.log('pror', this.product);
+        if(this.product.tags && this.product.tags.length){
+          var productTag = this.product.tags.map(t=>t.name);
+          console.log('tag-chain', productTag.join(','), productTag, this.product.tags)
+          this.productService.getProductsByTag(productTag.join(',')).then(res=>{
+            this.relatedProducts = (<IProduct[]>res).length > 8 ? (<IProduct[]>res).slice(0, 8) : (<IProduct[]>res);
+          })
+        }
       });
     });
 
-    this.productService.getPopularProducts().then(res=>{
-      console.log(res);
-      this.relatedProducts = (<IProduct[]>res).slice(0, 4);
-    })
-
-    // console.log('inpur', this.cartQty);
+    this.cartQty=this.route.snapshot.queryParams.cart;
     this.quantity = this.cartQty ? this.cartQty : 1;
   }
 
@@ -58,9 +63,9 @@ export class ProductDetailsComponent implements OnInit {
       var cartItem:ICart = {
         product_id: prod.id,
         product_name: prod.name,
-        amount: prod.promoPrice,
-        amount_main: prod.price,
-        imgUrl: prod.imageURL,
+        amount: prod.reduced_cost,
+        amount_main: prod.cost,
+        imgUrl: prod.images[0].url,
         quantity: quantity
       }
       console.log('cartItem',cartItem);

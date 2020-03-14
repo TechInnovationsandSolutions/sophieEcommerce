@@ -1,1 +1,70 @@
-<p>shop-page works!</p>
+<div class="products-section">
+    <div class="products-sect-header">
+        <h2 class="products-section-title">
+            {{ pageTitle }}
+        </h2>
+    </div>
+    <aside class="product-aside-sect">
+        <div class="product-category-sect">
+            <div class="category-list-mobile d-flex flex-wrap" *ngIf="isMobile">
+                <select class = "text-capitalize m-auto" name="product-categories" id="product-categories" (change)="onChangeSelect($event.target.value)">
+                    <option value="all">All</option>
+                    <option *ngFor="let cat of categories" value="{{cat.name.split(' ').join('_')}}">{{ cat.name }}</option>
+                </select>
+            </div>
+            <ul class="category-list" *ngIf="!isMobile">
+                <li class="category-list-item text-capitalize">
+                    <a [routerLink]="['/shop/all']" [queryParams] = "{page:1}" class="category-list-item-link" routerLinkActive = "active" [routerLinkActiveOptions]="{exact:true}">all</a>
+                </li>
+                <li class = "category-list-item text-capitalize" *ngFor="let category of categories" >
+                    <a class="category-list-item-link" routerLink = "{{ '/shop/' + getSlug(category.name) }}" [queryParams] = "{page:1}" [queryParamsHandling] = "['merge']" routerLinkActive = "active" [routerLinkActiveOptions]="{exact:true}">{{ category.name }}</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div class="products-section-main d-flex flex-wrap p-0">
+        <div class="p-0 pb-2 w-100">
+            <shop-items [shopProducts] = 'products'></shop-items>
+        </div>
+        <div class="col-sm-12 col-md-10 mx-auto py-2 d-flex flex-wrap" *ngIf="products.length">
+            <hr class="w-100 mx-auto">
+            <div class="pagination mx-auto d-flex flex-wrap">
+                <div class="m-auto d-flex flex-wrap">
+                    <span class="pagination-nav prev"
+                    *ngIf="currentPage !== 1"
+                    (click)="setPage(currentPage - 1)"
+                    >
+                    Previous
+                    </span>
+                    <ng-container *ngIf="pagesArray.length <= 10" >
+                    <span class="pagination-nav page"
+                        *ngFor="let page of pagesArray; let index = index"
+                        [ngClass]="{ 'active': currentPage === index + 1 }"
+                        (click)="setPage(index + 1)"
+                    >
+                        {{ index + 1 }}
+                    </span>
+                    </ng-container>
+                    <ng-container *ngIf="pagesArray.length > 10" >
+                    <select
+                        [ngModel]="currentPage"
+                        (ngModelChange)="setPage($event.target.value)"
+                    >
+                        <option
+                        *ngFor="let p of pagesArray; let index = index"
+                        [value]="(index + 1)" >
+                        {{ index + 1 }}
+                        </option>
+                    </select>
+                    </ng-container>
+                    <span class="pagination-nav next"
+                    *ngIf="currentPage !== pagesArray.length"
+                    (click)="setPage(currentPage + 1)"
+                    >
+                    Next
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

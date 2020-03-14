@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { ProductService, ICart } from '../shared';
 import { AuthService } from '../user/auth.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'nav-bar',
@@ -10,8 +12,9 @@ import { AuthService } from '../user/auth.service';
 export class NavBarComponent implements OnInit{
   
   cartItems : ICart[] = [];
+  searchText: string = '';
 
-  constructor(private productService:ProductService, public auth:AuthService) { }
+  constructor(private productService:ProductService, public auth:AuthService, private router: Router) { }
 
   ngOnInit(){
     this.clickLink();
@@ -41,5 +44,31 @@ export class NavBarComponent implements OnInit{
 
   logOut(){
     this.auth.logOut();
+    Swal.fire({
+      icon: 'success',
+      background: '#FFD9E8',
+      title: 'Logged out successfully',
+      position: 'top-end',
+      toast: true,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+    })
+  }
+
+  searchFormSubmit(){
+    console.log();
+    console.log(this.searchText);
+    if (this.searchText) {
+      console.log('yum yum')
+      this.router.navigate(['/shop/search'], {
+        queryParams:{
+          searchhTerm: this.searchText,
+          page: 1
+        },
+        queryParamsHandling: 'merge'
+      })
+      window.location.href = '/shop/search?searchhTerm='+this.searchText
+    }
   }
 }

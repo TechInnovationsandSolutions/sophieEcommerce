@@ -1,5 +1,5 @@
 <div class="py-2">
-    <div class="d-flex"  *ngIf="!addMode">
+    <div class="d-flex"  *ngIf="!addMode && isAuthenticated">
         <button class="ml-auto btn btn-outline-dark" (click)="addReview()">
             Add A Review
         </button>
@@ -22,8 +22,7 @@
                 <!-- 5 star  -->
                 <i [class]="(review.rating >= 5) ? 'fas fa-star' : (review.rating > 4 && review.rating < 5) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
             </p>
-            <p class="review-summary">{{ review?.reviewSummary }}</p>
-            <p class="review-feedback">{{ review?.reviewMessage }}</p>
+            <p class="review-feedback">{{ review?.comment }}</p>
             <p class="reviewBy">
                 <span class="review-date">{{ (review?.reviewDate ?  review?.reviewDate : 1581470956443) | date}}</span>
                 by
