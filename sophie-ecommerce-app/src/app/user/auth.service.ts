@@ -1,32 +1,33 @@
 import { Injectable } from "@angular/core";
-import { IUserReg, IUSer } from '../shared';
+import { IUserReg, IUSer, ProductService } from '../shared';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService{
+    constructor(private http: HttpClient, private serv: ProductService, private router: Router){}
+    _url = this.serv._url;
+
     currentUser: IUSer;
+
     registerUser(user:IUserReg){
-        // localStorage.setItem()
-        this.currentUser = user.userDetail;
+        return this.http.post<any>(this._url + 'auth/register', {
+            email:user.email,
+            first_name:user.first_name,
+            last_name: user.last_name,
+            password:user.password,
+            password_confirmation:user.password,
+        }).toPromise()
     }
 
-    loginUser(userEmail:string, password: string){
-        if (userEmail == 'cross@gmailcom' && password === 'password') {
-            this.currentUser = {
-                "id": 1,
-                "firstName": "cross",
-                "lastName": "chidera",
-                "email": "crosschidera@gmailcom",
-                "phoneNumber": "1579737786364",
-                "address": {
-                    "location": "1001 ipsum chang ridiculus",
-                    "city": "lorum",
-                    "state": "lagos",
-                    "country": "nigeria"
-                }
-            }
-            return true;
+    loginUser(userEmail:string, password: string):Observable<any>{
+        if (userEmail && password) {
+            return this.http.post<any>(this._url + 'auth/login', {
+                email: userEmail,
+                password: password
+            });
         }
-        return false;
     }
 
     isAuthenticated(){
@@ -35,7 +36,8 @@ export class AuthService{
 
     logOut(){
         this.currentUser = null;
-        location.reload();
+        this.serv.removeToken();
+        this.router.navigate(['/'])
     }
 }
 
