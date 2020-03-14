@@ -3,4 +3,5 @@ export interface ICategory{
     name:string,
     slug:string,
     image?:string
+    thumbnail?:string
 }
