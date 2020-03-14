@@ -4,6 +4,7 @@ import { ProductDetailsComponent } from './products';
 import { ShopPageComponent } from './shop-page/shop-page.component';
 import { CategoryPageComponent } from './products/category-page/category-page.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { AuthRouteGuardGuard } from './shared/auth-route-guard.guard';
 
 export const appRoutes:Routes =[
     {
@@ -41,12 +42,12 @@ export const appRoutes:Routes =[
     },
     {
         path:'product', 
-        redirectTo: '', 
+        redirectTo: 'shop', 
         pathMatch: 'full'
     },
     {
         path:'products', 
-        redirectTo: '', 
+        redirectTo: 'shop', 
         pathMatch: 'full'
     },
     {
@@ -56,7 +57,12 @@ export const appRoutes:Routes =[
     {
         path: 'checkout',
         component: CheckoutPageComponent,
-        // canActivate
+        canActivate: [AuthRouteGuardGuard]
+    },
+    {
+        path: 'myaccount',
+        component: CheckoutPageComponent,
+        canActivate: [AuthRouteGuardGuard]
     },
     {
         path:'search',
@@ -64,11 +70,12 @@ export const appRoutes:Routes =[
     },
     {
         path:'category/:slug',
-        component: CategoryPageComponent
+        redirectTo: 'shop/:slug',
+        pathMatch: 'full'
     },
     {
         path:'category',
-        redirectTo: 'category/all', 
+        redirectTo: 'shop/all', 
         pathMatch: 'full'
     },
     {
