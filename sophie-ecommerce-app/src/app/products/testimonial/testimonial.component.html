@@ -10,7 +10,7 @@
                 </svg>
               </span>
           </div>
-          <div class="testimonial-area__contents-container carousel slide" data-ride="carousel">
+          <div id="carouselExampleIndicators" class="testimonial-area__contents-container carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="testimonial-area__content-container carousel-item" *ngFor="let testimonial of testimonials" [class.active] ="testimonial.id === 1" >
                   <p class="testimonial-area__content-testimony">{{ testimonial.message }}</p>
@@ -18,7 +18,7 @@
               </div>
             </div>
             <ol class="carousel-indicators testimonial-area__content-slider-controller">
-              <li data-target="#carouselExampleCaptions" [attr.data-slide-to] ="testimonial.id - 1" *ngFor="let testimonial of testimonials" [class.active] ="testimonial.id === 1"></li>
+              <li data-target="#carouselExampleIndicators" [attr.data-slide-to] ="i" *ngFor="let testimonial of testimonials, let i = index" [class.active] ="testimonial.id === 1"></li>
             </ol>
           </div>
         </div>
