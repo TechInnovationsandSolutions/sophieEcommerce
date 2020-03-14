@@ -5,9 +5,9 @@
         </span>
     </h2>
     <div class="section-categories__container">
-        <a type="button" tabindex="-1" [routerLink]= "['/shop', category.slug]" class="section-categories__category" *ngFor="let category of categories" [style.background-image] = "'url(' + category.imageUrl + ')'" >
+        <a type="button" tabindex="-1" [routerLink]= "['/shop', category.name.split(' ').join('-')]" class="section-categories__category" *ngFor="let category of categories" [style.background-image] = "'url(' + category.image + ')'" >
             <div class="section-categories__btn-shop">
-                <span>Shop by {{ category.name }}</span>
+                <span class="category-name-span">Shop by <span class="text-capitalize">{{ category.name }}</span></span>
             </div>
         </a> 
     </div>
