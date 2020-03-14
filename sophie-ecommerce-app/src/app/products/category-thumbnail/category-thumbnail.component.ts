@@ -14,6 +14,7 @@ export class CategoryThumbnailComponent implements OnInit {
   ngOnInit() {
     this.productService.getCategories().then(resp=>{
       this.categories = <ICategory[]>resp;
+      this.categories.reverse();
       this.categories = this.categories.slice(0, 2);
       console.log('categ', this.categories);
     })
