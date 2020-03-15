@@ -72,6 +72,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
         console.log('here')
         aProm = this.productService.getProducts(pg)
       }
+
       aProm.then(res=>{
         // console.log(pg, res)
         var resp = <ProductResponse>res;
@@ -85,10 +86,9 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
           console.log('sel', slug);
           sel.value = (slug && slug !='search') ? slug : 'all';
         }
-        
-    
       });
-
+      
+      document.querySelector('.products-sect-header').scrollIntoView({behavior: "smooth"});
     })
 
   }
@@ -124,6 +124,9 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
     this.currentPage = val;
     this.router.navigate([],{ queryParams: { page: val } });
     this.setProducts(val);
+
+    // console.log('scro', document.querySelector('.products-section-main'))
+    document.querySelector('.products-sect-header').scrollIntoView({behavior: "smooth"});
   }
 
   setProducts(pg){
