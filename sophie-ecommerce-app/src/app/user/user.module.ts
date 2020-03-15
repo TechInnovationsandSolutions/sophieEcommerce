@@ -10,6 +10,8 @@ import { userRoutes } from './user.routes';
 import { LoginRegisterComponent } from "./login-register/login-register.component";
 import { AuthService } from './auth.service';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { MyAddressesComponent } from './my-addresses/my-addresses.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 
@@ -24,7 +26,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
     LoginComponent, 
     RegisterComponent, 
     ProfileComponent, 
-    ForgotPasswordComponent, LoginRegisterComponent, MyAccountComponent
+    ForgotPasswordComponent, LoginRegisterComponent, MyAccountComponent, MyAddressesComponent, MyOrdersComponent
   ],
   providers:[
   ]
