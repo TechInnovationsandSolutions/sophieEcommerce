@@ -54,6 +54,9 @@ $bgC: #C4C4C4;
     }
 
     .products-section-main{
+        display: grid;
+        grid-auto-rows: minmax(min-content, max-content);
+        
         .pagination{
             width: 100%;
             border-radius: 10px;
