@@ -1,0 +1,84 @@
+@import './../app.component.scss';
+
+.about-page{
+
+    @mixin padArround($pX: 0, $pY: 1em) {
+        padding: $pY $pX;
+    }
+
+    .header{
+        $clr: #ffffff;
+        background: $clr;
+        $pX: 0;
+        $pY: 1em;
+        @include padArround($pX, $pY);
+        
+        h2{
+            // font-weight: bold;
+            font-size: 2em;
+
+            &.widget-title{
+                &::before{
+                    border-top: 1px solid $success;
+                }
+        
+                span.widget-title-span-container{
+                    span{
+                        margin: auto;
+                        background-color: $clr;
+                    }
+                }
+            }
+        }
+
+        &::after{
+            content: " ";
+            background: linear-gradient(45deg, $clr 0 60%, $sophiePink 60% 80%, $success 80% 100%);
+            width: 100%;
+            height: 2em;
+        }
+
+    }
+
+    .bg-Ash{
+        @include padArround(0.5em, 0.5em);
+        // background: $smokeyWhite;
+        background: $sweetWhiteSmokeBlue;
+    }
+
+    .core-values{
+        @include padArround(0.5, 1.5em);
+
+        .card{
+            width: 100%;
+            max-width: 300px;
+            margin: 1em auto;
+
+            .card-body{
+                .card-title{
+                    @include padArround(0, 0.5em);
+                    color: $success;
+                    font-size: 2.5em;
+                }
+
+                .card-subtitle{
+                    font-size: 1.5em;
+                    color: #000;
+                    text-transform: capitalize;
+                }
+
+                .card-text{
+                    color: $dark;
+                }
+            }
+
+            &:nth-child(even){
+                .card-body{
+                    .card-title{
+                        color: $indigo;
+                    }
+                }
+            }
+        }
+    }
+}
