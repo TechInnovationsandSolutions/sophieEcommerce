@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { userRoutes } from './user.routes';
 import { LoginRegisterComponent } from "./login-register/login-register.component";
 import { AuthService } from './auth.service';
+import { MyAccountComponent } from './my-account/my-account.component';
 
 
 
@@ -23,7 +24,7 @@ import { AuthService } from './auth.service';
     LoginComponent, 
     RegisterComponent, 
     ProfileComponent, 
-    ForgotPasswordComponent, LoginRegisterComponent
+    ForgotPasswordComponent, LoginRegisterComponent, MyAccountComponent
   ],
   providers:[
   ]
