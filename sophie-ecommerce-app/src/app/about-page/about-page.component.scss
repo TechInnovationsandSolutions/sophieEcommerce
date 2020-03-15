@@ -41,14 +41,12 @@
     }
 
     .bg-Ash{
-        @include padArround(0.5em, 0.5em);
         // background: $smokeyWhite;
         background: $sweetWhiteSmokeBlue;
     }
 
     .core-values{
-        @include padArround(0.5, 1.5em);
-
+        @include padArround(0.5em, 1.5em);
         .card{
             width: 100%;
             max-width: 300px;
@@ -57,8 +55,26 @@
             .card-body{
                 .card-title{
                     @include padArround(0, 0.5em);
-                    color: $success;
                     font-size: 2.5em;
+
+                    i{
+                        $icd: 90px;
+                        padding: 0.5em;
+                        background-color: $success;
+                        color: #ffffff;
+                        border-radius: 100%;
+                        margin: auto;
+                        width: $icd;
+                        height: $icd;
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        &::before{
+                            margin: auto;
+                            padding: 0;
+                        }
+                    }
+                    
                 }
 
                 .card-subtitle{
@@ -75,7 +91,11 @@
             &:nth-child(even){
                 .card-body{
                     .card-title{
-                        color: $indigo;
+                        i{
+                            background-color: $sophiePink;
+                            color: #000;
+                        }
+                        
                     }
                 }
             }
