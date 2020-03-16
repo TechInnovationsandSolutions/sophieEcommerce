@@ -213,7 +213,7 @@ export class ProductService{
 
     //Address
 
-    getUserAddress(){
+    getUserAddresses(){
       var token = this.getToken();
       return this.http.get<any>(this._url + 'address', {
         headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
