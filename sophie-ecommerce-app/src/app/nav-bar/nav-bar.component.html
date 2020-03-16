@@ -64,7 +64,7 @@
                                 <a class="dropdown-item text-dark" [routerLink]="['/user', 'register']">Register</a> 
                             </li>
                         </ul>
-                        <a *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark">My Account</a>
+                        <a *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark" [routerLink]="['/user', 'myaccount']">My Account</a>
                         <a type="button" *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark" (click)="logOut()">Logout</a>
                     </div>
                 </li>
