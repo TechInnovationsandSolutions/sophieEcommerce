@@ -1,1 +1,35 @@
-<p>profile works!</p>
+<form id="frm-userDetail" autocomplete="on" [formGroup] = "userProfileForm" (ngSubmit) = "onUserDetailSubmit(userProfileForm)" class="col-md-6 mx-auto">
+    <div class="d-flex flex-wrap py-2">
+        <button type="button" class="btn btn-outline-dark ml-auto">
+            <i class="fas fa-pen"></i>
+        </button>
+    </div>
+    <fieldset disabled>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="userFirstName">First Name</label>
+            <input type="text" class="form-control" id="userFirstName" placeholder="First Name" autocomplete="given-name" formControlName="first_name" autofocus>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="userLastName">Last Name</label>
+            <input type="text" class="form-control" id="userLastName" formControlName="last_name" placeholder="Last Name" autocomplete="family-name">
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="userEmail">Email Address</label>
+            <input type="email" class="form-control" id="userEmail" placeholder="Email Address" autocomplete="email" formControlName="email">
+        </div>
+        <div class="form-group">
+            <label for="userPhoneNumber">Phone Number</label>
+            <input type="tel" class="form-control" id="userPhoneNumber" placeholder="Phone Number" autocomplete="tel" formControlName="phone">
+        </div>
+        <div class="col-sm-12 d-flex flex-wrap py-2 px-0 mx-auto">
+            <button type="submit" class="text-center col-sm-5 p-2 my-2 btn btn-success mx-auto" [disabled]="userProfileForm.invalid">
+                Update Profile
+            </button>
+            <button type="button" class="text-center col-sm-5 p-2 my-2 btn btn-danger mx-auto">
+                Cancel
+            </button>
+        </div>
+    </fieldset>
+  </form>
