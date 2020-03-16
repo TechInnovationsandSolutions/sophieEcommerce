@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
         if(r.data.token && r.data.is_admin) {
           this.prodServ.setToken(r.data.token);
           this.auth.currentUser = <IUSer>r.data
-
+          this.auth.setUser(JSON.stringify(this.auth.currentUser));
+          
           Swal.fire({
             icon: 'success',
             title: 'Signed in successfully',
@@ -54,7 +55,5 @@ export class LoginComponent implements OnInit {
     r => {
       this.wrongAuth = true
     });
-    const resp = this.auth.loginUser(form.username, form.password);
-    console.log('resp', resp);
   }
 }
