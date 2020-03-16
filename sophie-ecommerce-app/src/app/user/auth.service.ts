@@ -34,6 +34,7 @@ export class AuthService{
             email:user.email,
             first_name:user.first_name,
             last_name: user.last_name,
+            phone: user.phone,
             password:user.password,
             password_confirmation:user.password,
         }).toPromise()
@@ -43,9 +44,30 @@ export class AuthService{
         if (userEmail && password) {
             return this.http.post<any>(this._url + 'login', {
                 email: userEmail,
-                password: password
+                password: password,
             });
         }
+    }
+
+    updateUser(user:IUSer){
+        var token = this.serv.getToken();
+        return this.http.post<any>(this._url + 'update', {
+            first_name:user.first_name,
+            last_name: user.last_name,
+            phone: user.phone,
+        },{
+            headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+        }).toPromise();
+    }
+
+    updatePassword(old_password:string, new_password: string){
+        var token = this.serv.getToken();
+        return this.http.post<any>(this._url + 'update', {
+            old_password:old_password,
+            new_password: new_password,
+        },{
+            headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+        }).toPromise();
     }
 
     isAuthenticated():boolean{
