@@ -10,11 +10,11 @@ import { AuthService } from 'src/app/user/auth.service';
 export class ProductReviewComponent implements OnInit {
   @Input() reviews: IReview[];
   addMode:boolean;
-  isAuthenticated:boolean;
+  isAuthenticated:boolean = false;
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
-    this.isAuthenticated = this.auth.isAuthenticated();
+    this.isAuthenticated =this.auth.isAuthenticated();
   }
 
   addReview(){
