@@ -1,0 +1,18 @@
+@import './../../app.component.scss';
+
+.my-account-sec{
+    .header{
+       .my-account-nav{
+        .list-group-item.list-group-item-action.my-account-nav-item{
+               cursor: pointer;
+               
+               &.active{
+                   background-color: $sophiePink;
+                   border-color: $sophiePink;
+                   color: $dark;
+                   cursor: default;
+               }
+           }
+       } 
+    }
+}
