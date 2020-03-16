@@ -14,7 +14,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(private productService: ProductService, private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
-  states:any[] = [];
   registrationForm = this.fb.group({
       first_name: ['',Validators.required],
       last_name: ['',Validators.required],
@@ -25,12 +24,6 @@ export class RegisterComponent implements OnInit {
   });
 
   ngOnInit() {
-    // this.productService.getStateLGADetails().subscribe(s=>{
-    //   this.states=<any[]>s;
-    //   console.log('res0', s);
-    //   console.log('state', this.states)
-    // });
-
     const btnPw = <HTMLInputElement>document.querySelector('button.reveal-password');
 
     btnPw.addEventListener('mousedown', this.seePassword, false);
