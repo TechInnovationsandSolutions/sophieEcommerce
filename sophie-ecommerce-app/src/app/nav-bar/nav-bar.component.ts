@@ -43,17 +43,20 @@ export class NavBarComponent implements OnInit{
   }
 
   logOut(){
-    this.auth.logOut();
-    Swal.fire({
-      icon: 'success',
-      background: '#FFD9E8',
-      title: 'Logged out successfully',
-      position: 'top-end',
-      toast: true,
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-    })
+    if (!!this.auth.currentUser) {
+      console.log('!!this.auth.currentUser', this.auth.currentUser)
+      this.auth.logOut();
+      Swal.fire({
+        icon: 'success',
+        background: '#FFD9E8',
+        title: 'Logged out successfully',
+        position: 'top-end',
+        toast: true,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      })
+    } 
   }
 
   searchFormSubmit(){
