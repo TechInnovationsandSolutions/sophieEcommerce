@@ -25,17 +25,38 @@ export class RegisterComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.productService.getStateLGADetails().subscribe(s=>{
-      this.states=<any[]>s;
-      console.log('res0', s);
-      console.log('state', this.states)
-    });
+    // this.productService.getStateLGADetails().subscribe(s=>{
+    //   this.states=<any[]>s;
+    //   console.log('res0', s);
+    //   console.log('state', this.states)
+    // });
+
+    const btnPw = <HTMLInputElement>document.querySelector('button.reveal-password');
+
+    btnPw.addEventListener('mousedown', this.seePassword, false);
+    btnPw.addEventListener('touchstart', this.seePassword, false);
+
+    btnPw.addEventListener('mouseleave', this.hidePassword, false);
+    btnPw.addEventListener('mouseup', this.hidePassword, false);
+    btnPw.addEventListener('touchend', this.hidePassword, false);
   }
 
   validatePassword(control: AbstractControl){
     var regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
     const isNotPasswordFormat = regex.test(control.value);
     return isNotPasswordFormat ? null : {isNotPasswordFormat: true};
+  }
+
+  seePassword(){
+    const pw = <HTMLInputElement>document.getElementById('userPassword');
+    pw.type = 'text';
+    // console.log(event.type, pw.type, pw);
+  }
+
+  hidePassword(){
+    const pw = <HTMLInputElement>document.getElementById('userPassword');
+    // console.log(event.type, pw);
+    pw.type = 'password';
   }
 
   onSubmit(formValue){
