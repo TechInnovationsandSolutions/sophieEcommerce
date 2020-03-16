@@ -14,6 +14,7 @@ export interface IUserReg{
 }
 
 export interface IUSerAddress{
+    id: number,
     first_name: string,
     last_name: string,
     state_id: number,
