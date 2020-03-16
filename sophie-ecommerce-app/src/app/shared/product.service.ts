@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from 'rxjs';
-import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart } from './model';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart, IUSerAddress } from './model';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -60,7 +60,7 @@ export class ProductService{
 
     getStateLGADetails(): Observable<any[]>{
       return this.http.get(this._stateLGA).pipe(map(resp=><any[]>resp));
-  }
+  ``}
 
     getProducts(param:string){
         return new Promise(resolve=>{
@@ -210,6 +210,57 @@ export class ProductService{
           )
         })
     }
+
+    //Address
+
+    getUserAddress(){
+      var token = this.getToken();
+      return this.http.get<any>(this._url + 'address', {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+      }).toPromise();
+    }
+
+    addUserAddress(address:IUSerAddress){
+      var token = this.getToken();
+      return this.http.post<any>(this._url + 'address', {
+        first_name: address.first_name,
+        last_name: address.last_name,
+        state_id: address.state_id,
+        lga_id: address.lga_id,
+        city: address.city,
+        address: address.address,
+        phone: address.phone,
+      },
+      {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+      }).toPromise();
+    }
+
+    updateUserAddress(address:IUSerAddress){
+      var token = this.getToken();
+      return this.http.put<any>(this._url + 'address/' + address.id, {
+        first_name: address.first_name,
+        last_name: address.last_name,
+        state_id: address.state_id,
+        lga_id: address.lga_id,
+        city: address.city,
+        address: address.address,
+        phone: address.phone,
+      },
+      {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+      }).toPromise();
+    }
+
+    deleteUserAddress(address:IUSerAddress){
+      var token = this.getToken();
+      return this.http.delete<any>(this._url + 'address/' + address.id,
+      {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+      }).toPromise();
+    }
+
+    //Add to cart
 
     addToCart(item:ICart){
         var isInCart = cartItems.find(c=> c.product_id === item.product_id);
