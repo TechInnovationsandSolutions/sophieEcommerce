@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
+
+import { Ng5SliderModule } from "ng5-slider";
+import { Angular4PaystackModule } from 'angular4-paystack';
+import { BlockUIModule } from "ng-block-ui";
+
 import { SiteFooterComponent } from './siteFooter/site-footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeProductsComponent } from './products/home-products.component';
@@ -30,9 +35,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from './user/auth.service';
 import { ShopItemsComponent } from './shop-page/shop-items/shop-items.component';
 import { CategoryPageComponent } from './products/category-page/category-page.component';
-import { Ng5SliderModule } from "ng5-slider";
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
-import { Angular4PaystackModule } from 'angular4-paystack';
 
 @NgModule({
   declarations: [
@@ -68,6 +71,7 @@ import { Angular4PaystackModule } from 'angular4-paystack';
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     Ng5SliderModule,
+    BlockUIModule.forRoot(),
     Angular4PaystackModule.forRoot('pk_test_4f69d7376af4f85cf8e0c1113c04a82ad6d97abe')
   ],
   providers: [
