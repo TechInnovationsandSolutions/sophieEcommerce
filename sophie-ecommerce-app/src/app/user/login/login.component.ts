@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required,Validators.min(8)]]
+      password: ['', [Validators.required,Validators.min(6)]]
     });
     this.url_route= this.route.snapshot.queryParams.redirectUrl ? this.route.snapshot.queryParams.redirectUrl : '/shop';
   }
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           this.prodServ.setToken(r.data.token);
           this.auth.currentUser = <IUSer>r.data
           this.auth.setUser(JSON.stringify(this.auth.currentUser));
-          
+
           Swal.fire({
             icon: 'success',
             title: 'Signed in successfully',
