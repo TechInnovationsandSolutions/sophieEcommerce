@@ -260,6 +260,31 @@ export class ProductService{
       }).toPromise();
     }
 
+    //Orders
+    getUserOrders(){
+      var token = this.getToken();
+      return this.http.get<any>(this._url + 'orders', {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+      }).toPromise();
+    }
+
+    getUserOrderById(id:string){
+      var token = this.getToken();
+      return this.http.get<any>(this._url + 'orders/' + id, {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+      }).toPromise();
+    }
+
+    addUserOrder(order){
+      var token = this.getToken();
+      return this.http.post<any>(this._url + 'address', {
+        order: order
+      },
+      {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+      }).toPromise();
+    }
+
     //Add to cart
 
     addToCart(item:ICart){
