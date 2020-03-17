@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService, IUSer } from 'src/app/shared';
 import Swal from "sweetalert2";
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   wrongAuth: boolean = false;
   url_route:string = '';
-
+  @BlockUI() blockUI: NgBlockUI;
+  
   constructor(private auth:AuthService, private fb:FormBuilder, private router: Router, private prodServ: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -30,30 +32,37 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(form){
-    console.log('login f', form);
-    this.auth.loginUser(form.username, form.password).subscribe(
-      r => {
-        console.log(r);
-        if(r.data.token && r.data.is_admin) {
-          this.prodServ.setToken(r.data.token);
-          this.auth.currentUser = <IUSer>r.data
-          this.auth.setUser(JSON.stringify(this.auth.currentUser));
+    try {
+      console.log('login f', form);
+      this.blockUI.start();
+      this.auth.loginUser(form.username, form.password).subscribe(
+        r => {
+          this.blockUI.stop();
+          console.log(r);
+          if(r.data.token && r.data.is_admin) {
+            this.prodServ.setToken(r.data.token);
+            this.auth.currentUser = <IUSer>r.data
+            this.auth.setUser(JSON.stringify(this.auth.currentUser));
 
-          Swal.fire({
-            icon: 'success',
-            title: 'Signed in successfully',
-            position: 'top-end',
-            toast: true,
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-          })
-          
-          this.router.navigateByUrl(this.url_route);
-        }
-    },
-    r => {
-      this.wrongAuth = true
-    });
+            Swal.fire({
+              icon: 'success',
+              title: 'Signed in successfully',
+              position: 'top-end',
+              toast: true,
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+            })
+            
+            this.router.navigateByUrl(this.url_route);
+          }
+      },
+      r => {
+        this.blockUI.stop();
+        this.wrongAuth = true
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
