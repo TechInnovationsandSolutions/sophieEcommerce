@@ -69,6 +69,8 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
         const slug = this.route.snapshot.params.slug.replace(/_/g, ' ');
         aProm = this.productService.getProductsByCategory(slug, pg);
         this.pageTitle = (slug && slug == 'all') ? 'Explore Our Products' : 'Checkout our ' + slug + ' products'; 
+
+        this.showBreadCrumb = false;
         if(slug != 'all'){
           this.showBreadCrumb = true;
         }     
