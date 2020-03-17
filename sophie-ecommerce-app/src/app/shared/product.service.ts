@@ -288,17 +288,36 @@ export class ProductService{
     //Add to cart
 
     addToCart(item:ICart){
-        var isInCart = cartItems.find(c=> c.product_id === item.product_id);
-        console.log('de', isInCart)
+        const isInCart = cartItems.find(c=> c.product_id === item.product_id);
+        console.log('de', isInCart);
+        let result = false;
 
         //We expect undefine if it's not found
         if (!isInCart) {
             cartItems.push(item);
             this.updateToLocal();
+            result = true;
         } else if(isInCart.quantity != item.quantity){
             console.log('ups', item)
             this.updateCart(item);
+            result = true;
         }
+
+        let subject = new Subject<boolean>();
+        setTimeout(()=>{
+            subject.next(result);
+            subject.complete();
+        }, 100);
+        return subject.toPromise();
+
+        // var token = this.getToken();
+        // return this.http.post<any>(this._url + 'cart',{
+        //   product_id: item.product_id,
+        //   amount: item.amount,
+        //   quantity: item.quantity
+        // }, {
+        //   headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+        // }).toPromise();
     }
 
     removeFromCart(item:ICart){
@@ -332,6 +351,11 @@ export class ProductService{
             subject.complete();
         }, 100);
         return subject
+
+        // var token = this.getToken();
+        // return this.http.get<any>(this._url + 'cart', {
+        //   headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+        // });
     }
 
     updateToLocal(){
@@ -372,7 +396,7 @@ export class ProductService{
     addToCategory(someCategories:ICategory[]){
       categories = someCategories;
       this.updateToLocal();
-  }
+    }
 }
 
 let cartItems: ICart[] = [];
