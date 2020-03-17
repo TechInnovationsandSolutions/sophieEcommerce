@@ -12,7 +12,7 @@
             </li>
         </ul>
     </div>
-    <div class="main col-sm-12 py-3" [ngSwitch] = "currentRoute">
+    <div class="main col-sm-12 py-3 p-0" [ngSwitch] = "currentRoute">
         <app-my-addresses *ngSwitchCase = "'shipping-address'"></app-my-addresses>
         <app-my-orders  *ngSwitchCase = "'orders'"></app-my-orders>
         <profile  *ngSwitchCase = "'profile'"></profile>
