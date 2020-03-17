@@ -346,9 +346,10 @@ export class ProductService{
     getCartItems() : Observable <ICart[]>{
         let subject = new Subject<ICart[]>();
         setTimeout(()=>{
-            cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
-            subject.next(cartItems);
-            subject.complete();
+          console.log('Lemme in')
+          cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
+          subject.next(cartItems);
+          subject.complete();
         }, 100);
         return subject
 
@@ -356,6 +357,11 @@ export class ProductService{
         // return this.http.get<any>(this._url + 'cart', {
         //   headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
         // });
+    }
+
+    clearCartItems(){
+      cartItems = [];
+      localStorage.removeItem('cart');
     }
 
     updateToLocal(){
