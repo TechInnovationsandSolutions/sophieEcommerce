@@ -42,7 +42,7 @@ export class CheckoutPageComponent implements OnInit {
 
       this.options = {
         amount: Math.ceil(this.totamt),
-        email: 'user@mail.com',
+        email: this.currentUser.email,
         ref: `${Math.ceil(Math.random() * 10e10)}`
       }
     })
