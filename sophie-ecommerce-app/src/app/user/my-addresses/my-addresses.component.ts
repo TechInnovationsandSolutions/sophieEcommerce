@@ -155,6 +155,7 @@ export class MyAddressesComponent implements OnInit {
         Swal.fire({
           title: "Deletion Confirmation",
           text: "Are you sure you want to delete this address?",
+          icon: 'question',
           confirmButtonText: "Yes, Delete",
           showCancelButton: true,
           cancelButtonText: 'No, Cancel.',
@@ -226,7 +227,7 @@ export class MyAddressesComponent implements OnInit {
       Swal.fire({
         title: 'Confirmation',
         text: "You want to create a new address?",
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Yes, Create!',
         cancelButtonText: 'No, cancel!',
@@ -274,7 +275,7 @@ export class MyAddressesComponent implements OnInit {
       Swal.fire({
         title: 'Confirmation',
         text: "You want to update this address?",
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Yes, Update!',
         cancelButtonText: 'No, cancel!',
