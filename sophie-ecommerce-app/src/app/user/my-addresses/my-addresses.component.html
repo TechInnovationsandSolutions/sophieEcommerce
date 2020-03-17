@@ -1,13 +1,18 @@
-<div class="my-account-address col-sm-12 d-flex flex-wrap">
-    <div class="col-sm-12 d-flex flex-wrap add-address-section">
+<div class="my-account-address col-sm-12 d-flex flex-wrap p-2">
+    <div class="col-sm-12 col-md-10 d-flex flex-wrap mx-auto" *ngIf="!showForm && userAddresses.length" >
+        <button class="btn btn-outline-success" (click) = "showAddForm()">
+            Add New Address
+        </button>
+    </div>
+    <div *ngIf="showForm" class="col-sm-12 d-flex flex-wrap add-address-section">
         <form class="m-auto py-3 px-1" id="frm-add-address" [formGroup] = "userAddressForm" (ngSubmit) = "submitAddress(userAddressForm)">
             <div class="col-sm-12 d-flex flex-wrap">
-                <button class="btn btn-outline-danger ml-auto mr-0 text-center text-uppercase rounded-circle" style="width: 35px; height: 35px;">
+                <button class="btn btn-outline-danger ml-auto mr-0 text-center text-uppercase rounded-circle" style="width: 35px; height: 35px;" (click)="closeForm()">
                     <i class="fas fa-times p-0"></i>
                 </button>
             </div>
-            <h3 class="col-sm-12 text-center text-capitalize">
-                Add An Address
+            <h3 class="col-sm-12 text-center text-capitalize py-2">
+                {{ isCreate ? 'Add An' : 'Update' }} Address
             </h3>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -30,14 +35,14 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label class="sr-only" for="userAddressState">State</label>
-                    <input type="text" list="address-states" class="form-control" id="userAddressState" placeholder="eg State" (change)="getCorrectLGA($event)" formControlName="address_state"  required>
+                    <input type="text" list="address-states" class="form-control" id="userAddressState" placeholder="eg State" (change)="getCorrectStateLGA($event)" formControlName="address_state"  required>
                     <datalist id="address-states">
                         <option [value]="state.name" *ngFor="let state of states">
                     </datalist>
                 </div>
                 <div class="form-group col-md-4">
                     <label class="sr-only" for="userAddressState">LGA</label>
-                    <input type="text" list="address-state-lga" class="form-control" id="userAddressLGA" placeholder="eg LGA" [class.disabled] = "!LGA.length" formControlName="address_lga"  required>
+                    <input type="text" list="address-state-lga" class="form-control" id="userAddressLGA" placeholder="eg LGA" [class.disabled] = "!LGA.length" formControlName="address_lga" (change)="confirmCorrectLGA($event)"   required>
                     <datalist id="address-state-lga">
                         <option [value]="lga.name" *ngFor="let lga of LGA">
                     </datalist>
@@ -48,13 +53,52 @@
                 <input type="tel" class="form-control" id="userPhoneNumber" placeholder="234" autocomplete="tel" formControlName="phone"  required>
             </div>
             <div class="d-flex flex-wrap col-sm-12 col-md-6 m-auto">
-                <button type="submit" class="btn btn-outline-dark mx-auto mb-2" [disabled]="userAddressForm.invalid || userAddressForm.pristine">
+                <button *ngIf="isCreate" type="submit" class="btn btn-outline-dark mx-auto mb-2" [disabled]="userAddressForm.invalid || userAddressForm.pristine">
                     Add Address
                 </button>
-                <button type="button" class="btn btn-outline-danger mx-auto mb-2">
+                <button *ngIf="!isCreate" type="submit" class="btn btn-outline-dark mx-auto mb-2" [disabled]="userAddressForm.invalid">
+                    Update Address
+                </button>
+                <button type="button" class="btn btn-outline-danger mx-auto mb-2" (click)="closeForm()">
                     Cancel
                 </button>
             </div>
         </form>
+    </div>
+    <div class="col-sm-12 d-flex flex-wrap user-addresses-section" *ngIf="!showForm">
+        <div class="col-sm-12 d-flex flex-wrap py-3 my-2" *ngIf="userAddresses.length">
+            <div class="card mr-2" style="width: 18rem;" *ngFor="let address of userAddresses">
+                <div class="card-body">
+                  <h5 class="card-title">{{ address.first_name }}  {{ address.last_name }}</h5>
+                  <p class="card-text">{{ address.address }}, {{ address.city }}.</p>
+                  <p class="card-subtitle mb-2">{{ getLgaNameFromState(address.state_id, address.lga_id) }}, {{ getStateName(address.state_id) }}.</p>
+                  <div class="col-sm-12 text-right p-2">
+                    <button type="button" class="btn btn-outline-dark border-0 m-2" title="Edit this address" (click)="editAddress(address)">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger border-0 m-2" title="Delete this address" (click)="deleteAddress(address)">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-10 col-md-6 d-flex flex-wrap mx-auto" *ngIf="!userAddresses.length">
+            <div class="no-result">
+                <div class="col-sm-12 col-md-10 mx-auto d-flex p-3">
+                    <span class="m-auto">
+                        <i class="fas fa-search-location m-auto p-0"></i>
+                    </span>
+                </div>
+                <div class="col-sm-12 col-md-10 mx-auto p-3 d-flex flex-wrap">
+                    <p class="mx-auto w-100 col-sm-12 text-center text-capitalize p-2">
+                        No Address found
+                    </p>
+                    <button class="btn btn-outline-dark m-auto" (click)="showAddForm()">
+                        Click Here to Add An Address
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
