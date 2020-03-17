@@ -15,6 +15,8 @@ export class ProductDetailsComponent implements OnInit {
 
   cartQty:number;
 
+  showPreloader:boolean = true;
+
   constructor(private productService: ProductService, private route:ActivatedRoute) { }
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class ProductDetailsComponent implements OnInit {
       this.productService.getProduct(+params['id']).then(res=>{
         console.log('the product',res)
         this.product = <IProduct>res;
+        this.showPreloader = false
       }).then(()=>{
         // console.log('pror', this.product);
         if(this.product.tags && this.product.tags.length){

@@ -8,6 +8,7 @@ import { IProduct, ProductService } from '../shared';
 })
 export class HomeProductsComponent implements OnInit {
   popularProducts:IProduct[] = [];
+  showPreloader:boolean = true;
   
   constructor(private productService:ProductService) { }
 
@@ -16,6 +17,7 @@ export class HomeProductsComponent implements OnInit {
       console.log(res);
       this.popularProducts = <IProduct[]>res;
       // console.log('products', this.products);
+      this.showPreloader = false;
     })
   }
 

@@ -11,10 +11,12 @@ export class MyOrdersComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   userOrders: any[] = []; 
+  showPreloader:boolean = true;
 
   ngOnInit() {
     this.productService.getUserOrders().then((res)=>{
       this.userOrders = res.data;
+      this.showPreloader = false;
     })
   }
 

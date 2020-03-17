@@ -66,38 +66,50 @@
         </form>
     </div>
     <div class="col-sm-12 d-flex flex-wrap user-addresses-section" *ngIf="!showForm">
-        <div class="col-sm-12 d-flex flex-wrap py-3 my-2" *ngIf="userAddresses.length">
-            <div class="card mr-2" style="width: 18rem;" *ngFor="let address of userAddresses">
-                <div class="card-body">
-                  <h5 class="card-title">{{ address.first_name }}  {{ address.last_name }}</h5>
-                  <p class="card-text">{{ address.address }}, {{ address.city }}.</p>
-                  <p class="card-subtitle mb-2">{{ getLgaNameFromState(address.state_id, address.lga_id) }}, {{ getStateName(address.state_id) }}.</p>
-                  <div class="col-sm-12 text-right p-2">
-                    <button type="button" class="btn btn-outline-dark border-0 m-2" title="Edit this address" (click)="editAddress(address)">
-                        <i class="fas fa-pencil-alt"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger border-0 m-2" title="Delete this address" (click)="deleteAddress(address)">
-                        <i class="far fa-trash-alt"></i>
-                    </button>
-                  </div>
+        <div *ngIf="!showPreloader" class="col-sm-12 d-flex flex-wrap p-0">
+            <div class="col-sm-12 d-flex flex-wrap py-3 my-2 p-0" *ngIf="userAddresses.length">
+                <div class="card mr-2" style="width: 18rem;" *ngFor="let address of userAddresses">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ address.first_name }}  {{ address.last_name }}</h5>
+                    <p class="card-text">{{ address.address }}, {{ address.city }}.</p>
+                    <p class="card-subtitle mb-2">{{ getLgaNameFromState(address.state_id, address.lga_id) }}, {{ getStateName(address.state_id) }}.</p>
+                    <div class="col-sm-12 text-right p-2">
+                        <button type="button" class="btn btn-outline-dark border-0 m-2" title="Edit this address" (click)="editAddress(address)">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger border-0 m-2" title="Delete this address" (click)="deleteAddress(address)">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-10 col-md-6 d-flex flex-wrap mx-auto" *ngIf="!userAddresses.length">
+                <div class="no-result">
+                    <div class="col-sm-12 col-md-10 mx-auto d-flex p-3">
+                        <span class="m-auto">
+                            <i class="fas fa-search-location m-auto p-0"></i>
+                        </span>
+                    </div>
+                    <div class="col-sm-12 col-md-10 mx-auto p-3 d-flex flex-wrap">
+                        <p class="mx-auto w-100 col-sm-12 text-center text-capitalize p-2">
+                            No Address found
+                        </p>
+                        <button class="btn btn-outline-dark m-auto" (click)="showAddForm()">
+                            Click Here to Add An Address
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-10 col-md-6 d-flex flex-wrap mx-auto" *ngIf="!userAddresses.length">
-            <div class="no-result">
-                <div class="col-sm-12 col-md-10 mx-auto d-flex p-3">
-                    <span class="m-auto">
-                        <i class="fas fa-search-location m-auto p-0"></i>
-                    </span>
-                </div>
-                <div class="col-sm-12 col-md-10 mx-auto p-3 d-flex flex-wrap">
-                    <p class="mx-auto w-100 col-sm-12 text-center text-capitalize p-2">
-                        No Address found
-                    </p>
-                    <button class="btn btn-outline-dark m-auto" (click)="showAddForm()">
-                        Click Here to Add An Address
-                    </button>
-                </div>
+        <div class="preloader col-md-12 py-5 px-2" *ngIf="showPreloader">
+            <div class="d-flex flex-wrap mx-auto my-2">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgb(255, 255, 255); display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                    <circle cx="50" cy="50" fill="none" stroke="#ffd9e8" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(340.749 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+                    </circle>
+                    <!-- [ldio] generated by https://loading.io/ -->
+                </svg>
             </div>
         </div>
     </div>

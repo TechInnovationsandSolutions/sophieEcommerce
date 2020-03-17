@@ -20,6 +20,7 @@ export class MyAddressesComponent implements OnInit {
 
   isCreate:boolean =  true;
   showForm:boolean =  false;
+  showPreloader:boolean = true;
 
   userAddressForm = this.fb.group({
     first_name: ['',Validators.required],
@@ -48,13 +49,16 @@ export class MyAddressesComponent implements OnInit {
     this.productService.getUserAddresses().then((res)=>{
       console.log('Address', res);
       this.userAddresses = <IUSerAddress[]>res.data;
+      this.showPreloader = false;
     })
   }
 
   getAddresses(){
+    this.showPreloader = true;
     this.productService.getUserAddresses().then((res)=>{
       console.log('Address', res);
       this.userAddresses = <IUSerAddress[]>res.data;
+      this.showPreloader = false;
     })
   }
 

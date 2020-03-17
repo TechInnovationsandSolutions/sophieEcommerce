@@ -8,6 +8,7 @@ import { ICategory, ProductService } from '../../shared';
 })
 export class CategoryThumbnailComponent implements OnInit {
   categories:ICategory[];
+  showPreloader:boolean = true;
 
   constructor(private productService: ProductService) { }
 
@@ -17,6 +18,7 @@ export class CategoryThumbnailComponent implements OnInit {
       this.categories.reverse();
       this.categories = this.categories.slice(0, 2);
       console.log('categ', this.categories);
+      this.showPreloader = false;
     })
   }
 

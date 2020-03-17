@@ -12,6 +12,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
   categories:ICategory[];
   isMobile:boolean;
   showBreadCrumb:boolean = false;
+  showPreloader:boolean = true;
 
   products:IProduct[] = [];
   pagesArray: Array<number> = [];
@@ -82,6 +83,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
         var resp = <ProductResponse>res;
         this.pagesArray = resp.pg;
         this.products = resp.data;
+        this.showPreloader = false;
       }).then(()=>{
         const slug = this.route.snapshot.params.slug.replace(/_/g, ' ');
     
