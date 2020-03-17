@@ -65,7 +65,7 @@ export class ProductDetailsComponent implements OnInit {
         product_name: prod.name,
         amount: prod.reduced_cost,
         amount_main: prod.cost,
-        imgUrl: prod.images[0].url,
+        imgUrl: (prod.images[0] && prod.images[0].url) ? prod.images[0].url : '/assets/images/product-1.png',
         quantity: quantity
       }
       console.log('cartItem',cartItem);
