@@ -1,1 +1,24 @@
-<p>my-orders works!</p>
+<div class="my-account-orders col-sm-12 d-flex flex-wrap p-2">
+    <div class="col-sm-12 d-flex flex-wrap py-3 my-2" *ngIf="userOrders.length">
+        <div class="card mr-2" style="width: 18rem;" *ngFor="let order of userOrders">
+            
+        </div>
+    </div>
+    <div class="col-sm-10 col-md-6 d-flex flex-wrap mx-auto py-3 px-0" *ngIf="!userOrders.length">
+        <div class="no-result">
+            <div class="col-sm-12 col-md-10 mx-auto d-flex p-3">
+                <span class="m-auto text-success">
+                    <i class="fas fa-file-invoice"></i>
+                </span>
+            </div>
+            <div class="col-sm-12 col-md-10 mx-auto p-3 d-flex flex-wrap">
+                <p class="mx-auto w-100 col-sm-12 text-center text-capitalize p-2">
+                    No Order found
+                </p>
+                <button role="link" class="btn btn-outline-success m-auto border-0" [routerLink]="['/shop']">
+                    Click Here to Our Amazing Offers
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
