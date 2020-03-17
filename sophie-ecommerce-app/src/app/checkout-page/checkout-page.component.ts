@@ -76,7 +76,8 @@ export class CheckoutPageComponent implements OnInit {
   paymentDone(ref: any) {
     // alert('Payment successfull');
     console.log('this.title', ref);
-    this.router.navigate(['/shop'])
+    this.productService.clearCartItems();
+    window.location.href = '/shop';
   }
 
   paymentCancel() {
