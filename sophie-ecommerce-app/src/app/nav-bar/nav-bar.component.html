@@ -45,7 +45,9 @@
                     <a class="nav-link text-dark" [routerLink]="['/cart']">
                         <span>
                             <i class="fas fa-shopping-cart"></i>
-                            <span *ngIf="cartItems.length !==0">{{ cartItems.length }}</span>
+                            <span *ngIf="cartItems.length !==0"  class="p-2 rounded-circle bg-white text-dark font-weight-bold">
+                                {{ cartItems.length }}
+                            </span>
                         </span>
                     </a>
                 </li>
