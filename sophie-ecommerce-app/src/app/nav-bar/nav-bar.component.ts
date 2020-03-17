@@ -19,7 +19,9 @@ export class NavBarComponent implements OnInit{
   ngOnInit(){
     this.clickLink();
     this.productService.getCartItems().subscribe(cItems=>{
+      console.log('cart items', cItems);
       this.cartItems = cItems;
+      // this.cartItems = cItems.data;
     })
   }
 
