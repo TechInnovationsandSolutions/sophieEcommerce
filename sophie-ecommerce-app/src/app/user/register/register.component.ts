@@ -4,6 +4,7 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'register',
@@ -22,6 +23,8 @@ export class RegisterComponent implements OnInit {
       // address: ['',[Validators.required]],
       password: ['',[Validators.required,  Validators.minLength(6)]],
   });
+
+  @BlockUI() blockUI: NgBlockUI;
 
   ngOnInit() {
     const btnPw = <HTMLInputElement>document.querySelector('button.reveal-password');
@@ -56,8 +59,10 @@ export class RegisterComponent implements OnInit {
     console.log(formValue);
     if (formValue.status.toLowerCase() === 'valid') {
       console.log(formValue.value);
+      this.blockUI.start();
       var _user:IUserReg = formValue.value;
       this.auth.registerUser(_user).then(res=>{
+        this.blockUI.stop();
         if(res.status = 'success'){
           this.auth.currentUser ={
             email: _user.email,
@@ -77,6 +82,7 @@ export class RegisterComponent implements OnInit {
         }
       },
       rej=>{
+        this.blockUI.stop();
         Swal.fire({
           icon: 'warning',
           title:'Account Creation failed',
@@ -84,6 +90,7 @@ export class RegisterComponent implements OnInit {
           cancelButtonText: 'OK'
         })
       }).catch(err=>{
+        this.blockUI.stop();
         console.error(err);
       })
     }
