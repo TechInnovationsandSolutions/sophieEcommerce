@@ -47,6 +47,19 @@ export class CartComponent implements OnInit {
     this.sumTotal();
   }
 
+  valueInputChange(item:ICart, e){
+    const qty = !!e.target.value ? e.target.value : 0;
+    // console.log('cddv carte', !!e.target.value, item);
+    if(qty > 1){
+      item.quantity = qty;
+      this.productService.updateCart(item);
+      this.sumTotal();
+    } else{
+      item.quantity = 1;
+      e.target.value = 1
+    }
+  }
+
   removeFromCart(cartItem:ICart){
     console.log('remove this from cart', cartItem);
     this.productService.removeFromCart(cartItem);

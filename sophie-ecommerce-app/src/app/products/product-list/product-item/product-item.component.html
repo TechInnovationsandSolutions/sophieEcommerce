@@ -1,4 +1,4 @@
-<div class="product-item" (click)="onActivate()">
+<div class="product-item">
     <div class="product-item__link">
         <img class="product-item__img" src="{{ aProduct?.images[0]?.thumbnail || '/assets/images/product-1.png' }}" alt="{{ aProduct.description }}" [routerLink] = '["/product", aProduct.id]'>
         <button class="btn-add-to-favorite product-item__btn" title="Add to Favorite">
@@ -18,7 +18,7 @@
         </p>
     </div>
     <div class="product-item__functions">
-        <button class="btn-add-to-cart product-item__btn" title="Add to Cart" (click)='addToCart()'>
+        <button type="button" class="btn-add-to-cart product-item__btn" title="Add to Cart" (click)='addToCart()'>
             Add to Cart
         </button>
         <p class="product-item__rating" title="Product Rating of {{ aProduct?.avg_rating }}">

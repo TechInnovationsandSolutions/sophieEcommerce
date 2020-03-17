@@ -1,0 +1,8 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/shop']">Shop</a></li>
+    <li  class="breadcrumb-item active text-capitalize" aria-current="page" *ngFor="let breadcrumb of breadcrumbs">
+      <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+        {{ breadcrumb.label }}
+      </span>
+    </li>
+  </ol>

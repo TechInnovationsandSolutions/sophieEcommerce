@@ -19,7 +19,9 @@ export class NavBarComponent implements OnInit{
   ngOnInit(){
     this.clickLink();
     this.productService.getCartItems().subscribe(cItems=>{
+      console.log('cart items', cItems);
       this.cartItems = cItems;
+      // this.cartItems = cItems.data;
     })
   }
 
@@ -43,17 +45,20 @@ export class NavBarComponent implements OnInit{
   }
 
   logOut(){
-    this.auth.logOut();
-    Swal.fire({
-      icon: 'success',
-      background: '#FFD9E8',
-      title: 'Logged out successfully',
-      position: 'top-end',
-      toast: true,
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-    })
+    if (!!this.auth.currentUser) {
+      console.log('!!this.auth.currentUser', this.auth.currentUser)
+      this.auth.logOut();
+      Swal.fire({
+        icon: 'success',
+        background: '#FFD9E8',
+        title: 'Logged out successfully',
+        position: 'top-end',
+        toast: true,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      })
+    } 
   }
 
   searchFormSubmit(){

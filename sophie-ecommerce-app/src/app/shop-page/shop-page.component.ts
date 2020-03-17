@@ -11,6 +11,8 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
 
   categories:ICategory[];
   isMobile:boolean;
+  showBreadCrumb:boolean = false;
+  showPreloader:boolean = true;
 
   products:IProduct[] = [];
   pagesArray: Array<number> = [];
@@ -66,17 +68,22 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
       } else if(this.route.snapshot.params.slug){
         const slug = this.route.snapshot.params.slug.replace(/_/g, ' ');
         aProm = this.productService.getProductsByCategory(slug, pg);
-        this.pageTitle = (slug && slug == 'all') ? 'Explore Our Products' : 'Checkout our ' + slug + ' products';      
+        this.pageTitle = (slug && slug == 'all') ? 'Explore Our Products' : 'Checkout our ' + slug + ' products'; 
+        if(slug != 'all'){
+          this.showBreadCrumb = true;
+        }     
       }
       else{
         console.log('here')
         aProm = this.productService.getProducts(pg)
       }
+
       aProm.then(res=>{
         // console.log(pg, res)
         var resp = <ProductResponse>res;
         this.pagesArray = resp.pg;
         this.products = resp.data;
+        this.showPreloader = false;
       }).then(()=>{
         const slug = this.route.snapshot.params.slug.replace(/_/g, ' ');
     
@@ -85,10 +92,9 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
           console.log('sel', slug);
           sel.value = (slug && slug !='search') ? slug : 'all';
         }
-        
-    
       });
-
+      
+      document.querySelector('.products-sect-header').scrollIntoView({behavior: "smooth"});
     })
 
   }
@@ -124,6 +130,9 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
     this.currentPage = val;
     this.router.navigate([],{ queryParams: { page: val } });
     this.setProducts(val);
+
+    // console.log('scro', document.querySelector('.products-section-main'))
+    document.querySelector('.products-sect-header').scrollIntoView({behavior: "smooth"});
   }
 
   setProducts(pg){

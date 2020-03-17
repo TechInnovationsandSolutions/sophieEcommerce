@@ -4,6 +4,7 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'register',
@@ -14,7 +15,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(private productService: ProductService, private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
-  states:any[] = [];
   registrationForm = this.fb.group({
       first_name: ['',Validators.required],
       last_name: ['',Validators.required],
@@ -24,12 +24,17 @@ export class RegisterComponent implements OnInit {
       password: ['',[Validators.required,  Validators.minLength(6)]],
   });
 
+  @BlockUI() blockUI: NgBlockUI;
+
   ngOnInit() {
-    this.productService.getStateLGADetails().subscribe(s=>{
-      this.states=<any[]>s;
-      console.log('res0', s);
-      console.log('state', this.states)
-    });
+    const btnPw = <HTMLInputElement>document.querySelector('button.reveal-password');
+
+    btnPw.addEventListener('mousedown', this.seePassword, false);
+    btnPw.addEventListener('touchstart', this.seePassword, false);
+
+    btnPw.addEventListener('mouseleave', this.hidePassword, false);
+    btnPw.addEventListener('mouseup', this.hidePassword, false);
+    btnPw.addEventListener('touchend', this.hidePassword, false);
   }
 
   validatePassword(control: AbstractControl){
@@ -38,12 +43,26 @@ export class RegisterComponent implements OnInit {
     return isNotPasswordFormat ? null : {isNotPasswordFormat: true};
   }
 
+  seePassword(){
+    const pw = <HTMLInputElement>document.getElementById('userPassword');
+    pw.type = 'text';
+    // console.log(event.type, pw.type, pw);
+  }
+
+  hidePassword(){
+    const pw = <HTMLInputElement>document.getElementById('userPassword');
+    // console.log(event.type, pw);
+    pw.type = 'password';
+  }
+
   onSubmit(formValue){
     console.log(formValue);
     if (formValue.status.toLowerCase() === 'valid') {
       console.log(formValue.value);
+      this.blockUI.start();
       var _user:IUserReg = formValue.value;
       this.auth.registerUser(_user).then(res=>{
+        this.blockUI.stop();
         if(res.status = 'success'){
           this.auth.currentUser ={
             email: _user.email,
@@ -63,6 +82,7 @@ export class RegisterComponent implements OnInit {
         }
       },
       rej=>{
+        this.blockUI.stop();
         Swal.fire({
           icon: 'warning',
           title:'Account Creation failed',
@@ -70,6 +90,7 @@ export class RegisterComponent implements OnInit {
           cancelButtonText: 'OK'
         })
       }).catch(err=>{
+        this.blockUI.stop();
         console.error(err);
       })
     }

@@ -1,1 +1,74 @@
-<p>profile works!</p>
+<div class="col-sm-12 d-flex flex-wrap my-account_profile">
+    <div class="col-sm-12 d-flex flex-wrap">
+        <h3 class="col-sm-12 mb-2 text-capitalize text-center p-3">Your Profile Details</h3>
+        <form id="frm-userDetail" autocomplete="on" [formGroup] = "userProfileForm" (ngSubmit) = "onUserDetailSubmit(userProfileForm)" class="col-md-6 mx-auto">
+            <div class="d-flex flex-wrap py-2" *ngIf="!isFormEditable">
+                <button type="button" class="btn btn-outline-dark ml-auto" (click)="editForm(true)">
+                    <i class="fas fa-pen"></i>
+                </button>
+            </div>
+            <fieldset [disabled] = "!isFormEditable">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="userFirstName">First Name</label>
+                        <input type="text" class="form-control" id="userFirstName" placeholder="First Name" autocomplete="given-name" required formControlName="first_name" autofocus>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="userLastName">Last Name</label>
+                        <input type="text" class="form-control" id="userLastName" formControlName="last_name" placeholder="Last Name" autocomplete="family-name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email Address</label>
+                    <input type="email" class="form-control" id="userEmail" placeholder="Email Address" autocomplete="email" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="userPhoneNumber">Phone Number</label>
+                    <input type="tel" class="form-control" id="userPhoneNumber" placeholder="Phone Number" autocomplete="tel" formControlName="phone" required>
+                </div>
+                <div class="col-sm-12 d-flex flex-wrap py-2 px-0 mx-auto">
+                    <button type="submit" class="text-center col-sm-5 p-2 my-2 btn btn-success mx-auto" [disabled]="userProfileForm.invalid">
+                        Update Profile
+                    </button>
+                    <button type="button" class="text-center col-sm-5 p-2 my-2 btn btn-danger mx-auto"  (click)="editForm(false)">
+                        Cancel
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <hr class="col-sm-8 mx-auto">
+    <div class="col-sm-12 d-flex flex-wrap">
+        <h3 class="col-sm-12 mb-2 text-capitalize text-center p-3">Change My Passord</h3>
+        <form id="frm_userDetail_change_pw" class="mx-auto py-1 d-flex col-sm-12 col-md-6 mx-auto row" [formGroup]="userPasswordForm" (ngSubmit)="onChangePasswordSubmit(userPasswordForm)">
+            <div class="col-md-12 mx-auto p-2">
+                <div class="col-sm-12">
+                    <label for="kt-ad-current-password" class="col-sm-11 col-form-label py-1 my-1">Current Password
+                        <input id="kt-ad-current-password" type="password"  class="form-control col-sm-12 mb-2" formControlName="password" autocomplete="off" required>
+                    </label>
+                    <button type="button" id="kt-ad-current-password-show" class="col-sm-1 btn btn-outline-dark kt-ad-ps-sh" style="width: 45px;">
+                        <i class="fas fa-eye p-0"></i>
+                    </button>
+                </div>
+                <div class="col-sm-12">
+                    <label for="kt-ad-new-password" class="col-sm-11 col-form-label py-1 my-1">
+                        New Password 
+                        <input id="kt-ad-new-password" type="password"  class="form-control col-sm-12 mb-2" formControlName="password" required>
+                    </label>
+                    <button type="button" id="kt-ad-new-password-show" class="col-sm-1 btn btn-outline-dark kt-ad-ps-sh" style="width: 45px;">
+                        <i class="fas fa-eye p-0"></i>
+                    </button>
+                </div>
+                <div class="d-flex flex-wrap">	
+                    <div class="mx-auto">
+                        <button id="btn-kt-ad-change-pw" type="submit" class="btn btn-outline-primary p-2 mx-1" [disabled]="userPasswordForm.invalid || userPasswordForm.pristine">
+                            <span>
+                                Change Passord
+                            </span>
+                        </button>
+                    </div>		
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

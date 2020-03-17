@@ -1,0 +1,20 @@
+<div class="my-account-sec d-flex flex-wrap col-sm-12 p-2">
+    <div class="header col-sm-12 col-md-10 mx-auto mb-3 py-2">
+        <ul class="list-group list-group-horizontal-sm my-account-nav text-center text-capitalize">
+            <li role="link" class="list-group-item list-group-item-action my-account-nav-item" [routerLink]="['/user/myaccount/profile']" routerLinkActive="active">
+                My Profile
+            </li>
+            <li role="link" class="list-group-item list-group-item-action my-account-nav-item" [routerLink]="['/user/myaccount/shipping-address']" routerLinkActive="active">
+                Shipping Addresses
+            </li>
+            <li role="link" class="list-group-item list-group-item-action my-account-nav-item" [routerLink]="['/user/myaccount/orders']" routerLinkActive="active">
+                My Order History
+            </li>
+        </ul>
+    </div>
+    <div class="main col-sm-12 py-3 p-0" [ngSwitch] = "currentRoute">
+        <app-my-addresses *ngSwitchCase = "'shipping-address'"></app-my-addresses>
+        <app-my-orders  *ngSwitchCase = "'orders'"></app-my-orders>
+        <profile  *ngSwitchCase = "'profile'"></profile>
+    </div>
+</div>

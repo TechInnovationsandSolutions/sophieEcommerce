@@ -11,7 +11,7 @@
             <form class="cart-item" *ngFor="let item of cartItems">
                 <div class="cart-item-detail">
                     <div class="cart-item-img-name-container">
-                        <img src="{{ item.imgUrl }}" alt="image of {{ item.product_name }}">
+                        <img src="{{ item.imgUrl || '/assets/images/product-1.png' }}" alt="image of {{ item.product_name }}">
                         <a [routerLink]='["/product", item.product_id]' [queryParams]="{cart:this.item.quantity}" class="cart-item-name">{{ item.product_name }}</a>
                     </div>
                     <div class="cart-item-price-container">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="cart-item-quantity-container">
                         <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="reduceByOne(this.item)">-</button>
-                        <input type="number" id="frm-product-add-to-cart__amt" min="1" value="{{ item.quantity | number }}">
+                        <input type="number" id="frm-product-add-to-cart__amt" min="1" value="{{ item.quantity | number }}" (change)="valueInputChange(this.item, $event)">
                         <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="addOneMore(this.item)">+</button>
                     </div>
                     <div class="cart-item-total-container">

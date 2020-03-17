@@ -3,12 +3,6 @@ export interface IUSer{
     last_name: string,
     email: string,
     phone: string,
-    // address?:{
-    //     location?:string,
-    //     city?:string,
-    //     state?:string,
-    //     country?:string,
-    // }
 }
 
 export interface IUserReg{
@@ -17,4 +11,15 @@ export interface IUserReg{
     email: string,
     phone: string,
     password: string
+}
+
+export interface IUSerAddress{
+    id: number,
+    first_name: string,
+    last_name: string,
+    state_id: number,
+    lga_id: number,
+    city: string,
+    address: string,
+    phone: string
 }

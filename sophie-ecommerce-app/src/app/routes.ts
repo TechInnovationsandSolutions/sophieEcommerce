@@ -5,6 +5,7 @@ import { ShopPageComponent } from './shop-page/shop-page.component';
 import { CategoryPageComponent } from './products/category-page/category-page.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { AuthRouteGuardGuard } from './shared/auth-route-guard.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const appRoutes:Routes =[
     {
@@ -25,7 +26,10 @@ export const appRoutes:Routes =[
     },
     {
         path:'shop/:slug',
-        component: ShopPageComponent
+        component: ShopPageComponent,
+        data:{
+            breadcrumb:''
+        }
     },
     {
         path: 'shop',
@@ -81,7 +85,11 @@ export const appRoutes:Routes =[
     {
         path: 'user',
         loadChildren: './user/user.module#UserModule'
-    }
+    },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
     // {
     //     path:'', 
     //     redirectTo: '/home', 

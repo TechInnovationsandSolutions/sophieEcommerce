@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IProduct, ProductService, ICart } from 'src/app/shared';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'product-item',
@@ -17,11 +18,23 @@ export class ProductItemComponent {
       product_name: this.aProduct.name,
       amount: this.aProduct.reduced_cost,
       amount_main: this.aProduct.cost,
-      imgUrl: this.aProduct.images[0].url,
+      imgUrl: (this.aProduct.images[0] && this.aProduct.images[0].url) ? this.aProduct.images[0].url : '/assets/images/product-1.png',
       quantity: 1
     }
 
-    this.productService.addToCart(cartItem);
+    this.productService.addToCart(cartItem).then((res)=>{
+      const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
+      console.log('carty0', text);
+      Swal.fire({
+        icon: res ? 'success' : 'info',
+        toast:true,
+        title: text,
+        timer: 2000,
+        showConfirmButton:false,
+        position: "top-right"
+      })
+    })
+    // this.productService.addToCart(cartItem).then(res=>console.log('add to cart', res));
   }
 
   onActivate() {
