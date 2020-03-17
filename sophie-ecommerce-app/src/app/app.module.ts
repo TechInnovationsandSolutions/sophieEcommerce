@@ -38,6 +38,7 @@ import { ShopItemsComponent } from './shop-page/shop-items/shop-items.component'
 import { CategoryPageComponent } from './products/category-page/category-page.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     CategoryPageComponent,
     CheckoutPageComponent,
     BreadcrumbComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
