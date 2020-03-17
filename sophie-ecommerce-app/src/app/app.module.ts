@@ -36,6 +36,7 @@ import { AuthService } from './user/auth.service';
 import { ShopItemsComponent } from './shop-page/shop-items/shop-items.component';
 import { CategoryPageComponent } from './products/category-page/category-page.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
     ShopItemsComponent,
     CategoryPageComponent,
     CheckoutPageComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
