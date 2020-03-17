@@ -23,6 +23,7 @@
         </div>
     </aside>
     <div class="products-section-main p-0">
+        <app-breadcrumb *ngIf="showBreadCrumb"></app-breadcrumb>
         <div class="p-0 pb-2 w-100">
             <shop-items [shopProducts] = 'products'></shop-items>
         </div>

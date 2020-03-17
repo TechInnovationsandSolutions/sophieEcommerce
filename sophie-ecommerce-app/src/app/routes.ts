@@ -25,7 +25,10 @@ export const appRoutes:Routes =[
     },
     {
         path:'shop/:slug',
-        component: ShopPageComponent
+        component: ShopPageComponent,
+        data:{
+            breadcrumb:''
+        }
     },
     {
         path: 'shop',

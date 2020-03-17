@@ -11,6 +11,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
 
   categories:ICategory[];
   isMobile:boolean;
+  showBreadCrumb:boolean = false;
 
   products:IProduct[] = [];
   pagesArray: Array<number> = [];
@@ -66,7 +67,10 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
       } else if(this.route.snapshot.params.slug){
         const slug = this.route.snapshot.params.slug.replace(/_/g, ' ');
         aProm = this.productService.getProductsByCategory(slug, pg);
-        this.pageTitle = (slug && slug == 'all') ? 'Explore Our Products' : 'Checkout our ' + slug + ' products';      
+        this.pageTitle = (slug && slug == 'all') ? 'Explore Our Products' : 'Checkout our ' + slug + ' products'; 
+        if(slug != 'all'){
+          this.showBreadCrumb = true;
+        }     
       }
       else{
         console.log('here')
