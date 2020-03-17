@@ -41,7 +41,7 @@ export class CheckoutPageComponent implements OnInit {
       this.sumTotal();
 
       this.options = {
-        amount: Math.ceil(this.totamt),
+        amount: this.totamt * 100,
         email: this.currentUser.email,
         ref: `${Math.ceil(Math.random() * 10e10)}`
       }
