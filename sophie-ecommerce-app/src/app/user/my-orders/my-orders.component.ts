@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/shared';
 
 @Component({
   selector: 'app-my-orders',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyOrdersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
+
+  userOrders: any[] = []; 
 
   ngOnInit() {
+    this.productService.getUserOrders().then((res)=>{
+      this.userOrders = res.data;
+    })
   }
 
 }
