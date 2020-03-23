@@ -86,10 +86,10 @@ export const appRoutes:Routes =[
         path: 'user',
         loadChildren: './user/user.module#UserModule'
     },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+    {
+        path: '**',
+        component: NotFoundComponent
+    }
     // {
     //     path:'', 
     //     redirectTo: '/home', 
