@@ -1,4 +1,4 @@
-<div class="container sect-cart">
+ <div class="container sect-cart">
     <h2>My Shopping List</h2>
     <div *ngIf='cartItems.length != 0' class="cart-items d-flex flex-wrap">
         <div class="cart-title">
@@ -92,9 +92,9 @@
                 </g>
                 <path style="fill:#FF5331;" d="M0,163.941L0,163.941v42.211l292.667,168.843L512,248.362v-32.259v-2.572v-7.38l-22.612-13.055l0,0
                     L218.924,36.944L0,163.941z M54.562,184.956l164.662-95.201h0.109l238.251,137.218l-164.772,95.628L54.562,184.956z"/>
-                <polygon style="fill:#C40041;" points="219.333,89.755 219.333,47.544 343.758,119.205 493.55,205.722 493.55,206.099 
+                <polygon style="fill:#C40041;" points="219.333,89.755 219.333,47.544 343.758,119.205 493.55,205.722 493.55,206.099
                     457.583,226.973 "/>
-                <polygon style="fill:#F43834;" points="18.219,163.921 140.822,92.874 219.224,47.544 219.224,89.755 54.562,184.956 18.219,163.96 
+                <polygon style="fill:#F43834;" points="18.219,163.921 140.822,92.874 219.224,47.544 219.224,89.755 54.562,184.956 18.219,163.96
                     "/>
                 <g>
                     <path style="fill:#C8CED6;" d="M60.845,202.442c2.155,0,4.321-0.762,6.054-2.308l73.203-65.227l199.63-115.251
@@ -179,9 +179,9 @@
                 </svg>
             </span>
             <span>Cart is Empty</span>
-            <button class="btn btn-outline-success m-auto" [routerLink] = "['/shop']">
+            <a class="btn btn-outline-success m-auto" href ='/shop' role="button">
                 Click to Continue Shopping
-            </button>
+            </a>
         </p>
     </div>
 </div>

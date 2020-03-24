@@ -13,7 +13,7 @@ export class TestimonialComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getTestimonials().subscribe(resp=>{
+    this.productService.getTestimonials().subscribe(resp=> {
       this.testimonials = resp;
     })
 

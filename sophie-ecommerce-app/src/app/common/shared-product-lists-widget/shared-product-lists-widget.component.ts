@@ -1,4 +1,4 @@
-//To create a product-list with title like popular products or related products.
+// To create a product-list with title like popular products or related products.
 import { Component, Input } from '@angular/core';
 import { IProduct } from 'src/app/shared';
 
@@ -7,10 +7,10 @@ import { IProduct } from 'src/app/shared';
   templateUrl: './shared-product-lists-widget.component.html',
   styleUrls: ['./shared-product-lists-widget.component.scss']
 })
-export class SharedProductListsWidgetComponent{
+export class SharedProductListsWidgetComponent {
 
-  @Input() theProducts:IProduct[];
-  @Input() widgetTitle:string;
+  @Input() theProducts: IProduct[];
+  @Input() widgetTitle: string;
   constructor() { }
 
 }

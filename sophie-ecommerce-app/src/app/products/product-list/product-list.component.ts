@@ -6,8 +6,8 @@ import { IProduct } from 'src/app/shared';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent{
-  @Input() products:IProduct[]
+export class ProductListComponent {
+  @Input() products: IProduct[];
   constructor() { }
 
 }

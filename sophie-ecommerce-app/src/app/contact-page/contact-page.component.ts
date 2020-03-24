@@ -13,7 +13,7 @@ export class ContactPageComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getContactDetails().subscribe(resp=>{
+    this.productService.getContactDetails().subscribe(resp => {
         this.contactDetails = resp;
     });
   }
