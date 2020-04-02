@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ICart, ProductService } from '../shared';
 
 @Component({
@@ -9,7 +9,6 @@ import { ICart, ProductService } from '../shared';
 export class CartComponent implements OnInit {
   cartItems : ICart[] = [];
   totamt:number = 0;
-  @Output() linkEmit = new EventEmitter<any>();
 
   constructor(private productService:ProductService) { }
 
@@ -18,11 +17,6 @@ export class CartComponent implements OnInit {
       this.cartItems = cItems;
       this.sumTotal();
     })
-  }
-
-  onLinkClick(qty:string){
-    console.log('er', qty);
-    this.linkEmit.emit(qty)
   }
 
   sumTotal(){
