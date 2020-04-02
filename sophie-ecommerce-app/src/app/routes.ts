@@ -6,6 +6,7 @@ import { CategoryPageComponent } from './products/category-page/category-page.co
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { AuthRouteGuardGuard } from './shared/auth-route-guard.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 export const appRoutes:Routes =[
     {
@@ -33,7 +34,7 @@ export const appRoutes:Routes =[
     },
     {
         path: 'shop',
-        redirectTo: 'shop/all', 
+        redirectTo: 'shop/all',
         pathMatch: 'full'
     },
     {
@@ -45,18 +46,22 @@ export const appRoutes:Routes =[
         component: ReturnPolicyPageComponent
     },
     {
-        path:'product', 
-        redirectTo: 'shop', 
+        path:'product',
+        redirectTo: 'shop',
         pathMatch: 'full'
     },
     {
-        path:'products', 
-        redirectTo: 'shop', 
+        path:'products',
+        redirectTo: 'shop',
         pathMatch: 'full'
     },
     {
         path: 'cart',
         component: CartComponent
+    },
+    {
+      path: 'wishlist',
+      component: WishListComponent
     },
     {
         path: 'checkout',
@@ -79,7 +84,7 @@ export const appRoutes:Routes =[
     },
     {
         path:'category',
-        redirectTo: 'shop/all', 
+        redirectTo: 'shop/all',
         pathMatch: 'full'
     },
     {
@@ -91,8 +96,8 @@ export const appRoutes:Routes =[
         component: NotFoundComponent
     }
     // {
-    //     path:'', 
-    //     redirectTo: '/home', 
+    //     path:'',
+    //     redirectTo: '/home',
     //     pathMatch: 'full'
     // },
 ]
