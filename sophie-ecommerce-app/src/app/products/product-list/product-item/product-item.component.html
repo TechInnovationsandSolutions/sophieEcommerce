@@ -1,8 +1,8 @@
 <div class="product-item">
     <div class="product-item__link">
         <img class="product-item__img" src="{{ aProduct?.images[0]?.thumbnail || '/assets/images/product-1.png' }}" alt="{{ aProduct.description }}" [routerLink] = '["/product", aProduct.id]'>
-        <button class="btn-add-to-favorite product-item__btn" title="Add to Favorite">
-            <i class="far fa-heart"></i>
+        <button class="btn-add-to-favorite product-item__btn" (title)="(isInWishList ? 'Add to Favorite' : 'Remove From Favorite')" (click)="toWishList()" [ngClass]="{'bg-danger': isInWishList}">
+            <i [ngClass]="isInWishList ? 'fas fa-times text-light': 'far fa-heart'"></i>
         </button>
         <p class="product-item__discount" *ngIf="(aProduct.reduced_cost !== aProduct.cost)">
             {{ ((aProduct?.cost - aProduct?.reduced_cost)/aProduct?.cost) | percent:'1.2' }}
