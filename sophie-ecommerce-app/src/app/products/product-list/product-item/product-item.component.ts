@@ -9,7 +9,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent {
+  isInWishList: boolean;
   @Input() aProduct: IProduct;
+  // tslint:disable-next-line: variable-name
+  @Input() set inWishList(_val) {
+    this.isInWishList = _val ? true : false;
+  }
+
   constructor(private productService: ProductService) { }
 
   addToCart() {
@@ -36,6 +42,29 @@ export class ProductItemComponent {
       });
     });
     // this.productService.addToCart(cartItem).then(res=>console.log('add to cart', res));
+  }
+
+  addToWishList() {
+    this.productService.addToWishList(this.aProduct).then(() => {
+      Swal.fire({
+        icon: 'success',
+        toast: true,
+        title: 'Successfully Added to Wish List',
+        timer: 2000,
+        showConfirmButton: false,
+        position: 'top-right'
+      });
+    },
+    (err => console.error(err))
+    );
+  }
+
+  removeFromWishList() {
+    this.productService.removeFromWishList(this.aProduct);
+  }
+
+  toWishList() {
+    !this.isInWishList ? this.addToWishList() : this.removeFromWishList();
   }
 
   onActivate() {
