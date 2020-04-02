@@ -403,7 +403,70 @@ export class ProductService {
       categories = someCategories;
       this.updateToLocal();
     }
+
+    // For Wishlist
+    addToWishList(product: IProduct) {
+      const isInWish = wishList.find(w => w.id === product.id);
+      console.log('de', isInWish);
+      let result = false;
+
+      // We expect undefine if it's not found
+      if (!isInWish) {
+        wishList.push(product);
+        this.updateWishListToLocal();
+        result = true;
+      }
+
+      const subject = new Subject<boolean>();
+      setTimeout(() => {
+        subject.next(result);
+        subject.complete();
+      }, 100);
+      return subject.toPromise();
+    }
+
+    removeFromWishList(product: IProduct) {
+      const isInWish = wishList.find(c => c.id === product.id);
+
+      // Yes in wishlist
+      if (isInWish) {
+        const ind = wishList.indexOf(isInWish);
+        wishList.splice(ind, 1);
+        this.updateWishListToLocal();
+      }
+    }
+
+    getWishList(): Observable <IProduct[]> {
+      const subject = new Subject<IProduct[]>();
+      setTimeout(() => {
+        console.log('Lemme in');
+        wishList = (!!wishList.length) ? wishList : this.getWishListFromLocal();
+        subject.next(wishList);
+        subject.complete();
+      }, 100);
+      return subject;
+    }
+
+    updateWishListToLocal() {
+      // since !0 = true -> 0 => false
+      if (wishList.length >= 0) {
+        console.log(wishList);
+        const obj = JSON.stringify(wishList);
+        localStorage.setItem('wishList', obj);
+      }
+    }
+
+    getWishListFromLocal() {
+      const data = localStorage.getItem('wishList');
+      const obj = JSON.parse(data) as IProduct[];
+      if (obj && !!obj.length) {
+        return obj;
+      }
+
+      return [];
+    }
 }
 
 let cartItems: ICart[] = [];
 let categories: ICategory[] = [];
+let wishList: IProduct[] = [];
