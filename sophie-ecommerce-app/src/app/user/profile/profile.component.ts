@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
     password: ['',[Validators.required,  Validators.minLength(6)]],
     new_password: ['',[Validators.required,  Validators.minLength(6)]]
   }, {validator: this.checkPasswords })
-  
+
   ngOnInit() {
     const thisUser = this.auth.currentUser;
 
@@ -52,12 +52,12 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  checkPasswords(group: FormGroup) { 
+  checkPasswords(group: FormGroup) {
     // here we have the 'passwords' group
     let pass = group.get('password').value;
     let newPassword = group.get('new_password').value;
 
-    return pass !== newPassword ? null : { notSame: true }     
+    return pass !== newPassword ? null : { notSame: true }
   }
 
   onUserDetailSubmit(formValues:FormGroup){
@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  
+
   onChangePasswordSubmit(formValue:FormGroup){
     if (formValue.status.toLowerCase() === 'valid') {
       Swal.fire({
@@ -140,5 +140,14 @@ export class ProfileComponent implements OnInit {
         }
       }).catch(err=>console.error(err))
     }
+  }
+
+  canDeactivate() {
+    // if the form is dirty
+    if (this.userProfileForm.dirty) {
+      return window.confirm('Do you want to discard profile changes?');
+    }
+
+    return true;
   }
 }

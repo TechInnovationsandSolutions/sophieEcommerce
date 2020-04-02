@@ -7,6 +7,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { AuthRouteGuardGuard } from './shared/auth-route-guard.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
+import { ComponentDeactivateGuard } from './shared/component-deactivate.guard';
 
 export const appRoutes:Routes =[
     {
@@ -23,7 +24,8 @@ export const appRoutes:Routes =[
     },
     {
         path: 'contact',
-        component: ContactPageComponent
+        component: ContactPageComponent,
+        canDeactivate: [ComponentDeactivateGuard]
     },
     {
         path:'shop/:slug',

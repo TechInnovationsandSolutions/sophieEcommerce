@@ -4,12 +4,14 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginRegisterComponent } from "./login-register/login-register.component";
 import { MyAccountComponent } from './my-account/my-account.component';
 import { AuthRouteGuardGuard } from '../shared/auth-route-guard.guard';
+import { ComponentDeactivateGuard } from '../shared/component-deactivate.guard';
 
 export const userRoutes:Routes = [
     {
         path: 'myaccount/:fn',
         component: MyAccountComponent,
-        canActivate: [AuthRouteGuardGuard]
+        canActivate: [AuthRouteGuardGuard],
+        canDeactivate: [ComponentDeactivateGuard]
     },
     {
         path: 'login',

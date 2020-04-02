@@ -3,20 +3,20 @@
     <div class="contact-page__content-container">
         <div class="contact-page__form-content">
             <h3 class="contact-page__form-title frm-title">Get in touch</h3>
-            <form id="contact-form" class="frm contact-page__form">
+            <form id="contact-form" class="frm contact-page__form" [formGroup] = "contactForm">
                 <div class="contact-page__form-group frm-group">
                     <label for="contact-frm-name" class="sr-only frm-label">Your Name</label>
-                    <input id="contact-frm-name" name="contact-frm-name" type="text" autocomplete="name" class="contact-page__form-group-control frm-control" placeholder="Your Name" required>
+                    <input id="contact-frm-name" name="contact-frm-name" type="text" autocomplete="name" class="contact-page__form-group-control frm-control" placeholder="Your Name" formControlName="name" required>
                 </div>
                 <div class="contact-page__form-group frm-group">
                     <label for="contact-frm-email" class="sr-only frm-label">Your Email</label>
-                    <input id="contact-frm-email" name="contact-frm-email" type="email" autocomplete="email" class="contact-page__form-group-control frm-control" placeholder="Your Email" required>
+                    <input id="contact-frm-email" name="contact-frm-email" type="email" autocomplete="email" class="contact-page__form-group-control frm-control" formControlName="email" placeholder="Your Email" required>
                 </div>
                 <div class="contact-page__form-group frm-group">
                     <label for="contact-frm-name" class="sr-only frm-label">Your Message</label>
-                    <textarea id="contact-frm-name" name="contact-frm-name" class="contact-page__form-group-control frm-control" placeholder="Message" required></textarea>
+                    <textarea id="contact-frm-name" name="contact-frm-name" formControlName="message" class="contact-page__form-group-control frm-control" placeholder="Message" required></textarea>
                 </div>
-                <button type="submit" class="frm-btn-submit contact-page__btn-submit">
+                <button [disabled] = "contactForm.invalid || contactForm.pristine"  type="submit" class="frm-btn-submit contact-page__btn-submit">
                     Send Message
                 </button>
             </form>

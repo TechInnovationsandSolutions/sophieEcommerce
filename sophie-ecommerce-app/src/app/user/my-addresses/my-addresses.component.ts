@@ -12,7 +12,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 export class MyAddressesComponent implements OnInit {
 
   constructor(private productService: ProductService, private fb:FormBuilder) { }
-  
+
   states:any[] = [];
   LGA: any[] = [];
 
@@ -34,7 +34,7 @@ export class MyAddressesComponent implements OnInit {
 
   @BlockUI() blockUI: NgBlockUI;
 
-  ngOnInit() {  
+  ngOnInit() {
     this.productService.getStateLGADetails().subscribe(s=>{
       this.states=<any[]>s.map(s=>s.state).map(st=>{
         // console.log('st', st);
@@ -226,6 +226,19 @@ export class MyAddressesComponent implements OnInit {
     this.showForm = false;
   }
 
+  cancelForm() {
+    if (this.userAddressForm.dirty) {
+      const res = window.confirm('Do you want to discard address changes?');
+
+      if (res) {
+        return this.closeForm();
+      }
+
+      return;
+    }
+    this.closeForm();
+  }
+
   addNewAddress(address:IUSerAddress){
     try {
       Swal.fire({
@@ -338,7 +351,7 @@ export class MyAddressesComponent implements OnInit {
           address:_form.address,
           city:_form.address_city,
           lga_id:_lgaId,
-          state_id:_stateId 
+          state_id:_stateId
         }
 
         console.log('address value', address);
@@ -348,5 +361,14 @@ export class MyAddressesComponent implements OnInit {
     } catch(err){
       console.error(err)
     }
+  }
+
+  canDeactivate() {
+    // if the form is dirty
+    if (this.userAddressForm.dirty) {
+      return window.confirm('Do you want to discard address changes?');
+    }
+
+    return true;
   }
 }
