@@ -18,7 +18,7 @@ export class AuthService {
     }
 
     getUser() {
-        returnJSON.parse(localStorage.getItem(USER)) as IUSer;
+        return JSON.parse(localStorage.getItem(USER)) as IUSer;
     }
 
     removeUser() {
