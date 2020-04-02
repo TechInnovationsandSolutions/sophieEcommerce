@@ -108,6 +108,10 @@ div.product-item{
 
             &:hover{
                 background-color: $smokeyWhite;
+
+                i.fas.fa-times {
+                  transform: rotate(65deg);
+                }
             }
         }
 
