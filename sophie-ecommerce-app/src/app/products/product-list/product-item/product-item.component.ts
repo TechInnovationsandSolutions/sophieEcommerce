@@ -3,6 +3,7 @@ import { IProduct, ProductService, ICart } from 'src/app/shared';
 import Swal from 'sweetalert2';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss']
