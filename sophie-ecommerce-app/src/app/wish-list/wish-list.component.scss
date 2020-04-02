@@ -1,0 +1,36 @@
+@import './../app.component.scss';
+
+$red: #D60A0A;
+
+.sect-wish{
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+   .no-item-container{
+       padding: 1.5em;
+
+       p.no-item{
+           @include maxWidthFlexWrap();
+           font-size: 2.5em;
+           text-align: center;
+           color: $placeHolderForm;
+
+           span{
+               @include maxWidth();
+               margin: 0.5em auto;
+
+               svg{
+                   height: 200px;
+                   width: 200px;
+               }
+           }
+       }
+   }
+
+   @media screen and (min-width: 768px){
+       padding: 2em 1.25em;
+
+       .no-item-container{
+           padding: 3em 2em;
+        }
+   }
+}
