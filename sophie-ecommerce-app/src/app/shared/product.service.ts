@@ -60,7 +60,7 @@ export class ProductService {
 
     getStateLGADetails(): Observable<any[]> {
       return this.http.get(this._stateLGA).pipe(map(resp => resp as any[]));
-      ``; }
+    }
 
     getProducts(param: string) {
         return new Promise(resolve => {
@@ -366,13 +366,13 @@ export class ProductService {
 
     updateToLocal() {
         // since !0 = true -> 0 => false
-        if (cartItems.length) {
+        if (cartItems.length >= 0) {
             console.log(cartItems);
             const obj = JSON.stringify(cartItems);
             localStorage.setItem('cart', obj);
         }
 
-        if (categories.length) {
+        if (categories.length >= 0) {
             console.log(categories);
             const obj = JSON.stringify(categories);
             localStorage.setItem('category', obj);
