@@ -9,14 +9,20 @@ const TOKEN = 'x-token';
 
 @Injectable()
 export class ProductService {
+    // tslint:disable-next-line: variable-name
     _url = 'https://tis-bandb.herokuapp.com/api/v1/'; // Base URL
     private pageNoOfProduct = 20;
 
+    // tslint:disable-next-line: variable-name
     private _social_media = '../assets/data/social_media.json';
+    // tslint:disable-next-line: variable-name
     private _testimonial = '../assets/data/testimonial.json';
+    // tslint:disable-next-line: variable-name
     private _contact_details = '../assets/data/contact_details.json';
+    // tslint:disable-next-line: variable-name
     private _stateLGA = '../assets/data/state_lga_ng.json';
 
+    // tslint:disable-next-line: variable-name
     _category: ICategory[] = [];
 
     constructor(private http: HttpClient, private router: Router) {}
@@ -38,6 +44,7 @@ export class ProductService {
     }
 
     checkLoggedIn() {
+        // tslint:disable-next-line: no-unused-expression
         this.isLogged() ? true : this.router.navigate(['/login']);
     }
 
@@ -69,6 +76,7 @@ export class ProductService {
           }).subscribe(
             res => {
               console.log(res);
+              // tslint:disable-next-line: triple-equals
               if (res.status == 'success') {
                 res.data.pg = this.numberOfProductPages(res.data.total);
                 resolve(res.data);
@@ -88,6 +96,7 @@ export class ProductService {
           }).subscribe(
             res => {
               console.log(res);
+              // tslint:disable-next-line: triple-equals
               if (res.status == 'success') {
                 res.data.pg = this.numberOfProductPages(res.data.total);
                 resolve(res.data);
@@ -103,10 +112,13 @@ export class ProductService {
     getProductsByCategory(categoryName: string, param: string) {
       this._category = this._category.length ? this._category : this.getCategoryFromLocal();
       return new Promise(resolve => {
+        // tslint:disable-next-line: variable-name
         let cat_url = '';
+        // tslint:disable-next-line: triple-equals
         if (categoryName == 'all') {
           cat_url = this._url + 'products';
         } else {
+          // tslint:disable-next-line: triple-equals
           const cat = this._category.find(c => c.name == categoryName);
           console.log('cat', categoryName, cat, this._category);
           if (!cat) { return; }
@@ -119,6 +131,7 @@ export class ProductService {
         }).subscribe(
         res => {
             console.log(res);
+            // tslint:disable-next-line: triple-equals
             if (res.status == 'success') {
             res.data.pg = this.numberOfProductPages(res.data.total);
             resolve(res.data);
@@ -136,6 +149,7 @@ export class ProductService {
             this.http.get<any>(this._url + 'products').subscribe(
               res => {
                 console.log(res);
+                // tslint:disable-next-line: triple-equals
                 if (res.status == 'success') {
                     const data = (res.data.data.length > 7) ? res.data.data.slice(0, 8) : res.data.data;
                     resolve(data);
@@ -153,6 +167,7 @@ export class ProductService {
             this.http.get<any>(this._url + 'categories').subscribe(
               res => {
                 console.log(res);
+                // tslint:disable-next-line: triple-equals
                 if (res.status == 'success') {
                   this._category = res.data as ICategory[];
                   this.addToCategory(res.data);
@@ -172,9 +187,11 @@ export class ProductService {
             this.http.get<any>(this._url + 'products/' + id).subscribe(
               res => {
                 console.log(res);
+                // tslint:disable-next-line: triple-equals
                 if (res.status == 'success') {
                   console.log('this product', res.data);
                   resolve(res.data);
+                // tslint:disable-next-line: triple-equals
                 } else if (res.code == 401) {
                   this.removeToken();
                   this.checkLoggedIn();
@@ -197,6 +214,7 @@ export class ProductService {
           }).subscribe(
             res => {
               console.log(res);
+              // tslint:disable-next-line: triple-equals
               if (res.status == 'success') {
                 if (res.data && res.data.pg) {
                   res.data.pg = this.numberOfProductPages(res.data.total);
@@ -297,6 +315,7 @@ export class ProductService {
             cartItems.push(item);
             this.updateToLocal();
             result = true;
+        // tslint:disable-next-line: triple-equals
         } else if (isInCart.quantity != item.quantity) {
             console.log('ups', item);
             this.updateCart(item);
