@@ -29,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
       }).then(() => {
         // console.log('pror', this.product);
         if (this.product.tags && this.product.tags.length) {
-          let productTag = this.product.tags.map(t => t.name);
+          const productTag = this.product.tags.map(t => t.name);
           console.log('tag-chain', productTag.join(','), productTag, this.product.tags);
           this.productService.getProductsByTag(productTag.join(',')).then(res => {
             this.relatedProducts = (res as IProduct[]).length > 8 ? (res as IProduct[]).slice(0, 8) : (res as IProduct[]);
@@ -63,7 +63,7 @@ export class ProductDetailsComponent implements OnInit {
     e.preventDefault();
 
     if (!!quantity) {
-      let cartItem: ICart = {
+      const cartItem: ICart = {
         product_id: prod.id,
         product_name: prod.name,
         amount: prod.reduced_cost,

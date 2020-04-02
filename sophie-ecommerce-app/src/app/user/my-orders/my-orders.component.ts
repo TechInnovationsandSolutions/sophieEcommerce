@@ -10,14 +10,14 @@ export class MyOrdersComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-  userOrders: any[] = []; 
-  showPreloader:boolean = true;
+  userOrders: any[] = [];
+  showPreloader = true;
 
   ngOnInit() {
-    this.productService.getUserOrders().then((res)=>{
+    this.productService.getUserOrders().then((res) => {
       this.userOrders = res.data;
       this.showPreloader = false;
-    })
+    });
   }
 
 }

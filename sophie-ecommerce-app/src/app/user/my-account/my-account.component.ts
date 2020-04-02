@@ -9,10 +9,10 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class MyAccountComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
-  currentRoute: string = '';
+  currentRoute = '';
 
   ngOnInit() {
-    this.route.params.forEach((params:Params)=>{
+    this.route.params.forEach((params: Params) => {
       console.log('current pr', params);
       if (params.fn === 'profile') {
         this.currentRoute = 'profile';
@@ -20,10 +20,10 @@ export class MyAccountComponent implements OnInit {
         this.currentRoute = 'shipping-address';
       } else if (params.fn === 'orders') {
         this.currentRoute = 'orders';
-      } else{
-        //404???
+      } else {
+        // 404???
       }
-    })
+    });
   }
 
 }

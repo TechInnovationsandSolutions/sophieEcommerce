@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../shared';
 
 @Component({
@@ -7,19 +7,19 @@ import { ProductService } from '../shared';
     styleUrls: ['./site-footer.component.scss']
 })
 
-export class SiteFooterComponent implements OnInit{
+export class SiteFooterComponent implements OnInit {
     socialMedia: any[];
     contactDetails: any[];
 
-    constructor(private productService: ProductService){}
+    constructor(private productService: ProductService) {}
 
     ngOnInit() {
-        this.productService.getContactDetails().subscribe(resp=>{
+        this.productService.getContactDetails().subscribe(resp => {
             this.contactDetails = resp;
-        })
+        });
 
-        this.productService.getSocialMedia().subscribe(resp=>{
+        this.productService.getSocialMedia().subscribe(resp => {
             this.socialMedia = resp;
-        })
+        });
     }
 }

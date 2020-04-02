@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 
-import { Ng5SliderModule } from "ng5-slider";
+import { Ng5SliderModule } from 'ng5-slider';
 import { Angular4PaystackModule } from 'angular4-paystack';
-import { BlockUIModule } from "ng-block-ui";
-import { LazyLoadImageModule, intersectionObserverPreset } from "ng-lazyload-image";
+import { BlockUIModule } from 'ng-block-ui';
+import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-image';
 
 import { SiteFooterComponent } from './siteFooter/site-footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';

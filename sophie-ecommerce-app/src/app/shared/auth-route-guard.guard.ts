@@ -7,20 +7,20 @@ import { AuthService } from '../user/auth.service';
   providedIn: 'root'
 })
 export class AuthRouteGuardGuard implements CanActivate {
-  constructor(private serv: AuthService, private router: Router){}
+  constructor(private serv: AuthService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const redirectUrl = next['_routerState']['url'];
+    const redirectUrl = next._routerState.url;
 
     // return this.serv.isAuthenticated().then(res=> {
-      if (this.serv.isAuthenticated()) {
-        return true
+    if (this.serv.isAuthenticated()) {
+        return true;
       }
 
-      this.router.navigateByUrl(
+    this.router.navigateByUrl(
         this.router.createUrlTree(
           ['/user/login'], {
             queryParams: {
@@ -30,9 +30,9 @@ export class AuthRouteGuardGuard implements CanActivate {
         )
       );
 
-      return false;
+    return false;
     // })
 
   }
-  
+
 }

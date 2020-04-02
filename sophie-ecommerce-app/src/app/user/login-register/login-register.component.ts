@@ -7,9 +7,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./login-register.component.scss']
 })
 export class LoginRegisterComponent implements OnInit {
-  isLogin: boolean = true;
+  isLogin = true;
 
-  constructor(private router:Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const correctRoute = this.route.snapshot.url[0].path;
