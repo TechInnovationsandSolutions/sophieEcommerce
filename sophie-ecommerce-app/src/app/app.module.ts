@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { appRoutes } from './routes';
 
 import { Ng5SliderModule } from 'ng5-slider';
@@ -75,7 +75,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
     HttpClientModule,
     Ng5SliderModule,
     BlockUIModule.forRoot(),
