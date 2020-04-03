@@ -352,9 +352,9 @@ export class MyAddressesComponent implements OnInit {
         // tslint:disable-next-line: variable-name
         const _form = form.value;
         // tslint:disable-next-line: variable-name
-        const _stateId = this.states.find(s => s.name == _form.address_state).id;
-        // tslint:disable-next-line: triple-equals
-        const _lgaId = this.LGA.find(l => l.name == _form.address_lga).id;
+        const _stateId = this.states.find(s => s.name === _form.address_state).id;
+        // tslint:disable-next-line: variable-name
+        const _lgaId = this.LGA.find(l => l.name === _form.address_lga).id;
 
         const address: IUSerAddress = {
           id: null,
