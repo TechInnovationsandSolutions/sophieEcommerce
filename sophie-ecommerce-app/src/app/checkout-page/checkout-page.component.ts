@@ -20,7 +20,9 @@ export class CheckoutPageComponent implements OnInit {
   states: any[] = [];
   LGA: any[] = [];
   userAddresses: IUSerAddress[] = [];
-  isWithNewAddress = false;
+  isWithNewAddress = true;
+  showPreloader = true;
+  selectedAddress: IUSerAddress;
 
   userAddressForm = this.fb.group({
     first_name: ['', Validators.required],
@@ -39,15 +41,17 @@ export class CheckoutPageComponent implements OnInit {
     this.productService.getCartItems().subscribe(cItems => {
       this.cartItems = cItems;
       this.sumTotal();
-
+      console.log('totl', this.totamt);
+      const totamtKobo = this.totamt ? Math.round(this.totamt * 100) : 0;
       this.options = {
-        amount: this.totamt * 100,
+        amount: totamtKobo,
         email: this.currentUser.email,
         ref: `${Math.ceil(Math.random() * 10e10)}`
       };
     });
 
     this.productService.getStateLGADetails().subscribe(s => {
+      // tslint:disable-next-line: no-shadowed-variable
       this.states =  s.map(s => s.state).map(st => {
         const ind = st.name.indexOf(' State');
         st.name = (ind && ind > 0) ? st.name.substring(0, ind) : st.name;
@@ -58,6 +62,12 @@ export class CheckoutPageComponent implements OnInit {
     this.productService.getUserAddresses().then((res) => {
       console.log('Address', res);
       this.userAddresses =  res.data as IUSerAddress[];
+      this.showPreloader = false;
+
+      if (this.userAddresses.length) {
+        this.selectedAddress = this.userAddresses[0];
+        this.isWithNewAddress = false;
+      }
     });
   }
 
@@ -73,6 +83,30 @@ export class CheckoutPageComponent implements OnInit {
     console.log('Payment initialized');
   }
 
+  paymentInitWithNewAddress() {
+    if (this.userAddressForm.valid) {
+      console.log('Payment initialized with new Address', this.userAddressForm.value);
+      const form = this.userAddressForm.value;
+
+      const stateId = this.states.find(s => s.name === form.address_state).id;
+      const lgaId = this.LGA.find(l => l.name === form.address_lga).id;
+
+      const address: IUSerAddress = {
+        id: null,
+        first_name: form.first_name,
+        last_name: form.last_name,
+        phone: form.phone,
+        address: form.address,
+        city: form.address_city,
+        lga_id: lgaId,
+        state_id: stateId
+      };
+      this.productService.addUserAddress(address);
+    } else {
+      return;
+    }
+  }
+
   paymentDone(ref: any) {
     // alert('Payment successfull');
     console.log('this.title', ref);
@@ -82,6 +116,10 @@ export class CheckoutPageComponent implements OnInit {
 
   paymentCancel() {
     console.log('payment failed');
+  }
+
+  showAddNewAddress() {
+    this.isWithNewAddress = true;
   }
 
   getAddresses() {
@@ -160,6 +198,14 @@ export class CheckoutPageComponent implements OnInit {
       const _lga = this.getLGA(_state, lgaId);
       const lgaName = (_lga && _lga.name) ? _lga.name  : '';
       return lgaName;
+    }
+  }
+
+  checkSelected(e, address: IUSerAddress) {
+    const inp = e.target;
+    if (inp.checked) {
+      this.selectedAddress = address;
+      // console.log(inp, this.selectedAddress);
     }
   }
 
