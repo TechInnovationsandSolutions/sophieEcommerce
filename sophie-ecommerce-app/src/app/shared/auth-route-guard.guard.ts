@@ -13,7 +13,8 @@ export class AuthRouteGuardGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const redirectUrl = next._routerState.url;
+    // tslint:disable-next-line: no-string-literal
+    const redirectUrl = next['_routerState']['url'];
 
     // return this.serv.isAuthenticated().then(res=> {
     if (this.serv.isAuthenticated()) {
