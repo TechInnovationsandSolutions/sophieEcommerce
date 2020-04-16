@@ -8,14 +8,14 @@ import { ProductService, ITestimonial } from '../../shared';
 })
 export class TestimonialComponent implements OnInit {
 
-  testimonials:ITestimonial[];
+  testimonials: ITestimonial[];
 
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getTestimonials().subscribe(resp=>{
+    this.productService.getTestimonials().subscribe(resp => {
       this.testimonials = resp;
-    })
+    });
 
   }
 

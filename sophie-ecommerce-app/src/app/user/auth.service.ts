@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { IUserReg, IUSer, ProductService } from '../shared';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 const USER = 'x-user';
 
 @Injectable()
-export class AuthService{
-    constructor(private http: HttpClient, private serv: ProductService, private router: Router){}
+export class AuthService {
+    constructor(private http: HttpClient, private serv: ProductService, private router: Router) {}
     _url = this.serv._url + 'auth/';
 
     currentUser: IUSer;
@@ -16,12 +16,12 @@ export class AuthService{
     setUser(user: string): void {
         localStorage.setItem(USER, user);
     }
-    
-    getUser(){
-        return<IUSer>JSON.parse(localStorage.getItem(USER));
+
+    getUser() {
+        return JSON.parse(localStorage.getItem(USER)) as IUSer;
     }
 
-    removeUser(){
+    removeUser() {
         localStorage.removeItem(USER);
     }
 
@@ -29,53 +29,53 @@ export class AuthService{
         return localStorage.getItem(USER) != null;
     }
 
-    registerUser(user:IUserReg){
+    registerUser(user: IUserReg) {
         return this.http.post<any>(this._url + 'register', {
-            email:user.email,
-            first_name:user.first_name,
+            email: user.email,
+            first_name: user.first_name,
             last_name: user.last_name,
             phone: user.phone,
-            password:user.password,
-            password_confirmation:user.password,
-        }).toPromise()
+            password: user.password,
+            password_confirmation: user.password,
+        }).toPromise();
     }
 
-    loginUser(userEmail:string, password: string):Observable<any>{
+    loginUser(userEmail: string, password: string): Observable<any> {
         if (userEmail && password) {
             return this.http.post<any>(this._url + 'login', {
                 email: userEmail,
-                password: password,
+                password,
             });
         }
     }
 
-    updateUser(user:IUSer){
-        var token = this.serv.getToken();
+    updateUser(user: IUSer) {
+        const token = this.serv.getToken();
         return this.http.post<any>(this._url + 'update', {
-            first_name:user.first_name,
+            first_name: user.first_name,
             last_name: user.last_name,
             phone: user.phone,
-        },{
-            headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+        }, {
+            headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
         }).toPromise();
     }
 
-    updatePassword(old_password:string, new_password: string){
-        var token = this.serv.getToken();
+    updatePassword(old_password: string, new_password: string) {
+        const token = this.serv.getToken();
         return this.http.post<any>(this._url + 'update', {
-            old_password:old_password,
-            new_password: new_password,
-        },{
-            headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
+            old_password,
+            new_password,
+        }, {
+            headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
         }).toPromise();
     }
 
-    isAuthenticated():boolean{
-        var isLegit:boolean = false;
+    isAuthenticated(): boolean {
+        let isLegit = false;
 
-        if(this.currentUser){
+        if (this.currentUser) {
             isLegit =  true;
-        } else if(this.isGotUser()){
+        } else if (this.isGotUser()) {
             this.currentUser = this.getUser();
             isLegit = true;
         }
@@ -83,34 +83,34 @@ export class AuthService{
         // return !!this.currentUser;
     }
 
-    logOut(){
+    logOut() {
         this.currentUser = null;
         this.removeUser();
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
     }
 
-    getAuthenticatedUser(){
-        var token = this.serv.getToken();
-        return new Promise((resolve, reject)=>{
-            this.http.post<any>(this._url + 'user',{
+    getAuthenticatedUser() {
+        const token = this.serv.getToken();
+        return new Promise((resolve, reject) => {
+            this.http.post<any>(this._url + 'user', {
                 header: new HttpHeaders().set('Authorization', `Bearer ${token}`)
             }).subscribe(
-                res=>{
+                res => {
                     console.log(res, token);
                     if (res.status == 'success') {
-                        this.currentUser = <IUSer>res.data;
-                        console.log('this.currentUser', this.currentUser)
+                        this.currentUser = res.data as IUSer;
+                        console.log('this.currentUser', this.currentUser);
                         resolve(res.status);
-                    } else{
+                    } else {
                         reject(res);
                     }
-                }, 
-                (err: HttpErrorResponse)=>{
+                },
+                (err: HttpErrorResponse) => {
                     console.log(err.error);
                 }
             );
-        })
+        });
     }
 }
 
-let users: IUserReg[] = [];
+const users: IUserReg[] = [];

@@ -9,44 +9,44 @@ import Swal from 'sweetalert2';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit{
-  
-  cartItems : ICart[] = [];
-  searchText: string = '';
+export class NavBarComponent implements OnInit {
 
-  constructor(private productService:ProductService, public auth:AuthService, private router: Router) { }
+  cartItems: ICart[] = [];
+  searchText = '';
 
-  ngOnInit(){
+  constructor(private productService: ProductService, public auth: AuthService, private router: Router) { }
+
+  ngOnInit() {
     this.clickLink();
-    this.productService.getCartItems().subscribe(cItems=>{
+    this.productService.getCartItems().subscribe(cItems => {
       console.log('cart items', cItems);
       this.cartItems = cItems;
       // this.cartItems = cItems.data;
-    })
+    });
   }
 
-  collapseIfMobile(){
-    var toggleBtn = <HTMLElement>document.querySelector('button.navbar-toggler');
-    var div = <HTMLElement>document.getElementById('navbarSupportedContent');
-    var isToggleBtnVisible = (window.getComputedStyle(toggleBtn)['display'] != 'none') ? true : false;
-    var divCollapse = (window.getComputedStyle(div)['display'] != 'none') ? true : false;
+  collapseIfMobile() {
+    const toggleBtn = document.querySelector('button.navbar-toggler') as HTMLElement;
+    const div = document.getElementById('navbarSupportedContent') as HTMLElement;
+    const isToggleBtnVisible = (window.getComputedStyle(toggleBtn).display != 'none') ? true : false;
+    const divCollapse = (window.getComputedStyle(div).display != 'none') ? true : false;
 
     if (isToggleBtnVisible && divCollapse) {
       toggleBtn.click();
     }
   }
 
-  clickLink(){
-    window.onload = e=>{
+  clickLink() {
+    window.onload = e => {
       document.querySelectorAll('a.nav-link').forEach(link => {
         link.addEventListener('click', this.collapseIfMobile);
       });
-    }
+    };
   }
 
-  logOut(){
+  logOut() {
     if (!!this.auth.currentUser) {
-      console.log('!!this.auth.currentUser', this.auth.currentUser)
+      console.log('!!this.auth.currentUser', this.auth.currentUser);
       this.auth.logOut();
       Swal.fire({
         icon: 'success',
@@ -57,23 +57,23 @@ export class NavBarComponent implements OnInit{
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
-      })
-    } 
+      });
+    }
   }
 
-  searchFormSubmit(){
+  searchFormSubmit() {
     console.log();
     console.log(this.searchText);
     if (this.searchText) {
-      console.log('yum yum')
+      console.log('yum yum');
       this.router.navigate(['/shop/search'], {
-        queryParams:{
+        queryParams: {
           searchhTerm: this.searchText,
           page: 1
         },
         queryParamsHandling: 'merge'
-      })
-      window.location.href = '/shop/search?searchhTerm='+this.searchText
+      });
+      window.location.href = '/shop/search?searchhTerm=' + this.searchText;
     }
   }
 }

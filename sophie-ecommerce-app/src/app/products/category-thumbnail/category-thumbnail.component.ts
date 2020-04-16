@@ -7,19 +7,19 @@ import { ICategory, ProductService } from '../../shared';
   styleUrls: ['./category-thumbnail.component.scss']
 })
 export class CategoryThumbnailComponent implements OnInit {
-  categories:ICategory[];
-  showPreloader:boolean = true;
+  categories: ICategory[];
+  showPreloader = true;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getCategories().then(resp=>{
-      this.categories = <ICategory[]>resp;
+    this.productService.getCategories().then(resp => {
+      this.categories = resp as ICategory[];
       this.categories.reverse();
       this.categories = this.categories.slice(0, 2);
       console.log('categ', this.categories);
       this.showPreloader = false;
-    })
+    });
   }
 
 }

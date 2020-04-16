@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { appRoutes } from './routes';
 
-import { Ng5SliderModule } from "ng5-slider";
+import { Ng5SliderModule } from 'ng5-slider';
 import { Angular4PaystackModule } from 'angular4-paystack';
-import { BlockUIModule } from "ng-block-ui";
-import { LazyLoadImageModule, intersectionObserverPreset } from "ng-lazyload-image";
+import { BlockUIModule } from 'ng-block-ui';
+import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-image';
 
 import { SiteFooterComponent } from './siteFooter/site-footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -39,6 +39,7 @@ import { CategoryPageComponent } from './products/category-page/category-page.co
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 @NgModule({
   declarations: [
@@ -67,13 +68,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CheckoutPageComponent,
     BreadcrumbComponent,
     NotFoundComponent,
+    WishListComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
     HttpClientModule,
     Ng5SliderModule,
     BlockUIModule.forRoot(),

@@ -1,13 +1,22 @@
-import { Routes } from "@angular/router";
-import { HomeProductsComponent, AboutPageComponent, ContactPageComponent,PrivacyPageComponent, ReturnPolicyPageComponent,CartComponent } from "./index";
+import { Routes } from '@angular/router';
+import {
+  HomeProductsComponent,
+  AboutPageComponent,
+  ContactPageComponent,
+  PrivacyPageComponent,
+  ReturnPolicyPageComponent,
+  CartComponent
+} from './index';
 import { ProductDetailsComponent } from './products';
 import { ShopPageComponent } from './shop-page/shop-page.component';
 import { CategoryPageComponent } from './products/category-page/category-page.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { AuthRouteGuardGuard } from './shared/auth-route-guard.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { WishListComponent } from './wish-list/wish-list.component';
+import { ComponentDeactivateGuard } from './shared/component-deactivate.guard';
 
-export const appRoutes:Routes =[
+export const appRoutes: Routes = [
     {
         path: '',
         component: HomeProductsComponent
@@ -17,23 +26,24 @@ export const appRoutes:Routes =[
         component: ProductDetailsComponent
     },
     {
-        path:'about',
+        path: 'about',
         component: AboutPageComponent
     },
     {
         path: 'contact',
-        component: ContactPageComponent
+        component: ContactPageComponent,
+        canDeactivate: [ComponentDeactivateGuard]
     },
     {
-        path:'shop/:slug',
+        path: 'shop/:slug',
         component: ShopPageComponent,
-        data:{
-            breadcrumb:''
+        data: {
+            breadcrumb: ''
         }
     },
     {
         path: 'shop',
-        redirectTo: 'shop/all', 
+        redirectTo: 'shop/all',
         pathMatch: 'full'
     },
     {
@@ -45,18 +55,22 @@ export const appRoutes:Routes =[
         component: ReturnPolicyPageComponent
     },
     {
-        path:'product', 
-        redirectTo: 'shop', 
+        path: 'product',
+        redirectTo: 'shop',
         pathMatch: 'full'
     },
     {
-        path:'products', 
-        redirectTo: 'shop', 
+        path: 'products',
+        redirectTo: 'shop',
         pathMatch: 'full'
     },
     {
         path: 'cart',
         component: CartComponent
+    },
+    {
+      path: 'wishlist',
+      component: WishListComponent
     },
     {
         path: 'checkout',
@@ -69,30 +83,30 @@ export const appRoutes:Routes =[
         canActivate: [AuthRouteGuardGuard]
     },
     {
-        path:'search',
+        path: 'search',
         component: CategoryPageComponent
     },
     {
-        path:'category/:slug',
+        path: 'category/:slug',
         redirectTo: 'shop/:slug',
         pathMatch: 'full'
     },
     {
-        path:'category',
-        redirectTo: 'shop/all', 
+        path: 'category',
+        redirectTo: 'shop/all',
         pathMatch: 'full'
     },
     {
         path: 'user',
         loadChildren: './user/user.module#UserModule'
     },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+    {
+        path: '**',
+        component: NotFoundComponent
+    }
     // {
-    //     path:'', 
-    //     redirectTo: '/home', 
+    //     path:'',
+    //     redirectTo: '/home',
     //     pathMatch: 'full'
     // },
-]
+];

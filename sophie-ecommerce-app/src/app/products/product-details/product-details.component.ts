@@ -8,72 +8,72 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  product:IProduct;
+  product: IProduct;
   isReview: boolean;
-  relatedProducts:IProduct[] = [];
+  relatedProducts: IProduct[] = [];
   quantity: number;
 
-  cartQty:number;
+  cartQty: number;
 
-  showPreloader:boolean = true;
+  showPreloader = true;
 
-  constructor(private productService: ProductService, private route:ActivatedRoute) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.params)
-    this.route.params.forEach((params:Params)=>{
-      this.productService.getProduct(+params['id']).then(res=>{
-        console.log('the product',res)
-        this.product = <IProduct>res;
-        this.showPreloader = false
-      }).then(()=>{
+    console.log(this.route.snapshot.params);
+    this.route.params.forEach((params: Params) => {
+      this.productService.getProduct(+params.id).then(res => {
+        console.log('the product', res);
+        this.product = res as IProduct;
+        this.showPreloader = false;
+      }).then(() => {
         // console.log('pror', this.product);
-        if(this.product.tags && this.product.tags.length){
-          var productTag = this.product.tags.map(t=>t.name);
-          console.log('tag-chain', productTag.join(','), productTag, this.product.tags)
-          this.productService.getProductsByTag(productTag.join(',')).then(res=>{
-            this.relatedProducts = (<IProduct[]>res).length > 8 ? (<IProduct[]>res).slice(0, 8) : (<IProduct[]>res);
-          })
+        if (this.product.tags && this.product.tags.length) {
+          const productTag = this.product.tags.map(t => t.name);
+          console.log('tag-chain', productTag.join(','), productTag, this.product.tags);
+          this.productService.getProductsByTag(productTag.join(',')).then(res => {
+            this.relatedProducts = (res as IProduct[]).length > 8 ? (res as IProduct[]).slice(0, 8) : (res as IProduct[]);
+          });
         }
       });
     });
 
-    this.cartQty=this.route.snapshot.queryParams.cart;
+    this.cartQty = this.route.snapshot.queryParams.cart;
     this.quantity = this.cartQty ? this.cartQty : 1;
   }
 
-  showReview(){
+  showReview() {
     this.isReview = true;
   }
 
-  showDescription(){
+  showDescription() {
     this.isReview = false;
   }
 
-  addOne(){
-    this.quantity++ ;    
+  addOne() {
+    this.quantity++ ;
     // console.log('df', this.quantity);
   }
 
-  removeOne(){
+  removeOne() {
     (this.quantity > 1) ? this.quantity--  : this.quantity;
   }
 
-  addToCart(e:Event, prod:IProduct, quantity:number){
+  addToCart(e: Event, prod: IProduct, quantity: number) {
     e.preventDefault();
 
-    if(!!quantity){
-      var cartItem:ICart = {
+    if (!!quantity) {
+      const cartItem: ICart = {
         product_id: prod.id,
         product_name: prod.name,
         amount: prod.reduced_cost,
         amount_main: prod.cost,
         imgUrl: (prod.images[0] && prod.images[0].url) ? prod.images[0].url : '/assets/images/product-1.png',
-        quantity: quantity
-      }
-      console.log('cartItem',cartItem);
+        quantity
+      };
+      console.log('cartItem', cartItem);
       this.productService.addToCart(cartItem);
-    } else{
+    } else {
       alert('Quantity of ' + this.product.name + ' must not be 0');
     }
   }

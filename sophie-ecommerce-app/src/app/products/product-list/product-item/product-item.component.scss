@@ -100,13 +100,18 @@ div.product-item{
             width: 45px;
             height: 45px;
             margin-left: auto;
-            margin-top: -45px;
+            margin-top: -50px;
+            margin-right: 5px;
             border-radius: 100%;
             background-color: transparent;
             transition: 0.5s ease-out;
 
             &:hover{
                 background-color: $smokeyWhite;
+
+                i.fas.fa-times {
+                  transform: rotate(65deg);
+                }
             }
         }
 
@@ -124,7 +129,7 @@ div.product-item{
     @media screen and (min-width: 1024px){
         div.product-item__functions{
             display: none;
-        }    
+        }
 
         &:hover{
             cursor: pointer;

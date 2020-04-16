@@ -1,15 +1,17 @@
 import { Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { LoginRegisterComponent } from "./login-register/login-register.component";
+import { LoginRegisterComponent } from './login-register/login-register.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { AuthRouteGuardGuard } from '../shared/auth-route-guard.guard';
+import { ComponentDeactivateGuard } from '../shared/component-deactivate.guard';
 
-export const userRoutes:Routes = [
+export const userRoutes: Routes = [
     {
         path: 'myaccount/:fn',
         component: MyAccountComponent,
-        canActivate: [AuthRouteGuardGuard]
+        canActivate: [AuthRouteGuardGuard],
+        canDeactivate: [ComponentDeactivateGuard]
     },
     {
         path: 'login',
@@ -28,4 +30,4 @@ export const userRoutes:Routes = [
         redirectTo: 'myaccount/profile',
         pathMatch: 'full'
     }
-]
+];

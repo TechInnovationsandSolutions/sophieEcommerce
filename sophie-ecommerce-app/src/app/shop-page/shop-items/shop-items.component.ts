@@ -8,19 +8,19 @@ import { IProduct, ProductService } from 'src/app';
 })
 export class ShopItemsComponent implements OnInit {
 
-  @Input() shopProducts:IProduct[];
-  currentPageProducts:IProduct[] = []
-  
-  constructor(private productService:ProductService) { }
+  @Input() shopProducts: IProduct[];
+  currentPageProducts: IProduct[] = [];
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    console.log('this.shopProducts', this.shopProducts)
+    console.log('this.shopProducts', this.shopProducts);
     setTimeout(() => {
       this.currentPageProducts = this.shopProducts;
     }, 500);
   }
 
-  change(){
+  change() {
     // this.currentPageProducts = [
     //   {
     //     id: 1,
