@@ -11,7 +11,7 @@
          url('/assets/fonts/proxima_nova_bold-webfont.woff') format('woff');
     font-weight: bold;
     font-style: normal;
-
+    font-display: swap;
 }
 
 
@@ -21,7 +21,7 @@
          url('/assets/fonts/proxima_nova_extrabold-webfont.woff') format('woff');
     font-weight: bolder;
     font-style: normal;
-
+    font-display: swap;
 }
 
 @font-face {
@@ -30,7 +30,7 @@
          url('/assets/fonts/proximanova-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
+    font-display: swap;
 }
 
 body{
