@@ -1,6 +1,6 @@
 export interface ICart {
-    product_id: number;
-    product_name: string;
+    id: number;
+    product: string;
     amount: number;
     amount_main?: number;
     quantity: number;
