@@ -3,6 +3,7 @@ import { ProductService, ICategory, IProduct, ProductResponse } from '../shared'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'shop-page',
   templateUrl: './shop-page.component.html',
   styleUrls: ['./shop-page.component.scss']
@@ -62,16 +63,16 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
         this.pageTitle = 'Result for ' + searchhTerm;
       }
 
-      if (this.route.snapshot.params.slug == 'search') {
+      if (this.route.snapshot.params.slug === 'search') {
         console.log('this.searching', searchhTerm);
         aProm = this.productService.getSearchedProducts(searchhTerm, pg);
       } else if (this.route.snapshot.params.slug) {
         const slug = this.route.snapshot.params.slug.replace(/_/g, ' ');
         aProm = this.productService.getProductsByCategory(slug, pg);
-        this.pageTitle = (slug && slug == 'all') ? 'Explore Our Products' : 'Checkout our ' + slug + ' products';
+        this.pageTitle = (slug && slug === 'all') ? 'Explore Our Products' : 'Checkout our ' + slug + ' products';
 
         this.showBreadCrumb = false;
-        if (slug != 'all') {
+        if (slug !== 'all') {
           this.showBreadCrumb = true;
         }
       } else {
@@ -91,11 +92,12 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
         const sel = document.getElementById('product-categories') as HTMLSelectElement;
         if (sel) {
           console.log('sel', slug);
-          sel.value = (slug && slug != 'search') ? slug : 'all';
+          sel.value = (slug && slug !== 'search') ? slug : 'all';
         }
       });
 
       document.querySelector('.products-sect-header').scrollIntoView({behavior: 'smooth'});
+      this.productService.makeSEO('Shop');
     });
 
   }
@@ -146,8 +148,8 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getSlug(string) {
-    return string.split(' ').join('_');
+  getSlug(str: string) {
+    return str.split(' ').join('_');
   }
 
   compareFn(c1: string, c2: string): boolean {

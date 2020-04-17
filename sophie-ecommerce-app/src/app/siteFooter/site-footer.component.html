@@ -3,7 +3,7 @@
         <div class="footer-section">
             <a class="footer-logo" [routerLink]="['']">
                 <img src="/../assets/images/logo.png" alt="Sophoie's logo" class="footer-icon">
-            </a>  
+            </a>
         </div>
         <div class="footer-section">
             <p class="footer-section__title">About Sophie’s</p>
@@ -26,14 +26,14 @@
             <p class="footer-section__title">Connect with us</p>
             <ul class="footer-section__list-items footer__social-media-links">
                 <li class="footer__social-media-link" *ngFor="let social of socialMedia">
-                    <a href="{{social?.link}}" title="{{social?.name}}" target="_blank">
+                    <a href="{{social?.link}}" title="{{social?.name}}" target="_blank" rel="noopener">
                         <i class="{{social?.icon}}"></i>
                     </a>
                 </li>
             </ul>
             <ul class="footer-section__list-items footer__contact-details">
                 <li class="footer__contact-detail" *ngFor="let contact of contactDetails">
-                    <a href="{{contact?.link}}" title="{{contact?.descriptiion}}" target="_blank">
+                    <a href="{{contact?.link}}" title="{{contact?.descriptiion}}" target="_blank"  rel="noopener">
                         <img src="{{contact?.icon}}" alt="icon for {{contact?.descriptiion}}"/>
                         <span>{{contact?.value}}</span>
                     </a>

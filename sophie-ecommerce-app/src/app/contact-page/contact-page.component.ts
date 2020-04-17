@@ -19,6 +19,7 @@ export class ContactPageComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.productService.makeSEO('Contacts');
     this.productService.getContactDetails().subscribe(resp => {
         this.contactDetails = resp;
     });

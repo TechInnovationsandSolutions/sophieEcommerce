@@ -7,7 +7,7 @@
     <aside class="product-aside-sect">
         <div class="product-category-sect">
             <div class="category-list-mobile d-flex flex-wrap" *ngIf="isMobile">
-                <select class = "text-capitalize m-auto" name="product-categories" id="product-categories" (change)="onChangeSelect($event.target.value)">
+                <select class = "text-capitalize m-auto" name="product-categories" id="product-categories" (change)="onChangeSelect($event.target.value)" title="select a category product">
                     <option value="all">All</option>
                     <option *ngFor="let cat of categories" value="{{cat.name.split(' ').join('_')}}">{{ cat.name }}</option>
                 </select>
