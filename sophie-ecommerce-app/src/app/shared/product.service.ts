@@ -43,6 +43,14 @@ export class ProductService {
         return localStorage.getItem(TOKEN) != null;
     }
 
+    forgotPassword(userEmail: string) {
+      if (userEmail) {
+        return this.http.post<any>(this._url + 'forgot/password', {
+          email: userEmail
+        });
+      }
+    }
+
     checkLoggedIn() {
         // tslint:disable-next-line: no-unused-expression
         this.isLogged() ? true : this.router.navigate(['/login']);
@@ -303,55 +311,51 @@ export class ProductService {
       }).toPromise();
     }
 
+    // Improve SEO
+    makeSEO(title?: string, desc?: string, ogImg?: string) {
+      const q$ = (selector) => {
+        return document.querySelector(selector) as HTMLElement;
+      };
+
+      // tslint:disable-next-line: variable-name
+      const _title = 'Sophies Bath and Body';
+      // tslint:disable-next-line: variable-name
+      const _desc = 'Sophies bath and body ensure that the body does not lorum tag ipsum I do mno.';
+      // tslint:disable-next-line: variable-name
+      const _ogImg = 'assets/images/logo.png';
+
+      const titleTag = title ? title +  ' | ' + _title : _title;
+      const descTag = desc ? desc : _desc;
+      const ogImgTag = ogImg ? ogImg : _ogImg;
+
+      q$('title').innerHTML = titleTag;
+      q$('meta[name="description"]').setAttribute('content', descTag);
+      q$('meta[property="og:title"]').setAttribute('content', titleTag);
+      q$('meta[property="og:image"]').setAttribute('content', ogImgTag);
+      q$('meta[property="og:url"]').setAttribute('content', window.location.href);
+    }
+
     // Add to cart
-
     addToCart(item: ICart) {
-        const isInCart = cartItems.find(c => c.product_id === item.product_id);
-        console.log('de', isInCart);
-        let result = false;
-
-        // We expect undefine if it's not found
-        if (!isInCart) {
-            cartItems.push(item);
-            this.updateToLocal();
-            result = true;
-        // tslint:disable-next-line: triple-equals
-        } else if (isInCart.quantity != item.quantity) {
-            console.log('ups', item);
-            this.updateCart(item);
-            result = true;
-        }
-
-        const subject = new Subject<boolean>();
-        setTimeout(() => {
-            subject.next(result);
-            subject.complete();
-        }, 100);
-        return subject.toPromise();
-
-        // var token = this.getToken();
-        // return this.http.post<any>(this._url + 'cart',{
-        //   product_id: item.product_id,
-        //   amount: item.amount,
-        //   quantity: item.quantity
-        // }, {
-        //   headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
-        // }).toPromise();
+      const token = this.getToken();
+      return this.http.post<any>(this._url + 'cart', {
+        product_id: item.id,
+        amount: item.amount,
+        quantity: item.quantity
+      }, {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
     }
 
     removeFromCart(item: ICart) {
-        const isInCart = cartItems.find(c => c.product_id === item.product_id);
-
-        // Yes in cart
-        if (isInCart) {
-            const ind = cartItems.indexOf(isInCart);
-            cartItems.splice(ind, 1);
-            this.updateToLocal();
-        }
+        const token = this.getToken();
+        return this.http.delete<any>(this._url + 'cart/' + item.id, {
+          headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+        }).toPromise();
     }
 
     updateCart(item: ICart) {
-        const isInCart = cartItems.find(c => c.product_id === item.product_id);
+        const isInCart = cartItems.find(c => c.id === item.id);
 
         // Yes in cart
         if (isInCart) {
@@ -362,20 +366,12 @@ export class ProductService {
         }
     }
 
-    getCartItems(): Observable <ICart[]> {
-        const subject = new Subject<ICart[]>();
-        setTimeout(() => {
-          console.log('Lemme in');
-          cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
-          subject.next(cartItems);
-          subject.complete();
-        }, 100);
-        return subject;
-
-        // var token = this.getToken();
-        // return this.http.get<any>(this._url + 'cart', {
-        //   headers: new HttpHeaders().set('Authorization',`Bearer ${token}`)
-        // });
+    getCartItems() {
+        const token = this.getToken();
+        console.log('sds');
+        return this.http.get<any>(this._url + 'cart', {
+          headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+        }).toPromise();
     }
 
     clearCartItems() {
