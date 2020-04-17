@@ -40,6 +40,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
+import { FirstCharCapitalizePipe } from './common/first-char-capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
     BreadcrumbComponent,
     NotFoundComponent,
     WishListComponent,
+    FirstCharCapitalizePipe,
   ],
   imports: [
     BrowserModule,
