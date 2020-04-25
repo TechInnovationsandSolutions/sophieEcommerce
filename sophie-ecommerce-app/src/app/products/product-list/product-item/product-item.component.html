@@ -9,8 +9,8 @@
         </p>
     </div>
     <div class="product-item__details">
-        <p class="product-item__details-name text-capitalize" [routerLink] = '["/product", aProduct.id]'>
-            <span>{{ aProduct.name }}</span>
+        <p class="product-item__details-name" [routerLink] = '["/product", aProduct.id]'>
+            <span>{{ aProduct.name | firstCharCapitalize}}</span>
         </p>
         <p class="product-item__details-price">
             <span class="promo_price">{{ aProduct.reduced_cost | currency:"NGN":"₦"}}</span>
