@@ -51,6 +51,25 @@ export class ProductService {
       }
     }
 
+    validateForgetPasswordToken(token: string, email: string) {
+      if (token) {
+        return this.http.get<any>(this._url + 'forgot/password-token', {
+          params: new HttpParams().set('token', token).set('email', email)
+        }).toPromise();
+      }
+    }
+
+    changeForgetPassword(password: string, userId: string) {
+      if (password && userId) {
+        return this.http.post<any>(this._url + 'forgot/password-change', {
+          // tslint:disable-next-line: object-literal-key-quotes
+          'password': password,
+          // tslint:disable-next-line: object-literal-key-quotes
+          'user_id': userId
+        }).toPromise();
+      }
+    }
+
     checkLoggedIn() {
         // tslint:disable-next-line: no-unused-expression
         this.isLogged() ? true : this.router.navigate(['/login']);
@@ -301,10 +320,10 @@ export class ProductService {
       }).toPromise();
     }
 
-    addUserOrder(order) {
+    addUserOrder(address_id: string) {
       const token = this.getToken();
-      return this.http.post<any>(this._url + 'address', {
-        order
+      return this.http.post<any>(this._url + 'orders', {
+        address_id
       },
       {
         headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
