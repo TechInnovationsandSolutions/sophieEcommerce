@@ -4,6 +4,7 @@ import { PaystackOptions } from 'angular4-paystack';
 import { AuthService } from '../user/auth.service';
 import {  Router } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-checkout-page',
@@ -11,8 +12,6 @@ import { Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./checkout-page.component.scss']
 })
 export class CheckoutPageComponent implements OnInit {
-  constructor(private productService: ProductService, private fb: FormBuilder, private auth: AuthService, private router: Router) { }
-
   cartItems: ICart[] = [];
   totamt = 0;
   currentUser: IUSer;
@@ -36,19 +35,30 @@ export class CheckoutPageComponent implements OnInit {
 
   options: PaystackOptions;
 
+  constructor(
+    private productService: ProductService,
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) { }
+
   ngOnInit() {
     this.currentUser =  this.auth.currentUser;
-    this.productService.getCartItems().subscribe(cItems => {
-      this.cartItems = cItems;
-      this.sumTotal();
-      console.log('totl', this.totamt);
-      const totamtKobo = this.totamt ? Math.round(this.totamt * 100) : 0;
-      this.options = {
-        amount: totamtKobo,
-        email: this.currentUser.email,
-        ref: `${Math.ceil(Math.random() * 10e10)}`
-      };
-    });
+    this.productService.getCartItems().then(cItems => {
+      if (cItems.status === 'success') {
+        this.cartItems = cItems.data;
+        this.sumTotal();
+        console.log('totl', this.totamt);
+        const totamtKobo = this.totamt ? Math.round(this.totamt * 100) : 0;
+        this.options = {
+          amount: totamtKobo,
+          email: this.currentUser.email,
+          ref: `${Math.ceil(Math.random() * 10e10)}`
+        };
+      } else {
+        throw new Error(cItems);
+      }
+    }).catch(err => console.error(err));
 
     this.productService.getStateLGADetails().subscribe(s => {
       // tslint:disable-next-line: no-shadowed-variable
@@ -101,7 +111,13 @@ export class CheckoutPageComponent implements OnInit {
         lga_id: lgaId,
         state_id: stateId
       };
-      this.productService.addUserAddress(address);
+      this.productService.addUserAddress(address)
+        .then(res => {
+          if (res.status === 'success') {
+            this.selectedAddress = res.data;
+            console.log(this.selectedAddress);
+          }
+        });
     } else {
       return;
     }
@@ -110,8 +126,14 @@ export class CheckoutPageComponent implements OnInit {
   paymentDone(ref: any) {
     // alert('Payment successfull');
     console.log('this.title', ref);
-    this.productService.clearCartItems();
-    window.location.href = '/shop';
+    this.productService.addUserOrder(this.selectedAddress.id.toString()).then(res => {
+      if (res.status === 'success') {
+        Swal.fire('Order Confirmed', 'Your transaction was successful. A receipt has been sent to your email', 'success').then(() => {
+          this.productService.clearCartItems();
+          window.location.href = '/shop';
+        });
+      }
+    });
   }
 
   paymentCancel() {
@@ -138,7 +160,7 @@ export class CheckoutPageComponent implements OnInit {
     this.LGA = [];
 
     if (stateName) {
-      const _LGA = this.states.find(s => s.name == stateName);
+      const _LGA = this.states.find(s => s.name === stateName);
       console.log('_L', _LGA);
       this.LGA = (_LGA && _LGA.locals) ? _LGA.locals : [];
       console.log('LGAs', this.LGA);
@@ -157,7 +179,7 @@ export class CheckoutPageComponent implements OnInit {
     return;
     }
 
-    const inLGA = this.LGA.find(l => l.name == stateName);
+    const inLGA = this.LGA.find(l => l.name === stateName);
 
     console.log('inLGA', inLGA, stateName, this.LGA);
 
@@ -173,18 +195,19 @@ export class CheckoutPageComponent implements OnInit {
 
   getState(stateId) {
     if (stateId) {
-      return this.states.find(s => s.id == stateId);
+      return this.states.find(s => s.id === stateId);
     }
   }
 
   getLGA(state, lgaId) {
     if (state && lgaId) {
-      return state.locals.find(l => l.id == lgaId);
+      return state.locals.find(l => l.id === lgaId);
     }
   }
 
   getStateName(stateId) {
     if (stateId) {
+      // tslint:disable-next-line: variable-name
       const _state =  this.getState(stateId);
       const stateName = (_state && _state.name) ? _state.name  : '';
       return stateName;
@@ -193,8 +216,10 @@ export class CheckoutPageComponent implements OnInit {
 
   getLgaNameFromState(stateId, lgaId) {
     if (stateId && lgaId) {
+      // tslint:disable-next-line: variable-name
       const _state =  this.getState(stateId);
 
+      // tslint:disable-next-line: variable-name
       const _lga = this.getLGA(_state, lgaId);
       const lgaName = (_lga && _lga.name) ? _lga.name  : '';
       return lgaName;
