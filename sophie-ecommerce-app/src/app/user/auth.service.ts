@@ -9,6 +9,7 @@ const USER = 'x-user';
 @Injectable()
 export class AuthService {
     constructor(private http: HttpClient, private serv: ProductService, private router: Router) {}
+    // tslint:disable-next-line: variable-name
     _url = this.serv._url + 'auth/';
 
     currentUser: IUSer;
@@ -55,16 +56,16 @@ export class AuthService {
             first_name: user.first_name,
             last_name: user.last_name,
             phone: user.phone,
+            address: 't'
         }, {
             headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
         }).toPromise();
     }
 
-    updatePassword(old_password: string, new_password: string) {
+    updatePassword(newPassword: string) {
         const token = this.serv.getToken();
-        return this.http.post<any>(this._url + 'update', {
-            old_password,
-            new_password,
+        return this.http.post<any>(this._url + 'update-password', {
+            newPassword,
         }, {
             headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
         }).toPromise();
@@ -89,27 +90,14 @@ export class AuthService {
         this.router.navigate(['/']);
     }
 
-    getAuthenticatedUser() {
+    getAuthenticatedUser(userEmail: string, password: string) {
         const token = this.serv.getToken();
-        return new Promise((resolve, reject) => {
-            this.http.post<any>(this._url + 'user', {
-                header: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-            }).subscribe(
-                res => {
-                    console.log(res, token);
-                    if (res.status == 'success') {
-                        this.currentUser = res.data as IUSer;
-                        console.log('this.currentUser', this.currentUser);
-                        resolve(res.status);
-                    } else {
-                        reject(res);
-                    }
-                },
-                (err: HttpErrorResponse) => {
-                    console.log(err.error);
-                }
-            );
-        });
+        return this.http.post<any>(this._url + 'user', {
+          userEmail,
+          password
+        }, {
+            headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+        }).toPromise();
     }
 }
 
