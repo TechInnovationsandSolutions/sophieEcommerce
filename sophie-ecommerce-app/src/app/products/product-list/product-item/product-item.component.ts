@@ -21,8 +21,8 @@ export class ProductItemComponent {
   addToCart() {
     console.log('lol', this.aProduct);
     const cartItem: ICart = {
-      product_id: this.aProduct.id,
-      product_name: this.aProduct.name,
+      id: this.aProduct.id,
+      product: this.aProduct.name,
       amount: this.aProduct.reduced_cost,
       amount_main: this.aProduct.cost,
       imgUrl: (this.aProduct.images[0] && this.aProduct.images[0].url) ? this.aProduct.images[0].url : '/assets/images/product-1.png',

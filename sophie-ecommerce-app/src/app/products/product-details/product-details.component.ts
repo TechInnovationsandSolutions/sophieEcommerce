@@ -1,13 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IProduct, ProductService, ICart } from 'src/app/shared';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FirstCharCapitalizePipe } from 'src/app/common';
+import Swal from 'sweetalert2';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
+  providers: [FirstCharCapitalizePipe]
 })
 export class ProductDetailsComponent implements OnInit {
+  isInWishList: boolean;
+  // tslint:disable-next-line: variable-name
+  @Input() set inWishList(_val) {
+    this.isInWishList = _val ? true : false;
+  }
   product: IProduct;
   isReview: boolean;
   relatedProducts: IProduct[] = [];
@@ -17,7 +26,9 @@ export class ProductDetailsComponent implements OnInit {
 
   showPreloader = true;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+  constructor(private productService: ProductService,
+              private route: ActivatedRoute,
+              private firstChar: FirstCharCapitalizePipe) { }
 
   ngOnInit() {
     console.log(this.route.snapshot.params);
@@ -26,6 +37,7 @@ export class ProductDetailsComponent implements OnInit {
         console.log('the product', res);
         this.product = res as IProduct;
         this.showPreloader = false;
+        this.makeProductSEOTags();
       }).then(() => {
         // console.log('pror', this.product);
         if (this.product.tags && this.product.tags.length) {
@@ -56,16 +68,17 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   removeOne() {
-    (this.quantity > 1) ? this.quantity--  : this.quantity;
+    // tslint:disable-next-line: no-unused-expression
+    (this.quantity > 1) ? this.quantity-- : this.quantity;
   }
 
   addToCart(e: Event, prod: IProduct, quantity: number) {
     e.preventDefault();
 
-    if (!!quantity) {
+    if (quantity) {
       const cartItem: ICart = {
-        product_id: prod.id,
-        product_name: prod.name,
+        id: prod.id,
+        product: prod.name,
         amount: prod.reduced_cost,
         amount_main: prod.cost,
         imgUrl: (prod.images[0] && prod.images[0].url) ? prod.images[0].url : '/assets/images/product-1.png',
@@ -78,7 +91,35 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
-  // co($event){
-  //   console.log('otot', $event);
-  // }
+  makeProductSEOTags() {
+    // tslint:disable-next-line: variable-name
+    const _desc = 'Get quality affordable beauty and bath products like ' + this.product.name +  ' on Sophies Bath and Body';
+    const desc = this.product.excerpt ? this.product.excerpt + '. ' + _desc : _desc;
+    const productTitle = this.firstChar.transform(this.product.name);
+    const imgUrl = (this.product.images[0] && this.product.images[0].url) ? this.product.images[0].url : '';
+    this.productService.makeSEO(productTitle, desc, imgUrl);
+  }
+
+  addToWishList() {
+    this.productService.addToWishList(this.product).then(() => {
+      Swal.fire({
+        icon: 'success',
+        toast: true,
+        title: 'Successfully Added to Wish List',
+        timer: 2000,
+        showConfirmButton: false,
+        position: 'top-right'
+      });
+    },
+    (err => console.error(err))
+    );
+  }
+
+  removeFromWishList() {
+    this.productService.removeFromWishList(this.product);
+  }
+
+  toWishList() {
+    !this.isInWishList ? this.addToWishList() : this.removeFromWishList();
+  }
 }

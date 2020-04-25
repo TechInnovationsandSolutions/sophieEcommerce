@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ICart, ProductService } from '../shared';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import Swal from 'sweetalert2';
+import { AuthService } from '../user/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,14 +12,31 @@ import { ICart, ProductService } from '../shared';
 export class CartComponent implements OnInit {
   cartItems: ICart[] = [];
   totamt = 0;
+  showPreloader = true;
+  @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
-    this.productService.getCartItems().subscribe(cItems => {
-      this.cartItems = cItems;
-      this.sumTotal();
-    });
+    this.productService.makeSEO('Cart');
+    if (this.authService.isAuthenticated()) {
+      this.productService.getCartItems().then((cItems) => {
+        console.log('cart items', cItems);
+        if (cItems.status === 'success') {
+          this.cartItems = cItems.data;
+          this.sumTotal();
+          this.showPreloader = false;
+        }
+        // this.cartItems = cItems;
+      }).catch((rej) => {
+
+      });
+    } else {
+      this.showPreloader = false;
+    }
   }
 
   sumTotal() {
@@ -57,7 +77,19 @@ export class CartComponent implements OnInit {
 
   removeFromCart(cartItem: ICart) {
     console.log('remove this from cart', cartItem);
-    this.productService.removeFromCart(cartItem);
-    this.sumTotal();
+    this.blockUI.start();
+    this.productService.removeFromCart(cartItem).then((res) => {
+      this.blockUI.stop();
+      console.log('remove res', res);
+      if (res.status === 'success') {
+        const cIndex = this.cartItems.indexOf(cartItem);
+        this.cartItems.splice(cIndex, 1);
+      } else {
+        throw new Error(res);
+      }
+      this.sumTotal();
+    }).catch((rej) => {
+      Swal.fire('Error', rej.messsage, 'error');
+    });
   }
 }
