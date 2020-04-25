@@ -41,6 +41,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { FirstCharCapitalizePipe } from './common/first-char-capitalize.pipe';
+import { CollapsibleComponentComponent } from './common/collapsible-component/collapsible-component.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { FirstCharCapitalizePipe } from './common/first-char-capitalize.pipe';
     NotFoundComponent,
     WishListComponent,
     FirstCharCapitalizePipe,
+    CollapsibleComponentComponent,
   ],
   imports: [
     BrowserModule,
