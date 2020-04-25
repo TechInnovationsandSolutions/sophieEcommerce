@@ -42,31 +42,32 @@
         <h3 class="col-sm-12 mb-2 text-capitalize text-center p-3">Change My Passord</h3>
         <form id="frm_userDetail_change_pw" class="mx-auto py-1 d-flex col-sm-12 col-md-6 mx-auto row" [formGroup]="userPasswordForm" (ngSubmit)="onChangePasswordSubmit(userPasswordForm)">
             <div class="col-md-12 mx-auto p-2">
-                <div class="col-sm-12">
-                    <label for="kt-ad-current-password" class="col-sm-11 col-form-label py-1 my-1">Current Password
-                        <input id="kt-ad-current-password" type="password"  class="form-control col-sm-12 mb-2" formControlName="password" autocomplete="off" required>
-                    </label>
-                    <button type="button" id="kt-ad-current-password-show" class="col-sm-1 btn btn-outline-dark kt-ad-ps-sh" style="width: 45px;">
-                        <i class="fas fa-eye p-0"></i>
-                    </button>
+                <div class="col-sm-12 d-flex flex-wrap mb-2">
+                  <label for="current-password" class="col-sm-12 col-form-label py-1 px-0 my-1">
+                    Current Password
+                  </label>
+                  <input id="current-password" type="password"  class="form-control" formControlName="password" autocomplete="off" required>
+                  <button type="button" id="current-password-show" class="btn btn-outline-dark ps-sh" style="width: 45px;">
+                    <i class="fas fa-eye p-0"></i>
+                  </button>
                 </div>
-                <div class="col-sm-12">
-                    <label for="kt-ad-new-password" class="col-sm-11 col-form-label py-1 my-1">
-                        New Password 
-                        <input id="kt-ad-new-password" type="password"  class="form-control col-sm-12 mb-2" formControlName="password" required>
-                    </label>
-                    <button type="button" id="kt-ad-new-password-show" class="col-sm-1 btn btn-outline-dark kt-ad-ps-sh" style="width: 45px;">
-                        <i class="fas fa-eye p-0"></i>
-                    </button>
+                <div class="col-sm-12 d-flex flex-wrap mb-2">
+                  <label for="new-password" class="col-sm-12 px-0 col-form-label py-1 my-1">
+                    New Password
+                  </label>
+                  <input id="new-password" type="password" autocomplete="new-password" class="form-control" formControlName="new_password" required>
+                  <button type="button" id="new-password-show" class="btn btn-outline-dark ps-sh" style="width: 45px;">
+                    <i class="fas fa-eye p-0"></i>
+                  </button>
                 </div>
-                <div class="d-flex flex-wrap">	
-                    <div class="mx-auto">
-                        <button id="btn-kt-ad-change-pw" type="submit" class="btn btn-outline-primary p-2 mx-1" [disabled]="userPasswordForm.invalid || userPasswordForm.pristine">
-                            <span>
-                                Change Passord
-                            </span>
-                        </button>
-                    </div>		
+                <div class="d-flex flex-wrap">
+                  <div class="mx-auto">
+                    <button id="btn-change-pw" type="submit" class="btn btn-outline-primary p-2 mx-1" [disabled]="userPasswordForm.invalid || userPasswordForm.pristine">
+                      <span>
+                        Change Passord
+                      </span>
+                    </button>
+                  </div>
                 </div>
             </div>
         </form>

@@ -1,21 +1,35 @@
 @import './../../app.component.scss';
 
 .my-account_profile{
-   #frm-userDetail{
+  #frm-userDetail{
     fieldset[disabled]{
         // background: chartreuse;
         input[type = 'text'], input[type = 'email'], input[type = 'tel'], select {
-            background: #fff !important;
-            border: 1px solid rgba(0,0,0,0.05);
+          background: #fff !important;
+          border: 1px solid rgba(0,0,0,0.05);
         }
 
         button {
-            display: none;
+          display: none;
         }
     }
 
     label{
-        font-weight: bold;
+      font-weight: bold;
     }
-  } 
+  }
+  #frm_userDetail_change_pw {
+    $wBtn: 45px;
+    input.form-control {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      width: calc(100% - #{$wBtn});
+    }
+
+    button.ps-sh{
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      width: $wBtn;
+    }
+  }
 }
