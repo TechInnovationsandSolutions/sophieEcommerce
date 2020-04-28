@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/shared';
+import { ProductService, IOrder } from 'src/app/shared';
 
 @Component({
   selector: 'app-my-orders',
@@ -10,14 +10,21 @@ export class MyOrdersComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-  userOrders: any[] = [];
+  userOrders: IOrder[] = [];
   showPreloader = true;
 
   ngOnInit() {
     this.productService.getUserOrders().then((res) => {
-      this.userOrders = res.data;
+      console.log('orders', res);
       this.showPreloader = false;
-    });
+
+      if (res.status === 'success') {
+        this.userOrders = res.data;
+        console.log('orderus', this.userOrders);
+      } else {
+        throw new Error(res);
+      }
+    }).catch(rej => console.error(rej));
   }
 
 }
