@@ -8,7 +8,7 @@
       <ul class="list-group mb-3">
         <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let item of cartItems">
           <div>
-            <h6 class="my-0">{{ item.product_name }}</h6>
+            <h6 class="my-0">{{ item.product }}</h6>
             <small>{{item.amount | currency:"NGN":"₦" }} per item for {{ item.quantity }} item(s)</small>
           </div>
           <span class="text-muted">{{item.amount * item.quantity | currency:"NGN":"₦" }}</span>
@@ -90,19 +90,11 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button *ngIf="isWithNewAddress" [disabled]="userAddressForm.invalid || userAddressForm.pristine" class="btn btn-success btn-lg btn-block" type="submit"
-        angular4-paystack
-          [paystackOptions]="options"
-          (paymentInit)="paymentInitWithNewAddress()"
-          (close)="paymentCancel()"
-          (callback)="paymentDone($event)">Pay
+        <button *ngIf="isWithNewAddress" [disabled]="userAddressForm.invalid || userAddressForm.pristine" class="btn btn-success btn-lg btn-block" type="submit" (click)="paymentDoneWithNewAddress()">
+          Pay
         </button>
-        <button *ngIf="!isWithNewAddress" class="btn btn-success btn-lg btn-block" type="submit"
-        angular4-paystack
-          [paystackOptions]="options"
-          (paymentInit)="paymentInit()"
-          (close)="paymentCancel()"
-          (callback)="paymentDone($event)">Pay
+        <button *ngIf="!isWithNewAddress" class="btn btn-success btn-lg btn-block" type="submit" (click)="paymentDone()">
+          Pay
         </button>
       </form>
       <div class="preloader col-md-12 py-5 px-2" *ngIf="showPreloader">
