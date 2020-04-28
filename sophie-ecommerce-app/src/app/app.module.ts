@@ -41,7 +41,6 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { FirstCharCapitalizePipe } from './common/first-char-capitalize.pipe';
-import { CollapsibleComponentComponent } from './common/collapsible-component/collapsible-component.component';
 
 @NgModule({
   declarations: [
@@ -71,8 +70,7 @@ import { CollapsibleComponentComponent } from './common/collapsible-component/co
     BreadcrumbComponent,
     NotFoundComponent,
     WishListComponent,
-    FirstCharCapitalizePipe,
-    CollapsibleComponentComponent,
+    FirstCharCapitalizePipe
   ],
   imports: [
     BrowserModule,
@@ -83,15 +81,13 @@ import { CollapsibleComponentComponent } from './common/collapsible-component/co
     HttpClientModule,
     Ng5SliderModule,
     BlockUIModule.forRoot(),
-    LazyLoadImageModule.forRoot({
-      preset: intersectionObserverPreset
-    }),
     Angular4PaystackModule.forRoot('pk_test_4f69d7376af4f85cf8e0c1113c04a82ad6d97abe')
   ],
   providers: [
     ProductService,
     AuthService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule { }
