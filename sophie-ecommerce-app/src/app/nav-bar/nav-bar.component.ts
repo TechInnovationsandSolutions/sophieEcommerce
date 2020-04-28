@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
@@ -18,18 +19,24 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.clickLink();
-    this.productService.getCartItems().subscribe(cItems => {
-      console.log('cart items', cItems);
-      this.cartItems = cItems;
-      // this.cartItems = cItems.data;
-    });
+    if (this.auth.isAuthenticated()) {
+      this.productService.getCartItems().then((cItems) => {
+        // console.log('cart items', cItems);
+        if (cItems.status === 'success') {
+          this.cartItems = cItems.data.length;
+        }
+        // this.cartItems = cItems;
+      }).catch((rej) => {
+
+      });
+    }
   }
 
   collapseIfMobile() {
     const toggleBtn = document.querySelector('button.navbar-toggler') as HTMLElement;
     const div = document.getElementById('navbarSupportedContent') as HTMLElement;
-    const isToggleBtnVisible = (window.getComputedStyle(toggleBtn).display != 'none') ? true : false;
-    const divCollapse = (window.getComputedStyle(div).display != 'none') ? true : false;
+    const isToggleBtnVisible = (window.getComputedStyle(toggleBtn).display !== 'none') ? true : false;
+    const divCollapse = (window.getComputedStyle(div).display !== 'none') ? true : false;
 
     if (isToggleBtnVisible && divCollapse) {
       toggleBtn.click();
@@ -46,7 +53,6 @@ export class NavBarComponent implements OnInit {
 
   logOut() {
     if (!!this.auth.currentUser) {
-      console.log('!!this.auth.currentUser', this.auth.currentUser);
       this.auth.logOut();
       Swal.fire({
         icon: 'success',

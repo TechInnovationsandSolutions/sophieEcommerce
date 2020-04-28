@@ -85,7 +85,19 @@ export class ProductDetailsComponent implements OnInit {
         quantity
       };
       console.log('cartItem', cartItem);
-      this.productService.addToCart(cartItem);
+      this.productService.addToCart(cartItem).then((res) => {
+        this.productService.addToLocalCart(cartItem);
+        const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
+        console.log('carty0', text);
+        Swal.fire({
+          icon: res ? 'success' : 'info',
+          toast: true,
+          title: text,
+          timer: 2000,
+          showConfirmButton: false,
+          position: 'top-right'
+        });
+      });
     } else {
       alert('Quantity of ' + this.product.name + ' must not be 0');
     }

@@ -30,6 +30,7 @@ export class ProductItemComponent {
     };
 
     this.productService.addToCart(cartItem).then((res) => {
+      this.productService.addToLocalCart(cartItem);
       const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
       console.log('carty0', text);
       Swal.fire({
@@ -41,7 +42,6 @@ export class ProductItemComponent {
         position: 'top-right'
       });
     });
-    // this.productService.addToCart(cartItem).then(res=>console.log('add to cart', res));
   }
 
   addToWishList() {

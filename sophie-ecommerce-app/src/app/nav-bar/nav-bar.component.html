@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" [routerLink]="['']">
+    <a class="navbar-brand" [routerLink]="['']" aria-label="brand logo">
         <img src="/../assets/images/logo.png" alt="" class="navBar__brand-icon">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,14 +26,14 @@
         <form class="form-inline my-2 my-lg-0" #searchForm = "ngForm" (ngSubmit) = "searchFormSubmit()">
             <label class="sr-only" for="searchTextID">Enter product search text</label>
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" id="searchTextID"  name="searchTextID" #searchTextID="ngModel">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" title="click to search input">
                 <span>
                     <i class="fas fa-search"></i>
                 </span>
             </button>
         </form>
-        <div>
-            <ul>
+        <div class="d-flex flex-wrap">
+            <ul class="my-auto">
                 <li class="nav-item" title="See Products on Wish List.">
                     <a class="nav-link text-dark" [routerLink]="['/wishlist']" title="See your wish list">
                         <span>
@@ -43,16 +43,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" [routerLink]="['/cart']" title="Go to Cart">
-                        <span>
+                        <span class="cart_no">
                             <i class="fas fa-shopping-cart"></i>
-                            <span *ngIf="cartItems.length !==0"  class="p-2 rounded-circle bg-white text-dark font-weight-bold">
-                                {{ cartItems.length }}
+                            <span class="p-0 rounded-circle bg-white text-dark font-weight-bold">
                             </span>
                         </span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="click dropdown to show more menu options">
                         <span>
                             <i class="far fa-user"></i>
                         </span>
@@ -72,5 +71,5 @@
                 </li>
             </ul>
           </div>
-      </div>
+    </div>
 </nav>
