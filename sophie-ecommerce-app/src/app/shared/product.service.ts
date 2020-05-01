@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart, IUSerAddress } from './model';
+import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart, IUSerAddress, IComment } from './model';
 import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -101,172 +101,156 @@ export class ProductService {
     return this.http.get(this._stateLGA).pipe(map(resp => resp as any[]));
   }
 
-  getProducts(param: string) {
-    if (this.auth.isAuthenticated()) {
-      return new Promise(resolve => {
-        this.http.get<any>(this._url + 'products', {
-          params: new HttpParams().set('page', param)
-        }).subscribe(
-          res => {
-            console.log(res);
-            // tslint:disable-next-line: triple-equals
-            if (res.status == 'success') {
-              res.data.pg = this.numberOfProductPages(res.data.total);
-              resolve(res.data);
-            }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err.error);
+  getProducts(param: string) {    return new Promise(resolve => {
+      this.http.get<any>(this._url + 'products', {
+        params: new HttpParams().set('page', param)
+      }).subscribe(
+        res => {
+          console.log(res);
+          // tslint:disable-next-line: triple-equals
+          if (res.status == 'success') {
+            res.data.pg = this.numberOfProductPages(res.data.total);
+            resolve(res.data);
           }
-        );
-      });
-    }
-  }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err.error);
+        }
+      );
+    });  }
 
   getSearchedProducts(searchTerm: string, param: string) {
-    if (this.auth.isAuthenticated()) {
-      return new Promise(resolve => {
-        this.http.get<any>(this._url + 'products/search', {
-          params: new HttpParams().set('search', searchTerm).set('page', param)
-        }).subscribe(
-          res => {
-            // tslint:disable-next-line: triple-equals
-            if (res.status == 'success') {
-              res.data.pg = this.numberOfProductPages(res.data.total);
-              resolve(res.data);
-            }
-          },
-          (err: HttpErrorResponse) => {
+    return new Promise(resolve => {
+      this.http.get<any>(this._url + 'products/search', {
+        params: new HttpParams().set('search', searchTerm).set('page', param)
+      }).subscribe(
+        res => {
+          // tslint:disable-next-line: triple-equals
+          if (res.status == 'success') {
+            res.data.pg = this.numberOfProductPages(res.data.total);
+            resolve(res.data);
           }
-        );
-      });
-    }
+        },
+        (err: HttpErrorResponse) => {
+        }
+      );
+    });
   }
 
   getProductsByCategory(categoryName: string, param: string) {
-    if (this.auth.isAuthenticated()) {
-      this._category = this._category.length ? this._category : this.getCategoryFromLocal();
-      return new Promise(resolve => {
-        // tslint:disable-next-line: variable-name
-        let cat_url = '';
+    this._category = this._category.length ? this._category : this.getCategoryFromLocal();
+    return new Promise(resolve => {
+      // tslint:disable-next-line: variable-name
+      let cat_url = '';
+      // tslint:disable-next-line: triple-equals
+      if (categoryName == 'all') {
+        cat_url = this._url + 'products';
+      } else {
         // tslint:disable-next-line: triple-equals
-        if (categoryName == 'all') {
-          cat_url = this._url + 'products';
-        } else {
-          // tslint:disable-next-line: triple-equals
-          const cat = this._category.find(c => c.name == categoryName);
-          if (!cat) { return; }
-          cat_url = this._url + 'categories/' + cat.id + '/products';
-        }
+        const cat = this._category.find(c => c.name == categoryName);
+        if (!cat) { return; }
+        cat_url = this._url + 'categories/' + cat.id + '/products';
+      }
 
-        this.http.get<any>(cat_url, {
-        params: new HttpParams().set('page', param)
-        }).subscribe(
-        res => {
-            // tslint:disable-next-line: triple-equals
-            if (res.status == 'success') {
-            res.data.pg = this.numberOfProductPages(res.data.total);
-            resolve(res.data);
-            }
-        },
-        (err: HttpErrorResponse) => {
-            console.log(err.error);
-        }
-        );
-      });
-    }
+      this.http.get<any>(cat_url, {
+      params: new HttpParams().set('page', param)
+      }).subscribe(
+      res => {
+          // tslint:disable-next-line: triple-equals
+          if (res.status == 'success') {
+          res.data.pg = this.numberOfProductPages(res.data.total);
+          resolve(res.data);
+          }
+      },
+      (err: HttpErrorResponse) => {
+          console.log(err.error);
+      }
+      );
+    });
   }
 
   getPopularProducts() {
-    if (this.auth.isAuthenticated()) {
-      return new Promise(resolve => {
-        this.http.get<any>(this._url + 'products').subscribe(
-          res => {
-            console.log(res);
-            // tslint:disable-next-line: triple-equals
-            if (res.status == 'success') {
-                const data = (res.data.data.length > 7) ? res.data.data.slice(0, 8) : res.data.data;
-                resolve(data);
-            }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err.error);
+    return new Promise(resolve => {
+      this.http.get<any>(this._url + 'products').subscribe(
+        res => {
+          console.log(res);
+          // tslint:disable-next-line: triple-equals
+          if (res.status == 'success') {
+            const data = (res.data.data.length > 7) ? res.data.data.slice(0, 8) : res.data.data;
+            resolve(data);
           }
-        );
-      });
-    }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err.error);
+        }
+      );
+    });
   }
 
   getCategories() {
-    if (this.auth.isAuthenticated()) {
-      return new Promise(resolve => {
-        this.http.get<any>(this._url + 'categories').subscribe(
-          res => {
-            console.log(res);
-            // tslint:disable-next-line: triple-equals
-            if (res.status == 'success') {
-              this._category = res.data as ICategory[];
-              this.addToCategory(res.data);
-              resolve(res.data);
-              console.log('this._category', this._category);
-            }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err.error);
+    return new Promise(resolve => {
+      this.http.get<any>(this._url + 'categories').subscribe(
+        res => {
+          console.log(res);
+          // tslint:disable-next-line: triple-equals
+          if (res.status == 'success') {
+            this._category = res.data as ICategory[];
+            this.addToCategory(res.data);
+            resolve(res.data);
+            console.log('this._category', this._category);
           }
-        );
-      });
-    }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err.error);
+        }
+      );
+    });
   }
 
   getProduct(id: number) {
-    if (this.auth.isAuthenticated()) {
-      return new Promise((resolve, reject) => {
-        this.http.get<any>(this._url + 'products/' + id).subscribe(
-          res => {
-            console.log(res);
-            // tslint:disable-next-line: triple-equals
-            if (res.status == 'success') {
-              console.log('this product', res.data);
-              resolve(res.data);
-            // tslint:disable-next-line: triple-equals
-            } else if (res.code == 401) {
-              this.removeToken();
-              this.checkLoggedIn();
-            } else {
-              reject(res);
-            }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err.error);
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this._url + 'products/' + id).subscribe(
+        res => {
+          console.log(res);
+          // tslint:disable-next-line: triple-equals
+          if (res.status == 'success') {
+            console.log('this product', res.data);
+            resolve(res.data);
+          // tslint:disable-next-line: triple-equals
+          } else if (res.code == 401) {
+            this.removeToken();
+            this.checkLoggedIn();
+          } else {
+            reject(res);
           }
-        );
-      });
-    }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err.error);
+        }
+      );
+    });
   }
 
   getProductsByTag(tagName: string) {
-    if (this.auth.isAuthenticated()) {
-      return new Promise(resolve => {
-        this.http.get<any>(this._url + 'products/tags', {
-          params: new HttpParams().set('tag', tagName)
-        }).subscribe(
-          res => {
-            console.log(res);
-            // tslint:disable-next-line: triple-equals
-            if (res.status == 'success') {
-              if (res.data && res.data.pg) {
-                res.data.pg = this.numberOfProductPages(res.data.total);
-              }
-              resolve(res.data);
+    return new Promise(resolve => {
+      this.http.get<any>(this._url + 'products/tags', {
+        params: new HttpParams().set('tag', tagName)
+      }).subscribe(
+        res => {
+          console.log(res);
+          // tslint:disable-next-line: triple-equals
+          if (res.status == 'success') {
+            if (res.data && res.data.pg) {
+              res.data.pg = this.numberOfProductPages(res.data.total);
             }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err.error);
+            resolve(res.data);
           }
-        );
-      });
-    }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err.error);
+        }
+      );
+    });
   }
 
   // Address
@@ -635,6 +619,39 @@ export class ProductService {
     }
 
     return [];
+  }
+
+  // Prooduct Rating
+  addProductRating(productId: number, commentReview: IComment) {
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.post<any>(this._url + 'products/' + productId + '/ratings', {
+        name: commentReview.name,
+        rate: commentReview.rate,
+        comment: commentReview.comment
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
+
+    return new Promise((res, rej) => rej('Not Authorized'));
+  }
+
+  getProductRating(productId: number) {
+    const token = this.getToken();
+    return this.http.get<any>(this._url + 'products/' + productId + '/ratings').toPromise();
+  }
+
+  canAddReview(productId: number) {
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.get<any>(this._url + 'products/' + productId + '/review', {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
+
+    return new Promise((res, rej) => rej('Not Authorized'));
   }
 }
 
