@@ -93,7 +93,7 @@ export class ProductDetailsComponent implements OnInit {
           icon: res ? 'success' : 'info',
           toast: true,
           title: text,
-          timer: 2000,
+          timer: 1000,
           showConfirmButton: false,
           position: 'top-right'
         });
