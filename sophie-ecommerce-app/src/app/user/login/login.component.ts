@@ -46,10 +46,15 @@ export class LoginComponent implements OnInit {
       this.auth.loginUser(email, pw).subscribe(
         r => {
           this.blockUI.stop();
-          console.log(r);
           if (r.data.token && r.data.is_admin === null) {
             this.prodServ.setToken(r.data.token);
-            this.auth.currentUser = r.data as IUSer;
+            this.auth.currentUser = {
+              id: r.data.id,
+              first_name: r.data.first_name,
+              last_name: r.data.last_name,
+              email: r.data.email,
+              phone: r.data.phone,
+            };
             this.auth.setUser(JSON.stringify(this.auth.currentUser));
 
             Swal.fire({
@@ -70,7 +75,7 @@ export class LoginComponent implements OnInit {
         this.wrongAuth = true;
       });
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }
 }
