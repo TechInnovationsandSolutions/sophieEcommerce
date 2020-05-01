@@ -5,3 +5,4 @@ export * from './testimonial.model';
 export * from './cart.model';
 export * from './responses.model';
 export * from './order.model';
+export * from './contact.model';
