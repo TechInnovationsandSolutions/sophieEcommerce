@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart, IUSerAddress, IComment } from './model';
+import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart, IUSerAddress, IComment, IContact } from './model';
 import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -652,6 +652,16 @@ export class ProductService {
     }
 
     return new Promise((res, rej) => rej('Not Authorized'));
+  }
+
+  // contact us
+  contactUs(message: IContact) {
+    return this.http.post<any>(this._url + 'contact', {
+      subject: message.subject,
+      name: message.name,
+      email: message.email,
+      body: message.body
+    }).toPromise();
   }
 }
 
