@@ -4,13 +4,14 @@ import { IProduct, IUSer, ICategory, ITestimonial, IReview, ICart, IUSerAddress 
 import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from '../user/auth.service';
 
 const TOKEN = 'x-token';
 
 @Injectable()
 export class ProductService {
   // tslint:disable-next-line: variable-name
-  _url = 'https://tis-bandb.herokuapp.com/api/v1/'; // Base URL
+  _url = this.auth.baseUrl; // Base URL
   private pageNoOfProduct = 20;
 
   // tslint:disable-next-line: variable-name
@@ -27,23 +28,24 @@ export class ProductService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
-  ) {}
+    private router: Router,
+    private auth: AuthService
+    ) {}
 
   setToken(token: string): void {
-      localStorage.setItem(TOKEN, token);
+    localStorage.setItem(TOKEN, token);
   }
 
   getToken() {
-      return localStorage.getItem(TOKEN);
+    return localStorage.getItem(TOKEN);
   }
 
   removeToken() {
-      localStorage.removeItem(TOKEN);
+    localStorage.removeItem(TOKEN);
   }
 
   isLogged() {
-      return localStorage.getItem(TOKEN) != null;
+    return localStorage.getItem(TOKEN) != null;
   }
 
   forgotPassword(userEmail: string) {
@@ -74,25 +76,25 @@ export class ProductService {
   }
 
   checkLoggedIn() {
-      // tslint:disable-next-line: no-unused-expression
-      this.isLogged() ? true : this.router.navigate(['/login']);
+    // tslint:disable-next-line: no-unused-expression
+    this.isLogged() ? true : this.router.navigate(['/login']);
   }
 
   numberOfProductPages(totalNo) {
-      const no = Math.ceil(totalNo / this.pageNoOfProduct);
-      return new Array(no).fill(1); // Thank you Leonardo Giroto
+    const no = Math.ceil(totalNo / this.pageNoOfProduct);
+    return new Array(no).fill(1); // Thank you Leonardo Giroto
   }
 
   getTestimonials(): Observable<ITestimonial[]> {
-      return this.http.get(this._testimonial).pipe(map(resp => resp as ITestimonial[]));
+    return this.http.get(this._testimonial).pipe(map(resp => resp as ITestimonial[]));
   }
 
   getSocialMedia(): Observable<any[]> {
-      return this.http.get(this._social_media).pipe(map(resp => resp as any[]));
+    return this.http.get(this._social_media).pipe(map(resp => resp as any[]));
   }
 
   getContactDetails(): Observable<any[]> {
-      return this.http.get(this._contact_details).pipe(map(resp => resp as any[]));
+    return this.http.get(this._contact_details).pipe(map(resp => resp as any[]));
   }
 
   getStateLGADetails(): Observable<any[]> {
@@ -100,6 +102,7 @@ export class ProductService {
   }
 
   getProducts(param: string) {
+    if (this.auth.isAuthenticated()) {
       return new Promise(resolve => {
         this.http.get<any>(this._url + 'products', {
           params: new HttpParams().set('page', param)
@@ -117,15 +120,16 @@ export class ProductService {
           }
         );
       });
+    }
   }
 
   getSearchedProducts(searchTerm: string, param: string) {
+    if (this.auth.isAuthenticated()) {
       return new Promise(resolve => {
         this.http.get<any>(this._url + 'products/search', {
           params: new HttpParams().set('search', searchTerm).set('page', param)
         }).subscribe(
           res => {
-            console.log(res);
             // tslint:disable-next-line: triple-equals
             if (res.status == 'success') {
               res.data.pg = this.numberOfProductPages(res.data.total);
@@ -133,112 +137,117 @@ export class ProductService {
             }
           },
           (err: HttpErrorResponse) => {
+          }
+        );
+      });
+    }
+  }
+
+  getProductsByCategory(categoryName: string, param: string) {
+    if (this.auth.isAuthenticated()) {
+      this._category = this._category.length ? this._category : this.getCategoryFromLocal();
+      return new Promise(resolve => {
+        // tslint:disable-next-line: variable-name
+        let cat_url = '';
+        // tslint:disable-next-line: triple-equals
+        if (categoryName == 'all') {
+          cat_url = this._url + 'products';
+        } else {
+          // tslint:disable-next-line: triple-equals
+          const cat = this._category.find(c => c.name == categoryName);
+          if (!cat) { return; }
+          cat_url = this._url + 'categories/' + cat.id + '/products';
+        }
+
+        this.http.get<any>(cat_url, {
+        params: new HttpParams().set('page', param)
+        }).subscribe(
+        res => {
+            // tslint:disable-next-line: triple-equals
+            if (res.status == 'success') {
+            res.data.pg = this.numberOfProductPages(res.data.total);
+            resolve(res.data);
+            }
+        },
+        (err: HttpErrorResponse) => {
+            console.log(err.error);
+        }
+        );
+      });
+    }
+  }
+
+  getPopularProducts() {
+    if (this.auth.isAuthenticated()) {
+      return new Promise(resolve => {
+        this.http.get<any>(this._url + 'products').subscribe(
+          res => {
+            console.log(res);
+            // tslint:disable-next-line: triple-equals
+            if (res.status == 'success') {
+                const data = (res.data.data.length > 7) ? res.data.data.slice(0, 8) : res.data.data;
+                resolve(data);
+            }
+          },
+          (err: HttpErrorResponse) => {
             console.log(err.error);
           }
         );
       });
-  }
-
-  getProductsByCategory(categoryName: string, param: string) {
-    this._category = this._category.length ? this._category : this.getCategoryFromLocal();
-    return new Promise(resolve => {
-      // tslint:disable-next-line: variable-name
-      let cat_url = '';
-      // tslint:disable-next-line: triple-equals
-      if (categoryName == 'all') {
-        cat_url = this._url + 'products';
-      } else {
-        // tslint:disable-next-line: triple-equals
-        const cat = this._category.find(c => c.name == categoryName);
-        console.log('cat', categoryName, cat, this._category);
-        if (!cat) { return; }
-        cat_url = this._url + 'categories/' + cat.id + '/products';
-      }
-      console.log('cat_url', cat_url);
-
-      this.http.get<any>(cat_url, {
-      params: new HttpParams().set('page', param)
-      }).subscribe(
-      res => {
-          console.log(res);
-          // tslint:disable-next-line: triple-equals
-          if (res.status == 'success') {
-          res.data.pg = this.numberOfProductPages(res.data.total);
-          resolve(res.data);
-          }
-      },
-      (err: HttpErrorResponse) => {
-          console.log(err.error);
-      }
-      );
-    });
-  }
-
-  getPopularProducts() {
-      return new Promise(resolve => {
-          this.http.get<any>(this._url + 'products').subscribe(
-            res => {
-              console.log(res);
-              // tslint:disable-next-line: triple-equals
-              if (res.status == 'success') {
-                  const data = (res.data.data.length > 7) ? res.data.data.slice(0, 8) : res.data.data;
-                  resolve(data);
-              }
-            },
-            (err: HttpErrorResponse) => {
-              console.log(err.error);
-            }
-          );
-        });
+    }
   }
 
   getCategories() {
+    if (this.auth.isAuthenticated()) {
       return new Promise(resolve => {
-          this.http.get<any>(this._url + 'categories').subscribe(
-            res => {
-              console.log(res);
-              // tslint:disable-next-line: triple-equals
-              if (res.status == 'success') {
-                this._category = res.data as ICategory[];
-                this.addToCategory(res.data);
-                resolve(res.data);
-                console.log('this._category', this._category);
-              }
-            },
-            (err: HttpErrorResponse) => {
-              console.log(err.error);
+        this.http.get<any>(this._url + 'categories').subscribe(
+          res => {
+            console.log(res);
+            // tslint:disable-next-line: triple-equals
+            if (res.status == 'success') {
+              this._category = res.data as ICategory[];
+              this.addToCategory(res.data);
+              resolve(res.data);
+              console.log('this._category', this._category);
             }
-          );
-        });
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err.error);
+          }
+        );
+      });
+    }
   }
 
   getProduct(id: number) {
+    if (this.auth.isAuthenticated()) {
       return new Promise((resolve, reject) => {
-          this.http.get<any>(this._url + 'products/' + id).subscribe(
-            res => {
-              console.log(res);
-              // tslint:disable-next-line: triple-equals
-              if (res.status == 'success') {
-                console.log('this product', res.data);
-                resolve(res.data);
-              // tslint:disable-next-line: triple-equals
-              } else if (res.code == 401) {
-                this.removeToken();
-                this.checkLoggedIn();
-              } else {
-                reject(res);
-              }
-            },
-            (err: HttpErrorResponse) => {
-              console.log(err.error);
+        this.http.get<any>(this._url + 'products/' + id).subscribe(
+          res => {
+            console.log(res);
+            // tslint:disable-next-line: triple-equals
+            if (res.status == 'success') {
+              console.log('this product', res.data);
+              resolve(res.data);
+            // tslint:disable-next-line: triple-equals
+            } else if (res.code == 401) {
+              this.removeToken();
+              this.checkLoggedIn();
+            } else {
+              reject(res);
             }
-          );
-        });
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err.error);
+          }
+        );
+      });
+    }
   }
 
   getProductsByTag(tagName: string) {
-    console.log('le tagname', tagName);
-    return new Promise(resolve => {
+    if (this.auth.isAuthenticated()) {
+      return new Promise(resolve => {
         this.http.get<any>(this._url + 'products/tags', {
           params: new HttpParams().set('tag', tagName)
         }).subscribe(
@@ -257,81 +266,96 @@ export class ProductService {
           }
         );
       });
+    }
   }
 
   // Address
 
   getUserAddresses() {
-    const token = this.getToken();
-    return this.http.get<any>(this._url + 'address', {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.get<any>(this._url + 'address', {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   addUserAddress(address: IUSerAddress) {
-    const token = this.getToken();
-    return this.http.post<any>(this._url + 'address', {
-      first_name: address.first_name,
-      last_name: address.last_name,
-      state_id: address.state_id,
-      lga_id: address.lga_id,
-      city: address.city,
-      address: address.address,
-      phone: address.phone,
-    },
-    {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.post<any>(this._url + 'address', {
+        first_name: address.first_name,
+        last_name: address.last_name,
+        state_id: address.state_id,
+        lga_id: address.lga_id,
+        city: address.city,
+        address: address.address,
+        phone: address.phone,
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   updateUserAddress(address: IUSerAddress) {
-    const token = this.getToken();
-    return this.http.put<any>(this._url + 'address/' + address.id, {
-      first_name: address.first_name,
-      last_name: address.last_name,
-      state_id: address.state_id,
-      lga_id: address.lga_id,
-      city: address.city,
-      address: address.address,
-      phone: address.phone,
-    },
-    {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.put<any>(this._url + 'address/' + address.id, {
+        first_name: address.first_name,
+        last_name: address.last_name,
+        state_id: address.state_id,
+        lga_id: address.lga_id,
+        city: address.city,
+        address: address.address,
+        phone: address.phone,
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   deleteUserAddress(address: IUSerAddress) {
-    const token = this.getToken();
-    return this.http.delete<any>(this._url + 'address/' + address.id,
-    {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.delete<any>(this._url + 'address/' + address.id,
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   // Orders
   getUserOrders() {
-    const token = this.getToken();
-    return this.http.get<any>(this._url + 'orders', {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.get<any>(this._url + 'orders', {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   getUserOrderById(id: string) {
-    const token = this.getToken();
-    return this.http.get<any>(this._url + 'orders/' + id, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.get<any>(this._url + 'orders/' + id, {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   // tslint:disable-next-line: variable-name
   addUserOrder(address_id: string) {
-    const token = this.getToken();
-    return this.http.post<any>(this._url + 'orders', {
-      address_id
-    },
-    {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.post<any>(this._url + 'orders', {
+        address_id
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   // Improve SEO
@@ -360,83 +384,87 @@ export class ProductService {
 
   // Add to cart
   addToCart(item: ICart) {
-    const token = this.getToken();
-    return this.http.post<any>(this._url + 'cart', {
-      product_id: item.id,
-      amount: item.amount,
-      quantity: item.quantity
-    }, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.post<any>(this._url + 'cart', {
+        product_id: item.id,
+        amount: item.amount,
+        quantity: item.quantity
+      }, {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   removeFromCart(item: ICart) {
-    const token = this.getToken();
-    return this.http.delete<any>(this._url + 'cart/' + item.id, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.delete<any>(this._url + 'cart/' + item.id, {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
   }
 
   updateCart(item: ICart) {
-    const isInCart = cartItems.find(c => c.id === item.id);
-
-    // Yes in cart
-    if (isInCart) {
-      console.log('up to date');
-      const i = cartItems.indexOf(isInCart);
-      cartItems.splice(i, 1, item);
-      this.updateToLocal();
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      // tslint:disable-next-line: variable-name
+      const product_id = item.id;
+      const amount = item.amount;
+      const quantity = item.quantity;
+      return this.http.put<any>(this._url + 'cart/' + item.id, {
+        product_id,
+        amount,
+        quantity
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
     }
   }
 
   getCartItems() {
-    const token = this.getToken();
-    console.log('sds');
-    return this.http.get<any>(this._url + 'cart', {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).toPromise().then(res => {
-      if (res.status === 'success' && cartItems.length) {
-        let arr: any[] = res.data.filter(r => !cartItems.includes(r));
-        arr = arr.concat(cartItems);
-        res.data = arr;
-      }
-      return res;
-    });
-  }
-
-  // Local Cart for non-authenticated users
-  populateLocalCartItems(CartItems: ICart[]) {
-    let result = false;
-    console.log('CartItems', CartItems);
-
-    if (CartItems.length) {
-      cartItems = [];
-      CartItems.map(r => cartItems.push(r));
-      result = true;
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      console.log('sds');
+      return this.http.get<any>(this._url + 'cart', {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise().then(res => {
+        if (res.status === 'success' && cartItems.length) {
+          let arr: any[] = res.data.filter(r => !cartItems.includes(r));
+          arr = arr.concat(cartItems);
+          res.data = arr;
+        }
+        return res;
+      });
     }
-    const subject = new Subject<boolean>();
-    setTimeout(() => {
-      console.log(result, cartItems);
-      subject.next(result);
-      subject.complete();
-    }, 100);
-    return subject.toPromise();
-  }
-
-  getCartNo() {
-    const cartNoElem = document.querySelector('span.cart_no span') as HTMLElement;
-    cartNoElem.innerHTML = cartItems.length.toString();
   }
 
   getLocalCartItems(): Observable<ICart[]> {
     const subject = new Subject<ICart[]>();
     setTimeout(() => {
       console.log('Lemme in');
-      cartItems = (!!cartItems.length) ? cartItems : [];
+      cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
       subject.next(cartItems);
       subject.complete();
     }, 100);
     return subject;
+  }
+
+  // Local Cart for non-authenticated users
+  populateLocalCartItems() {
+    // if (this.isAuthenticated()) {
+      this.getCartItems().then(res => {
+        console.log('isPopulating', res);
+        if (res.status === 'success') {
+          const ids = cartItems.map(r => r.id);
+          const arr = cartItems.length ?  res.data.filter((r: ICart) => !ids.includes(r.id)) : res.data;
+          console.log('arr O', arr);
+          cartItems = cartItems.concat(arr);
+          this.updateToLocal();
+        }
+      });
+    // }
   }
 
   addToLocalCart(item: ICart) {
@@ -449,6 +477,7 @@ export class ProductService {
       cartItems.push(item);
       this.updateToLocal();
       result = true;
+      this.addToCart(item);
     // tslint:disable-next-line: triple-equals
     } else if (isInCart.quantity != item.quantity) {
       console.log('ups', item);
@@ -457,7 +486,6 @@ export class ProductService {
     }
 
     console.log('df0');
-    this.getCartNo();
 
     const subject = new Subject<boolean>();
     setTimeout(() => {
@@ -476,8 +504,17 @@ export class ProductService {
     if (isInCart) {
       const ind = cartItems.indexOf(isInCart);
       cartItems.splice(ind, 1);
+      this.removeFromCart(item);
       this.updateToLocal();
     }
+    const subject = new Subject<ICart[]>();
+    setTimeout(() => {
+      console.log('Lemme in');
+      cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
+      subject.next(cartItems);
+      subject.complete();
+    }, 100);
+    return subject;
   }
 
   updateLocalCart(item: ICart) {
@@ -489,6 +526,7 @@ export class ProductService {
       const i = cartItems.indexOf(isInCart);
       cartItems.splice(i, 1, item);
       this.updateToLocal();
+      this.updateCart(item);
     }
   }
 
@@ -510,6 +548,16 @@ export class ProductService {
       const obj = JSON.stringify(categories);
       localStorage.setItem('category', obj);
     }
+  }
+
+  getCartFromLocal() {
+    const data = localStorage.getItem('cart');
+    const obj = JSON.parse(data) as ICart[];
+    if (obj && !!obj.length) {
+      return obj;
+    }
+
+    return [];
   }
 
   getCategoryFromLocal() {
