@@ -5,6 +5,12 @@ export interface ITag {
     name: string;
 }
 
+export interface IComment {
+  name: string;
+  comment?: string;
+  rate?: number;
+}
+
 export interface IReview {
     name: string;
     comment?: string;
