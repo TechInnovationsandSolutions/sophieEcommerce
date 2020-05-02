@@ -22,6 +22,25 @@
     &:last-child{
       border: 0;
     }
+
+    .can-edit-wrapper {
+      button {
+        margin-left: 15px;
+
+        &.btn-can-edit {
+          @include invertOnHover(#fff, $success);
+        }
+
+        &.btn-can-delete {
+          @include invertOnHover(#fff, $danger);
+        }
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
   }
 }
 
