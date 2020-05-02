@@ -1,42 +1,47 @@
 @import './../../../app.component.scss';
 
 .reviews{
-    .review{
-        border-bottom: 1px solid rgba($placeHolderAsh, 0.25);
-        padding: 1em 0.75em;
+  .review{
+    border-bottom: 1px solid rgba($placeHolderAsh, 0.25);
+    padding: 1em 0.75em;
 
-        .review-rating{
-            font-size: 0.9em;
-            color: $limeGreen;
-        }
-
-        .review-summary{
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .reviewBy{
-            font-size: 0.75em;
-        }
-
-        &:last-child{
-            border: 0;
-        }
+    .review-rating{
+      font-size: 0.9em;
+      color: $limeGreen;
     }
+
+    .review-summary{
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .reviewBy{
+      font-size: 0.75em;
+    }
+
+    &:last-child{
+      border: 0;
+    }
+  }
 }
 
 form{
-    .rating-section{
-        label{
-            @include flexWrap();
-            padding: 0.25em;
-            padding-left: 0;
-            width: 45px;
-            margin-right: 0.375em;
+  .rating-section{
+    label{
+      @include flexWrap();
+      padding: 0.25em;
+      padding-left: 0;
+      width: 45px;
+      margin-right: 0.375em;
 
-            input{
-                margin: auto 0.25em;
-            }
-        }
+      input{
+        margin: auto 0.25em;
+      }
     }
+  }
+}
+
+.frm-title {
+  font-size: 2em;
+  font-weight: bold;
 }
