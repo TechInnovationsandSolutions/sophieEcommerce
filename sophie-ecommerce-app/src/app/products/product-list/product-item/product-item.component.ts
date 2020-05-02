@@ -30,18 +30,18 @@ export class ProductItemComponent {
     };
 
     this.productService.addToLocalCart(cartItem)
-    // .then((res) => {
-    //   const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
-    //   console.log('carty0', text);
-    //   Swal.fire({
-    //     icon: res ? 'success' : 'info',
-    //     toast: true,
-    //     title: text,
-    //     timer: 1000,
-    //     showConfirmButton: false,
-    //     position: 'top-right'
-    //   });
-    // });
+    .then((res) => {
+      const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
+      console.log('carty0', text);
+      Swal.fire({
+        icon: res ? 'success' : 'info',
+        toast: true,
+        title: text,
+        timer: 1000,
+        showConfirmButton: false,
+        position: 'top-right'
+      });
+    });
   }
 
   addToWishList() {
