@@ -33,6 +33,11 @@
     font-display: swap;
 }
 
+html {
+  min-height: 100vh;
+  background-color: #F5F4F4;
+}
+
 body{
     font-family: 'Proxima Nova', Arial, Helvetica, sans-serif;
 }
