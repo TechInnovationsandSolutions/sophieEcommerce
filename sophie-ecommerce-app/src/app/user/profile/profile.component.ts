@@ -81,6 +81,14 @@ export class ProfileComponent implements OnInit {
           this.auth.updateUser(_user).then((res) => {
             // tslint:disable-next-line: no-conditional-assignment
             if (res.status = 'success') {
+              this.auth.currentUser = {
+                id: this.auth.currentUser.id,
+                first_name: _user.first_name,
+                last_name: _user.last_name,
+                email: this.auth.currentUser.email,
+                phone: _user.phone,
+              };
+              this.auth.setUser(JSON.stringify(this.auth.currentUser));
               this.blockUI.stop();
               Swal.fire('Successful', 'Your account details were updated successfully 🙂.', 'success');
             }
