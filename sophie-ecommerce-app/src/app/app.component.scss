@@ -54,10 +54,20 @@ $black:    #000 !default;
   border: $borderWid solid $borderClr;
   transition: 0.2s ease-in;
 
+  svg {
+    fill: $clr;
+    stroke: $clr;
+  }
+
   &:hover{
-      background-color: $clr;
-      color: $bg;
-      border: $borderWid solid $borderClr;
+    background-color: $clr;
+    color: $bg;
+    border: $borderWid solid $borderClr;
+
+    svg {
+      fill: $bg;
+      stroke: $bg;
+    }
   }
 }
 
