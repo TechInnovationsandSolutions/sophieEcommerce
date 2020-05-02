@@ -27,8 +27,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     const thisUser = this.auth.currentUser;
-    console.log(thisUser);
-
     this.userProfileForm = this.fb.group({
       first_name: [thisUser.first_name, Validators.required],
       last_name: [thisUser.last_name, Validators.required],
@@ -70,7 +68,6 @@ export class ProfileComponent implements OnInit {
         cancelButtonText: 'No, Cancel'
       }).then((result) => {
         if (result.value) {
-          console.log('formValues', formValues.value);
           this.blockUI.start();
           // setTimeout(() => {
           // this.blockUI.stop();
@@ -123,7 +120,6 @@ export class ProfileComponent implements OnInit {
         cancelButtonText: 'No, Cancel'
       }).then((result) => {
         if (result.value) {
-          console.log('formValues', formValue.value);
           this.blockUI.start();
           // setTimeout(() => {
           //   this.blockUI.stop();
