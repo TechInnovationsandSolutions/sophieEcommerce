@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IProduct, ProductService, ICart } from 'src/app/shared';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FirstCharCapitalizePipe } from 'src/app/common';
 import Swal from 'sweetalert2';
 
@@ -29,7 +29,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private firstChar: FirstCharCapitalizePipe
+    private firstChar: FirstCharCapitalizePipe,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -40,7 +41,8 @@ export class ProductDetailsComponent implements OnInit {
         this.product = res as IProduct;
         this.showPreloader = false;
         this.makeProductSEOTags();
-      }).then(() => {
+      })
+      .then(() => {
         // console.log('pror', this.product);
         if (this.product.tags && this.product.tags.length) {
           const productTag = this.product.tags.map(t => t.name);
@@ -49,7 +51,8 @@ export class ProductDetailsComponent implements OnInit {
             this.relatedProducts = (res as IProduct[]).length > 8 ? (res as IProduct[]).slice(0, 8) : (res as IProduct[]);
           });
         }
-      });
+      })
+      .catch(err => this.router.navigate(['/404']));
     });
 
     this.cartQty = this.route.snapshot.queryParams.cart;
