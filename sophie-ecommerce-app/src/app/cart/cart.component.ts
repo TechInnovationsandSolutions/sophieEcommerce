@@ -66,11 +66,9 @@ export class CartComponent implements OnInit {
   removeFromCart(cartItem: ICart) {
     console.log('remove this from cart', cartItem);
     this.blockUI.start();
-    this.productService.removeFromLocalCart(cartItem).subscribe((res) => {
+    this.productService.removeFromLocalCart(cartItem).then((res) => {
       this.blockUI.stop();
       console.log('remove res', res);
-      const cIndex = this.cartItems.indexOf(cartItem);
-      this.cartItems.splice(cIndex, 1);
       this.sumTotal();
     });
   }
