@@ -254,7 +254,6 @@ export class ProductService {
   }
 
   // Address
-
   getUserAddresses() {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
@@ -413,31 +412,32 @@ export class ProductService {
       console.log('sds');
       return this.http.get<any>(this._url + 'cart', {
         headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-      }).toPromise().then(res => {
-        if (res.status === 'success' && cartItems.length) {
-          let arr: any[] = res.data.filter(r => !cartItems.includes(r));
-          arr = arr.concat(cartItems);
-          res.data = arr;
-        }
-        return res;
-      });
+      }).toPromise();
     }
   }
 
   getLocalCartItems(): Observable<ICart[]> {
-    const subject = new Subject<ICart[]>();
-    setTimeout(() => {
-      console.log('Lemme in');
-      cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
-      subject.next(cartItems);
-      subject.complete();
-    }, 100);
-    return subject;
+    // const subject = new Subject<ICart[]>();
+    // setTimeout(() => {
+    //   console.log('Lemme in');
+    //   cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
+    //   subject.next(cartItems);
+    //   subject.complete();
+    // }, 100);
+    // return subject;
+
+    let subject = new Subject<ICart[]>();
+        setTimeout(()=>{
+            cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
+            subject.next(cartItems);
+            subject.complete();
+        }, 100);
+        return subject
   }
 
   // Local Cart for non-authenticated users
   populateLocalCartItems() {
-    // if (this.isAuthenticated()) {
+    if (this.auth.isAuthenticated()) {
       this.getCartItems().then(res => {
         console.log('isPopulating', res);
         if (res.status === 'success') {
@@ -448,7 +448,7 @@ export class ProductService {
           this.updateToLocal();
         }
       });
-    // }
+    }
   }
 
   addToLocalCart(item: ICart) {
@@ -459,26 +459,34 @@ export class ProductService {
     // We expect undefine if it's not found
     if (!isInCart) {
       cartItems.push(item);
-      this.updateToLocal();
-      result = true;
-      this.addToCart(item);
-    // tslint:disable-next-line: triple-equals
-    } else if (isInCart.quantity != item.quantity) {
-      console.log('ups', item);
       this.updateLocalCart(item);
       result = true;
+    } else if(isInCart.quantity !== item.quantity){
+      console.log('ups', item);
+      this.updateCart(item);
     }
+
+    // // We expect undefine if it's not found
+    // if (!isInCart) {
+    //   cartItems.push(item);
+    //   this.updateToLocal();
+    //   result = true;
+    //   this.addToCart(item);
+    // // tslint:disable-next-line: triple-equals
+    // } else if (isInCart.quantity != item.quantity) {
+    //   console.log('ups', item);
+    //   this.updateLocalCart(item);
+    // }
 
     console.log('df0');
 
-    const subject = new Subject<boolean>();
-    setTimeout(() => {
-      console.log('locak add', result, cartItems);
-      this.getLocalCartItems();
-      subject.next(result);
-      subject.complete();
-    }, 100);
-    return subject.toPromise();
+    // const subject = new Subject<boolean>();
+    // setTimeout(() => {
+    //   console.log('locak add', result, cartItems);
+    //   subject.next(result);
+    //   subject.complete();
+    // }, 100);
+    // return subject.toPromise();
   }
 
   removeFromLocalCart(item: ICart) {
@@ -491,10 +499,9 @@ export class ProductService {
       this.removeFromCart(item);
       this.updateToLocal();
     }
+
     const subject = new Subject<ICart[]>();
     setTimeout(() => {
-      console.log('Lemme in');
-      cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
       subject.next(cartItems);
       subject.complete();
     }, 100);
@@ -510,7 +517,6 @@ export class ProductService {
       const i = cartItems.indexOf(isInCart);
       cartItems.splice(i, 1, item);
       this.updateToLocal();
-      this.updateCart(item);
     }
   }
 

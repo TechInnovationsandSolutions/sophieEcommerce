@@ -15,20 +15,21 @@ export class NavBarComponent implements OnInit {
   cartItems: ICart[] = [];
   searchText = '';
 
-  constructor(private productService: ProductService, public auth: AuthService, private router: Router) { }
+  constructor(
+    private productService: ProductService,
+    public auth: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.clickLink();
+    this.productService.getLocalCartItems().subscribe(cItems => {
+      console.log('cart items', cItems);
+      this.cartItems = cItems;
+      // this.cartItems = cItems.data;
+    });
     if (this.auth.isAuthenticated()) {
-      this.productService.getCartItems().then((cItems) => {
-        // console.log('cart items', cItems);
-        if (cItems.status === 'success') {
-          this.cartItems = cItems.data.length;
-        }
-        // this.cartItems = cItems;
-      }).catch((rej) => {
-
-      });
+      this.productService.populateLocalCartItems();
     }
   }
 

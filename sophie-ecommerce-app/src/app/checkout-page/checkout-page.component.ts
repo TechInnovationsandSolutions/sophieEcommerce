@@ -46,21 +46,17 @@ export class CheckoutPageComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser =  this.auth.currentUser;
-    this.productService.getCartItems().then(cItems => {
-      if (cItems.status === 'success') {
-        this.cartItems = cItems.data;
-        this.sumTotal();
-        console.log('totl', this.totamt);
-        const totamtKobo = this.totamt ? Math.round(this.totamt * 100) : 0;
-        this.options = {
-          amount: 1000,
-          email: this.currentUser.email,
-          ref: `${Math.ceil(Math.random() * 10e10)}`
-        };
-      } else {
-        throw new Error(cItems);
-      }
-    }).catch(err => console.error(err));
+    this.productService.getLocalCartItems().subscribe(cItems => {
+      this.cartItems = cItems;
+      this.sumTotal();
+      console.log('totl', this.totamt);
+      const totamtKobo = this.totamt ? Math.round(this.totamt * 100) : 0;
+      this.options = {
+        amount: 1000,
+        email: this.currentUser.email,
+        ref: `${Math.ceil(Math.random() * 10e10)}`
+      };
+    });
 
     this.productService.getStateLGADetails().subscribe(s => {
       // tslint:disable-next-line: no-shadowed-variable
