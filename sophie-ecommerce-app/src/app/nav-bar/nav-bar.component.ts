@@ -23,14 +23,13 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.clickLink();
-    this.productService.getLocalCartItems().subscribe(cItems => {
-      console.log('cart items', cItems);
-      this.cartItems = cItems;
-      // this.cartItems = cItems.data;
-    });
     if (this.auth.isAuthenticated()) {
       this.productService.populateLocalCartItems();
     }
+    this.productService.getLocalCartItems().subscribe(cItems => {
+      console.log('cart items', cItems);
+      this.cartItems = cItems;
+    });
   }
 
   collapseIfMobile() {
