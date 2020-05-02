@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService, IContact } from '../shared';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { FirstCharCapitalizePipe } from '../common/first-char-capitalize.pipe';
 
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'contact-page',
   templateUrl: './contact-page.component.html',
-  styleUrls: ['./contact-page.component.scss']
+  styleUrls: ['./contact-page.component.scss'],
+  providers: [FirstCharCapitalizePipe]
 })
 export class ContactPageComponent implements OnInit {
   contactDetails: any[];
@@ -22,7 +24,8 @@ export class ContactPageComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private firstChar: FirstCharCapitalizePipe
   ) { }
 
   ngOnInit() {
@@ -48,6 +51,8 @@ export class ContactPageComponent implements OnInit {
   onSubmit() {
     if (this.contactForm.valid) {
       const msg: IContact = this.contactForm.value;
+      const defaultSubject = 'Contact message from Sophie Bath and Body';
+      msg.subject = msg.subject ? (this.firstChar.transform(msg.subject) + ' - ' + defaultSubject) : defaultSubject;
       this.loading = true;
       this.productService.contactUs(msg).then(r => {
         this.loading = false;
