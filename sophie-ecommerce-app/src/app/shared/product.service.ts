@@ -342,6 +342,16 @@ export class ProductService {
     }
   }
 
+  verifyUserOrder(ref: string) {
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.get<any>(this._url + 'orders/verify', {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
+        params: new HttpParams().set('reference', ref)
+      }).toPromise();
+    }
+  }
+
   // Improve SEO
   makeSEO(title?: string, desc?: string, ogImg?: string) {
     const q$ = (selector) => {
