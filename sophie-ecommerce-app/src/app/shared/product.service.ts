@@ -621,8 +621,8 @@ export class ProductService {
     return [];
   }
 
-  // Prooduct Rating
-  addProductRating(productId: number, commentReview: IComment) {
+  // Prooduct Review
+  addProductReview(productId: number, commentReview: IComment) {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
       return this.http.post<any>(this._url + 'products/' + productId + '/ratings', {
@@ -638,7 +638,23 @@ export class ProductService {
     return new Promise((res, rej) => rej('Not Authorized'));
   }
 
-  getProductRating(productId: number) {
+  updateProductReview(reviewId: number, commentReview: IComment) {
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.put<any>(this._url + 'ratings/' + reviewId, {
+        name: commentReview.name,
+        rate: commentReview.rate,
+        comment: commentReview.comment
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
+
+    return new Promise((res, rej) => rej('Not Authorized'));
+  }
+
+  getProductReview(productId: number) {
     const token = this.getToken();
     return this.http.get<any>(this._url + 'products/' + productId + '/ratings').toPromise();
   }
@@ -647,6 +663,18 @@ export class ProductService {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
       return this.http.get<any>(this._url + 'products/' + productId + '/review', {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      }).toPromise();
+    }
+
+    return new Promise((res, rej) => rej('Not Authorized'));
+  }
+
+  deleteProductReview(commentReview: IReview) {
+    if (this.auth.isAuthenticated()) {
+      const token = this.getToken();
+      return this.http.delete<any>(this._url + 'ratings/' + commentReview.id,
+      {
         headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
       }).toPromise();
     }
