@@ -8,7 +8,7 @@ div.home-banner{
     background-size: contain;
     background-repeat: no-repeat;
     background-color: $sophiePink;
-    height: 50vh;
+    height: 60vh;
     max-height: 80vh;
     padding: 10px;
     margin-bottom: 20px;
@@ -64,17 +64,17 @@ div.home-banner{
             padding: 10px;
             max-width: 80%;
             div.desc{
-                p{ 
+                p{
                     line-height: 1.2em;
                 }
             }
         }
 
-        @media screen and (min-width: 575px) {            
+        @media screen and (min-width: 575px) {
             div.desc{
                 padding: 20px;
 
-                p{ 
+                p{
                     margin-bottom: 1.25em;
                 }
             }
@@ -84,9 +84,9 @@ div.home-banner{
             div.desc{
                 padding: 50px 20px;
 
-                p{ 
+                p{
                     margin-bottom: 2em;
-                    
+
                     &.home-banner__title{
                         margin-bottom: 2.25em;
                     }

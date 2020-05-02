@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ICart, ProductService } from '../shared';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import Swal from 'sweetalert2';
+import { AuthService } from '../user/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,13 +12,21 @@ import { ICart, ProductService } from '../shared';
 export class CartComponent implements OnInit {
   cartItems: ICart[] = [];
   totamt = 0;
+  showPreloader = true;
+  @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
-    this.productService.getCartItems().subscribe(cItems => {
+    this.productService.makeSEO('Cart');
+    this.productService.getLocalCartItems().subscribe((cItems) => {
+      console.log('cart items', cItems);
       this.cartItems = cItems;
       this.sumTotal();
+      this.showPreloader = false;
     });
   }
 
@@ -29,25 +40,22 @@ export class CartComponent implements OnInit {
 
   addOneMore(item: ICart) {
     item.quantity++;
-    // console.log('current cart items?', this.cartItems);
-    this.productService.updateCart(item);
+    this.productService.updateLocalCart(item);
     this.sumTotal();
   }
 
   reduceByOne(item: ICart) {
     // tslint:disable-next-line: no-unused-expression
     (item.quantity > 1) ? item.quantity--  : item.quantity;
-    // console.log('current cart items?', this.cartItems);
-    this.productService.updateCart(item);
+    this.productService.updateLocalCart(item);
     this.sumTotal();
   }
 
   valueInputChange(item: ICart, e) {
     const qty = !!e.target.value ? e.target.value : 0;
-    // console.log('cddv carte', !!e.target.value, item);
     if (qty > 1) {
       item.quantity = qty;
-      this.productService.updateCart(item);
+      this.productService.updateLocalCart(item);
       this.sumTotal();
     } else {
       item.quantity = 1;
@@ -57,7 +65,11 @@ export class CartComponent implements OnInit {
 
   removeFromCart(cartItem: ICart) {
     console.log('remove this from cart', cartItem);
-    this.productService.removeFromCart(cartItem);
-    this.sumTotal();
+    this.blockUI.start();
+    this.productService.removeFromLocalCart(cartItem).then((res) => {
+      this.blockUI.stop();
+      console.log('remove res', res);
+      this.sumTotal();
+    });
   }
 }

@@ -40,6 +40,8 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
+import { FirstCharCapitalizePipe } from './common/first-char-capitalize.pipe';
+import { VerifyPaymentComponent } from './verify-payment/verify-payment.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import { WishListComponent } from './wish-list/wish-list.component';
     BreadcrumbComponent,
     NotFoundComponent,
     WishListComponent,
+    FirstCharCapitalizePipe,
+    VerifyPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -79,15 +83,13 @@ import { WishListComponent } from './wish-list/wish-list.component';
     HttpClientModule,
     Ng5SliderModule,
     BlockUIModule.forRoot(),
-    LazyLoadImageModule.forRoot({
-      preset: intersectionObserverPreset
-    }),
     Angular4PaystackModule.forRoot('pk_test_4f69d7376af4f85cf8e0c1113c04a82ad6d97abe')
   ],
   providers: [
     ProductService,
     AuthService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule { }

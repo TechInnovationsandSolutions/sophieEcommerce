@@ -8,11 +8,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { userRoutes } from './user.routes';
 import { LoginRegisterComponent } from './login-register/login-register.component';
-import { AuthService } from './auth.service';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { MyAddressesComponent } from './my-addresses/my-addresses.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-
+import { CollapsibleComponentComponent } from './collapsible-component/collapsible-component.component';
 
 
 @NgModule({
@@ -26,7 +25,12 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    ForgotPasswordComponent, LoginRegisterComponent, MyAccountComponent, MyAddressesComponent, MyOrdersComponent
+    ForgotPasswordComponent,
+    LoginRegisterComponent,
+    MyAccountComponent,
+    MyAddressesComponent,
+    MyOrdersComponent,
+    CollapsibleComponentComponent
   ],
   providers: [
   ]

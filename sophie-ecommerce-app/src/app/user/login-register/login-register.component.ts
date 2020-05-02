@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/shared';
 
 @Component({
   selector: 'app-login-register',
@@ -9,11 +10,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoginRegisterComponent implements OnInit {
   isLogin = true;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private productService: ProductService) { }
 
   ngOnInit() {
     const correctRoute = this.route.snapshot.url[0].path;
-    (correctRoute === 'login') ? (this.isLogin = true) : (this.isLogin = false);
+
+    if (correctRoute === 'login') {
+      this.isLogin = true;
+      this.productService.makeSEO('Login');
+    } else {
+      this.isLogin = false;
+      this.productService.makeSEO('Register');
+    }
   }
 
 }

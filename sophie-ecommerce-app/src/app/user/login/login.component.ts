@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
@@ -14,10 +15,15 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   wrongAuth = false;
+  // tslint:disable-next-line: variable-name
   url_route = '';
   @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private auth: AuthService, private fb: FormBuilder, private router: Router, private prodServ: ProductService, private route: ActivatedRoute) { }
+  constructor(private auth: AuthService,
+              private fb: FormBuilder,
+              private router: Router,
+              private prodServ: ProductService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -35,13 +41,20 @@ export class LoginComponent implements OnInit {
     try {
       console.log('login f', form);
       this.blockUI.start();
-      this.auth.loginUser(form.username, form.password).subscribe(
+      const email = form.username;
+      const pw = form.password;
+      this.auth.loginUser(email, pw).subscribe(
         r => {
           this.blockUI.stop();
-          console.log(r);
-          if (r.data.token && r.data.is_admin) {
+          if (r.data.token && r.data.is_admin === null) {
             this.prodServ.setToken(r.data.token);
-            this.auth.currentUser = r.data as IUSer;
+            this.auth.currentUser = {
+              id: r.data.id,
+              first_name: r.data.first_name,
+              last_name: r.data.last_name,
+              email: r.data.email,
+              phone: r.data.phone,
+            };
             this.auth.setUser(JSON.stringify(this.auth.currentUser));
 
             Swal.fire({
@@ -62,7 +75,7 @@ export class LoginComponent implements OnInit {
         this.wrongAuth = true;
       });
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }
 }

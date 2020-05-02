@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     const thisUser = this.auth.currentUser;
-
     this.userProfileForm = this.fb.group({
       first_name: [thisUser.first_name, Validators.required],
       last_name: [thisUser.last_name, Validators.required],
@@ -64,12 +63,11 @@ export class ProfileComponent implements OnInit {
   onUserDetailSubmit(formValues: FormGroup) {
     if (formValues.status.toLowerCase() === 'valid') {
       Swal.fire({
-        title: 'Are you sure you want to chnage Password?',
+        title: 'Are you sure you want to change your details?',
         confirmButtonText: 'Yes, Change',
         cancelButtonText: 'No, Cancel'
       }).then((result) => {
         if (result.value) {
-          console.log('formValues', formValues.value);
           this.blockUI.start();
           // setTimeout(() => {
           // this.blockUI.stop();
@@ -80,6 +78,14 @@ export class ProfileComponent implements OnInit {
           this.auth.updateUser(_user).then((res) => {
             // tslint:disable-next-line: no-conditional-assignment
             if (res.status = 'success') {
+              this.auth.currentUser = {
+                id: this.auth.currentUser.id,
+                first_name: _user.first_name,
+                last_name: _user.last_name,
+                email: this.auth.currentUser.email,
+                phone: _user.phone,
+              };
+              this.auth.setUser(JSON.stringify(this.auth.currentUser));
               this.blockUI.stop();
               Swal.fire('Successful', 'Your account details were updated successfully 🙂.', 'success');
             }
@@ -107,31 +113,33 @@ export class ProfileComponent implements OnInit {
   onChangePasswordSubmit(formValue: FormGroup) {
     if (formValue.status.toLowerCase() === 'valid') {
       Swal.fire({
-        title: 'Are you sure you want to chnage Password?',
+        title: 'Are you sure you want to change Password?',
+        icon: 'warning',
+        showCancelButton: true,
         confirmButtonText: 'Yes, Change',
         cancelButtonText: 'No, Cancel'
       }).then((result) => {
         if (result.value) {
-          console.log('formValues', formValue.value);
           this.blockUI.start();
-          setTimeout(() => {
-            this.blockUI.stop();
-            Swal.fire('Successful', 'Your account password was changed successfully 🙂.', 'success');
-          }, 2500);
+          // setTimeout(() => {
+          //   this.blockUI.stop();
+          //   Swal.fire('Successful', 'Your account password was changed successfully 🙂.', 'success');
+          // }, 2500);
 
-          // const _form = formValue.value;
-          // this.auth.updatePassword(_form.password, _form.new_password).then((res)=>{
-          //   if (res.status = 'success') {
-          //     this.blockUI.stop();
-          //     Swal.fire('Successful', 'Your account password was changed successfully 🙂.', 'success')
-          //   }
-          // }, (rej)=>{
-          //   this.blockUI.stop();
-          //   Swal.fire('Update Fail!', rej.message, 'warning')
-          // }).catch(err=>{
-          //   this.blockUI.stop();
-          //   Swal.fire('Update Fail!', err, 'error')
-          // })
+          // tslint:disable-next-line: variable-name
+          const _form = formValue.value;
+          this.auth.updatePassword(_form.new_password).then((res) => {
+            if (res.status === 'success') {
+              this.blockUI.stop();
+              Swal.fire('Successful', 'Your account password was changed successfully 🙂.', 'success');
+            }
+          }, (rej) => {
+            this.blockUI.stop();
+            Swal.fire('Update Fail!', rej.message, 'warning');
+          }).catch(err => {
+            this.blockUI.stop();
+            Swal.fire('Update Fail!', err, 'error');
+          });
         } else if (
           result.dismiss === Swal.DismissReason.cancel
         ) {

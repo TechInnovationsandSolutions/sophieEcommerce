@@ -1,76 +1,76 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" [routerLink]="['']">
-        <img src="/../assets/images/logo.png" alt="" class="navBar__brand-icon">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" [routerLink]="['']" aria-label="brand logo">
+    <img src="/../assets/images/logo.png" alt="" class="navBar__brand-icon">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav m-auto">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['']" routerLinkActive = "active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/shop']" routerLinkActive = "active">Shop</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/about']" routerLinkActive = "active">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"  [routerLink]="['/contact']" routerLinkActive = "active">Contact</a>
-        </li>
-      </ul>
-    </div>
-    <div class="other_nav">
-        <form class="form-inline my-2 my-lg-0" #searchForm = "ngForm" (ngSubmit) = "searchFormSubmit()">
-            <label class="sr-only" for="searchTextID">Enter product search text</label>
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" id="searchTextID"  name="searchTextID" #searchTextID="ngModel">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
-                <span>
-                    <i class="fas fa-search"></i>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav m-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['']" routerLinkActive = "active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/shop']" routerLinkActive = "active">Shop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/about']" routerLinkActive = "active">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  [routerLink]="['/contact']" routerLinkActive = "active">Contact</a>
+      </li>
+    </ul>
+  </div>
+  <div class="other_nav">
+      <form class="form-inline my-2 my-lg-0" #searchForm = "ngForm" (ngSubmit) = "searchFormSubmit()">
+        <label class="sr-only" for="searchTextID">Enter product search text</label>
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" id="searchTextID"  name="searchTextID" #searchTextID="ngModel">
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" title="click to search input">
+            <span>
+              <i class="fas fa-search"></i>
+            </span>
+        </button>
+      </form>
+      <div class="d-flex flex-wrap">
+        <ul class="my-auto">
+          <li class="nav-item" title="See Products on Wish List.">
+            <a class="nav-link text-dark" [routerLink]="['/wishlist']" title="See your wish list">
+              <span>
+                <i class="far fa-heart"></i>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" [routerLink]="['/cart']" title="Go to Cart">
+              <span class="cart_no">
+                <i class="fas fa-shopping-cart"></i>
+                <span *ngIf="cartItems.length" class="p-0 rounded-circle bg-white text-dark font-weight-bold">
+                  {{cartItems.length}}
                 </span>
-            </button>
-        </form>
-        <div>
-            <ul>
-                <li class="nav-item" title="See Products on Wish List.">
-                    <a class="nav-link text-dark" [routerLink]="['/wishlist']" title="See your wish list">
-                        <span>
-                            <i class="far fa-heart"></i>
-                        </span>
-                    </a>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="click dropdown to show more menu options">
+              <span>
+                <i class="far fa-user"></i>
+              </span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="navBar-btn__user-auth-options">
+                <li *ngIf="!auth.isAuthenticated()">
+                  <a class="dropdown-item text-dark" [routerLink]="['/user', 'login']">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" [routerLink]="['/cart']" title="Go to Cart">
-                        <span>
-                            <i class="fas fa-shopping-cart"></i>
-                            <span *ngIf="cartItems.length !==0"  class="p-2 rounded-circle bg-white text-dark font-weight-bold">
-                                {{ cartItems.length }}
-                            </span>
-                        </span>
-                    </a>
+                <li *ngIf="!auth.isAuthenticated()">
+                  <a class="dropdown-item text-dark" [routerLink]="['/user', 'register']">Register</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>
-                            <i class="far fa-user"></i>
-                        </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <ul class="navBar-btn__user-auth-options">
-                            <li *ngIf="!auth.isAuthenticated()">
-                                <a class="dropdown-item text-dark" [routerLink]="['/user', 'login']">Login</a>
-                            </li>
-                            <li *ngIf="!auth.isAuthenticated()">
-                                <a class="dropdown-item text-dark" [routerLink]="['/user', 'register']">Register</a>
-                            </li>
-                        </ul>
-                        <a *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark" [routerLink]="['/user', 'myaccount']">My Account</a>
-                        <a type="button" *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark" (click)="logOut()">Logout</a>
-                    </div>
-                </li>
-            </ul>
-          </div>
+              </ul>
+              <a *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark" [routerLink]="['/user', 'myaccount']">My Account</a>
+              <a type="button" *ngIf="auth.isAuthenticated()" class="dropdown-item text-dark" (click)="logOut()">Logout</a>
+            </div>
+          </li>
+        </ul>
       </div>
+  </div>
 </nav>

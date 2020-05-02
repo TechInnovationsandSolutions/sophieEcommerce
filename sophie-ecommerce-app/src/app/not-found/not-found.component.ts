@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../shared';
 // import Parallax from 'parallax-js';
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     // document.querySelector('.pg404-sect').addEventListener('mouseover',function name(e) {
@@ -23,6 +24,7 @@ export class NotFoundComponent implements OnInit {
     //     y: (relY - $this.height() / 2) / $this.height() * movement
     //   });
     // })
+    this.productService.makeSEO('Not Found');
   }
 
 }

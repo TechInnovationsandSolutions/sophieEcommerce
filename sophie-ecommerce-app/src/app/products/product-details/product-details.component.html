@@ -12,7 +12,7 @@
                     {{ ((product?.cost - product?.reduced_cost)/product?.cost) | percent:'1.2' }}
                 </span>
             </p>
-            <p class="product-detail__availibility">Availability: 
+            <p class="product-detail__availibility">Availability:
                 <span>
                     {{ product?.availibility ? "In Stock" : "Out of Stock" }}
                 </span>
@@ -21,16 +21,16 @@
                 <span class="stars">
                     <!-- 1 star  -->
                     <i [class]="(product.avg_rating == 0) ? 'far fa-star' : (product.avg_rating > 0 && product.avg_rating < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
-        
+
                     <!-- 2 star  -->
                     <i [class]="(product.avg_rating >= 2) ? 'fas fa-star' : (product.avg_rating > 1 && product.avg_rating < 2) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
-        
+
                     <!-- 3 star  -->
                     <i [class]="(product.avg_rating >= 3) ? 'fas fa-star' : (product.avg_rating > 2 && product.avg_rating < 3) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
-        
+
                     <!-- 4 star  -->
                     <i [class]="(product.avg_rating >= 4) ? 'fas fa-star' : (product.avg_rating > 3 && product.avg_rating < 4) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
-        
+
                     <!-- 5 star  -->
                     <i [class]="(product.avg_rating >= 5) ? 'fas fa-star' : (product.avg_rating > 4 && product.avg_rating < 5) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
                 </span>
@@ -43,17 +43,17 @@
                 <form id="frm-product-add-to-cart" (submit)='addToCart($event, product, quantity)'>
                     <label for="frm-product-add-to-cart__amt">Quantity</label>
                     <div class="frm-product-add-to-cart__input-container">
-                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="removeOne()">-</button>
-                        <input type="number" id="frm-product-add-to-cart__amt" min="1" [(ngModel)]="quantity" #qty="ngModel" name="quantity" required>
-                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="addOne()">+</button>
+                        <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="removeOne()" title="reduce the quantity of {{ product.name }} by 1">-</button>
+                        <input type="number" aria-label="current product quantity" id="frm-product-add-to-cart__amt" min="1" [(ngModel)]="quantity" #qty="ngModel" name="quantity" required>
+                        <button type="button" title="increase the quantity of {{ product.name }} by 1" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="addOne()">+</button>
                     </div>
-                    <button type="submit" class="frm-product-add-to-cart__btn-submit">Add To Cart</button>
-                    <button type="button" class="frm-product-add-to-cart__btn-wishlist">
-                        <i class="far fa-heart"></i>
+                    <button type="submit" title="click to add to cart" class="frm-product-add-to-cart__btn-submit">Add To Cart</button>
+                    <button class="frm-product-add-to-cart__btn-wishlist" [title]="(isInWishList ? 'Remove From Favorite' : 'Add to Favorite')" (click)="toWishList()" [ngClass]="{'bg-danger': isInWishList}">
+                      <i [ngClass]="isInWishList ? 'fas fa-times text-light': 'far fa-heart'"></i>
                     </button>
                 </form>
             </div>
-            <ul class="product-detail__tags" *ngIf="product?.tags">
+            <ul class="product-detail__tags" *ngIf="product?.tags.length">
                 <span>Tags:</span>
                 <li class="product-detail__tag" *ngFor="let tag of product?.tags">
                     <a>{{ tag.name }}</a>
@@ -75,16 +75,16 @@
                             Review (<span>{{ product?.ratings?.length }}</span>)
                         </a>
                     </li>
-                </ul> 
+                </ul>
             </div>
-            
+
             <div class=" col-md-8 m-auto py-2">
                 <product-description *ngIf="!isReview" [title]="product?.name" [description]="product?.description"></product-description>
 
-                <product-review *ngIf="isReview" [reviews]="product?.ratings"></product-review >
+                <product-review *ngIf="isReview" [reviewsInput]="product?.ratings" [productId]="product?.id"></product-review >
             </div>
         </div>
-        
+
         <shared-product-lists-widget *ngIf="relatedProducts.length" class="mx-auto" [widgetTitle]='"Related Products"' [theProducts]='relatedProducts'></shared-product-lists-widget>
     </div>
 </div>
