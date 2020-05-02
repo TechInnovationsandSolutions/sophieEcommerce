@@ -81,7 +81,7 @@
             <div class=" col-md-8 m-auto py-2">
                 <product-description *ngIf="!isReview" [title]="product?.name" [description]="product?.description"></product-description>
 
-                <product-review *ngIf="isReview" [reviews]="product?.ratings" [productId]="product?.id"></product-review >
+                <product-review *ngIf="isReview" [reviewsInput]="product?.ratings" [productId]="product?.id"></product-review >
             </div>
         </div>
 
