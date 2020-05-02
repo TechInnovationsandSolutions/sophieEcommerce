@@ -329,11 +329,12 @@ export class ProductService {
   }
 
   // tslint:disable-next-line: variable-name
-  addUserOrder(address_id: string) {
+  addUserOrder(addressid: string) {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
       return this.http.post<any>(this._url + 'orders', {
-        address_id
+        address_id: addressid,
+        cart: cartItems
       },
       {
         headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
@@ -417,22 +418,14 @@ export class ProductService {
   }
 
   getLocalCartItems(): Observable<ICart[]> {
-    // const subject = new Subject<ICart[]>();
-    // setTimeout(() => {
-    //   console.log('Lemme in');
-    //   cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
-    //   subject.next(cartItems);
-    //   subject.complete();
-    // }, 100);
-    // return subject;
-
-    let subject = new Subject<ICart[]>();
-        setTimeout(()=>{
-            cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
-            subject.next(cartItems);
-            subject.complete();
-        }, 100);
-        return subject
+    const subject = new Subject<ICart[]>();
+    setTimeout(() => {
+      console.log('Lemme in');
+      cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
+      subject.next(cartItems);
+      subject.complete();
+    }, 100);
+    return subject;
   }
 
   // Local Cart for non-authenticated users
@@ -442,9 +435,11 @@ export class ProductService {
         console.log('isPopulating', res);
         if (res.status === 'success') {
           const ids = cartItems.map(r => r.id);
-          const arr = cartItems.length ?  res.data.filter((r: ICart) => !ids.includes(r.id)) : res.data;
+          const arr: [] = cartItems.length ?  res.data.filter((r: ICart) => !ids.includes(r.id)) : res.data;
           console.log('arr O', arr);
-          cartItems = cartItems.concat(arr);
+          if (arr.length) {
+            arr.forEach(a => cartItems.push(a));
+          }
           this.updateToLocal();
         }
       });
@@ -461,32 +456,19 @@ export class ProductService {
       cartItems.push(item);
       this.updateLocalCart(item);
       result = true;
-    } else if(isInCart.quantity !== item.quantity){
+      this.addToCart(item);
+    } else if (isInCart.quantity !== item.quantity) {
       console.log('ups', item);
-      this.updateCart(item);
+      this.updateLocalCart(item);
     }
 
-    // // We expect undefine if it's not found
-    // if (!isInCart) {
-    //   cartItems.push(item);
-    //   this.updateToLocal();
-    //   result = true;
-    //   this.addToCart(item);
-    // // tslint:disable-next-line: triple-equals
-    // } else if (isInCart.quantity != item.quantity) {
-    //   console.log('ups', item);
-    //   this.updateLocalCart(item);
-    // }
-
-    console.log('df0');
-
-    // const subject = new Subject<boolean>();
-    // setTimeout(() => {
-    //   console.log('locak add', result, cartItems);
-    //   subject.next(result);
-    //   subject.complete();
-    // }, 100);
-    // return subject.toPromise();
+    const subject = new Subject<boolean>();
+    setTimeout(() => {
+      console.log('locak add', result, cartItems);
+      subject.next(result);
+      subject.complete();
+    }, 100);
+    return subject.toPromise();
   }
 
   removeFromLocalCart(item: ICart) {
@@ -505,7 +487,7 @@ export class ProductService {
       subject.next(cartItems);
       subject.complete();
     }, 100);
-    return subject;
+    return subject.toPromise();
   }
 
   updateLocalCart(item: ICart) {
