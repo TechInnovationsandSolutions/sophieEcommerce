@@ -663,6 +663,12 @@ export class ProductService {
       body: message.body
     }).toPromise();
   }
+
+  newsletterSub(useremail: string) {
+    return this.http.post<any>(this._url + 'subscribe', {
+      email: useremail
+    }).toPromise();
+  }
 }
 
 let cartItems: ICart[] = [];
