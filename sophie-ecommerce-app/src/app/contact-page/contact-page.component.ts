@@ -55,6 +55,8 @@ export class ContactPageComponent implements OnInit {
           Swal.fire('Message Sent', 'Hi ' + msg.name + '. Your message has been received. Thank you.', 'success');
           this.clearForm();
         }
+      }).catch(e => {
+        this.loading = false;
       });
     }
   }

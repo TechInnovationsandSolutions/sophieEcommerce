@@ -33,6 +33,8 @@ export class NewsletterSubscriptionComponent implements OnInit {
           Swal.fire('Thank you for Subscribing', '', 'success');
           this.newsLetterForm.reset({});
         }
+      }).catch(e => {
+        this.loading = false;
       });
     }
   }
