@@ -26,9 +26,11 @@ export class ProductDetailsComponent implements OnInit {
 
   showPreloader = true;
 
-  constructor(private productService: ProductService,
-              private route: ActivatedRoute,
-              private firstChar: FirstCharCapitalizePipe) { }
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private firstChar: FirstCharCapitalizePipe
+  ) { }
 
   ngOnInit() {
     console.log(this.route.snapshot.params);
