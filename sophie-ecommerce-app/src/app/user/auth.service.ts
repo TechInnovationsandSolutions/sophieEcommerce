@@ -34,6 +34,7 @@ export class AuthService {
 
   removeUser() {
     localStorage.removeItem(USER);
+    localStorage.removeItem(TOKEN);
   }
 
   isGotUser() {
