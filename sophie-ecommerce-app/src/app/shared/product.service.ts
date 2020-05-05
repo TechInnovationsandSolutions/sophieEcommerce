@@ -117,7 +117,8 @@ export class ProductService {
           console.log(err.error);
         }
       );
-    });  }
+    });
+  }
 
   getSearchedProducts(searchTerm: string, param: string) {
     return new Promise(resolve => {
