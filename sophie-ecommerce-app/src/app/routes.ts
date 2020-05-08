@@ -15,6 +15,7 @@ import { AuthRouteGuardGuard } from './shared/auth-route-guard.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { ComponentDeactivateGuard } from './shared/component-deactivate.guard';
+import { PaymentComponent } from './payment/payment.component';
 
 export const appRoutes: Routes = [
     {
@@ -76,6 +77,10 @@ export const appRoutes: Routes = [
         path: 'checkout',
         component: CheckoutPageComponent,
         canActivate: [AuthRouteGuardGuard]
+    },
+    {
+      path: 'payment',
+      component: PaymentComponent
     },
     {
         path: 'myaccount',
