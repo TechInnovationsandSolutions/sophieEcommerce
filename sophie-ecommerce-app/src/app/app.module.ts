@@ -42,6 +42,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { FirstCharCapitalizePipe } from './common/first-char-capitalize.pipe';
 import { VerifyPaymentComponent } from './verify-payment/verify-payment.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { VerifyPaymentComponent } from './verify-payment/verify-payment.componen
     NotFoundComponent,
     WishListComponent,
     FirstCharCapitalizePipe,
-    VerifyPaymentComponent
+    VerifyPaymentComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
