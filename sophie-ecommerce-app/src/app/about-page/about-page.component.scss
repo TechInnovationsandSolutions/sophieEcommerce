@@ -1,5 +1,16 @@
 @import './../app.component.scss';
 
+@keyframes iconBlink {
+  from{
+    box-shadow: none;
+  }
+
+  to {
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4),
+                -1px -1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
 .about-page{
 
   @mixin padArround($pX: 0, $pY: 1em) {
@@ -51,6 +62,8 @@
       width: 100%;
       max-width: 300px;
       margin: 1em auto;
+      box-shadow: 1px 1px 2px rgba($color: #000000, $alpha: 0.15),
+                  -1px -1px 2px rgba($color: #000000, $alpha: 0.15);
 
       .card-body{
         .card-title{
@@ -105,6 +118,17 @@
               }
             }
           }
+        }
+      }
+
+      &:hover {
+        // cursor: pointer;
+        box-shadow: 2px 3px 4px rgba($color: #000000, $alpha: 0.15),
+        -2px -3px 4px rgba($color: #000000, $alpha: 0.15);
+
+        i {
+          animation: iconBlink 1s;
+          animation-iteration-count: infinite;
         }
       }
     }
