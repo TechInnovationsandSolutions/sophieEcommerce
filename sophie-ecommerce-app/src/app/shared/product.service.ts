@@ -382,7 +382,7 @@ export class ProductService {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
       return this.http.post<any>(this._url + 'cart', {
-        product_id: item.id,
+        product_id: item.product_id,
         amount: item.amount,
         quantity: item.quantity
       }, {
@@ -404,7 +404,7 @@ export class ProductService {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
       // tslint:disable-next-line: variable-name
-      const product_id = item.id;
+      const product_id = item.product_id;
       const amount = item.amount;
       const quantity = item.quantity;
       return this.http.put<any>(this._url + 'cart/' + item.id, {
@@ -458,7 +458,7 @@ export class ProductService {
   }
 
   addToLocalCart(item: ICart) {
-    const isInCart = cartItems.find(c => c.id === item.id);
+    const isInCart = cartItems.find(c => c.product_id === item.product_id);
     console.log('de', isInCart);
     let result = false;
 
@@ -502,7 +502,7 @@ export class ProductService {
   }
 
   updateLocalCart(item: ICart) {
-    const isInCart = cartItems.find(c => c.id === item.id);
+    const isInCart = cartItems.find(c => c.product_id === item.product_id);
 
     // Yes in cart
     if (isInCart) {

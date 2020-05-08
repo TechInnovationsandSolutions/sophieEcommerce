@@ -12,7 +12,7 @@
                 <div class="cart-item-detail">
                     <div class="cart-item-img-name-container">
                         <img src="{{ item.imgUrl || '/assets/images/product-1.png' }}" alt="image of {{ item.product }}">
-                        <a [routerLink]='["/product", item.id]' [queryParams]="{cart:this.item.quantity}" class="cart-item-name">{{ item.product | firstCharCapitalize}}</a>
+                        <a [routerLink]='["/product", item.product_id]' [queryParams]="{cart:this.item.quantity}" class="cart-item-name">{{ item.product | firstCharCapitalize}}</a>
                     </div>
                     <div class="cart-item-price-container">
                         <span class="cart-item-current">{{ item.amount | currency:"NGN":"₦" }}</span>

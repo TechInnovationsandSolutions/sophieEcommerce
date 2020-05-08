@@ -21,7 +21,8 @@ export class ProductItemComponent {
   addToCart() {
     console.log('lol', this.aProduct);
     const cartItem: ICart = {
-      id: this.aProduct.id,
+      id: null,
+      product_id: this.aProduct.id,
       product: this.aProduct.name,
       amount: this.aProduct.reduced_cost,
       amount_main: this.aProduct.cost,
