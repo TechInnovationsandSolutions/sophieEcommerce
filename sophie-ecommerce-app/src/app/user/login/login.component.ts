@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
 
   submitForm(form) {
     try {
-      console.log('login f', form);
       this.blockUI.start();
       const email = form.username;
       const pw = form.password;
@@ -68,6 +67,7 @@ export class LoginComponent implements OnInit {
             });
 
             this.router.navigateByUrl(this.url_route);
+            this.prodServ.populateLocalCartItems();
           }
       },
       r => {
