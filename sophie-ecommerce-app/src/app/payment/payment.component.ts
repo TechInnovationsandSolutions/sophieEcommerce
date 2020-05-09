@@ -18,6 +18,9 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const nav = document.querySelector('nav.navbar');
+    nav.setAttribute('style', 'display: none');
+
     this.route.queryParams.subscribe(q => {
       if (q.trxref && q.reference) {
         this.orderReference = q.reference;
@@ -29,6 +32,7 @@ export class PaymentComponent implements OnInit {
           if (res.status === 'success') {
             // const resp = res.data;
             this.orderStatus = true;
+            this.productService.clearCartItems();
           } else {
             throw new Error();
           }

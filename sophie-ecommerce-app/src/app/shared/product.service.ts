@@ -445,8 +445,8 @@ export class ProductService {
       this.getCartItems().then(res => {
         console.log('isPopulating', res);
         if (res.status === 'success') {
-          const ids = cartItems.map(r => r.id);
-          const arr: [] = cartItems.length ?  res.data.filter((r: ICart) => !ids.includes(r.id)) : res.data;
+          const ids = cartItems.map(r => r.product_id);
+          const arr: [] = cartItems.length ?  res.data.filter((r: ICart) => !ids.includes(r.product_id)) : res.data;
           console.log('arr O', arr);
           if (arr.length) {
             arr.forEach(a => cartItems.push(a));

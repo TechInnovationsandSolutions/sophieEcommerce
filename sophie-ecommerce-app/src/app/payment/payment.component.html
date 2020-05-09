@@ -46,9 +46,14 @@
       <h1 class="col-sm-12">Your order reference is <strong>{{orderReference}}</strong></h1>
     </div>
     <div class="col-sm-12 d-flex flex-wrap px-0 my-3">
-      <a role="button" class="btn btn-success m-auto py-3" [routerLink] = "['/user/myaccount/orders']">
+      <a role="button" class="btn btn-success m-auto py-3 mb-2" href= "user/myaccount/orders">
         Click Here to Go to your Order History
       </a>
+      <div class="col-sm-12 d-flex flex-wrap px-0 my-3">
+        <a role="button" class="btn btn-warning text-dark m-auto py-3" href= "shop/all">
+          Click Here to Go to Shop
+        </a>
+      </div>
     </div>
   </div>
   <div class="col-sm-12 px-0 d-flex flex-wrap" *ngIf="!orderStatus">
