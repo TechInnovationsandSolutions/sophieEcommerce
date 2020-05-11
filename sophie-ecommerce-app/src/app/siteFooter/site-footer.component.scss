@@ -1,4 +1,4 @@
-@import './src/app/app.component.scss';
+@import './../app.component.scss';
 
 footer {
     background-color: $smokeyWhite;
@@ -120,7 +120,7 @@ footer {
                     &.footer__social-media-links{
                         margin-top: 0.75em;
                         margin-bottom: 0.75em;
-                        
+
                         li.footer__social-media-link{
                             margin-left: 5px;
                         }
