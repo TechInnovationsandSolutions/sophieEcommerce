@@ -14,18 +14,51 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private productService: ProductService, private fb: FormBuilder, private auth: AuthService, private router: Router) { }
-
   registrationForm = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, ,  Validators.minLength(11)]],
-      // address: ['',[Validators.required]],
-      password: ['', [Validators.required,  Validators.minLength(6)]],
+    first_name: ['',
+      [
+        Validators.required
+      ]
+    ],
+    last_name: ['',
+      [
+        Validators.required
+      ]
+    ],
+    email: ['',
+      [
+        Validators.required,
+        Validators.email
+      ]
+    ],
+    phone: ['',
+      [
+        Validators.required,
+        Validators.minLength(11),
+        this.validatePhoneNumber
+      ]
+    ],
+    // address: ['',[Validators.required]],
+    password: ['',
+      [
+        Validators.required,
+        this.validatePassword.bind(this)
+      ]
+    ],
   });
 
+  newPasswordTest = [
+    'Minimum eight characters',
+    'Must contain an uppercase letter',
+    'Must contain a lowercase letter',
+    'Must contain a number'
+  ];
+
+  newPasswordTestResult: any;
+
   @BlockUI() blockUI: NgBlockUI;
+
+  constructor(private productService: ProductService, private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     const btnPw = document.querySelector('button.reveal-password') as HTMLInputElement;
@@ -38,10 +71,51 @@ export class RegisterComponent implements OnInit {
     btnPw.addEventListener('touchend', this.hidePassword, false);
   }
 
-  validatePassword(control: AbstractControl) {
-    const regex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$');
-    const isNotPasswordFormat = regex.test(control.value);
-    return isNotPasswordFormat ? null : {isNotPasswordFormat: true};
+  get regFrom() {
+    return this.registrationForm.controls;
+  }
+
+  validatePassword(control: AbstractControl): {[key: string]: any} | null {
+    const inpMinLegth = 8;
+    const regLowerCase = new RegExp(/.*[a-z].*/g);
+    const regUpperCase = new RegExp(/.*[A-Z].*/g);
+    const regDigit = new RegExp(/.*[0-9].*/g);
+
+    const text: string = control.value;
+    const lgth = text.length;
+    const maxValidation = 4;
+
+    console.log('sd', this.newPasswordTest)
+    this.newPasswordTestResult  = new Set();
+
+    if (lgth >= inpMinLegth) {
+      this.newPasswordTestResult.add('Minimum eight characters');
+    }
+
+    if (regLowerCase.test(text)) {
+      this.newPasswordTestResult.add('Must contain a lowercase letter');
+    }
+
+    if (regUpperCase.test(text)) {
+      this.newPasswordTestResult.add('Must contain an uppercase letter');
+    }
+
+    if (regDigit.test(text)) {
+      this.newPasswordTestResult.add('Must contain a number');
+    }
+
+    const isNotPasswordFormat = text ? this.newPasswordTestResult.size : 0;
+    return isNotPasswordFormat === maxValidation ? null : {isNotPasswordFormat: true};
+  }
+
+
+  validatePhoneNumber(control: AbstractControl): {[key: string]: any} | null{
+    const regx = new RegExp(/(^[0]\d{10}$)|(^[\+]?[234]\d{12}$)/g);
+    const isNotValidPhone = regx.test(control.value);
+    return isNotValidPhone ? null : {isNotValidPhone: true};
+  }
+  inResult(text: string) {
+    return Array.from(this.newPasswordTestResult).includes(text);
   }
 
   seePassword() {

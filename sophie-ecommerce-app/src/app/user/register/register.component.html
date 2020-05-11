@@ -2,47 +2,34 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label class="sr-only" for="userFirstName">First Name</label>
-        <input type="text" class="form-control" id="userFirstName" placeholder="First Name" autocomplete="given-name" formControlName="first_name" autofocus>
+        <input type="text" class="form-control" id="userFirstName" placeholder="First Name" autocomplete="given-name" formControlName="first_name" autofocus [ngClass]="{' is-invalid': regFrom.first_name.invalid && regFrom.first_name.dirty}">
       </div>
       <div class="form-group col-md-6">
         <label class="sr-only" for="userLastName">Last Name</label>
-        <input type="text" class="form-control" id="userLastName" formControlName="last_name" placeholder="Last Name" autocomplete="family-name">
+        <input type="text" class="form-control" id="userLastName" formControlName="last_name" placeholder="Last Name" autocomplete="family-name" [ngClass]="{' is-invalid': regFrom.last_name.invalid && regFrom.last_name.dirty}">
       </div>
     </div>
     <div class="form-group">
-        <label class="sr-only" for="userEmail">Email Address</label>
-        <input type="email" class="form-control" id="userEmail" placeholder="Email Address" autocomplete="email" formControlName="email">
+      <label class="sr-only" for="userEmail">Email Address</label>
+      <input type="email" class="form-control" id="userEmail" placeholder="Email Address" autocomplete="email" formControlName="email" [ngClass]="{' is-invalid': regFrom.email.invalid && regFrom.email.dirty}">
     </div>
     <div class="form-group">
-        <label class="sr-only" for="userPhoneNumber">Phone Number</label>
-        <input type="tel" class="form-control" id="userPhoneNumber" placeholder="Phone Number" autocomplete="tel" formControlName="phone">
+      <label class="sr-only" for="userPhoneNumber">Phone Number</label>
+      <input type="tel" class="form-control" id="userPhoneNumber" placeholder="Phone Number" autocomplete="tel" formControlName="phone" [ngClass]="{' is-invalid': regFrom.phone.invalid && regFrom.phone.dirty}">
     </div>
-    <!-- <div class="form-group">
-      <label class="sr-only" for="userAddress">Address</label>
-      <input type="text" class="form-control" id="userAddress" placeholder="Address" autocomplete="street-address">
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label class="sr-only" for="userCity">City</label>
-        <input type="text" class="form-control" id="userCity" placeholder="City">
-      </div>
-      <div class="form-group col-md-6">
-        <label class="sr-only" for="userState">State</label>
-        <input type="text" class="form-control" id="userState" placeholder="State">
-      </div>
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="userCountry">Country</label>
-        <input type="text" class="form-control" id="userCountry" placeholder="Nigeria" autocomplete="country">
-    </div> -->
     <div class="form-group d-flex">
         <label class="sr-only" for="userPassword">Password</label>
-        <input type="password" class="form-control col-sm-11" id="userPassword" placeholder="Password" autocomplete="new-password" formControlName="password">
+        <input type="password" class="form-control col-sm-11" id="userPassword" placeholder="Password" autocomplete="new-password" formControlName="password" [ngClass]="{' is-invalid': regFrom.password.invalid && regFrom.password.dirty}">
         <button type="button" class="col-sm-1 p-0 reveal-password" title="hold to reveal entered password">
             <span>
                 <i class="far fa-eye"></i>
             </span>
         </button>
+    </div>
+    <div *ngIf="regFrom.password.errors && regFrom.password.dirty" class="col-sm-12">
+      <ol class="ml-2 py-2">
+        <li *ngFor="let item of newPasswordTest" [ngClass] = "inResult(item) ? 'text-dark' : 'text-danger'">{{item}}</li>
+      </ol>
     </div>
     <button type="submit" class="text-center col-sm-12 p-2" [disabled]="registrationForm.invalid || registrationForm.pristine">Register</button>
   </form>
