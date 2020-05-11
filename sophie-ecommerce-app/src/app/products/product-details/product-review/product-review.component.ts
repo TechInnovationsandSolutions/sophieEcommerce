@@ -43,6 +43,7 @@ export class ProductReviewComponent implements OnInit {
     if (this.productId && this.auth.isAuthenticated()) {
       this.productService.canAddReview(this.productId)
       .then(r => {
+        console.log('can review', r);
         if (r.status === 'success') {
           this.canReview = true;
           const username = this.auth.currentUser.first_name + ' ' + this.auth.currentUser.last_name;

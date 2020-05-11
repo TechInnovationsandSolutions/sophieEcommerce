@@ -661,7 +661,7 @@ export class ProductService {
   canAddReview(productId: number) {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
-      return this.http.get<any>(this._url + 'products/' + productId + '/review', {
+      return this.http.get<any>(this._url + 'products-review/' + productId, {
         headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
       }).toPromise();
     }
