@@ -3,8 +3,12 @@
       <div class="col-sm-10 d-flex flex-wrap order mb-4 mx-auto py-2" *ngFor="let order of userOrders; let i = index">
         <app-collapsible-component class="col-sm-12 p-0">
           <div well-title>
-            <div class="order-date col-sm-12 text-right p-0">
-              <p class="col-sm-12 d-flex flex-wrap p-0">
+            <div class="col-sm-12 p-0 d-flex flex-wrap">
+              <p class="order-status col-md-6 d-flex flex-wrap p-0">
+                Status:
+                <span [ngClass]="order.payment.status ? 'is-success':'is-failed'">{{order.payment.status ? 'Paid':'Unpaid'}}</span>
+              </p>
+              <p class="order-date col-md-6 d-flex flex-wrap p-0 text-right">
                 <span class="mr-0 ml-auto">
                   {{order.created_at | date:'longDate'}}
                 </span>
@@ -12,7 +16,7 @@
             </div>
             <div class="col-sm-12 d-flex flex-wrap px-0">
               <p class="order-ref col-sm-12 col-md-6 p-0 text-left ml-0 mr-auto">
-                Ref Code: <span>{{order.id}}</span>
+                Ref Code: <span>{{order.payment.reference}}</span>
               </p>
               <p class="order-amt col-sm-12 col-md-6 p-0 text-right mr-0 ml-auto">
                 Total Amount: <span>{{order.cost | currency:"NGN":"₦"}}</span>
@@ -37,7 +41,7 @@
                   <div class="order-item-img-name-container">
                     <div class="d-flex flex-wrap">
                       <img src="{{item?.images[0]?.thumbnail || '/assets/images/product-1.png' }}" alt="image of {{ 'item.produc' }}">
-                      <a [routerLink]='["/product", item?.id]' class="order-item-name text-capitalize">
+                      <a [routerLink]='["/product", item?.product_id]' class="order-item-name text-capitalize">
                         {{ item?.product }}
                       </a>
                     </div>
@@ -62,6 +66,11 @@
             </div>
           </div>
         </app-collapsible-component>
+        <div *ngIf="!order.payment.status" class="d-flex flex-wrap py-2 col-sm-12">
+          <a role="button" class="btn-pay-unpaid" [href]="'https://checkout.paystack.com/' + order.payment.access_code">
+            Pay Now
+          </a>
+        </div>
       </div>
     </div>
     <div class="col-sm-10 col-md-6 d-flex flex-wrap mx-auto py-3 px-0" *ngIf="!userOrders.length">

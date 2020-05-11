@@ -8,7 +8,9 @@ import { ProductService, IOrder } from 'src/app/shared';
 })
 export class MyOrdersComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService
+  ) { }
 
   userOrders: IOrder[] = [];
   showPreloader = true;

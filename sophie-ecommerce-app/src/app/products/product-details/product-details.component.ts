@@ -82,7 +82,8 @@ export class ProductDetailsComponent implements OnInit {
 
     if (quantity) {
       const cartItem: ICart = {
-        id: prod.id,
+        id: null,
+        product_id: this.product.id,
         product: prod.name,
         amount: prod.reduced_cost,
         amount_main: prod.cost,

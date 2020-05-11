@@ -117,7 +117,8 @@ export class ProductService {
           console.log(err.error);
         }
       );
-    });  }
+    });
+  }
 
   getSearchedProducts(searchTerm: string, param: string) {
     return new Promise(resolve => {
@@ -381,7 +382,7 @@ export class ProductService {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
       return this.http.post<any>(this._url + 'cart', {
-        product_id: item.id,
+        product_id: item.product_id,
         amount: item.amount,
         quantity: item.quantity
       }, {
@@ -403,7 +404,7 @@ export class ProductService {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
       // tslint:disable-next-line: variable-name
-      const product_id = item.id;
+      const product_id = item.product_id;
       const amount = item.amount;
       const quantity = item.quantity;
       return this.http.put<any>(this._url + 'cart/' + item.id, {
@@ -444,8 +445,8 @@ export class ProductService {
       this.getCartItems().then(res => {
         console.log('isPopulating', res);
         if (res.status === 'success') {
-          const ids = cartItems.map(r => r.id);
-          const arr: [] = cartItems.length ?  res.data.filter((r: ICart) => !ids.includes(r.id)) : res.data;
+          const ids = cartItems.map(r => r.product_id);
+          const arr: [] = cartItems.length ?  res.data.filter((r: ICart) => !ids.includes(r.product_id)) : res.data;
           console.log('arr O', arr);
           if (arr.length) {
             arr.forEach(a => cartItems.push(a));
@@ -457,7 +458,7 @@ export class ProductService {
   }
 
   addToLocalCart(item: ICart) {
-    const isInCart = cartItems.find(c => c.id === item.id);
+    const isInCart = cartItems.find(c => c.product_id === item.product_id);
     console.log('de', isInCart);
     let result = false;
 
@@ -501,7 +502,7 @@ export class ProductService {
   }
 
   updateLocalCart(item: ICart) {
-    const isInCart = cartItems.find(c => c.id === item.id);
+    const isInCart = cartItems.find(c => c.product_id === item.product_id);
 
     // Yes in cart
     if (isInCart) {
@@ -660,7 +661,7 @@ export class ProductService {
   canAddReview(productId: number) {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
-      return this.http.get<any>(this._url + 'products/' + productId + '/review', {
+      return this.http.get<any>(this._url + 'products-review/' + productId, {
         headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
       }).toPromise();
     }

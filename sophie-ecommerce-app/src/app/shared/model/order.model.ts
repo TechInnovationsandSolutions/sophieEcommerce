@@ -5,8 +5,21 @@ export interface IOrderImage {
   url: string;
 }
 
+export interface IOrderPayment {
+  access_code?: string;
+  amount?: number;
+  created_at?: Date;
+  deleted_at?: Date;
+  id?: number;
+  order_id?: number;
+  reference?: number;
+  status?: boolean;
+  updated_at?: Date;
+}
+
 export interface IOrderItem {
   amount: number;
+  product_id?: number;
   id: number;
   images: IOrderImage[];
   product: string;
@@ -14,13 +27,14 @@ export interface IOrderItem {
 }
 
 export interface IOrder {
+  id: number;
   address: IUSerAddress;
   cost: string;
   created_at: string;
   deleted_at: string;
-  id: number;
   items: IOrderItem[];
   quantity: number;
   status: number;
+  payment: IOrderPayment;
   user: any;
 }
