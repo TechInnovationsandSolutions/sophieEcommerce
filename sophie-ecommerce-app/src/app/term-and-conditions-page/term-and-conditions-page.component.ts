@@ -11,7 +11,7 @@ export class TermAndConditionsPageComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.makeSEO('Return Policy');
+    this.productService.makeSEO('Terms and Conditions');
   }
 
 }
