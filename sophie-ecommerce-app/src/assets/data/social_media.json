@@ -1,22 +1,22 @@
 [
     {
         "name": "Facebook",
-        "link": "#",
+        "link": "https://www.facebook.com/sophiesbnbessentials",
         "icon": "fab fa-facebook-square"
     },
     {
         "name": "Twitter",
-        "link": "#",
+        "link": "https://twitter.com/sophiesbathbody",
         "icon": "fab fa-twitter-square"
     },
     {
         "name": "Instagram",
-        "link": "#",
+        "link": "https://www.instagram.com/sophiesbnbessentials",
         "icon": "fab fa-instagram"
     },
     {
         "name": "Whatsapp",
-        "link": "",
+        "link": "https://wa.me/08063167441?text=Welcome%20to%20Sophies%20Bath%20and%20Body",
         "icon": "fab fa-whatsapp-square"
     }
 ]
