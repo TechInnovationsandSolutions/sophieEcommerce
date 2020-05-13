@@ -48,7 +48,7 @@
                         <button type="button" title="increase the quantity of {{ product.name }} by 1" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="addOne()">+</button>
                     </div>
                     <button type="submit" title="click to add to cart" class="frm-product-add-to-cart__btn-submit">Add To Cart</button>
-                    <button class="frm-product-add-to-cart__btn-wishlist" [title]="(isInWishList ? 'Remove From Favorite' : 'Add to Favorite')" (click)="toWishList()" [ngClass]="{'bg-danger': isInWishList}">
+                    <button type="button" class="frm-product-add-to-cart__btn-wishlist" [title]="(isInWishList ? 'Remove From Favorite' : 'Add to Favorite')" (click)="toWishList()" [ngClass]="{'bg-danger': isInWishList}">
                       <i [ngClass]="isInWishList ? 'fas fa-times text-light': 'far fa-heart'"></i>
                     </button>
                 </form>
