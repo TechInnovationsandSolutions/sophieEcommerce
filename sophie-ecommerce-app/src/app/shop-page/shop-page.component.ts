@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ProductService, ICategory, IProduct, ProductResponse } from '../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -36,7 +38,9 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
       });
     }
 
-    this.route.params.forEach((params: Params) => {
+    combineLatest(this.route.params, this.route.queryParams)
+    .pipe(map(results => ({params: results[0].slug, query: results[1]})))
+    .subscribe(results => {
       console.log('Lol snap', this.route.snapshot.queryParams.page);
       if (!this.route.snapshot.queryParams.page) {
         console.log('no product param');
@@ -80,6 +84,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
         aProm = this.productService.getProducts(pg);
       }
 
+      this.showPreloader = true;
       aProm.then(res => {
         // console.log(pg, res)
         const resp = res as ProductResponse;
