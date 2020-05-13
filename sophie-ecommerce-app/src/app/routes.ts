@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { ComponentDeactivateGuard } from './shared/component-deactivate.guard';
 import { PaymentComponent } from './payment/payment.component';
+import { TermAndConditionsPageComponent } from './term-and-conditions-page/term-and-conditions-page.component';
 
 export const appRoutes: Routes = [
     {
@@ -54,6 +55,10 @@ export const appRoutes: Routes = [
     {
         path: 'return-policy',
         component: ReturnPolicyPageComponent
+    },
+    {
+      path: 'term-and-conditions',
+      component: TermAndConditionsPageComponent
     },
     {
         path: 'product',
