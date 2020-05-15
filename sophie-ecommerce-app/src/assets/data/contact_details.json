@@ -1,23 +1,16 @@
 [
     {
-      "id": 1,
-      "descriptiion": "address",
-      "value": "1001, Lorem, Lagos",
-      "link": "https://goo.gl/maps/dNh6eEJAMC6VQZ2c9",
-      "icon": "/assets/images/home.png"
-    },
-    {
         "id": 2,
         "descriptiion": "email",
-        "value": "info@gooo.com",
-        "link": "mailto:info@gooo.com",
+        "value": "sophiesbnbessentials@gmail.com",
+        "link": "mailto:sophiesbnbessentials@gmail.com",
         "icon": "/assets/images/email.png"
     },
     {
         "id": 3,
         "descriptiion": "tel",
-        "value": "08020202020",
-        "link": "tel:08020202020",
+        "value": "08063167441",
+        "link": "tel:+2348063167441",
         "icon": "/assets/images/telephone.png"
     }
 ]
