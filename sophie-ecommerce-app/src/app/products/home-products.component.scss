@@ -72,16 +72,6 @@ div.home-banner{
 
         @media screen and (min-width: 575px) {
             div.desc{
-                padding: 20px;
-
-                p{
-                    margin-bottom: 1.25em;
-                }
-            }
-        }
-
-        @media screen and (min-width: 575px) {
-            div.desc{
                 padding: 50px 20px;
 
                 p{
@@ -89,6 +79,10 @@ div.home-banner{
 
                     &.home-banner__title{
                         margin-bottom: 2.25em;
+                    }
+
+                    &.home-banner__content {
+                      max-width: 500px;
                     }
                 }
             }

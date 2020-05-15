@@ -1,49 +1,49 @@
 <footer>
-    <div class="footer-sections">
-        <div class="footer-section">
-            <a class="footer-logo" [routerLink]="['']">
-                <img src="/../assets/images/logo.png" alt="Sophoie's logo" class="footer-icon">
-            </a>
-        </div>
-        <div class="footer-section">
-            <p class="footer-section__title">About Sophie’s</p>
-            <ul class="footer-section__list-items">
-                <li class="footer-section__list-item">
-                    <a [routerLink]="['/about']">About us</a>
-                </li>
-                <li class="footer-section__list-item">
-                    <a>Terms & Conditions</a>
-                </li>
-                <li class="footer-section__list-item">
-                    <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
-                </li>
-                <li class="footer-section__list-item">
-                    <a [routerLink]="['/return-policy']">Return Policy</a>
-                </li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <p class="footer-section__title">Connect with us</p>
-            <ul class="footer-section__list-items footer__social-media-links">
-                <li class="footer__social-media-link" *ngFor="let social of socialMedia">
-                    <a href="{{social?.link}}" title="{{social?.name}}" target="_blank" rel="noopener">
-                        <i class="{{social?.icon}}"></i>
-                    </a>
-                </li>
-            </ul>
-            <ul class="footer-section__list-items footer__contact-details">
-                <li class="footer__contact-detail" *ngFor="let contact of contactDetails">
-                    <a href="{{contact?.link}}" title="{{contact?.descriptiion}}" target="_blank"  rel="noopener">
-                        <img src="{{contact?.icon}}" alt="icon for {{contact?.descriptiion}}"/>
-                        <span>{{contact?.value}}</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+  <div class="footer-sections">
+    <div class="footer-section">
+      <a class="footer-logo" [routerLink]="['']">
+        <img src="/../assets/images/logo.png" alt="Sophoie's logo" class="footer-icon">
+      </a>
     </div>
-    <div class="footer-copyright-container">
-        <p class="copyright">
-          © Sophies Bath and Body 2020 | Designed by <a target="_blank" href="https://techinnovationsandsolutions.com/">Tech Innovations And Solution</a>.
-        </p>
+    <div class="footer-section">
+      <p class="footer-section__title">About Sophie’s</p>
+      <ul class="footer-section__list-items">
+        <li class="footer-section__list-item">
+          <a [routerLink]="['/about']">About us</a>
+        </li>
+        <li class="footer-section__list-item">
+          <a  [routerLink]="['/term-and-conditions']">Terms & Conditions</a>
+        </li>
+        <li class="footer-section__list-item">
+          <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
+        </li>
+        <li class="footer-section__list-item">
+          <a [routerLink]="['/return-policy']">Return Policy</a>
+        </li>
+      </ul>
     </div>
+    <div class="footer-section">
+      <p class="footer-section__title">Connect with us</p>
+      <ul class="footer-section__list-items footer__social-media-links">
+        <li class="footer__social-media-link" *ngFor="let social of socialMedia">
+          <a href="{{social?.link}}" title="{{social?.name}}" target="_blank" rel="noopener">
+            <i class="{{social?.icon}}"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="footer-section__list-items footer__contact-details">
+        <li class="footer__contact-detail" *ngFor="let contact of contactDetails">
+          <a href="{{contact?.link}}" title="{{contact?.descriptiion}}" target="_blank"  rel="noopener">
+            <img src="{{contact?.icon}}" alt="icon for {{contact?.descriptiion}}"/>
+            <span>{{contact?.value}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright-container">
+    <p class="copyright">
+      © Sophies Bath and Body 2020 | Designed by <a target="_blank" href="https://techinnovationsandsolutions.com/">Tech Innovations And Solutions</a>.
+    </p>
+  </div>
 </footer>

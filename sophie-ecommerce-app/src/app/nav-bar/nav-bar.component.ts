@@ -79,7 +79,7 @@ export class NavBarComponent implements OnInit {
         },
         queryParamsHandling: 'merge'
       });
-      window.location.href = '/shop/search?searchhTerm=' + this.searchText;
+      // window.location.href = '/shop/search?searchhTerm=' + this.searchText;
     }
   }
 }
