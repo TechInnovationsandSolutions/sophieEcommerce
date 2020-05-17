@@ -483,7 +483,7 @@ export class ProductService {
   }
 
   removeFromLocalCart(item: ICart) {
-    const isInCart = cartItems.find(c => c.id === item.id);
+    const isInCart = cartItems.find(c => c.product_id === item.product_id);
 
     // Yes in cart
     if (isInCart) {

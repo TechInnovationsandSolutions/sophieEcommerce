@@ -159,10 +159,21 @@ export class RegisterComponent implements OnInit {
       },
       rej => {
         this.blockUI.stop();
+        // console.log(rej);
+        const errors: any = rej.error.errors;
+
+        const errKey = Object.keys(errors);
+        const msgArr = [];
+        errKey.forEach(k => {
+          const msgE = errors[k];
+          const msgD = Array.isArray(msgE) ? msgE.join('\n') : msgE;
+          msgArr.push(msgD);
+        });
+
         Swal.fire({
-          icon: 'warning',
+          icon: 'error',
           title: 'Account Creation failed',
-          text: rej.message,
+          text: msgArr.join('\n'),
           cancelButtonText: 'OK'
         });
       }).catch(err => {

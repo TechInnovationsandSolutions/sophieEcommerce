@@ -1,14 +1,14 @@
 <div *ngIf="!showPreloader" class="product-details py-3">
     <div class="product-details__main m-auto">
         <div class="product-image-container">
-            <img src="{{ product?.images[0]?.url  || '/assets/images/product-1.png' }}" alt="Image of {{ product?.name }}">
+            <img src="{{ product?.images[0]?.url ? product?.images[0]?.url  : '/assets/images/product-1.png' }}" alt="Image of {{ product?.name }}">
         </div>
         <div class="product-detail__info">
             <p class="product-detail__name text-capitalize">{{ product?.name }}</p>
             <p class="product-detail__price">
-                <span class="promo_price">{{ product?.reduced_cost | currency:"NGN":"₦"}}</span>
-                <span *ngIf="(product?.reduced_cost !== product?.cost)" class="price">{{ product?.cost | currency:"NGN":"₦"}}</span>
-                <span class="product-item__discount" *ngIf="(product?.reduced_cost !== product?.cost)">
+                <span class="promo_price">{{ product?.reduced_cost ? product?.reduced_cost : product?.cost | currency:"NGN":"₦"}}</span>
+                <span *ngIf="(product?.reduced_cost && product?.reduced_cost < product?.cost)" class="price">{{ product?.cost | currency:"NGN":"₦"}}</span>
+                <span class="product-item__discount" *ngIf="(product?.reduced_cost && product?.reduced_cost < product?.cost)">
                     {{ ((product?.cost - product?.reduced_cost)/product?.cost) | percent:'1.2' }}
                 </span>
             </p>
