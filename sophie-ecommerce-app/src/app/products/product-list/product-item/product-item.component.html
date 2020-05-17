@@ -4,7 +4,7 @@
         <button class="btn-add-to-favorite product-item__btn" [title]="(isInWishList ? 'Remove From Favorite' : 'Add to Favorite')" (click)="toWishList()" [ngClass]="{'bg-danger': isInWishList}">
             <i [ngClass]="isInWishList ? 'fas fa-times text-light': 'far fa-heart'"></i>
         </button>
-        <p class="product-item__discount" *ngIf="(aProduct.reduced_cost !== aProduct.cost)">
+        <p class="product-item__discount" *ngIf="(aProduct.reduced_cost && aProduct.reduced_cost < aProduct.cost)">
             {{ ((aProduct?.cost - aProduct?.reduced_cost)/aProduct?.cost) | percent:'1.2' }}
         </p>
     </div>
@@ -13,8 +13,8 @@
             <span>{{ aProduct.name | firstCharCapitalize}}</span>
         </p>
         <p class="product-item__details-price">
-            <span class="promo_price">{{ aProduct.reduced_cost | currency:"NGN":"₦"}}</span>
-            <span *ngIf="(aProduct.reduced_cost !== aProduct.cost)" class="price">{{ aProduct.cost | currency:"NGN":"₦"}}</span>
+            <span class="promo_price">{{ aProduct.reduced_cost ? aProduct.reduced_cost : aProduct.cost  | currency:"NGN":"₦"}}</span>
+            <span *ngIf="(aProduct.reduced_cost && aProduct.reduced_cost < aProduct.cost)" class="price">{{ aProduct.cost | currency:"NGN":"₦"}}</span>
         </p>
     </div>
     <div class="product-item__functions">
