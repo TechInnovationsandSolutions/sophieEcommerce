@@ -1,17 +1,17 @@
-@import './../../app.component.scss';
+@import "./../../app.component.scss";
 
-.pg-section{
+.pg-section {
   @include maxWidthFlexWrap();
 }
 
-.section-newsletter{
+.section-newsletter {
   height: 321px;
   background-color: #000;
   color: #fff;
   text-align: center;
 
-  & > div{
-    max-width: 500px;;
+  & > div {
+    max-width: 500px;
   }
 
   // h2, p, form{
@@ -22,35 +22,42 @@
     font-size: 1.125em;
   }
 
-  form#frm-newsletter-sub{
-    input, button{
+  form#frm-newsletter-sub {
+    input,
+    button {
       border-radius: 0;
     }
 
-    input{
-      border: 2px solid #FFFFFF;
+    input, button {
+      min-height: 48px;
+      justify-items: center;
+      align-items: center;
+    }
+
+    input {
+      border: 2px solid #ffffff;
       background-color: #000;
       text-align: center;
       color: #fff;
 
-      &::placeholder{
-          color: #AFA7A7;
+      &::placeholder {
+        color: #afa7a7;
       }
 
       @media screen and (min-width: 576px) {
-          text-align: left;
+        text-align: left;
       }
     }
 
-    button{
+    button {
       background-color: #fff;
-      border: 2px solid #FFFFFF;
+      border: 2px solid #ffffff;
       color: #000000;
       font-weight: bold;
 
       &:disabled {
         opacity: 0.7;
-        border: 2px solid #FFFFFF;
+        border: 2px solid #ffffff;
         color: #ffffff;
 
         &:hover {
