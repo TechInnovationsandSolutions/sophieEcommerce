@@ -458,6 +458,7 @@ export class ProductService {
   }
 
   addToLocalCart(item: ICart) {
+    item.amount = item.amount ? item.amount : item.amount_main;
     const isInCart = cartItems.find(c => c.product_id === item.product_id);
     console.log('de', isInCart);
     let result = false;
