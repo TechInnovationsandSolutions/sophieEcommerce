@@ -35,8 +35,11 @@ export class AuthService {
   getToken() {
     const user = localStorage.getItem(polish);
     const tk = localStorage.getItem(user);
-    const userToken: string = this.crispyService.decryptyCrypto(tk, loco + user);
-    return userToken;
+    if (user && tk) {
+      const userToken: string = this.crispyService.decryptyCrypto(tk, loco + user);
+      return userToken;
+    }
+    return;
   }
 
   removeToken() {
@@ -53,8 +56,11 @@ export class AuthService {
   getUser() {
     const userE = localStorage.getItem(polishUser);
     const pU = localStorage.getItem(userE);
-    const leUser: string = this.crispyService.decryptyCrypto(pU, loco + userE);
-    return JSON.parse(leUser) as IUSer;
+    if (userE && pU) {
+      const leUser: string = this.crispyService.decryptyCrypto(pU, loco + userE);
+      return JSON.parse(leUser) as IUSer;
+    }
+    return;
   }
 
   removeUser() {
