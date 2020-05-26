@@ -19,11 +19,13 @@ export class LoginComponent implements OnInit {
   url_route = '';
   @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private auth: AuthService,
-              private fb: FormBuilder,
-              private router: Router,
-              private prodServ: ProductService,
-              private route: ActivatedRoute) { }
+  constructor(
+    private auth: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private prodServ: ProductService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
         r => {
           this.blockUI.stop();
           if (r.data.token && r.data.is_admin === null) {
-            this.prodServ.setToken(r.data.token);
+            this.auth.setToken(r.data.token, r.data.email);
             this.auth.currentUser = {
               id: r.data.id,
               first_name: r.data.first_name,
@@ -54,7 +56,7 @@ export class LoginComponent implements OnInit {
               email: r.data.email,
               phone: r.data.phone,
             };
-            this.auth.setUser(JSON.stringify(this.auth.currentUser));
+            this.auth.setUser(this.auth.currentUser);
 
             Swal.fire({
               icon: 'success',
