@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/auth.service';
 
-const TOKEN = 'x-token';
 
 @Injectable()
 export class ProductService {
@@ -30,22 +29,18 @@ export class ProductService {
     private http: HttpClient,
     private router: Router,
     private auth: AuthService
-    ) {}
-
-  setToken(token: string): void {
-    localStorage.setItem(TOKEN, token);
-  }
+  ) {}
 
   getToken() {
-    return localStorage.getItem(TOKEN);
+    return this.auth.getToken();
   }
 
   removeToken() {
-    localStorage.removeItem(TOKEN);
+    this.auth.removeToken();
   }
 
   isLogged() {
-    return localStorage.getItem(TOKEN) != null;
+    return this.auth.getToken() != null;
   }
 
   forgotPassword(userEmail: string) {
