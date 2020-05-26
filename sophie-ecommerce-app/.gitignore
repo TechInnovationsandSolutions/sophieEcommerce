@@ -48,3 +48,5 @@ Thumbs.db
 # Other Files
 *.pptx
 .env
+
+encryption.service.ts
