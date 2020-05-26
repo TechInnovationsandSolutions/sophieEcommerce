@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app';
 import { Validators, FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ProductService } from 'src/app/shared';
 
 @Component({
   // tslint:disable-next-line: component-selector
