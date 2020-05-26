@@ -9,8 +9,10 @@ import { ProductService } from 'src/app/shared';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,
-              private productService: ProductService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) { }
   currentRoute = '';
 
   ngOnInit() {

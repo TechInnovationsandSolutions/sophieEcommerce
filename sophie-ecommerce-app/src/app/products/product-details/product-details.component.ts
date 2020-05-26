@@ -34,19 +34,19 @@ export class ProductDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.params);
+   // console.log(this.route.snapshot.params);
     this.route.params.forEach((params: Params) => {
       this.productService.getProduct(+params.id).then(res => {
-        console.log('the product', res);
+       // console.log('the product', res);
         this.product = res as IProduct;
         this.showPreloader = false;
         this.makeProductSEOTags();
       })
       .then(() => {
-        // console.log('pror', this.product);
+        //// console.log('pror', this.product);
         if (this.product.tags && this.product.tags.length) {
           const productTag = this.product.tags.map(t => t.name);
-          console.log('tag-chain', productTag.join(','), productTag, this.product.tags);
+         // console.log('tag-chain', productTag.join(','), productTag, this.product.tags);
           this.productService.getProductsByTag(productTag.join(',')).then(res => {
             this.relatedProducts = (res as IProduct[]).length > 8 ? (res as IProduct[]).slice(0, 8) : (res as IProduct[]);
           });
@@ -69,7 +69,7 @@ export class ProductDetailsComponent implements OnInit {
 
   addOne() {
     this.quantity++ ;
-    // console.log('df', this.quantity);
+    //// console.log('df', this.quantity);
   }
 
   removeOne() {
@@ -90,13 +90,13 @@ export class ProductDetailsComponent implements OnInit {
         imgUrl: (prod.images[0] && prod.images[0].url) ? prod.images[0].url : '/assets/images/product-1.png',
         quantity
       };
-      console.log('cartItem', cartItem);
+     // console.log('cartItem', cartItem);
 
       this.productService.addToLocalCart(cartItem)
       .then((res) => {
         this.productService.addToLocalCart(cartItem);
         const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
-        console.log('carty0', text);
+       // console.log('carty0', text);
         Swal.fire({
           icon: res ? 'success' : 'info',
           toast: true,

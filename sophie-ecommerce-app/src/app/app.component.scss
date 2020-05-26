@@ -1,26 +1,26 @@
-$smokeyWhite: #F5F4F4;
-$sophiePink : #FFD9E8;
-$placeHolderAsh: #AFA7A7;
-$placeHolderForm: #787A7C;
-$iconColor: #544F4F;
+$smokeyWhite: #f5f4f4;
+$sophiePink: #ffd9e8;
+$placeHolderAsh: #afa7a7;
+$placeHolderForm: #787a7c;
+$iconColor: #544f4f;
 $iconHoverColor: #007bff;
-$limeGreen: #2C9412;
+$limeGreen: #2c9412;
 $sweetWhiteSmokeBlue: #f2f3f7;
 
 //Bootstrap 4 colors
-$primary:    #007bff !default; // primary
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #e83e8c !default;
-$danger:     #dc3545 !default; // danger
-$orange:  #fd7e14 !default;
-$warning:  #ffc107 !default; // warning
-$success:   #28a745 !default; // success
-$teal:    #20c997 !default;
-$cyan:    #17a2b8 !default; // info
+$primary: #007bff !default; // primary
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$danger: #dc3545 !default; // danger
+$orange: #fd7e14 !default;
+$warning: #ffc107 !default; // warning
+$success: #28a745 !default; // success
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default; // info
 
 // Grays
-$white:    #fff !default;
+$white: #fff !default;
 $gray-100: #f8f9fa !default; // light
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
@@ -30,8 +30,7 @@ $secondary: #868e96 !default; // secondary
 $gray-700: #495057 !default;
 $dark: #343a40 !default; // dark
 $gray-900: #212529 !default;
-$black:    #000 !default;
-
+$black: #000 !default;
 
 @mixin flexWrap {
   display: flex;
@@ -48,7 +47,7 @@ $black:    #000 !default;
   @include maxWidth();
 }
 
-@mixin invertOnHover ($bg:#000, $clr:#fff, $borderClr: $bg, $borderWid: 1px) {
+@mixin invertOnHover($bg: #000, $clr: #fff, $borderClr: $bg, $borderWid: 1px) {
   background-color: $bg;
   color: $clr;
   border: $borderWid solid $borderClr;
@@ -59,7 +58,7 @@ $black:    #000 !default;
     stroke: $clr;
   }
 
-  &:hover{
+  &:hover {
     background-color: $clr;
     color: $bg;
     border: $borderWid solid $borderClr;
@@ -71,21 +70,22 @@ $black:    #000 !default;
   }
 }
 
-body{
+body {
   @include maxWidthFlexWrap();
   font-size: 16px;
 }
 
-h2{
-  &.pg-section__title, &.widget-title{
+h2 {
+  &.pg-section__title,
+  &.widget-title {
     font-size: 1.875em;
   }
 
-  &.widget-title{
+  &.widget-title {
     @include maxWidthFlexWrap();
     text-align: center;
 
-    &::before{
+    &::before {
       position: relative;
       margin: auto;
       /* height: 1em; */
@@ -96,12 +96,12 @@ h2{
       z-index: 0;
     }
 
-    span.widget-title-span-container{
+    span.widget-title-span-container {
       z-index: 1;
       margin: auto;
       @include maxWidthFlexWrap();
 
-      span{
+      span {
         margin: auto;
         background-color: #fff;
         padding: 0.5em;
@@ -111,55 +111,69 @@ h2{
 }
 
 //Style both return and privacy policy
-.policy-page{
+.policy-page {
   width: 100%;
   max-width: 840px;
   padding: 20px;
   margin: auto;
   @include flexWrap();
 
-  .policy-page__title, .policy-page__section, .policy-page__section-title, .policy-page__section-content-title{
+  .policy-page__title,
+  .policy-page__section,
+  .policy-page__section-title,
+  .policy-page__section-content-title {
     @include maxWidth();
   }
 
-  .policy-page__title{
+  .policy-page__title {
     font-size: 1.875em;
   }
 
-  .policy-page__title, .policy-page__section-title, .policy-page__section-content-title{
-    margin-bottom: 1.25em;
+  .policy-page__title,
+  .policy-page__section-title,
+  .policy-page__section-content-title {
+    margin-bottom: 0.25em;
     font-weight: bold;
   }
 
-  .policy-page__section{
+  .policy-page__section {
     @include flexWrap();
+    margin-bottom: 1.25em;
 
-    .policy-page__section-title{
+    .policy-page__section-title {
       font-size: 1.5em;
     }
 
-    .policy-page__section-content-title{
+    .policy-page__section-content-title {
       font-size: 1.125em;
+    }
+
+    ul {
+      padding-left: 2em;
+
+      strong {
+        text-transform: capitalize;
+      }
     }
   }
 
-  @media screen and (min-width: 900px){
+  @media screen and (min-width: 900px) {
     padding-top: 75px;
     padding-bottom: 50px;
 
-    .policy-page__title{
+    .policy-page__title {
       margin-bottom: 2em;
     }
   }
 }
 
-form{
-  button[type='submit']{
-    &[disabled]{
+form {
+  button[type="submit"] {
+    &[disabled] {
       background-color: rgba($color: #000000, $alpha: 0.5) !important;
       border-color: transparent;
 
-      &:hover{
+      &:hover {
         color: #fff !important;
         background-color: rgba($color: #000000, $alpha: 0.5) !important;
         cursor: not-allowed;
@@ -170,4 +184,12 @@ form{
 
 button {
   outline: none !important;
+}
+
+button:disabled {
+  opacity: 0.75;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 }

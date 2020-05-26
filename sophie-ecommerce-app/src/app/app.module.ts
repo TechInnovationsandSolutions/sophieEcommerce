@@ -43,6 +43,8 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { FirstCharCapitalizePipe } from './common/first-char-capitalize.pipe';
 import { VerifyPaymentComponent } from './verify-payment/verify-payment.component';
 import { PaymentComponent } from './payment/payment.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,8 @@ import { PaymentComponent } from './payment/payment.component';
     HttpClientModule,
     Ng5SliderModule,
     BlockUIModule.forRoot(),
-    Angular4PaystackModule.forRoot('pk_test_4f69d7376af4f85cf8e0c1113c04a82ad6d97abe')
+    Angular4PaystackModule.forRoot('pk_test_4f69d7376af4f85cf8e0c1113c04a82ad6d97abe'),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     ProductService,

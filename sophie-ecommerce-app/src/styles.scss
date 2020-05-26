@@ -64,3 +64,8 @@ textarea{
 ::-webkit-scrollbar-thumb:hover {
   background: #e83e8c;
 }
+
+::selection {
+  background: #FFD9E8;
+  color: #333;
+}

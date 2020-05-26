@@ -15,9 +15,9 @@
                         <a [routerLink]='["/product", item.product_id]' [queryParams]="{cart:this.item.quantity}" class="cart-item-name">{{ item.product | firstCharCapitalize}}</a>
                     </div>
                     <div class="cart-item-price-container">
-                        <span class="cart-item-current">{{ item.amount ? item.amount : item.amount_main | currency:"NGN":"₦" }}</span>
+                        <span class="cart-item-current">{{ (item.amount ? item.amount : item.amount_main) | currency:"NGN":"₦" }}</span>
                         <span *ngIf="item.amount && item.amount < +item.amount_main" class="cart-item-main">{{ item.amount_main | currency:"NGN":"₦" }}</span>
-                        <span *ngIf="item.amount && item.amount < item.amount_main" class="cart-item-save">Saving {{ item.amount_main - item.amount | currency:"NGN":"₦" }}</span>
+                        <span *ngIf="item.amount && item.amount < item.amount_main" class="cart-item-save">Saving {{ (item.amount_main - item.amount) | currency:"NGN":"₦" }}</span>
                     </div>
                     <div class="cart-item-quantity-container">
                         <button type="button" class="frm-product-add-to-cart__btn-change-cart-amt" (click)="reduceByOne(this.item)">-</button>
