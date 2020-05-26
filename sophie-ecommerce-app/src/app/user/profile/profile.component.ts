@@ -149,7 +149,9 @@ export class ProfileComponent implements OnInit {
             'info'
           );
         }
-      }).catch(err => console.error(err));
+      }).catch(err => {
+        // console.error(err)
+      });
     }
   }
 

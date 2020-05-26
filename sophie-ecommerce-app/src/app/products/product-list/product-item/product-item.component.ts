@@ -19,7 +19,7 @@ export class ProductItemComponent {
   constructor(private productService: ProductService) { }
 
   addToCart() {
-    console.log('lol', this.aProduct);
+    // console.log('lol', this.aProduct);
     const cartItem: ICart = {
       id: null,
       product_id: this.aProduct.id,
@@ -33,7 +33,7 @@ export class ProductItemComponent {
     this.productService.addToLocalCart(cartItem)
     .then((res) => {
       const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
-      console.log('carty0', text);
+      // console.log('carty0', text);
       Swal.fire({
         icon: res ? 'success' : 'info',
         toast: true,

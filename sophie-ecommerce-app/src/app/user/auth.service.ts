@@ -28,7 +28,6 @@ export class AuthService {
   setToken(token: string, emailLog: string) {
     const user = this.crispyService.encryptyCrypto(emailLog, loco + TOKEN);
     const userToken = this.crispyService.encryptyCrypto(token, loco + user);
-
     localStorage.setItem(user, userToken);
     localStorage.setItem(polish, user);
   }
