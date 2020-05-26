@@ -85,7 +85,7 @@ export class ProfileComponent implements OnInit {
                 email: this.auth.currentUser.email,
                 phone: _user.phone,
               };
-              this.auth.setUser(JSON.stringify(this.auth.currentUser));
+              this.auth.setUser(this.auth.currentUser);
               this.blockUI.stop();
               Swal.fire('Successful', 'Your account details were updated successfully 🙂.', 'success');
             }
