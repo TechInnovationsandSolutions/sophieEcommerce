@@ -278,7 +278,7 @@ export class CheckoutPageComponent implements OnInit {
     }
   }
 
-  submitCheckOut() {
-
+  cancelForm() {
+    this.isWithNewAddress = false;
   }
 }
