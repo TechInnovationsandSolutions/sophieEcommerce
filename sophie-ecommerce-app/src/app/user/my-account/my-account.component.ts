@@ -17,7 +17,7 @@ export class MyAccountComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      console.log('current pr', params);
+      // console.log('current pr', params);
       if (params.fn === 'profile') {
         this.currentRoute = 'profile';
         this.productService.makeSEO('My Account - Profile');
