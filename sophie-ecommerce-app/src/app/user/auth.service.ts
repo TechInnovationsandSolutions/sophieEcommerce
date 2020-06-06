@@ -13,8 +13,9 @@ const polishUser = 'kt-spt-uz';
 
 @Injectable()
 export class AuthService {
-  // https://tis-bandb.herokuapp.com
-  baseUrl = 'https://api.sophiesbathandbody.com/api/v1/'; // Base URL
+  // Base URL
+  // baseUrl = 'https://tis-bandb.herokuapp.com/api/v1/';
+  baseUrl = 'https://api.sophiesbathandbody.com/api/v1/';
   // tslint:disable-next-line: variable-name
   _url = this.baseUrl + 'auth/';
 
