@@ -34,7 +34,8 @@ export class ProductItemComponent implements OnInit {
         amount: this.aProduct.reduced_cost,
         amount_main: this.aProduct.cost,
         imgUrl: (this.aProduct.images[0] && this.aProduct.images[0].url) ? this.aProduct.images[0].url : '/assets/images/product-1.png',
-        quantity: 1
+        quantity: 1,
+        maxQty: this.aProduct.quantity
       };
 
       this.productService.addToLocalCart(cartItem)

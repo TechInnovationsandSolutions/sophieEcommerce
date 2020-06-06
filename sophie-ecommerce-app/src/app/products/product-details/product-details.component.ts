@@ -90,6 +90,20 @@ export class ProductDetailsComponent implements OnInit {
     (this.quantity > 1) ? this.quantity-- : this.quantity;
   }
 
+  changeFn(e: any) {
+    if (this.quantity >= this.product.quantity) {
+      this.quantity = this.product.quantity;
+      Swal.fire({
+        icon: 'info',
+        toast: true,
+        title: 'The maximum number of ' + this.product.name + ' in stock is ' + this.product.quantity + '.',
+        timer: 1000,
+        showConfirmButton: false,
+        position: 'top-right'
+      });
+    }
+  }
+
   addToCart(e: Event, prod: IProduct, quantity: number) {
     e.preventDefault();
 
@@ -101,7 +115,8 @@ export class ProductDetailsComponent implements OnInit {
         amount: prod.reduced_cost,
         amount_main: prod.cost,
         imgUrl: (prod.images[0] && prod.images[0].url) ? prod.images[0].url : '/assets/images/product-1.png',
-        quantity
+        quantity,
+        maxQty: prod.quantity
       };
      // console.log('cartItem', cartItem);
 

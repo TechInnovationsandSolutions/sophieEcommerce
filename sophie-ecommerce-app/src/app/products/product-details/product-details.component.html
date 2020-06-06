@@ -56,7 +56,7 @@
               (click)="removeOne()" title="reduce the quantity of {{ product.name }} by 1">-</button>
             <input [readOnly]="!product.quantity" type="number" aria-label="current product quantity"
               id="frm-product-add-to-cart__amt" min="1" [max]="product.quantity" [(ngModel)]="quantity" #qty="ngModel"
-              name="quantity" required>
+              name="quantity" (keyup)="changeFn($event)" required>
             <button [disabled]="!product.quantity" type="button"
               title="increase the quantity of {{ product.name }} by 1"
               class="frm-product-add-to-cart__btn-change-cart-amt" (click)="addOne()">+</button>
