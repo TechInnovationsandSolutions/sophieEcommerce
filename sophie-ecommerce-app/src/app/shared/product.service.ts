@@ -172,7 +172,16 @@ export class ProductService {
           // console.log(res);
           // tslint:disable-next-line: triple-equals
           if (res.status == 'success') {
-            const data = (res.data.data.length > 7) ? res.data.data.slice(0, 8) : res.data.data;
+            let data;
+            const products = (res.data.data as IProduct[]).filter((r) => !!r.quantity);
+          // console.log('products', products);
+            if (products.length > 7) {
+              data = products.slice(0, 8);
+            } else if (products.length <= 7 && products.length > 3) {
+              data = products.slice(0, 4);
+            } else {
+              data = products.slice();
+            }
             resolve(data);
           }
         },

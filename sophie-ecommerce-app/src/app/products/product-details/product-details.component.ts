@@ -39,6 +39,7 @@ export class ProductDetailsComponent implements OnInit {
       this.productService.getProduct(+params.id).then(res => {
        // console.log('the product', res);
         this.product = res as IProduct;
+        this.product.avg_rating = this.product.avg_rating ? this.product.avg_rating : 5 ;
         this.showPreloader = false;
         this.makeProductSEOTags();
       })
@@ -68,7 +69,19 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addOne() {
-    this.quantity++ ;
+    if (this.quantity < this.product.quantity) {
+      this.quantity++;
+    } else if (this.quantity === this.product.quantity) {
+      Swal.fire({
+        icon: 'info',
+        toast: true,
+        title: 'The maximum number of ' + this.product.name + ' in stock is ' + this.product.quantity + '.',
+        timer: 1000,
+        showConfirmButton: false,
+        position: 'top-right'
+      });
+    }
+
     //// console.log('df', this.quantity);
   }
 
