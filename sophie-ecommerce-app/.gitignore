@@ -46,5 +46,6 @@ testem.log
 Thumbs.db
 
 # Other Files
+encryption.service.ts
 *.pptx
 .env
