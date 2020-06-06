@@ -37,7 +37,6 @@ export interface IProduct {
   discount?: string;
   createdOn?: string;
   lastUpdate?: string;
-  availibility?: string;
   ratings?: IReview[];
   tags?: ITag[];
   avg_rating?: number;

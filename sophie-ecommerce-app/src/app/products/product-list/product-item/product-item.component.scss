@@ -34,7 +34,7 @@ div.product-item {
       color: $iconColor;
     }
 
-    button.btn-add-to-cart.product-item__btn {
+    button.btn-add-to-cart.product-item__btn:enabled {
       background-color: $iconColor;
       color: #ffffff;
       transition: 0.5s ease-out;
@@ -44,6 +44,10 @@ div.product-item {
         color: #000000;
         text-decoration: underline;
       }
+    }
+
+    button.btn-add-to-cart.product-item__btn:disabled {
+      color: $danger;
     }
   }
 

@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss']
 })
-export class ProductItemComponent {
+export class ProductItemComponent implements OnInit {
   isInWishList: boolean;
   @Input() aProduct: IProduct;
   // tslint:disable-next-line: variable-name
@@ -16,33 +16,41 @@ export class ProductItemComponent {
     this.isInWishList = _val ? true : false;
   }
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService
+  ) { }
+
+  ngOnInit() {
+    this.aProduct.avg_rating = this.aProduct.avg_rating ? this.aProduct.avg_rating : 5 ;
+  }
 
   addToCart() {
     // console.log('lol', this.aProduct);
-    const cartItem: ICart = {
-      id: null,
-      product_id: this.aProduct.id,
-      product: this.aProduct.name,
-      amount: this.aProduct.reduced_cost,
-      amount_main: this.aProduct.cost,
-      imgUrl: (this.aProduct.images[0] && this.aProduct.images[0].url) ? this.aProduct.images[0].url : '/assets/images/product-1.png',
-      quantity: 1
-    };
+    if (this.aProduct.quantity) {
+      const cartItem: ICart = {
+        id: null,
+        product_id: this.aProduct.id,
+        product: this.aProduct.name,
+        amount: this.aProduct.reduced_cost,
+        amount_main: this.aProduct.cost,
+        imgUrl: (this.aProduct.images[0] && this.aProduct.images[0].url) ? this.aProduct.images[0].url : '/assets/images/product-1.png',
+        quantity: 1
+      };
 
-    this.productService.addToLocalCart(cartItem)
-    .then((res) => {
-      const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
-      // console.log('carty0', text);
-      Swal.fire({
-        icon: res ? 'success' : 'info',
-        toast: true,
-        title: text,
-        timer: 1000,
-        showConfirmButton: false,
-        position: 'top-right'
+      this.productService.addToLocalCart(cartItem)
+      .then((res) => {
+        const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
+        // console.log('carty0', text);
+        Swal.fire({
+          icon: res ? 'success' : 'info',
+          toast: true,
+          title: text,
+          timer: 1000,
+          showConfirmButton: false,
+          position: 'top-right'
+        });
       });
-    });
+    }
   }
 
   addToWishList() {
