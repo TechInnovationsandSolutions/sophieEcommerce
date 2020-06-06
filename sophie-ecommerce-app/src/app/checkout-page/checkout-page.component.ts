@@ -50,8 +50,8 @@ export class CheckoutPageComponent implements OnInit {
     this.productService.getLocalCartItems().subscribe(cItems => {
       this.cartItems = cItems;
       this.sumTotal();
-      console.log('totl', this.totamt);
-      console.log('cItems', cItems);
+      // console.log('totl', this.totamt);
+      // console.log('cItems', cItems);
       const totamtKobo = this.totamt ? Math.round(this.totamt * 100) : 0;
       this.options = {
         amount: 1000,
@@ -70,7 +70,7 @@ export class CheckoutPageComponent implements OnInit {
     });
 
     this.productService.getUserAddresses().then((res) => {
-      console.log('Address', res);
+      // console.log('Address', res);
       this.userAddresses =  res.data as IUSerAddress[];
       this.showPreloader = false;
 
@@ -86,16 +86,16 @@ export class CheckoutPageComponent implements OnInit {
     this.cartItems.forEach(item => {
       this.totamt += Number(item.quantity * item.amount);
     });
-    console.log('this.totamt', this.totamt);
+    // console.log('this.totamt', this.totamt);
   }
 
   paymentInit() {
-    console.log('Payment initialized');
+    // console.log('Payment initialized');
   }
 
   paymentInitWithNewAddress() {
     if (this.userAddressForm.valid) {
-      console.log('Payment initialized with new Address', this.userAddressForm.value);
+      // console.log('Payment initialized with new Address', this.userAddressForm.value);
       const form = this.userAddressForm.value;
 
       const stateId = this.states.find(s => s.name === form.address_state).id;
@@ -115,7 +115,7 @@ export class CheckoutPageComponent implements OnInit {
         .then(res => {
           if (res.status === 'success') {
             this.selectedAddress = res.data;
-            console.log(this.selectedAddress);
+            // console.log(this.selectedAddress);
           }
         });
     } else {
@@ -125,7 +125,7 @@ export class CheckoutPageComponent implements OnInit {
 
   paymentDoneWithNewAddress() {
     if (this.userAddressForm.valid) {
-      console.log('Payment initialized with new Address', this.userAddressForm.value);
+      // console.log('Payment initialized with new Address', this.userAddressForm.value);
       const form = this.userAddressForm.value;
 
       const stateId = this.states.find(s => s.name === form.address_state).id;
@@ -148,7 +148,7 @@ export class CheckoutPageComponent implements OnInit {
 
           if (res.status === 'success') {
             this.selectedAddress = res.data;
-            console.log(this.selectedAddress);
+            // console.log(this.selectedAddress);
           } else {
             throw new Error(res);
           }
@@ -165,11 +165,11 @@ export class CheckoutPageComponent implements OnInit {
 
   paymentDone() {
     // alert('Payment successfull');
-    // console.log('this.title', ref);
-    console.log('this.title', this.selectedAddress.id.toString());
+    // // console.log('this.title', ref);
+    // console.log('this.title', this.selectedAddress.id.toString());
     this.blockUI.start('Processing...');
     this.productService.addUserOrder(this.selectedAddress.id.toString()).then(res => {
-      console.log('ddd', res);
+      // console.log('ddd', res);
       this.blockUI.stop();
       if (res.status === 'success') {
         // Swal.fire('Order Confirmed', 'Your transaction was successful. A receipt has been sent to your email', 'success').then(() => {
@@ -181,7 +181,7 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   paymentCancel() {
-    console.log('payment failed');
+    // console.log('payment failed');
   }
 
   showAddNewAddress() {
@@ -190,13 +190,13 @@ export class CheckoutPageComponent implements OnInit {
 
   getAddresses() {
     this.productService.getUserAddresses().then((res) => {
-      console.log('Address', res);
+      // console.log('Address', res);
       this.userAddresses =  res.data as IUSerAddress[];
     });
   }
 
   getCorrectStateLGA(val) {
-    console.log('sss', val.target.value);
+    // console.log('sss', val.target.value);
     const stateName = val.target.value;
     const inpLGA =  document.getElementById('userAddressLGA') as HTMLInputElement;
     inpLGA.value = null;
@@ -205,9 +205,9 @@ export class CheckoutPageComponent implements OnInit {
 
     if (stateName) {
       const _LGA = this.states.find(s => s.name === stateName);
-      console.log('_L', _LGA);
+      // console.log('_L', _LGA);
       this.LGA = (_LGA && _LGA.locals) ? _LGA.locals : [];
-      console.log('LGAs', this.LGA);
+      // console.log('LGAs', this.LGA);
     } else {
       this.userAddressForm.patchValue({
         address_lga: null
@@ -216,7 +216,7 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   confirmCorrectLGA(val) {
-    console.log('sss', val.target.value);
+    // console.log('sss', val.target.value);
     const stateName = val.target.value;
 
     if (!stateName) {
@@ -225,7 +225,7 @@ export class CheckoutPageComponent implements OnInit {
 
     const inLGA = this.LGA.find(l => l.name === stateName);
 
-    console.log('inLGA', inLGA, stateName, this.LGA);
+    // console.log('inLGA', inLGA, stateName, this.LGA);
 
     if (!inLGA) {
       const inpLGA =  document.getElementById('userAddressLGA') as HTMLInputElement;
@@ -274,11 +274,11 @@ export class CheckoutPageComponent implements OnInit {
     const inp = e.target;
     if (inp.checked) {
       this.selectedAddress = address;
-      // console.log(inp, this.selectedAddress);
+      // // console.log(inp, this.selectedAddress);
     }
   }
 
-  submitCheckOut() {
-
+  cancelForm() {
+    this.isWithNewAddress = false;
   }
 }

@@ -11,7 +11,10 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 })
 export class MyAddressesComponent implements OnInit {
 
-  constructor(private productService: ProductService, private fb: FormBuilder) { }
+  constructor(
+    private productService: ProductService,
+    private fb: FormBuilder
+  ) { }
 
   states: any[] = [];
   LGA: any[] = [];
@@ -38,17 +41,17 @@ export class MyAddressesComponent implements OnInit {
     this.productService.getStateLGADetails().subscribe(s => {
       // tslint:disable-next-line: no-shadowed-variable
       this.states = s.map(s => s.state).map(st => {
-        // console.log('st', st);
+        // // console.log('st', st);
         const ind = st.name.indexOf(' State');
         st.name = (ind && ind > 0) ? st.name.substring(0, ind) : st.name;
         return st;
       }) as any[];
-      // console.log('res0', s);
-      // console.log('state', this.states);
+      // // console.log('res0', s);
+      // // console.log('state', this.states);
     });
 
     this.productService.getUserAddresses().then((res) => {
-      console.log('Address', res);
+      // console.log('Address', res);
       this.userAddresses = res.data as IUSerAddress[];
       this.showPreloader = false;
     });
@@ -57,14 +60,14 @@ export class MyAddressesComponent implements OnInit {
   getAddresses() {
     this.showPreloader = true;
     this.productService.getUserAddresses().then((res) => {
-      console.log('Address', res);
+      // console.log('Address', res);
       this.userAddresses = res.data as IUSerAddress[];
       this.showPreloader = false;
     });
   }
 
   getCorrectStateLGA(val) {
-    console.log('sss', val.target.value);
+    // console.log('sss', val.target.value);
     const stateName = val.target.value;
     const inpLGA = document.getElementById('userAddressLGA') as HTMLInputElement;
     inpLGA.value = null;
@@ -74,9 +77,9 @@ export class MyAddressesComponent implements OnInit {
     if (stateName) {
       // tslint:disable-next-line: triple-equals
       const _LGA = this.states.find(s => s.name == stateName);
-      console.log('_L', _LGA);
+      // console.log('_L', _LGA);
       this.LGA = (_LGA && _LGA.locals) ? _LGA.locals : [];
-      console.log('LGAs', this.LGA);
+      // console.log('LGAs', this.LGA);
     } else {
       this.userAddressForm.patchValue({
         address_lga: null
@@ -85,7 +88,7 @@ export class MyAddressesComponent implements OnInit {
   }
 
   confirmCorrectLGA(val) {
-    console.log('sss', val.target.value);
+    // console.log('sss', val.target.value);
     const stateName = val.target.value;
 
     if (!stateName) {
@@ -95,7 +98,7 @@ export class MyAddressesComponent implements OnInit {
     // tslint:disable-next-line: triple-equals
     const inLGA = this.LGA.find(l => l.name == stateName);
 
-    console.log('inLGA', inLGA, stateName, this.LGA);
+    // console.log('inLGA', inLGA, stateName, this.LGA);
 
     if (!inLGA) {
       const inpLGA = document.getElementById('userAddressLGA') as HTMLInputElement;
@@ -177,7 +180,7 @@ export class MyAddressesComponent implements OnInit {
         }).then((result) => {
           if (result.value) {
             this.blockUI.start();
-            this.productService.deleteUserAddress(address).then(res => console.log(res)).then(() => {
+            this.productService.deleteUserAddress(address).then(() => {
             this.blockUI.stop();
             Swal.fire(
                 'Deleted!',
@@ -260,7 +263,7 @@ export class MyAddressesComponent implements OnInit {
       }).then((result) => {
         this.blockUI.start();
         if (result.value) {
-          this.productService.addUserAddress(address).then(res => console.log(res)).then(() => {
+          this.productService.addUserAddress(address).then(() => {
             this.blockUI.stop();
             Swal.fire(
               'Created!',
@@ -308,7 +311,7 @@ export class MyAddressesComponent implements OnInit {
       }).then((result) => {
         this.blockUI.start();
         if (result.value) {
-          this.productService.updateUserAddress(address).then(res => console.log(res)).then(() => {
+          this.productService.updateUserAddress(address).then(() => {
             this.blockUI.stop();
             Swal.fire(
               'Updated!',
@@ -346,7 +349,7 @@ export class MyAddressesComponent implements OnInit {
 
   submitAddress(form: FormGroup) {
     try {
-      console.log(form.status, form.value);
+      // console.log(form.status, form.value);
       // tslint:disable-next-line: triple-equals
       if (form.status.toLowerCase() == 'valid') {
         // tslint:disable-next-line: variable-name
@@ -367,7 +370,7 @@ export class MyAddressesComponent implements OnInit {
           state_id: _stateId
         };
 
-        console.log('address value', address);
+        // console.log('address value', address);
 
         this.isCreate ? this.addNewAddress(address) : this.updateAddress(address);
       }

@@ -27,7 +27,7 @@ export class NavBarComponent implements OnInit {
       this.productService.populateLocalCartItems();
     }
     this.productService.getLocalCartItems().subscribe(cItems => {
-      console.log('cart items', cItems);
+      // console.log('cart items', cItems);
       this.cartItems = cItems;
     });
   }
@@ -68,10 +68,10 @@ export class NavBarComponent implements OnInit {
   }
 
   searchFormSubmit() {
-    console.log();
-    console.log(this.searchText);
+    // console.log();
+    // console.log(this.searchText);
     if (this.searchText) {
-      console.log('yum yum');
+      // console.log('yum yum');
       this.router.navigate(['/shop/search'], {
         queryParams: {
           searchhTerm: this.searchText,

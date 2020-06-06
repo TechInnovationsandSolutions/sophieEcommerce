@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/auth.service';
 
-const TOKEN = 'x-token';
 
 @Injectable()
 export class ProductService {
@@ -30,22 +29,18 @@ export class ProductService {
     private http: HttpClient,
     private router: Router,
     private auth: AuthService
-    ) {}
-
-  setToken(token: string): void {
-    localStorage.setItem(TOKEN, token);
-  }
+  ) {}
 
   getToken() {
-    return localStorage.getItem(TOKEN);
+    return this.auth.getToken();
   }
 
   removeToken() {
-    localStorage.removeItem(TOKEN);
+    this.auth.removeToken();
   }
 
   isLogged() {
-    return localStorage.getItem(TOKEN) != null;
+    return this.auth.getToken() != null;
   }
 
   forgotPassword(userEmail: string) {
@@ -106,7 +101,7 @@ export class ProductService {
         params: new HttpParams().set('page', param)
       }).subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           // tslint:disable-next-line: triple-equals
           if (res.status == 'success') {
             res.data.pg = this.numberOfProductPages(res.data.total);
@@ -114,7 +109,7 @@ export class ProductService {
           }
         },
         (err: HttpErrorResponse) => {
-          console.log(err.error);
+          // console.log(err.error);
         }
       );
     });
@@ -164,7 +159,7 @@ export class ProductService {
           }
       },
       (err: HttpErrorResponse) => {
-          console.log(err.error);
+          // console.log(err.error);
       }
       );
     });
@@ -174,7 +169,7 @@ export class ProductService {
     return new Promise(resolve => {
       this.http.get<any>(this._url + 'products').subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           // tslint:disable-next-line: triple-equals
           if (res.status == 'success') {
             const data = (res.data.data.length > 7) ? res.data.data.slice(0, 8) : res.data.data;
@@ -182,7 +177,7 @@ export class ProductService {
           }
         },
         (err: HttpErrorResponse) => {
-          console.log(err.error);
+          // console.log(err.error);
         }
       );
     });
@@ -192,17 +187,17 @@ export class ProductService {
     return new Promise(resolve => {
       this.http.get<any>(this._url + 'categories').subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           // tslint:disable-next-line: triple-equals
           if (res.status == 'success') {
             this._category = res.data as ICategory[];
             this.addToCategory(res.data);
             resolve(res.data);
-            console.log('this._category', this._category);
+            // console.log('this._category', this._category);
           }
         },
         (err: HttpErrorResponse) => {
-          console.log(err.error);
+          // console.log(err.error);
         }
       );
     });
@@ -212,10 +207,10 @@ export class ProductService {
     return new Promise((resolve, reject) => {
       this.http.get<any>(this._url + 'products/' + id).subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           // tslint:disable-next-line: triple-equals
           if (res.status == 'success') {
-            console.log('this product', res.data);
+            // console.log('this product', res.data);
             resolve(res.data);
           // tslint:disable-next-line: triple-equals
           } else if (res.code == 401) {
@@ -226,7 +221,7 @@ export class ProductService {
           }
         },
         (err: HttpErrorResponse) => {
-          console.log(err.error);
+          // console.log(err.error);
         }
       );
     });
@@ -238,7 +233,7 @@ export class ProductService {
         params: new HttpParams().set('tag', tagName)
       }).subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           // tslint:disable-next-line: triple-equals
           if (res.status == 'success') {
             if (res.data && res.data.pg) {
@@ -248,7 +243,7 @@ export class ProductService {
           }
         },
         (err: HttpErrorResponse) => {
-          console.log(err.error);
+          // console.log(err.error);
         }
       );
     });
@@ -421,7 +416,7 @@ export class ProductService {
   getCartItems() {
     if (this.auth.isAuthenticated()) {
       const token = this.getToken();
-      console.log('sds');
+      // console.log('sds');
       return this.http.get<any>(this._url + 'cart', {
         headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
       }).toPromise();
@@ -431,7 +426,7 @@ export class ProductService {
   getLocalCartItems(): Observable<ICart[]> {
     const subject = new Subject<ICart[]>();
     setTimeout(() => {
-      console.log('Lemme in');
+      // console.log('Lemme in');
       cartItems = (!!cartItems.length) ? cartItems : this.getCartFromLocal();
       subject.next(cartItems);
       subject.complete();
@@ -443,11 +438,11 @@ export class ProductService {
   populateLocalCartItems() {
     if (this.auth.isAuthenticated()) {
       this.getCartItems().then(res => {
-        console.log('isPopulating', res);
+        // console.log('isPopulating', res);
         if (res.status === 'success') {
           const ids = cartItems.map(r => r.product_id);
           const arr: [] = cartItems.length ?  res.data.filter((r: ICart) => !ids.includes(r.product_id)) : res.data;
-          console.log('arr O', arr);
+          // console.log('arr O', arr);
           if (arr.length) {
             arr.forEach(a => cartItems.push(a));
           }
@@ -460,7 +455,7 @@ export class ProductService {
   addToLocalCart(item: ICart) {
     item.amount = item.amount ? item.amount : item.amount_main;
     const isInCart = cartItems.find(c => c.product_id === item.product_id);
-    console.log('de', isInCart);
+    // console.log('de', isInCart);
     let result = false;
 
     // We expect undefine if it's not found
@@ -470,13 +465,13 @@ export class ProductService {
       result = true;
       this.addToCart(item);
     } else if (isInCart.quantity !== item.quantity) {
-      console.log('ups', item);
+      // console.log('ups', item);
       this.updateLocalCart(item);
     }
 
     const subject = new Subject<boolean>();
     setTimeout(() => {
-      console.log('locak add', result, cartItems);
+      // console.log('locak add', result, cartItems);
       subject.next(result);
       subject.complete();
     }, 100);
@@ -507,7 +502,7 @@ export class ProductService {
 
     // Yes in cart
     if (isInCart) {
-      console.log('up to date');
+      // console.log('up to date');
       const i = cartItems.indexOf(isInCart);
       cartItems.splice(i, 1, item);
       this.updateToLocal();
@@ -522,13 +517,13 @@ export class ProductService {
   updateToLocal() {
     // since !0 = true -> 0 => false
     if (cartItems.length >= 0) {
-      console.log(cartItems);
+      // console.log(cartItems);
       const obj = JSON.stringify(cartItems);
       localStorage.setItem('cart', obj);
     }
 
     if (categories.length >= 0) {
-      console.log(categories);
+      // console.log(categories);
       const obj = JSON.stringify(categories);
       localStorage.setItem('category', obj);
     }
@@ -562,7 +557,7 @@ export class ProductService {
   // For Wishlist
   addToWishList(product: IProduct) {
     const isInWish = wishList.find(w => w.id === product.id);
-    console.log('de', isInWish);
+    // console.log('de', isInWish);
     let result = false;
 
     // We expect undefine if it's not found
@@ -594,7 +589,7 @@ export class ProductService {
   getWishList(): Observable <IProduct[]> {
     const subject = new Subject<IProduct[]>();
     setTimeout(() => {
-      console.log('Lemme in');
+      // console.log('Lemme in');
       wishList = (!!wishList.length) ? wishList : this.getWishListFromLocal();
       subject.next(wishList);
       subject.complete();
@@ -605,7 +600,7 @@ export class ProductService {
   updateWishListToLocal() {
     // since !0 = true -> 0 => false
     if (wishList.length >= 0) {
-      console.log(wishList);
+      // console.log(wishList);
       const obj = JSON.stringify(wishList);
       localStorage.setItem('wishList', obj);
     }

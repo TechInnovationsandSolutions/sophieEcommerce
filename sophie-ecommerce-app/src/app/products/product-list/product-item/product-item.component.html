@@ -13,7 +13,7 @@
             <span>{{ aProduct.name | firstCharCapitalize}}</span>
         </p>
         <p class="product-item__details-price">
-            <span class="promo_price">{{ aProduct.reduced_cost ? aProduct.reduced_cost : aProduct.cost  | currency:"NGN":"₦"}}</span>
+            <span class="promo_price">{{ (aProduct.reduced_cost ? aProduct.reduced_cost : aProduct.cost)  | currency:"NGN":"₦"}}</span>
             <span *ngIf="(aProduct.reduced_cost && aProduct.reduced_cost < aProduct.cost)" class="price">{{ aProduct.cost | currency:"NGN":"₦"}}</span>
         </p>
     </div>

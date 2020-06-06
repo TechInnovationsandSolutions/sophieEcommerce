@@ -17,16 +17,18 @@ export class MyOrdersComponent implements OnInit {
 
   ngOnInit() {
     this.productService.getUserOrders().then((res) => {
-      console.log('orders', res);
+      // console.log('orders', res);
       this.showPreloader = false;
 
       if (res.status === 'success') {
         this.userOrders = res.data;
-        console.log('orderus', this.userOrders);
+        // console.log('orderus', this.userOrders);
       } else {
         throw new Error(res);
       }
-    }).catch(rej => console.error(rej));
+    }).catch(rej => {
+      // console.error(rej);
+    });
   }
 
 }

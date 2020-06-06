@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
     const lgth = text.length;
     const maxValidation = 4;
 
-    console.log('sd', this.newPasswordTest)
+    // console.log('sd', this.newPasswordTest)
     this.newPasswordTestResult  = new Set();
 
     if (lgth >= inpMinLegth) {
@@ -109,7 +109,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  validatePhoneNumber(control: AbstractControl): {[key: string]: any} | null{
+  validatePhoneNumber(control: AbstractControl): {[key: string]: any} | null {
     const regx = new RegExp(/(^[0]\d{10}$)|(^[\+]?[234]\d{12}$)/g);
     const isNotValidPhone = regx.test(control.value);
     return isNotValidPhone ? null : {isNotValidPhone: true};
@@ -121,19 +121,19 @@ export class RegisterComponent implements OnInit {
   seePassword() {
     const pw = document.getElementById('userPassword') as HTMLInputElement;
     pw.type = 'text';
-    // console.log(event.type, pw.type, pw);
+    // // console.log(event.type, pw.type, pw);
   }
 
   hidePassword() {
     const pw = document.getElementById('userPassword') as HTMLInputElement;
-    // console.log(event.type, pw);
+    // // console.log(event.type, pw);
     pw.type = 'password';
   }
 
   onSubmit(formValue) {
-    console.log(formValue);
+    // console.log(formValue);
     if (formValue.status.toLowerCase() === 'valid') {
-      console.log(formValue.value);
+      // console.log(formValue.value);
       this.blockUI.start();
       // tslint:disable-next-line: variable-name
       const _user: IUserReg = formValue.value;
@@ -159,7 +159,7 @@ export class RegisterComponent implements OnInit {
       },
       rej => {
         this.blockUI.stop();
-        // console.log(rej);
+        // // console.log(rej);
         const errors: any = rej.error.errors;
 
         const errKey = Object.keys(errors);

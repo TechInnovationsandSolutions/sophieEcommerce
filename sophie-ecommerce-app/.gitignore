@@ -49,3 +49,5 @@ Thumbs.db
 encryption.service.ts
 *.pptx
 .env
+
+encryption.service.ts
