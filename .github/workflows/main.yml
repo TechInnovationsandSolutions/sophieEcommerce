@@ -1,24 +1,39 @@
-# This is a basic workflow to help you get started with Actions
+name: Deploy CloudFormation Stacks
 
-name: website - deploy to S3 bucket
+# Controls when the action will run.
 on:
-  push:
-    branches:
-      - master
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      region:
+        description: "eu-west-2"
+        required: true
+        default: "eu-west-2"
+      bucketName:
+        description: ${{ secrets.AWS_S3_BUCKET }}
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy:
+  cfn-deployment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@1
-        with:
-          ref: refs/heads/master
-          fetch-depth: 1
+        uses: actions/checkout@v2
+
       - name: Configure AWS credentials
+        id: creds
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: "ap-east-1"
-      - name: Push files to S3
-        run: aws s3 sync . s3://${{ secrets.AWS_S3_bucket }} --size-only --exclude ".github/*" 
+          aws-region: ${{ github.event.inputs.region }} 
+
+      - name: Deploy S3 Buckets CloudFormation Stacks
+        id: s3-buckets
+        uses: aws-actions/aws-cloudformation-github-deploy@v1.0.4
+        with:
+          name:  s3-buckets
+          template: s3.yml
+          parameter-overrides: >-
+            BucketName=${{ github.event.inputs.bucketName }}
