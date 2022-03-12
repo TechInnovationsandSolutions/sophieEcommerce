@@ -5,7 +5,7 @@ Description: Using GitHub Actions to deploy CloudFormation stack
 
 Parameters:
   BucketName:
-    Description: www.stmbeauty.com
+    Description: stmbeauty.com
     Type: String
 
 Resources:
