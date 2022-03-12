@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: website - deploy to S3 bucket
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@1
+        with:
+          ref: refs/heads/master
+          fetch-depth: 1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "ap-east-1"
+      - name: Push files to S3
+        run: aws s3 sync . s3://${{ secrets.AWS_S3_bucket }} --size-only --exclude ".github/*" 
