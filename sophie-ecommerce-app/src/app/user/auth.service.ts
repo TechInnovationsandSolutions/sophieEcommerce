@@ -1,15 +1,15 @@
-import {
-  HttpClient,
-  HttpHeaders
-} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { IUSer, IUserReg } from "../shared";
+import { CrispyService } from "./encryption.service";
 
 const USER = "x-user";
 const TOKEN = "x-token";
-
+const loco = "x3&#";
+const polish = "kt-spt";
+const polishUser = "kt-spt-uz";
 @Injectable()
 export class AuthService {
   baseUrl = "http://ec2-52-87-173-131.compute-1.amazonaws.com/"; // Base URL
@@ -18,27 +18,69 @@ export class AuthService {
 
   currentUser: IUSer;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private crispyService: CrispyService
+  ) {}
 
-  getToken() {
-    return localStorage.getItem(TOKEN);
+  setToken(token: string, emailLog: string) {
+    const user = this.crispyService.encryptyCrypto(emailLog, loco + TOKEN);
+    const userToken = this.crispyService.encryptyCrypto(token, loco + user);
+    localStorage.setItem(user, userToken);
+    localStorage.setItem(polish, user);
   }
 
-  setUser(user: string): void {
-    localStorage.setItem(USER, user);
+  getToken() {
+    const user = localStorage.getItem(polish);
+    const tk = localStorage.getItem(user);
+    if (user && tk) {
+      const userToken: string = this.crispyService.decryptyCrypto(
+        tk,
+        loco + user
+      );
+      return userToken;
+    }
+    return;
+  }
+
+  removeToken() {
+    localStorage.removeItem(polish);
+  }
+
+  setUser(user: IUSer): void {
+    const userEmail = this.crispyService.encryptyCrypto(
+      user.email,
+      loco + TOKEN + USER
+    );
+    const leUser = this.crispyService.encryptyCrypto(
+      JSON.stringify(user),
+      loco + userEmail
+    );
+    localStorage.setItem(userEmail, leUser);
+    localStorage.setItem(polishUser, userEmail);
   }
 
   getUser() {
-    return JSON.parse(localStorage.getItem(USER)) as IUSer;
+    const userE = localStorage.getItem(polishUser);
+    const pU = localStorage.getItem(userE);
+    if (userE && pU) {
+      const leUser: string = this.crispyService.decryptyCrypto(
+        pU,
+        loco + userE
+      );
+      return JSON.parse(leUser) as IUSer;
+    }
+    return;
   }
 
   removeUser() {
-    localStorage.removeItem(USER);
-    localStorage.removeItem(TOKEN);
+    localStorage.removeItem(polishUser);
+    this.removeToken();
   }
 
   isGotUser() {
-    return localStorage.getItem(USER) != null;
+    return this.getUser() != null;
   }
 
   registerUser(user: IUserReg) {
