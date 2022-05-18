@@ -77,7 +77,7 @@ import { WishListComponent } from "./wish-list/wish-list.component";
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' }),
     HttpClientModule,
     Ng5SliderModule,
     BlockUIModule.forRoot(),
