@@ -34,16 +34,16 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
     } else {
       this.productService.getCategories().then(resp => {
         this.categories = resp as ICategory[];
-        console.log('categ', this.categories);
+        // // console.log('categ', this.categories);
       });
     }
 
     combineLatest(this.route.params, this.route.queryParams)
     .pipe(map(results => ({params: results[0].slug, query: results[1]})))
     .subscribe(results => {
-      console.log('Lol snap', this.route.snapshot.queryParams.page);
+      // // console.log('Lol snap', this.route.snapshot.queryParams.page);
       if (!this.route.snapshot.queryParams.page) {
-        console.log('no product param');
+        // // console.log('no product param');
         this.router.navigate([], {
           queryParams: {
             page: 1
@@ -60,7 +60,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
       const searchhTerm = this.route.snapshot.queryParams.searchhTerm ? this.route.snapshot.queryParams.searchhTerm : '';
 
       const searchInput = document.getElementById('searchTextID') as HTMLInputElement;
-      console.log('search input', searchInput);
+      // // console.log('search input', searchInput);
       if (searchInput) {
         searchInput.value = searchhTerm;
         searchInput.setAttribute('value' , searchhTerm);
@@ -68,7 +68,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
       }
 
       if (this.route.snapshot.params.slug === 'search') {
-        console.log('this.searching', searchhTerm);
+        // // console.log('this.searching', searchhTerm);
         aProm = this.productService.getSearchedProducts(searchhTerm, pg);
       } else if (this.route.snapshot.params.slug) {
         const slug = this.route.snapshot.params.slug.replace(/_/g, ' ');
@@ -80,13 +80,13 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
           this.showBreadCrumb = true;
         }
       } else {
-        console.log('here');
+        // // console.log('here');
         aProm = this.productService.getProducts(pg);
       }
 
       this.showPreloader = true;
       aProm.then(res => {
-        // console.log(pg, res)
+        // // console.log(pg, res)
         const resp = res as ProductResponse;
         this.pagesArray = resp.pg;
         this.products = resp.data;
@@ -96,7 +96,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
 
         const sel = document.getElementById('product-categories') as HTMLSelectElement;
         if (sel) {
-          console.log('sel', slug);
+          // // console.log('sel', slug);
           sel.value = (slug && slug !== 'search') ? slug : 'all';
         }
       });
@@ -146,7 +146,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
 
   setProducts(pg) {
     this.productService.getProducts(pg).then(res => {
-      // console.log(pg, res)
+      // // console.log(pg, res)
       const resp = res as ProductResponse;
       this.pagesArray = resp.pg;
       this.products = resp.data;

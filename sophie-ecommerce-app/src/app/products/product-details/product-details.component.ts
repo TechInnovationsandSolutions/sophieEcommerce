@@ -34,19 +34,20 @@ export class ProductDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.params);
+   // console.log(this.route.snapshot.params);
     this.route.params.forEach((params: Params) => {
       this.productService.getProduct(+params.id).then(res => {
-        console.log('the product', res);
+       // console.log('the product', res);
         this.product = res as IProduct;
+        this.product.avg_rating = this.product.avg_rating ? this.product.avg_rating : 5 ;
         this.showPreloader = false;
         this.makeProductSEOTags();
       })
       .then(() => {
-        // console.log('pror', this.product);
+        //// console.log('pror', this.product);
         if (this.product.tags && this.product.tags.length) {
           const productTag = this.product.tags.map(t => t.name);
-          console.log('tag-chain', productTag.join(','), productTag, this.product.tags);
+         // console.log('tag-chain', productTag.join(','), productTag, this.product.tags);
           this.productService.getProductsByTag(productTag.join(',')).then(res => {
             this.relatedProducts = (res as IProduct[]).length > 8 ? (res as IProduct[]).slice(0, 8) : (res as IProduct[]);
           });
@@ -68,13 +69,39 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addOne() {
-    this.quantity++ ;
-    // console.log('df', this.quantity);
+    if (this.quantity < this.product.quantity) {
+      this.quantity++;
+    } else if (this.quantity === this.product.quantity) {
+      Swal.fire({
+        icon: 'info',
+        toast: true,
+        title: 'The maximum number of ' + this.product.name + ' in stock is ' + this.product.quantity + '.',
+        timer: 1000,
+        showConfirmButton: false,
+        position: 'top-right'
+      });
+    }
+
+    //// console.log('df', this.quantity);
   }
 
   removeOne() {
     // tslint:disable-next-line: no-unused-expression
     (this.quantity > 1) ? this.quantity-- : this.quantity;
+  }
+
+  changeFn(e: any) {
+    if (this.quantity >= this.product.quantity) {
+      this.quantity = this.product.quantity;
+      Swal.fire({
+        icon: 'info',
+        toast: true,
+        title: 'The maximum number of ' + this.product.name + ' in stock is ' + this.product.quantity + '.',
+        timer: 1000,
+        showConfirmButton: false,
+        position: 'top-right'
+      });
+    }
   }
 
   addToCart(e: Event, prod: IProduct, quantity: number) {
@@ -88,15 +115,16 @@ export class ProductDetailsComponent implements OnInit {
         amount: prod.reduced_cost,
         amount_main: prod.cost,
         imgUrl: (prod.images[0] && prod.images[0].url) ? prod.images[0].url : '/assets/images/product-1.png',
-        quantity
+        quantity,
+        maxQty: prod.quantity
       };
-      console.log('cartItem', cartItem);
+     // console.log('cartItem', cartItem);
 
       this.productService.addToLocalCart(cartItem)
       .then((res) => {
         this.productService.addToLocalCart(cartItem);
         const text = res ? 'Successfully Added to cart' : 'Already Exist in Cart. You can increase quantity';
-        console.log('carty0', text);
+       // console.log('carty0', text);
         Swal.fire({
           icon: res ? 'success' : 'info',
           toast: true,

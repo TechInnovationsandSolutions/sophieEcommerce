@@ -40,10 +40,13 @@
                 <div class="order-item-detail" *ngFor="let item of order.items">
                   <div class="order-item-img-name-container">
                     <div class="d-flex flex-wrap">
-                      <img src="{{item?.images[0]?.thumbnail || '/assets/images/product-1.png' }}" alt="image of {{ 'item.produc' }}">
-                      <a [routerLink]='["/product", item?.product_id]' class="order-item-name text-capitalize">
+                      <img src="{{item?.images[0]?.thumbnail || '/assets/images/product-1.png' }}" alt="image of {{ 'item.product' }}">
+                      <a *ngIf="!item.deleted_at" [routerLink]='["/product", item?.product_id]' class="order-item-name text-capitalize">
                         {{ item?.product }}
                       </a>
+                      <p *ngIf="item.deleted_at"class="order-item-name">
+                        <span class="text-capitalize">{{ item?.product }} </span><small class="text-danger">(We do not offer this product for now.)</small>
+                      </p>
                     </div>
                   </div>
                   <div class="order-item-price-container">

@@ -1,41 +1,52 @@
 <div class="product-item">
-    <div class="product-item__link">
-        <img class="product-item__img" src="{{ aProduct?.images[0]?.thumbnail || '/assets/images/product-1.png' }}" alt="{{ aProduct.description }}" [routerLink] = '["/product", aProduct.id]'>
-        <button class="btn-add-to-favorite product-item__btn" [title]="(isInWishList ? 'Remove From Favorite' : 'Add to Favorite')" (click)="toWishList()" [ngClass]="{'bg-danger': isInWishList}">
-            <i [ngClass]="isInWishList ? 'fas fa-times text-light': 'far fa-heart'"></i>
-        </button>
-        <p class="product-item__discount" *ngIf="(aProduct.reduced_cost && aProduct.reduced_cost < aProduct.cost)">
-            {{ ((aProduct?.cost - aProduct?.reduced_cost)/aProduct?.cost) | percent:'1.2' }}
-        </p>
-    </div>
-    <div class="product-item__details">
-        <p class="product-item__details-name" [routerLink] = '["/product", aProduct.id]'>
-            <span>{{ aProduct.name | firstCharCapitalize}}</span>
-        </p>
-        <p class="product-item__details-price">
-            <span class="promo_price">{{ aProduct.reduced_cost ? aProduct.reduced_cost : aProduct.cost  | currency:"NGN":"₦"}}</span>
-            <span *ngIf="(aProduct.reduced_cost && aProduct.reduced_cost < aProduct.cost)" class="price">{{ aProduct.cost | currency:"NGN":"₦"}}</span>
-        </p>
-    </div>
-    <div class="product-item__functions">
-        <button type="button" class="btn-add-to-cart product-item__btn" title="Add to Cart" (click)='addToCart()'>
-            Add to Cart
-        </button>
-        <p class="product-item__rating" title="Product Rating of {{ aProduct?.avg_rating }}">
-            <!-- 1 star  -->
-            <i [class]="(aProduct.avg_rating == 0) ? 'far fa-star' : (aProduct.avg_rating > 0 && aProduct.avg_rating < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
+  <div class="product-item__link">
+    <img class="product-item__img" src="{{ aProduct?.images[0]?.thumbnail || '/assets/images/product-1.png' }}"
+      alt="{{ aProduct.description }}" [routerLink]='["/product", aProduct.id]'>
+    <button class="btn-add-to-favorite product-item__btn"
+      [title]="(isInWishList ? 'Remove From Favorite' : 'Add to Favorite')" (click)="toWishList()"
+      [ngClass]="{'bg-danger': isInWishList}">
+      <i [ngClass]="isInWishList ? 'fas fa-times text-light': 'far fa-heart'"></i>
+    </button>
+    <p class="product-item__discount" *ngIf="(aProduct.reduced_cost && aProduct.reduced_cost < aProduct.cost)">
+      {{ ((aProduct?.cost - aProduct?.reduced_cost)/aProduct?.cost) | percent:'1.2' }}
+    </p>
+  </div>
+  <div class="product-item__details">
+    <p class="product-item__details-name" [routerLink]='["/product", aProduct.id]'>
+      <span>{{ aProduct.name | firstCharCapitalize}}</span>
+    </p>
+    <p class="product-item__details-price">
+      <span
+        class="promo_price">{{ (aProduct.reduced_cost ? aProduct.reduced_cost : aProduct.cost)  | currency:"NGN":"₦"}}</span>
+      <span *ngIf="(aProduct.reduced_cost && aProduct.reduced_cost < aProduct.cost)"
+        class="price">{{ aProduct.cost | currency:"NGN":"₦"}}</span>
+    </p>
+  </div>
+  <div class="product-item__functions">
+    <button [disabled]="!aProduct.quantity" type="button" class="btn-add-to-cart product-item__btn" title="Add to Cart"
+      (click)='addToCart()'>
+      {{(aProduct.quantity ? 'Add to Cart' : 'Out of Stock')}}
+    </button>
+    <p class="product-item__rating" title="Product Rating of {{ aProduct?.avg_rating }}">
+      <!-- 1 star  -->
+      <i
+        [class]="(aProduct.avg_rating == 0) ? 'far fa-star' : (aProduct.avg_rating > 0 && aProduct.avg_rating < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
 
-            <!-- 2 star  -->
-            <i [class]="(aProduct.avg_rating >= 2) ? 'fas fa-star' : (aProduct.avg_rating > 1 && aProduct.avg_rating < 2) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+      <!-- 2 star  -->
+      <i
+        [class]="(aProduct.avg_rating >= 2) ? 'fas fa-star' : (aProduct.avg_rating > 1 && aProduct.avg_rating < 2) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
 
-            <!-- 3 star  -->
-            <i [class]="(aProduct.avg_rating >= 3) ? 'fas fa-star' : (aProduct.avg_rating > 2 && aProduct.avg_rating < 3) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+      <!-- 3 star  -->
+      <i
+        [class]="(aProduct.avg_rating >= 3) ? 'fas fa-star' : (aProduct.avg_rating > 2 && aProduct.avg_rating < 3) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
 
-            <!-- 4 star  -->
-            <i [class]="(aProduct.avg_rating >= 4) ? 'fas fa-star' : (aProduct.avg_rating > 3 && aProduct.avg_rating < 4) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+      <!-- 4 star  -->
+      <i
+        [class]="(aProduct.avg_rating >= 4) ? 'fas fa-star' : (aProduct.avg_rating > 3 && aProduct.avg_rating < 4) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
 
-            <!-- 5 star  -->
-            <i [class]="(aProduct.avg_rating >= 5) ? 'fas fa-star' : (aProduct.avg_rating > 4 && aProduct.avg_rating < 5) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
-        </p>
-    </div>
+      <!-- 5 star  -->
+      <i
+        [class]="(aProduct.avg_rating >= 5) ? 'fas fa-star' : (aProduct.avg_rating > 4 && aProduct.avg_rating < 5) ? 'fas fa-star-half-alt' : 'far fa-star'"></i>
+    </p>
+  </div>
 </div>

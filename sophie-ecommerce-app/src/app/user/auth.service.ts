@@ -1,12 +1,11 @@
-import { Injectable } from "@angular/core";
-import { IUserReg, IUSer, ProductService } from "../shared";
 import {
   HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
+  HttpHeaders
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { IUSer, IUserReg } from "../shared";
 
 const USER = "x-user";
 const TOKEN = "x-token";

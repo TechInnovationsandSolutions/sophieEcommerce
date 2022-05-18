@@ -10,9 +10,11 @@ import { ProductService } from 'src/app/shared';
 export class LoginRegisterComponent implements OnInit {
   isLogin = true;
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private productService: ProductService) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) { }
 
   ngOnInit() {
     const correctRoute = this.route.snapshot.url[0].path;

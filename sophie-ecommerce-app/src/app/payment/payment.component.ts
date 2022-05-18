@@ -24,10 +24,10 @@ export class PaymentComponent implements OnInit {
     this.route.queryParams.subscribe(q => {
       if (q.trxref && q.reference) {
         this.orderReference = q.reference;
-        console.log(q);
+        // console.log(q);
         this.productService.verifyUserOrder(q.reference)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.showPreloader = false;
           if (res.status === 'success') {
             // const resp = res.data;

@@ -1,54 +1,60 @@
-@import './../app.component.scss';
+@import "./../app.component.scss";
 
 $logoDim: 100px;
 
-nav.navbar{
-    padding: 0.5em 2em;
+nav.navbar {
+  padding: 0.5em 2em;
 
-    a.navbar-brand{
-        img.navBar__brand-icon{
-            width: $logoDim;
-            height: $logoDim;
-        }
+  a.navbar-brand {
+    img.navBar__brand-icon {
+      width: $logoDim;
+      height: $logoDim;
+    }
+  }
+
+  .nav-link {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  div.other_nav {
+    @include flexWrap();
+    margin: auto;
+
+    form {
+      input[type="search"] {
+        width: auto;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      button[type="submit"] {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
     }
 
-    div.other_nav{
-        @include flexWrap();
-        margin: auto;
+    ul {
+      padding: 0;
+      list-style: none;
+      @include flexWrap();
+      margin: auto;
 
-        form{
-            input[type = 'search']{
-                width: auto;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
+      li {
+        display: inline-block;
+      }
 
-            button[type="submit"]{
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
+      &.navBar-btn__user-auth-options {
+        li {
+          width: 100%;
         }
-
-        ul{
-            padding: 0;
-            list-style: none;
-            @include flexWrap();
-            margin: auto;
-
-            li{
-                display: inline-block;
-            }
-
-            &.navBar-btn__user-auth-options{
-                li{
-                    width: 100%;
-                }
-            }
-        }
-
-        .dropdown-menu{
-            right: 0;
-            left: unset;
-        }
+      }
     }
+
+    .dropdown-menu {
+      right: 0;
+      left: unset;
+    }
+  }
 }

@@ -54,7 +54,7 @@ export class ForgotPasswordComponent implements OnInit {
       if (qp.token && qp.email) {
         this.token = qp.token;
         this.thisEmail = qp.email;
-        console.log('qp', this.token, this.thisEmail);
+        // console.log('qp', this.token, this.thisEmail);
         this.validateToken();
       }
     });
@@ -72,7 +72,7 @@ export class ForgotPasswordComponent implements OnInit {
           throw new Error(res);
         }
 
-        console.log(this.userId, res);
+        // console.log(this.userId, res);
       })
       .then(() => this.btnTogglePassword())
       .catch(rej => console.error(rej));
@@ -118,7 +118,7 @@ export class ForgotPasswordComponent implements OnInit {
       setTimeout(() => {
         const btnPw = document.querySelector('button.btn-reveal') as HTMLInputElement;
 
-        console.log(btnPw);
+        // console.log(btnPw);
         btnPw.addEventListener('mousedown', this.seePassword, false);
         btnPw.addEventListener('touchstart', this.seePassword, false);
 
@@ -132,12 +132,12 @@ export class ForgotPasswordComponent implements OnInit {
   seePassword() {
     const pw = document.getElementById('new-password') as HTMLInputElement;
     pw.type = 'text';
-    // console.log(event.type, pw.type, pw);
+    // // console.log(event.type, pw.type, pw);
   }
 
   hidePassword() {
     const pw = document.getElementById('new-password') as HTMLInputElement;
-    // console.log(event.type, pw);
+    // // console.log(event.type, pw);
     pw.type = 'password';
   }
 
@@ -145,7 +145,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.invalidEmail = false;
     this.blockUI.start();
     if (this.forgotPassword.valid) {
-      console.log('Ki', this.forgotPassword.value);
+      // console.log('Ki', this.forgotPassword.value);
       const email = this.forgotPassword.controls.email.value;
       this.productService.forgotPassword(email).subscribe((res) => {
         this.blockUI.stop();
@@ -158,7 +158,7 @@ export class ForgotPasswordComponent implements OnInit {
             confirmButtonText: 'OK'
           });
         }
-        console.log('Ki', res);
+        // console.log('Ki', res);
       });
     } else {
       this.invalidEmail = true;
@@ -167,11 +167,11 @@ export class ForgotPasswordComponent implements OnInit {
 
   onSubmitNewPassword() {
     this.invalidEmail = false;
-    console.log('Ki', this.newPassword.value);
+    // console.log('Ki', this.newPassword.value);
     this.blockUI.start('Updating...');
     if (this.newPassword.valid) {
       const pw = this.newPassword.controls.password.value;
-      console.log(pw, this.userId);
+      // console.log(pw, this.userId);
       this.productService.changeForgetPassword(pw, this.userId.toString()).then(res => {
         this.blockUI.stop();
         if (res.status === 'success') {
