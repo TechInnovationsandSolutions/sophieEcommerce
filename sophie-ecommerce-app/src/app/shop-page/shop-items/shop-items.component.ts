@@ -1,20 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IProduct, ProductService } from 'src/app';
+import { Component, OnInit, Input } from "@angular/core";
+import { IProduct, ProductService } from "src/app/shared";
 
 @Component({
-  selector: 'shop-items',
-  templateUrl: './shop-items.component.html',
-  styleUrls: ['./shop-items.component.scss']
+  selector: "shop-items",
+  templateUrl: "./shop-items.component.html",
+  styleUrls: ["./shop-items.component.scss"],
 })
 export class ShopItemsComponent implements OnInit {
-
   @Input() shopProducts: IProduct[];
   currentPageProducts: IProduct[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    console.log('this.shopProducts', this.shopProducts);
+    console.log("this.shopProducts", this.shopProducts);
     setTimeout(() => {
       this.currentPageProducts = this.shopProducts;
     }, 500);

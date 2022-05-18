@@ -22,6 +22,7 @@
     "@cloudinary/angular-5.x": "^1.2.0-rc.0",
     "angular4-paystack": "^3.0.0",
     "cloudinary-core": "^2.8.1",
+    "crypto-js": "^4.1.1",
     "dotenv": "^8.2.0",
     "ng-block-ui": "^2.1.8",
     "ng-lazyload-image": "^7.1.0",
