@@ -12,7 +12,7 @@ const polish = "kt-spt";
 const polishUser = "kt-spt-uz";
 @Injectable()
 export class AuthService {
-  baseUrl = "http://ec2-52-87-173-131.compute-1.amazonaws.com/"; // Base URL
+  baseUrl = "http://ec2-52-87-173-131.compute-1.amazonaws.com/api/v1"; // Base URL
   // tslint:disable-next-line: variable-name
   _url = this.baseUrl + "auth/";
 
