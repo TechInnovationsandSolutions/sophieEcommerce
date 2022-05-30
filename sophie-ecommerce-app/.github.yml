@@ -1,0 +1,19 @@
+image: node:latest
+
+build:
+  stage: build
+  tags:
+    - build
+  cache:
+    paths:
+      - node_modules/
+  only:
+    refs:
+      - staging
+      - merge_requests
+  script:
+    - npm install --quiet
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
