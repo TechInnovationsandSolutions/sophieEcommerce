@@ -1,7 +1,7 @@
 {
   "name": "sophie-ecommerce-app",
   "version": "1.0.0",
-  "description": "An e-commerce site for sophie. This is the frontend",
+  "description": "An e-commerce site for sophie. This is the frontend side",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4212",
