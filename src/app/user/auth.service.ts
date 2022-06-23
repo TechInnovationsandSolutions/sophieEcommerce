@@ -12,7 +12,7 @@ const polish = "kt-spt";
 const polishUser = "kt-spt-uz";
 @Injectable()
 export class AuthService {
-  baseUrl = "http://api.stmbeautyandbath.com/api/v1/"; // Base URL
+  baseUrl = "https://api.stmbeautyandbath.com/api/v1/"; // Base URL
   // tslint:disable-next-line: variable-name
   _url = this.baseUrl + "auth/";
 
