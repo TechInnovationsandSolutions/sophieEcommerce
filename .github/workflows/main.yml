@@ -7,17 +7,35 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          ref: refs/heads/master
-          fetch-depth: 1
+          node-version: ${{ matrix.node-version }}
+
+      - name: test
+        run: |
+          echo ${{ github.run_id }}
+          cd ./sophie-ecommerce-app
+          npm run test
+
+      - name: build
+        run: npm run build
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.6.1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: "eu-west-2"
+
       - name: Push files to S3
-        run: aws s3 sync . s3://${{ secrets.AWS_S3_bucket }} --size-only --exclude ".github/*"
+        run: aws s3 sync --delete ./dist/ s3://${{ secrets.AWS_S3_bucket }} --cache-control 'public, max-age=300, s-maxage=31536000' --size-only
