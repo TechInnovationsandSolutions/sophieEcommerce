@@ -24,7 +24,7 @@ jobs:
         run: |
           echo ${{ github.run_id }}
           cd ./sophie-ecommerce-app
-          npm ci --force
+          npm i --force
           ls
 
       - name: test
