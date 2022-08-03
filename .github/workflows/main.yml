@@ -27,8 +27,8 @@ jobs:
           npm i --force
           ls
 
-      - name: test
-        run: npm run test
+      # - name: test
+      #   run: npm run test
 
       - name: build
         run: npm run build
