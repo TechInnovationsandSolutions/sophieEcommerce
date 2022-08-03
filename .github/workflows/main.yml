@@ -20,18 +20,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: install dependecies
+      - name: install dependecies and build
         run: |
           echo ${{ github.run_id }}
           cd ./sophie-ecommerce-app
           npm i --force
           ls
-
-      # - name: test
-      #   run: npm run test
-
-      - name: build
-        run: npm run build
+          npm run build
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.6.1
