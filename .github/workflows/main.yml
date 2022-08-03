@@ -32,9 +32,12 @@ jobs:
           echo "in main folder"
           ls
           # npm run test
+          ng test
 
       - name: build
-        run: npm run build
+        run: |
+          # npm run build
+          ng build --prod
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.6.1
