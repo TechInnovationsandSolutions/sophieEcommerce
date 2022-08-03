@@ -1,4 +1,3 @@
-
 name: website - deploy to S3 bucket
 on:
   push:
@@ -22,22 +21,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: install dependecies
-        run: npm ci
-
-      - name: test
         run: |
           echo ${{ github.run_id }}
-          ls
           cd ./sophie-ecommerce-app
-          echo "in main folder"
+          npm ci
           ls
-          # npm run test
-          ng test
+
+      - name: test
+        run: npm run test
 
       - name: build
-        run: |
-          # npm run build
-          ng build --prod
+        run: npm run build
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.6.1
