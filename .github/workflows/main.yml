@@ -1,4 +1,4 @@
-name: website - deploy to S3 bucket
+name: website - Deploy to S3 bucket
 on:
   push:
     branches:
